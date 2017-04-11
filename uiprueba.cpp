@@ -1,4 +1,4 @@
-#include <opencv2/opencv.hpp>
+/*#include <opencv2/opencv.hpp>
 #include <iostream>
 
 using namespace std;
@@ -139,4 +139,4 @@ int main(int, char* argv[]) {
   cout << "Press any key to exit..." << endl;
   waitKey(); // Infinite loop with handle for events
   return 0;
-}
+}*/
