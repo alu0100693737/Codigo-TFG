@@ -6,26 +6,18 @@ CLabel::CLabel() : QLabel() {
     setAlignment(Qt::AlignCenter);
 }
 
-CLabel::CLabel(QString text, bool imagen) : QLabel() {
+CLabel::CLabel(QString text) : QLabel() {
     setText(text);
     setAlignment(Qt::AlignCenter);
-    if(imagen) {
-        setImagen("/home/ivan/Documentos/TFG/grafo.jpg");
-
-        setScaledContents(true);
-        //int w = this->width();
-        //int h = this->height();
-        // set a scaled pixmap to a w x h window keeping its aspect ratio
-        //setPixmap(p.scaled(w,h,Qt::KeepAspectRatio));
-        setPixmap(QPixmap::fromImage(getImagen()));
-        //setPicture("grafo.jpg");
-         }
+    setStyleSheet("background-color : rgba( 160, 160, 160, 255); border: 5px solid black");
 }
 
 QImage CLabel::getImagen() {
     return imagen_;
 }
 
-void CLabel::setImagen(QString path) {
-    imagen_.load(path);
+void CLabel::setImagen(const QImage imagenNueva) {
+    imagen_ = imagenNueva;
+    setScaledContents(true);
+    setPixmap(QPixmap::fromImage(getImagen()));
 }

@@ -9,6 +9,10 @@ private:
     CLabel* panelOpciones_;
     CLabel* panelHistograma_;
     COperacionesImagen* operacionesImagen_;
+
+    bool loadFile(const QString &fileName); //Utilizado slot abrirImagen
+    //Guarda localizacion elegida, por defecto carpeta imagenes, ordena los archivos y filtra por jpg
+    void inicializarVentanaAbrirImagen(QFileDialog&, QFileDialog::AcceptMode);
  public:
     CAplicacion();
     ~CAplicacion();
@@ -17,9 +21,8 @@ private:
     CLabel* getPanelHistograma();
     COperacionesImagen* getOperacionesImagen();
 
-    //bool loadFile(const QString &);
-    //static void inicializarVentanaAbrirImagen(QFileDialog, QFileDialog::AcceptMode);
 public slots:
     void slotAbrirImagen();
     void slotAbout();
+    void slotSalir();
 };

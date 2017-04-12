@@ -8,9 +8,9 @@ using namespace cv;
 
 CAplicacion::CAplicacion() {
 
-    panelPrincipal_ = new CLabel("Panel Principal", true);
-    panelOpciones_ = new CLabel("Opciones", false);
-    panelHistograma_ = new CLabel("Info Imagen", false);
+    panelPrincipal_ = new CLabel("Panel Principal");
+    panelOpciones_ = new CLabel("Opciones");
+    panelHistograma_ = new CLabel("Info Imagen");
 
     operacionesImagen_ = new COperacionesImagen();
 
@@ -27,18 +27,21 @@ CAplicacion::CAplicacion() {
     QMenu* menuFile               = new QMenu("File");
     QAction* actionAbrirImagen    = new QAction(QIcon("/home/ivan/TFG/release/abrir.png"), tr("Abrir Imagen"), this);
     QAction* actionAbout          = new QAction(QIcon("/home/ivan/TFG/release/about.png"), tr("About"), this);
+    QAction* actionSalir          = new QAction(QIcon("/home/ivan/TFG/release/salir.png"), tr("Salir"), this);
     menuFile->addAction(actionAbrirImagen);
     menuFile->addAction(actionAbout);
+    menuFile->addAction(actionSalir);
     //añadiendo elementos
     menu->addMenu(menuFile);
 
     setCentralWidget(centralWidget);
-    setMinimumSize(400, 400);
+    setMinimumSize(700, 400);
     setWindowTitle("TFG");
 
     //conexiones con slots
     connect(actionAbrirImagen, SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
     connect(actionAbout, SIGNAL(triggered()),this,SLOT(slotAbout()));
+    connect(actionSalir, SIGNAL(triggered()), this, SLOT(slotSalir()));
 }
 
 CAplicacion::~CAplicacion() {}
@@ -61,11 +64,11 @@ COperacionesImagen* CAplicacion::getOperacionesImagen() {
 
 void CAplicacion::slotAbrirImagen() {
     QFileDialog dialog(this, tr("Open File"));
-    //inicializarVentanaAbrirImagen(dialog, QFileDialog::AcceptOpen);
-    //while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
+    inicializarVentanaAbrirImagen(dialog, QFileDialog::AcceptOpen);
+    while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
 }
 
-/*static void CAplicacion::inicializarVentanaAbrirImagen(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode) {
+void CAplicacion::inicializarVentanaAbrirImagen(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode) {
     static bool firstDialog = true;
 
     if (firstDialog) {
@@ -82,12 +85,12 @@ void CAplicacion::slotAbrirImagen() {
     mimeTypeFilters.sort();
     dialog.setMimeTypeFilters(mimeTypeFilters);
     dialog.selectMimeTypeFilter("image/jpeg");
-    if (acceptMode == QFileDialog::AcceptSave)
+    if (acceptMode == QFileDialog::AcceptSave) {
         dialog.setDefaultSuffix("jpg");
+    }
 }
 
-bool CAplicacion::loadFile(const QString &fileName)
-{
+bool CAplicacion::loadFile(const QString &fileName) {
     QImageReader reader(fileName);
     reader.setAutoTransform(true);
     const QImage newImage = reader.read();
@@ -96,8 +99,17 @@ bool CAplicacion::loadFile(const QString &fileName)
                                  tr("Cannot load %1: %2")
                                  .arg(QDir::toNativeSeparators(fileName), reader.errorString()));
         return false;
+    } else {
+        getPanelPrincipal()->setImagen(newImage);
+        getPanelHistograma()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->calcularHistograma(getOperacionesImagen()->QImage2Mat(newImage))));
+        return true;
     }
-*/
+}
+
 void CAplicacion::slotAbout() {
     QMessageBox::about(this,"About","Trabajo fin de grado. Iván García Campos.");
+}
+
+void CAplicacion::slotSalir() {
+    exit(0);
 }

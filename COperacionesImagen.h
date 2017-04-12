@@ -4,6 +4,7 @@
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/imgproc.hpp"
 #include "CFiltrosImagenes.h"
+#include <QImage>
 
 //#include "opencv/ml.h"
 //reconocimiento de patrones
@@ -23,6 +24,9 @@ public:
     COperacionesImagen();
 	~COperacionesImagen();
     Mat calcularHistograma(Mat imagen);
+    QImage Mat2QImage(Mat const& src);
+    Mat QImage2Mat(QImage const & src);
+
     CFiltrosImagenes* aplicarFiltro();// get filtros_
     /*
 	//reconocerPatrones

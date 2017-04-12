@@ -1,7 +1,7 @@
 #ifndef CFILTROSIMAGENES_H
 #define CFILTROSIMAGENES_H
 #include "opencv2/imgcodecs.hpp" //MAT OPENCV
-#include "opencv2/imgproc.hpp"    //SOBEL
+#include "opencv2/imgproc.hpp"    //FILTROS
 using namespace cv;
 
 class CFiltrosImagenes {

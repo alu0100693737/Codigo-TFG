@@ -7,14 +7,14 @@ COperacionesImagen::COperacionesImagen() {
 COperacionesImagen::~COperacionesImagen() {}
 
 Mat COperacionesImagen::calcularHistograma(Mat imagen) {
-	/// Separate the image in 3 places ( B, G and R )
+    //Separa la imagen en Azul, Verde y Rojo ( B, G y R )
 	vector<Mat> bgr_planes;
     split(imagen, bgr_planes);
 
 	/// Establish the number of bins
 	int histSize = 256;
 
-	/// Set the ranges ( for B,G,R) )
+    /// Rango de colores ( for B,G,R) )
 	float range[] = { 0, 256 };
 	const float* histRange = { range };
 
@@ -22,23 +22,23 @@ Mat COperacionesImagen::calcularHistograma(Mat imagen) {
 
 	Mat b_hist, g_hist, r_hist;
 
-	/// Compute the histograms:
+    //Calcula el histograma para los 3 canales de color
 	calcHist(&bgr_planes[0], 1, 0, Mat(), b_hist, 1, &histSize, &histRange, uniform, accumulate);
 	calcHist(&bgr_planes[1], 1, 0, Mat(), g_hist, 1, &histSize, &histRange, uniform, accumulate);
 	calcHist(&bgr_planes[2], 1, 0, Mat(), r_hist, 1, &histSize, &histRange, uniform, accumulate);
 
-	// Draw the histograms for B, G and R
-	int hist_w = 512; int hist_h = 400;
+    // Formato del Histograma
+    int hist_w = 256; int hist_h = 128;
 	int bin_w = cvRound((double)hist_w / histSize);
 
 	Mat histImage(hist_h, hist_w, CV_8UC3, Scalar(0, 0, 0));
 
-	/// Normalize the result to [ 0, histImage.rows ]
+    //Normaliza el histograma [0, histImage.rows ]
 	normalize(b_hist, b_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
 	normalize(g_hist, g_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
 	normalize(r_hist, r_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
 
-	/// Draw for each channel
+    //Dibuja la linea correspondiente para cada canal de color
 	for (int i = 1; i < histSize; i++) {
 		line(histImage, Point(bin_w*(i - 1), hist_h - cvRound(b_hist.at<float>(i - 1))),
 			Point(bin_w*(i), hist_h - cvRound(b_hist.at<float>(i))),
@@ -51,6 +51,23 @@ Mat COperacionesImagen::calcularHistograma(Mat imagen) {
 			Scalar(0, 0, 255), 2, 8, 0);
 	}
     return histImage;
+}
+
+//Se hace una copia de Mat
+QImage COperacionesImagen::Mat2QImage(cv::Mat const& src) {
+     Mat temp;
+     cvtColor(src, temp,CV_BGR2RGB);
+     QImage dest((const uchar *) temp.data, temp.cols, temp.rows, temp.step, QImage::Format_RGB888);
+     dest.bits(); // enforce deep copy, see documentation
+     // of QImage::QImage ( const uchar * data, int width, int height, Format format )
+     return dest;
+}
+
+Mat COperacionesImagen::QImage2Mat(QImage const& src) {
+     Mat tmp(src.height(),src.width(),CV_8UC3,(uchar*)src.bits(),src.bytesPerLine());
+     Mat result; // deep copy just in case (my lack of knowledge with open cv)
+     cvtColor(tmp, result,CV_BGR2RGB);
+     return result;
 }
 
 CFiltrosImagenes* COperacionesImagen::aplicarFiltro() {

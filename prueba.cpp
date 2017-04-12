@@ -38,10 +38,13 @@ int main() {
 
 	//Histograma
 	/// Load image
-    String imageName("grafo.jpg"); // by default
-
-	COperacionesImagen* p = new COperacionesImagen(imageName);
-    p->calcularHistograma();
+    String imageName("/home/ivan/TFG/grafoReal1.png"); // by default
+    Mat a = imread(imageName);
+    COperacionesImagen* p = new COperacionesImagen();
+    imshow("Ejemplos", p->calcularHistograma(a));
+    waitKey(0);
+    cout << "UES" << endl;
+}
 
 	//Deteccion clasificador de bayes
 
@@ -145,11 +148,11 @@ int main() {
 	return 0;
 }
 //CANNY HoughLines y HoughCircles
-/**
+*
 * @function calcHist_Demo.cpp
 * @brief Demo code to use the function calcHist
 * @author
-*//*
+
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/imgproc.hpp"
@@ -159,9 +162,9 @@ int main() {
 using namespace std;
 using namespace cv;
 
-/*
+
 * @function main
-*//*
+*
 int main(int argc, char** argv) {
 
 	Mat src;
@@ -172,12 +175,10 @@ int main(int argc, char** argv) {
 	//COperacionesImagen* p = new COperacionesImagen(imageName);
 	//char* imagenes[2] = { "circulo.jpg", "linea1.jpg" };
 
-	//p->calcularHistograma();*/
-	/*
+    //p->calcularHistograma();
+
 	src = imread(imageName, 0);
 	cout << "YESS" << endl;
-
-	
 
 	//Canny
 	Mat dst, cdst;
@@ -218,7 +219,6 @@ int main(int argc, char** argv) {
 	waitKey(0);
 	
 	return 0;
-
 }*/
 
 	

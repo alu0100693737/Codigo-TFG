@@ -9,9 +9,9 @@ private:
     QImage imagen_;
 public:
     CLabel();
-    CLabel(QString, bool);
+    CLabel(QString text);
     QImage getImagen();
-    void setImagen(QString);
+    void setImagen(const QImage);
 };
 
 #endif // CLABEL_H
