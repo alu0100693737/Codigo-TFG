@@ -18,7 +18,9 @@ SOURCES += \
     pruebacircles1.cpp \
     pruebalineas.cpp \
     Principal.cpp \
-    CAplicacion.cpp
+    CWidgetOpciones.cpp \
+    CAplicacion.cpp \
+    CLabel.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -41,4 +43,6 @@ DISTFILES += \
 HEADERS += \
     COperacionesImagen.h \
     filtersprueba.h \
-    CAplicacion.h
+    CAplicacion.h \
+    CWidgetOpciones.h \
+    CLabel.h
