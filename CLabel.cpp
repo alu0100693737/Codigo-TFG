@@ -10,15 +10,22 @@ CLabel::CLabel(QString text, bool imagen) : QLabel() {
     setText(text);
     setAlignment(Qt::AlignCenter);
     if(imagen) {
-        QImage image;
-        image.load("/home/ivan/Documentos/TFG/grafo.jpg");
+        setImagen("/home/ivan/Documentos/TFG/grafo.jpg");
 
         setScaledContents(true);
         //int w = this->width();
         //int h = this->height();
         // set a scaled pixmap to a w x h window keeping its aspect ratio
         //setPixmap(p.scaled(w,h,Qt::KeepAspectRatio));
-        setPixmap(QPixmap::fromImage(image));
+        setPixmap(QPixmap::fromImage(getImagen()));
         //setPicture("grafo.jpg");
          }
+}
+
+QImage CLabel::getImagen() {
+    return imagen_;
+}
+
+void CLabel::setImagen(QString path) {
+    imagen_.load(path);
 }
