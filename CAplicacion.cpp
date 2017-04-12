@@ -7,33 +7,49 @@
 using namespace cv;
 CAplicacion::CAplicacion() {
 
-  QWidget* centralWidget        = new QWidget();
+    panelPrincipal_ = new CLabel("Panel Principal", true);
+    panelOpciones_ = new CLabel("Opciones", false);
+    panelHistograma_ = new CLabel("Info Imagen", false);
 
-  QGridLayout *layout = new QGridLayout();
-  centralWidget->setLayout (layout);
-  layout->addWidget (new CLabel("Panel Principal", true), 0, 0, 3, 5);
-  layout->addWidget (new CLabel("opciones", false), 4, 0, 1, 4);
-  layout->addWidget (new CLabel("Info Imagen", false), 4, 4, 1, 1);
+    QWidget* centralWidget        = new QWidget();
 
-  //MENU
-  QMenuBar* menu                = new QMenuBar(centralWidget);
-  QMenu* menuFile               = new QMenu("File");
-  QAction* actionAbout          = new QAction(QIcon("/home/ivan/TFG/release/about.png"), tr("About"), this);
-  menuFile->addAction(actionAbout);
-  //añadiendo elementos
-  menu->addMenu(menuFile);
+    QGridLayout *layout = new QGridLayout();
+    centralWidget->setLayout (layout);
+    layout->addWidget (getPanelPrincipal(), 0, 0, 3, 5);
+    layout->addWidget (getPanelOpciones(), 4, 0, 1, 4);
+    layout->addWidget (getPanelHistograma(), 4, 4, 1, 1);
 
-  setCentralWidget(centralWidget);
-  setMinimumSize(400, 400);
-  setWindowTitle("TFG");
+    //MENU
+    QMenuBar* menu                = new QMenuBar(centralWidget);
+    QMenu* menuFile               = new QMenu("File");
+    QAction* actionAbout          = new QAction(QIcon("/home/ivan/TFG/release/about.png"), tr("About"), this);
+    menuFile->addAction(actionAbout);
+    //añadiendo elementos
+    menu->addMenu(menuFile);
 
-  //conexiones con slots
-  connect(actionAbout, SIGNAL(triggered()),this,SLOT(slotAbout()));
+    setCentralWidget(centralWidget);
+    setMinimumSize(400, 400);
+    setWindowTitle("TFG");
 
-  prueba();
+    //conexiones con slots
+    connect(actionAbout, SIGNAL(triggered()),this,SLOT(slotAbout()));
+
+    prueba();
 }
 
 CAplicacion::~CAplicacion() {}
+
+CLabel* CAplicacion::getPanelPrincipal() {
+    return panelPrincipal_;
+}
+
+CLabel* CAplicacion::getPanelOpciones() {
+    return panelOpciones_;
+}
+
+CLabel* CAplicacion::getPanelHistograma() {
+    return panelHistograma_;
+}
 
 void CAplicacion::prueba() {
     Mat img = imread("/home/ivan/Documentos/TFG/grafo.jpg", IMREAD_COLOR);
@@ -47,5 +63,5 @@ void CAplicacion::prueba() {
 }
 
 void CAplicacion::slotAbout() {
-  QMessageBox::about(this,"About","Trabajo fin de grado. Iván García Campos.");
+    QMessageBox::about(this,"About","Trabajo fin de grado. Iván García Campos.");
 }

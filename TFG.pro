@@ -13,13 +13,13 @@ SOURCES += \
     prueba.cpp \
     COperacionesImagen.cpp \
     uiprueba.cpp \
-    filterprueba.cpp \
     pruebacircles.cpp \
     pruebacircles1.cpp \
     pruebalineas.cpp \
     Principal.cpp \
     CAplicacion.cpp \
-    CLabel.cpp
+    CLabel.cpp \
+    CFiltrosImagenes.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -41,6 +41,6 @@ DISTFILES += \
 
 HEADERS += \
     COperacionesImagen.h \
-    filtersprueba.h \
     CAplicacion.h \
-    CLabel.h
+    CLabel.h \
+    CFiltrosImagenes.h

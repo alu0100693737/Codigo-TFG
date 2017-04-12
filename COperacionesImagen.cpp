@@ -1,29 +1,15 @@
 #include "COperacionesImagen.h"
 
-COperacionesImagen::COperacionesImagen(string nombre) {
-	imagen = imread(nombre, IMREAD_COLOR);
-
-	if (getImagen().empty()) {
-		cerr << "Error cargando la imagen" << endl;
-	}
+COperacionesImagen::COperacionesImagen() {
+    filtros_ = new CFiltrosImagenes();
 }
 
 COperacionesImagen::~COperacionesImagen() {}
 
-Mat COperacionesImagen::getImagen() {
-	return imagen;
-}
-
-void COperacionesImagen::mostrarImagen(Mat img) {
-	namedWindow("Foto original", WINDOW_AUTOSIZE);
-	imshow("Foto original", img);
-	waitKey(0);
-}
-
-void COperacionesImagen::calcularHistograma() {
+Mat COperacionesImagen::calcularHistograma(Mat imagen) {
 	/// Separate the image in 3 places ( B, G and R )
 	vector<Mat> bgr_planes;
-	split(getImagen(), bgr_planes);
+    split(imagen, bgr_planes);
 
 	/// Establish the number of bins
 	int histSize = 256;
@@ -64,9 +50,11 @@ void COperacionesImagen::calcularHistograma() {
 			Point(bin_w*(i), hist_h - cvRound(r_hist.at<float>(i))),
 			Scalar(0, 0, 255), 2, 8, 0);
 	}
+    return histImage;
+}
 
-	mostrarImagen(getImagen());
-	mostrarImagen(histImage); //imagen histograma
+CFiltrosImagenes* COperacionesImagen::aplicarFiltro() {
+    return filtros_;
 }
 
 /*
@@ -162,7 +150,7 @@ void COperacionesImagen::entrenamiento(char* imagenes[2]) {
 		waitKey(0);
 	}
 }  
-/*
+
 void COperacionesImagen::clasificacion(string img) {
 	Mat image3n = imread("img");
 	Mat imagen_bin = Mat(imagen.size(), 8, 1);
