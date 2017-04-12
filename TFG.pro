@@ -18,7 +18,6 @@ SOURCES += \
     pruebacircles1.cpp \
     pruebalineas.cpp \
     Principal.cpp \
-    CWidgetOpciones.cpp \
     CAplicacion.cpp \
     CLabel.cpp
 
@@ -44,5 +43,4 @@ HEADERS += \
     COperacionesImagen.h \
     filtersprueba.h \
     CAplicacion.h \
-    CWidgetOpciones.h \
     CLabel.h

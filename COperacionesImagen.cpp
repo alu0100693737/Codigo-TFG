@@ -69,6 +69,7 @@ void COperacionesImagen::calcularHistograma() {
 	mostrarImagen(histImage); //imagen histograma
 }
 
+/*
 Ptr<ml::TrainData> COperacionesImagen::prepararDatosEntrenamiento(const Mat& data, const Mat& responses, int ntrain_samples) {
 	
 	Mat sample_idx = Mat::zeros(1, data.rows, CV_8U);
