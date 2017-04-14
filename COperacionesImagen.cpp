@@ -2,6 +2,7 @@
 
 COperacionesImagen::COperacionesImagen() {
     filtros_ = new CFiltrosImagenes();
+    detector_ = new CDetectarAutomata();
 }
 
 COperacionesImagen::~COperacionesImagen() {}
@@ -54,6 +55,7 @@ Mat COperacionesImagen::calcularHistograma(Mat imagen) {
 }
 
 //Se hace una copia de Mat
+//stackoverflow.com/questions/17127762/cvmat-to-qimage-and-back
 QImage COperacionesImagen::Mat2QImage(cv::Mat const& src) {
      Mat temp;
      cvtColor(src, temp,CV_BGR2RGB);
@@ -72,6 +74,10 @@ Mat COperacionesImagen::QImage2Mat(QImage const& src) {
 
 CFiltrosImagenes* COperacionesImagen::aplicarFiltro() {
     return filtros_;
+}
+
+CDetectarAutomata* COperacionesImagen::detectarAutomata() {
+    return detector_;
 }
 
 /*

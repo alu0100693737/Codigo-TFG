@@ -13,13 +13,12 @@ SOURCES += \
     prueba.cpp \
     COperacionesImagen.cpp \
     uiprueba.cpp \
-    pruebacircles.cpp \
-    pruebacircles1.cpp \
     pruebalineas.cpp \
     Principal.cpp \
     CAplicacion.cpp \
     CLabel.cpp \
-    CFiltrosImagenes.cpp
+    CFiltrosImagenes.cpp \
+    CDetectarAutomata.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -43,4 +42,5 @@ HEADERS += \
     COperacionesImagen.h \
     CAplicacion.h \
     CLabel.h \
-    CFiltrosImagenes.h
+    CFiltrosImagenes.h \
+    CDetectarAutomata.h

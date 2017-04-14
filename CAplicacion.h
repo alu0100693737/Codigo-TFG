@@ -25,4 +25,6 @@ public slots:
     void slotAbrirImagen();
     void slotAbout();
     void slotSalir();
+
+    void slotDetectarAutomata();
 };

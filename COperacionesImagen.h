@@ -4,6 +4,7 @@
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/imgproc.hpp"
 #include "CFiltrosImagenes.h"
+#include "CDetectarAutomata.h"
 #include <QImage>
 
 //#include "opencv/ml.h"
@@ -20,6 +21,7 @@ using namespace std;
 class COperacionesImagen {
 private:
     CFiltrosImagenes* filtros_;
+    CDetectarAutomata* detector_;
 public:
     COperacionesImagen();
 	~COperacionesImagen();
@@ -28,6 +30,7 @@ public:
     Mat QImage2Mat(QImage const & src);
 
     CFiltrosImagenes* aplicarFiltro();// get filtros_
+    CDetectarAutomata* detectarAutomata(); //get funciones deteccion
     /*
 	//reconocerPatrones
 	static Ptr<ml::TrainData> prepararDatosEntrenamiento(const Mat& data, const Mat& responses, int ntrain_samples);

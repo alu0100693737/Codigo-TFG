@@ -24,15 +24,19 @@ CAplicacion::CAplicacion() {
 
     //MENU
     QMenuBar* menu                = new QMenuBar(centralWidget);
-    QMenu* menuFile               = new QMenu("File");
+    QMenu* menuFile               = new QMenu("Archivo");
+    QMenu* menuEdit               = new QMenu("Edicion");
     QAction* actionAbrirImagen    = new QAction(QIcon("/home/ivan/TFG/release/abrir.png"), tr("Abrir Imagen"), this);
     QAction* actionAbout          = new QAction(QIcon("/home/ivan/TFG/release/about.png"), tr("About"), this);
     QAction* actionSalir          = new QAction(QIcon("/home/ivan/TFG/release/salir.png"), tr("Salir"), this);
+    QAction* actionDetectarAutomata = new QAction(QIcon("/home/ivan/TFG/release/opencv.png"), tr("Detectar Automata"), this);
     menuFile->addAction(actionAbrirImagen);
     menuFile->addAction(actionAbout);
     menuFile->addAction(actionSalir);
+    menuEdit->addAction(actionDetectarAutomata);
     //añadiendo elementos
     menu->addMenu(menuFile);
+    menu->addMenu(menuEdit);
 
     setCentralWidget(centralWidget);
     setMinimumSize(700, 400);
@@ -42,6 +46,7 @@ CAplicacion::CAplicacion() {
     connect(actionAbrirImagen, SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
     connect(actionAbout, SIGNAL(triggered()),this,SLOT(slotAbout()));
     connect(actionSalir, SIGNAL(triggered()), this, SLOT(slotSalir()));
+    connect(actionDetectarAutomata, SIGNAL(triggered()), this, SLOT(slotDetectarAutomata()));
 }
 
 CAplicacion::~CAplicacion() {}
@@ -112,4 +117,12 @@ void CAplicacion::slotAbout() {
 
 void CAplicacion::slotSalir() {
     exit(0);
+}
+
+void CAplicacion::slotDetectarAutomata() {
+    cout << "Detectando imagen" << endl;
+    Mat aux = imread("/home/ivan/TFG/grafoReal.jpg", IMREAD_COLOR );
+    aux.resize(400, 600);
+    Mat resultado = getOperacionesImagen()->detectarAutomata()->iniciarDeteccion(aux);
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
 }
