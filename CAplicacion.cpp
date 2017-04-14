@@ -1,3 +1,6 @@
+//detect numbers https://www.mkompf.com/cplus/emeocv.html
+
+
 #include "CAplicacion.h"
 #include "CLabel.h"
 
