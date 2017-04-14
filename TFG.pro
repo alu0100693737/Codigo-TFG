@@ -13,14 +13,11 @@ SOURCES += \
     prueba.cpp \
     COperacionesImagen.cpp \
     uiprueba.cpp \
-    pruebalineas.cpp \
     Principal.cpp \
     CAplicacion.cpp \
     CLabel.cpp \
     CFiltrosImagenes.cpp \
-    CDetectarAutomata.cpp \
-    pruebacirculos.cpp \
-    pruebalineas1.cpp
+    CDetectarAutomata.cpp
 
 
 # The following define makes your compiler emit warnings if you use

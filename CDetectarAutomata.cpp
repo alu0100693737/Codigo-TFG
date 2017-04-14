@@ -4,7 +4,6 @@ CDetectarAutomata::CDetectarAutomata() {
 }
 
 Mat CDetectarAutomata::iniciarDeteccion(Mat imagen) {
-
     //Escala de grises
     Mat src_gray;
     cvtColor(imagen, src_gray, COLOR_BGR2GRAY );
@@ -36,12 +35,15 @@ Mat CDetectarAutomata::iniciarDeteccion(Mat imagen) {
 vector<Vec3f> CDetectarAutomata::detectarCirculos(const Mat& src_gray, int cannyThreshold, int accumulatorThreshold) {
     // resultados de la deteccion de circulos
     vector<Vec3f> circles; // posicion (x y) y radio
-    //Aplicamos la transformada de Hought para la deteccion de circulos
-    //Recordar, metodo HOUGH_Gradient, el unico que esta implementado actualmente
-    //1, misma resolucion
-    //src_gray.rows/8 distancia minima entre los circulos
-    //cannyThreshold umbral mas alto
-    //umbral de acumulacion. Los circulos que corresponden a los mayores valores del acumuladorr se devolveran primero
+
+    /*
+     * Aplicamos la transformada de Hought para la deteccion de circulos
+     * Recordar, metodo HOUGH_Gradient, el unico que esta implementado actualmente
+     * 1, misma resolucion
+     * src_gray.rows/8 distancia minima entre los circulos
+     * cannyThreshold umbral mas alto
+     * umbral de acumulacion. Los circulos que corresponden a los mayores valores del acumuladorr se devolveran primero
+    */
     HoughCircles( src_gray, circles, HOUGH_GRADIENT, 1, src_gray.rows/8, cannyThreshold, accumulatorThreshold);
 
     //circles contiene los circulos detectados, punto radio y circunferencia
@@ -56,22 +58,14 @@ vector<Vec4i> CDetectarAutomata::detectarLineas(const Mat& src_gray) {
     return HoughProbabilistico(edges, 0, 0);
 }
 
-/**
- * @function Probabilistic_Hough
-*/
 vector<Vec4i> CDetectarAutomata::HoughProbabilistico(Mat edges, int, void*) {
   Mat probabilistic_hough;
   vector<Vec4i> p_lines;
-  cvtColor( edges, probabilistic_hough, COLOR_GRAY2BGR );
+  cvtColor(edges, probabilistic_hough, COLOR_GRAY2BGR );
 
   /// Usamos la transformada de Hough probabilistica
   HoughLinesP( edges, p_lines, 1, CV_PI/180, 70, 30, 10 ); //70
 
-  /*/// Dibuja las lineas resultantes
-  for( size_t i = 0; i < p_lines.size(); i++ ) {
-       Vec4i l = p_lines[i];
-       line( probabilistic_hough, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
-  }*/
   //imshow("probabilistic", probabilistic_hough);
   return p_lines; //datos de la deteccion de lineas
 }

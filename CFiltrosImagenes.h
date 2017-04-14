@@ -2,6 +2,7 @@
 #define CFILTROSIMAGENES_H
 #include "opencv2/imgcodecs.hpp" //MAT OPENCV
 #include "opencv2/imgproc.hpp"    //FILTROS
+#include "opencv2/highgui.hpp"    //Prueba de los filtros, imshow
 using namespace cv;
 
 class CFiltrosImagenes {
@@ -11,6 +12,8 @@ public:
     Mat filtroMedianBlur(Mat original);
     Mat filtroSobel(Mat original);
     Mat filtroLaplacian(Mat original);
+
+    void pruebaFiltros();
 };
 
 #endif // CFILTROSIMAGENES_H
