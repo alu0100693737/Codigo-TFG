@@ -40,29 +40,26 @@ int main( int, char** argv )
    /// Read the image
    src = imread("/home/ivan/TFG/grafoReal.jpg", IMREAD_COLOR );
 
-   if( src.empty() )
-     { help();
-       return -1;
-     }
 
    /// Pass the image to gray
    cvtColor( src, src_gray, COLOR_RGB2GRAY );
 
    /// Apply Canny edge detector
-   Canny( src_gray, edges, 50, 200, 3 );
+   /// Canny(image, image, 50, 200, 3);
+   Canny( src_gray, edges, 50, 300, 3 );
 
    /// Create Trackbars for Thresholds
    char thresh_label[50];
    sprintf( thresh_label, "Thres: %d + input", min_threshold );
 
-   namedWindow( standard_name, WINDOW_AUTOSIZE );
+   /*namedWindow( standard_name, WINDOW_AUTOSIZE );
    createTrackbar( thresh_label, standard_name, &s_trackbar, max_trackbar, Standard_Hough);
 
    namedWindow( probabilistic_name, WINDOW_AUTOSIZE );
    createTrackbar( thresh_label, probabilistic_name, &p_trackbar, max_trackbar, Probabilistic_Hough);
 
    /// Initialize
-   Standard_Hough(0, 0);
+   //Standard_Hough(0, 0);
    Probabilistic_Hough(0, 0);
    waitKey(0);
    return 0;
@@ -108,7 +105,7 @@ void Standard_Hough( int, void* )
 
 /**
  * @function Probabilistic_Hough
-*//*
+
 void Probabilistic_Hough( int, void* )
 {
   vector<Vec4i> p_lines;
@@ -126,4 +123,5 @@ void Probabilistic_Hough( int, void* )
 
    imshow( probabilistic_name, probabilistic_hough );
 }
+
 */

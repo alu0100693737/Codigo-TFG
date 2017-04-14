@@ -8,15 +8,20 @@
 using namespace std;
 using namespace cv;
 
-#define CANNYTHRESHOLD 100
-#define ACCUMULATORTHRESHOLD 45
+#define CANNYTHRESHOLD 90
+#define ACCUMULATORTHRESHOLD 42
 //Para la deteccion, canny entre 26, 118 y acummulador 45
 class CDetectarAutomata {
 private:
-    Mat detectarCirculos(const Mat& imagen_gray, const Mat& imagen, int cannyThreshold, int accumulatorThreshold);
-    Mat detectarLineas();
+    //Circulos
+    vector<Vec3f> detectarCirculos(const Mat& imagen_gray, int cannyThreshold, int accumulatorThreshold);
+
+    //Lineas
+    vector<Vec4i> detectarLineas(const Mat& src_gray);
+    vector<Vec4i> HoughProbabilistico(Mat, int, void*);
 public:
     CDetectarAutomata();
+
     Mat iniciarDeteccion(Mat imagen);
 };
 

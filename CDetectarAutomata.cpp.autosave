@@ -4,7 +4,6 @@ CDetectarAutomata::CDetectarAutomata() {
 }
 
 Mat CDetectarAutomata::iniciarDeteccion(Mat imagen) {
-
     //Escala de grises
     Mat src_gray;
     cvtColor(imagen, src_gray, COLOR_BGR2GRAY );
