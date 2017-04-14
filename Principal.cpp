@@ -1,4 +1,4 @@
-/*#include "CAplicacion.h"
+#include "CAplicacion.h"
 
 int main(int argc,char* argv[]) {
   QApplication app(argc,argv);
@@ -7,5 +7,5 @@ int main(int argc,char* argv[]) {
   window.show();
 
   return app.exec();
-}*/
+}
 

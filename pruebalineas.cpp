@@ -3,7 +3,7 @@
  * @brief Demo code for Hough Transform
  * @author OpenCV team
  */
-
+/*
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
@@ -34,7 +34,7 @@ void Probabilistic_Hough( int, void* );
 
 /**
  * @function main
-*/
+*//*
 int main( int, char** argv )
 {
    /// Read the image
@@ -71,7 +71,7 @@ int main( int, char** argv )
 /**
  * @function help
  * @brief Indications of how to run this program and why is it for
-*/
+*//*
 void help()
 {
   printf("\t Hough Transform to detect lines \n ");
@@ -81,7 +81,7 @@ void help()
 
 /**
  * @function Standard_Hough
-*/
+*//*
 void Standard_Hough( int, void* )
 {
   vector<Vec2f> s_lines;
@@ -108,7 +108,7 @@ void Standard_Hough( int, void* )
 
 /**
  * @function Probabilistic_Hough
-*/
+*//*
 void Probabilistic_Hough( int, void* )
 {
   vector<Vec4i> p_lines;
@@ -126,4 +126,4 @@ void Probabilistic_Hough( int, void* )
 
    imshow( probabilistic_name, probabilistic_hough );
 }
-
+*/

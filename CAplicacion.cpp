@@ -30,6 +30,9 @@ CAplicacion::CAplicacion() {
     QAction* actionAbout          = new QAction(QIcon("/home/ivan/TFG/release/about.png"), tr("About"), this);
     QAction* actionSalir          = new QAction(QIcon("/home/ivan/TFG/release/salir.png"), tr("Salir"), this);
     QAction* actionDetectarAutomata = new QAction(QIcon("/home/ivan/TFG/release/opencv.png"), tr("Detectar Automata"), this);
+
+    actionDetectarAutomata->setDisabled(true);
+
     menuFile->addAction(actionAbrirImagen);
     menuFile->addAction(actionAbout);
     menuFile->addAction(actionSalir);
@@ -107,6 +110,7 @@ bool CAplicacion::loadFile(const QString &fileName) {
     } else {
         getPanelPrincipal()->setImagen(newImage);
         getPanelHistograma()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->calcularHistograma(getOperacionesImagen()->QImage2Mat(newImage))));
+        actionDetectarAutomata->setDisabled(true); //Habilitamos la posibilidad de detectar automata
         return true;
     }
 }
