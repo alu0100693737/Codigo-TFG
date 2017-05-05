@@ -33,10 +33,10 @@ CAplicacion::CAplicacion() {
     menu_                   = new QMenuBar(centralWidget);
     menuArchivo_            = new QMenu("Archivo");
     menuEditar_             = new QMenu("Edicion");
-    actionAbrirImagen_      = new QAction(QIcon("/home/ivan/TFG/release/abrir.png"), tr("Abrir Imagen"), this);
-    actionAbout_            = new QAction(QIcon("/home/ivan/TFG/release/about.png"), tr("About"), this);
-    actionSalir_            = new QAction(QIcon("/home/ivan/TFG/release/salir.png"), tr("Salir"), this);
-    actionDetectarAutomata_ = new QAction(QIcon("/home/ivan/TFG/release/opencv.png"), tr("Detectar Automata"), this);
+    actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/TFG/release/abrir.png"), tr("Abrir Imagen"), this);
+    actionAbout_            = new QAction(QIcon("/home/ivan/Documentos/TFG/release/about.png"), tr("About"), this);
+    actionSalir_            = new QAction(QIcon("/home/ivan/Documentos/TFG/release/salir.png"), tr("Salir"), this);
+    actionDetectarAutomata_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/opencv.png"), tr("Detectar Automata"), this);
 
     getActionDetectarAutomata()->setDisabled(true); //Hasta que no se cargue una imagen
 
@@ -47,7 +47,8 @@ CAplicacion::CAplicacion() {
     //añadiendo elementos
     getMenuBar()->addMenu(getMenuArchivo());
     getMenuBar()->addMenu(getMenuEditar());
-
+    getMenuBar()->adjustSize();
+    getMenuBar()->setStyleSheet("background-color: white");
     setCentralWidget(centralWidget);
     setMinimumSize(700, 400);
     setWindowTitle("TFG");
