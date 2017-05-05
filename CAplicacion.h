@@ -19,6 +19,7 @@ private:
     QAction* actionAbout_;
     QAction* actionSalir_;
     QAction* actionDetectarAutomata_;
+    QAction* actionDetectarTransiciones_;
     COperacionesImagen* operacionesImagen_;
 
     //Abrir Imagen
@@ -43,6 +44,7 @@ private:
     QAction* getActionAbout();
     QAction* getActionSalir();
     QAction* getActionDetectarAutomata();
+    QAction* getActionDetectarTransiciones();
 
     COperacionesImagen* getOperacionesImagen();
 
@@ -52,4 +54,5 @@ public slots:
     void slotSalir();
 
     void slotDetectarAutomata();
+    void slotDetectarTransiciones();
 };

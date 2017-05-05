@@ -3,6 +3,7 @@
 COperacionesImagen::COperacionesImagen() {
     filtros_ = new CFiltrosImagenes();
     detector_ = new CDetectarAutomata();
+    transiciones_ = new CDetectarTransiciones();
 }
 
 COperacionesImagen::~COperacionesImagen() {}
@@ -78,6 +79,10 @@ CFiltrosImagenes* COperacionesImagen::aplicarFiltro() {
 
 CDetectarAutomata* COperacionesImagen::detectarAutomata() {
     return detector_;
+}
+
+CDetectarTransiciones* COperacionesImagen::detectarTransiciones() {
+    return transiciones_;
 }
 
 /*
@@ -185,6 +190,4 @@ void COperacionesImagen::clasificacion(string img) {
 	cvtColor(imagen, imagen_color, CV_GRAY2BGR);
 	imshow("Ventana", imagen_color);
 	findContours(imagen_bin, contours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE);
-	
-	
 }*/

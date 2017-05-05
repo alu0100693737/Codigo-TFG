@@ -19,11 +19,9 @@ SOURCES += \
     CFiltrosImagenes.cpp \
     CDetectarAutomata.cpp \
     pruebanumeros.cpp \
-    pruebawidget.cpp \
-    GenData.cpp \
-    TrainAndTest.cpp \
     CContourWithData.cpp \
-    CDetectarTransiciones.cpp
+    CDetectarTransiciones.cpp \
+    GenerarClasificador.cpp
 
 
 # The following define makes your compiler emit warnings if you use
