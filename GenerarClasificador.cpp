@@ -11,7 +11,7 @@ using namespace std;
 using namespace cv;
 
 //variables globales
-const int MIN_CONTOUR_AREA = 80;
+const int MIN_CONTOUR_AREA = 30;
 
 const int RESIZED_IMAGE_WIDTH = 20;
 const int RESIZED_IMAGE_HEIGHT = 30;
@@ -36,7 +36,7 @@ int main() {
     Mat matTrainingImagesAsFlattenedFloats;
 
     //Caracteres en los que estamos interesados
-    vector<int> intValidChars = { '0', '1', '2', 'a', 'b', 'c', 'f'};
+    vector<int> intValidChars = { '0', '1', '2', 'a', 'b', 'c'};
 
     //mostrando codificacion
     //for(int i = 0; i < intValidChars.size(); i++) {
@@ -44,7 +44,7 @@ int main() {
     //}
 
     //Leemos la imagen de entreno
-    imgTrainingNumbers = imread("/home/ivan/Documentos/pruebaNumeros/training.png");          // read in training numbers image
+    imgTrainingNumbers = imread("/home/ivan/Documentos/TFG/images/training.png");          // read in training numbers image
 
     if (imgTrainingNumbers.empty()) {
         std::cout << "error: image not read from file\n\n";
@@ -122,7 +122,7 @@ int main() {
 
     // se guarda la clasificacion creada
 
-    FileStorage fsClassifications("/home/ivan/Documentos/pruebaNumeros/classifications.xml", cv::FileStorage::WRITE);           // open the classifications file
+    FileStorage fsClassifications("/home/ivan/Documentos/TFG/training/classifications.xml", cv::FileStorage::WRITE);           // open the classifications file
 
     if (fsClassifications.isOpened() == false) {                                                        // if the file was not opened successfully
         std::cout << "error, unable to open training classifications file, exiting program\n\n";        // show error message
@@ -134,7 +134,7 @@ int main() {
 
     // se guardan las imagenes del entrenamiento
 
-    FileStorage fsTrainingImages("/home/ivan/Documentos/pruebaNumeros/images.xml", cv::FileStorage::WRITE);
+    FileStorage fsTrainingImages("/home/ivan/Documentos/TFG/training/images.xml", cv::FileStorage::WRITE);
 
     if (fsTrainingImages.isOpened() == false) {
         cout << "error, unable to open training images file, exiting program\n\n";

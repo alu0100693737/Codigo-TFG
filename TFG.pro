@@ -51,7 +51,34 @@ DISTFILES += \
     images/8.png \
     images/9.png \
     classifications.xml \
-    grafoReal1.png
+    grafoReal1.png \
+    documentos TFG/Apuntes.odt \
+    images.xml \
+    TFG.pro.user \
+    TFG.pro.user.2a461cd \
+    images/grafoReal.jpg \
+    images/training.jpg \
+    circulos.jpg \
+    Clase1.jpg \
+    Clase2.jpg \
+    Clasif.jpg \
+    grafo1.jpg \
+    image001.jpg \
+    ivvi.jpg \
+    linea1.jpg \
+    lineas.jpg \
+    lineas1.jpg \
+    documentos TFG/ejecucionesCirculosLineas/DeteccionCirculos1.png \
+    documentos TFG/ejecucionesCirculosLineas/DeteccionCirculos2.png \
+    documentos TFG/ejecucionesCirculosLineas/DeteccionLineas1.png \
+    images/GrafoconLetras.png \
+    images/NumerosAMano.png \
+    images/training.png \
+    release/abrir.png \
+    release/opencv.png \
+    release/salir.png \
+    release/transition.png \
+    grafo.png
 
 HEADERS += \
     COperacionesImagen.h \
