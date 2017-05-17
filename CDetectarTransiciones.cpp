@@ -1,17 +1,36 @@
 #include "CDetectarTransiciones.h"
 
-CDetectarTransiciones::CDetectarTransiciones()
-{}
+CDetectarTransiciones::CDetectarTransiciones() {
+}
 
-bool CDetectarTransiciones::ejecutar() {
 
-    //Leemos la clasificacion
-    std::vector<ContourWithData> allContoursWithData;           // declare empty vectors,
-    std::vector<ContourWithData> validContoursWithData;         // we will fill these shortly
+Mat CDetectarTransiciones::getImagenTransicionActual() {
+    return imagenTransicionActual_;
+}
 
-    cv::Mat matClassificationInts;      // we will read the classification numbers into this variable as though it is a vector
+void CDetectarTransiciones::setImagenTransicionActual(Mat image) {
+    if(!image.empty())
+        imagenTransicionActual_ = image;
+    else
+        cout << "error en SetImagenTransicionActual" << endl;
+}
 
-    cv::FileStorage fsClassifications("/home/ivan/Documentos/TFG/training/classifications.xml", cv::FileStorage::READ);
+bool CDetectarTransiciones::ejecutar(Mat image) {
+
+    //Leemos la imagen a detectar, el clasificador.xml y image.xml
+    if(image.empty()) {
+        cout <<  "Could not open or find the image" << std::endl ;
+        return -1;
+    }
+
+
+    //Leemos la clasificacion hecha sobre GenerarClasificador
+    vector<ContourWithData> allContoursWithData;           // declare empty vectors,
+    vector<ContourWithData> validContoursWithData;         // we will fill these shortly
+
+    Mat matClassificationInts;      // we will read the classification numbers into this variable as though it is a vector
+
+    FileStorage fsClassifications("/home/ivan/Documentos/TFG/training/classifications.xml", cv::FileStorage::READ);
 
     if (fsClassifications.isOpened() == false) {
         std::cout << "error, unable to open training classifications file, exiting program\n\n";
@@ -23,9 +42,9 @@ bool CDetectarTransiciones::ejecutar() {
 
     //Leemos las imagenes resultantes del entrenamiento
 
-    cv::Mat matTrainingImagesAsFlattenedFloats;         // we will read multiple images into this single image variable as though it is a vector
+    Mat matTrainingImagesAsFlattenedFloats;         // we will read multiple images into this single image variable as though it is a vector
 
-    cv::FileStorage fsTrainingImages("/home/ivan/Documentos/TFG/training/images.xml", cv::FileStorage::READ);
+    FileStorage fsTrainingImages("/home/ivan/Documentos/TFG/training/images.xml", cv::FileStorage::READ);
 
     if (fsTrainingImages.isOpened() == false) {
         std::cout << "error, unable to open training images file, exiting program\n\n";
@@ -36,7 +55,7 @@ bool CDetectarTransiciones::ejecutar() {
     fsTrainingImages.release();
 
 
-    // train //////////////////////////////////////////////////////////////////////////////
+    /*/////////////////////////////////////////////////*/
 
     cv::Ptr<cv::ml::KNearest>  kNearest(cv::ml::KNearest::create());            // instantiate the KNN object
 
@@ -46,41 +65,41 @@ bool CDetectarTransiciones::ejecutar() {
 
     // test ///////////////////////////////////////////////////////////////////////////////
 
-    cv::Mat matTestingNumbers = cv::imread("/home/ivan/Documentos/TFG/images/GrafoconLetras.png");            // read in the test numbers image
+    Mat matTestingNumbers = image;
+    //cv::imread("/home/ivan/Documentos/TFG/images/GrafoconLetras.png");            // read in the test numbers image
+
+
     //cv::Laplacian(matTestingNumbers, matTestingNumbers, -1);
     if (matTestingNumbers.empty()) {
-        std::cout << "error: image not read from file\n\n";
+        cout << "error: image not read from file\n\n";
         return(0);
     }
 
-    cv::Mat matGrayscale;
-    cv::Mat matBlurred;
-    cv::Mat matThresh;
-    cv::Mat matThreshCopy;
+    Mat matGrayscale; Mat matBlurred; Mat matThresh; Mat matThreshCopy;
 
-    cv::cvtColor(matTestingNumbers, matGrayscale, CV_BGR2GRAY);         // convert to grayscale
+    cvtColor(matTestingNumbers, matGrayscale, CV_BGR2GRAY);         // imagen Escala de Grises
     matBlurred = matGrayscale;
 
-    //Suavizado
-    cv::GaussianBlur(matGrayscale,
-                     matBlurred,
-                     cv::Size(5, 5),            // smoothing window width and height in pixels
-                     0);                        // sigma value, determines how much the image will be blurred, zero makes function choose the sigma value
+    //Suavizado Gaussiano
+    GaussianBlur(matGrayscale,
+                 matBlurred,
+                 cv::Size(5, 5),            // smoothing window width and height in pixels
+                 0);                        // sigma value, determines how much the image will be blurred, zero makes function choose the sigma value
 
 
     // filtro de escala de grises a blanco y negro
-    cv::adaptiveThreshold(matBlurred,
-                          matThresh,
-                          255,                                  // make pixels that pass the threshold full white
-                          cv::ADAPTIVE_THRESH_GAUSSIAN_C,       // use gaussian rather than mean, seems to give better results
-                          cv::THRESH_BINARY_INV,                // invert so foreground will be white, background will be black
-                          11,                                   // size of a pixel neighborhood used to calculate threshold value
-                          2);                                   // constant subtracted from the mean or weighted mean
+    adaptiveThreshold(matBlurred,
+                      matThresh,
+                      255,                                  // make pixels that pass the threshold full white
+                      cv::ADAPTIVE_THRESH_GAUSSIAN_C,       // use gaussian rather than mean, seems to give better results
+                      cv::THRESH_BINARY_INV,                // invert so foreground will be white, background will be black
+                      11,                                   // size of a pixel neighborhood used to calculate threshold value
+                      2);                                   // constant subtracted from the mean or weighted mean
 
     matThreshCopy = matThresh.clone();
 
-    std::vector<std::vector<cv::Point> > ptContours;        // declare a vector for the contours
-    std::vector<cv::Vec4i> v4iHierarchy;                    // declare a vector for the hierarchy (we won't use this in this program but this may be helpful for reference)
+    vector<vector<Point> > ptContours;        // declare a vector for the contours
+    vector<cv::Vec4i> v4iHierarchy;                    // declare a vector for the hierarchy (we won't use this in this program but this may be helpful for reference)
 
     cv::findContours(matThreshCopy,             // input image, make sure to use a copy since the function will modify this image in the course of finding contours
                      ptContours,                             // output contours
@@ -108,6 +127,7 @@ bool CDetectarTransiciones::ejecutar() {
 
     std::string strFinalString;
 
+    //Detectamos elementos que guardamos en un string y dibujamos rectangulos al contorno
     for (int i = 0; i < validContoursWithData.size(); i++) {            // for each contour
         if(validContoursWithData[i].fltArea > 285) {
             validContoursWithData.erase(validContoursWithData.begin() + i);
@@ -136,17 +156,14 @@ bool CDetectarTransiciones::ejecutar() {
             float fltCurrentChar = (float)matCurrentChar.at<float>(0, 0);
 
             strFinalString = strFinalString + char(int(fltCurrentChar));
-            cv::imshow("matTestingNumbers", matTestingNumbers);
-            cv::waitKey(0);
+            //cv::imshow("matTestingNumbers", matTestingNumbers);
+            //cv::waitKey(0);
             cout << "Encontrado " << strFinalString << endl;
             // append current char to full string
         }
     }
 
-    std::cout << "\n\n" << "numbers read = " << strFinalString << "\n\n";       // show the full string
-
-    cv::imshow("matTestingNumbers", matTestingNumbers);     // show input image with green boxes drawn around found digits
-
-    cv::waitKey(0);                                         // wait for user key press
+    cout << "\n\n" << "numbers read = " << strFinalString << "\n\n";       // show the full string
+    setImagenTransicionActual(matTestingNumbers);
 
 }

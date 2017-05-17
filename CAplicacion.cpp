@@ -38,14 +38,17 @@ CAplicacion::CAplicacion() {
     actionSalir_            = new QAction(QIcon("/home/ivan/Documentos/TFG/release/salir.png"), tr("Salir"), this);
     actionDetectarAutomata_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/opencv.png"), tr("Detectar Automata"), this);
     actionDetectarTransiciones_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/transition.png"), tr("Detectar Transiciones"), this);
+    actionCargarImagenOriginal_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/imagenOriginal.png"), tr("Cargar ultima Imagen"), this);
     getActionDetectarAutomata()->setDisabled(true); //Hasta que no se cargue una imagen
     getActionDetectarTransiciones()->setDisabled(true);
+    getActionCargarImagenOriginal()->setDisabled(true);
 
     getMenuArchivo()->addAction(getActionAbrirImagen());
     getMenuArchivo()->addAction(getActionAbout());
     getMenuArchivo()->addAction(getActionSalir());
     getMenuEditar()->addAction(getActionDetectarAutomata());
     getMenuEditar()->addAction(getActionDetectarTransiciones());
+    getMenuEditar()->addAction(getActionCargarImagenOriginal());
     //añadiendo elementos
     getMenuBar()->addMenu(getMenuArchivo());
     getMenuBar()->addMenu(getMenuEditar());
@@ -61,6 +64,7 @@ CAplicacion::CAplicacion() {
     connect(getActionSalir(), SIGNAL(triggered()), this, SLOT(slotSalir()));
     connect(getActionDetectarAutomata(), SIGNAL(triggered()), this, SLOT(slotDetectarAutomata()));
     connect(getActionDetectarTransiciones(), SIGNAL(triggered()), this, SLOT(slotDetectarTransiciones()));
+    connect(getActionCargarImagenOriginal(), SIGNAL(triggered()), this, SLOT(slotCargarImagenOriginal()));
 }
 
 CAplicacion::~CAplicacion() {}
@@ -118,6 +122,10 @@ QAction* CAplicacion::getActionDetectarTransiciones() {
     return actionDetectarTransiciones_;
 }
 
+QAction* CAplicacion::getActionCargarImagenOriginal() {
+    return actionCargarImagenOriginal_;
+}
+
 //OPERACIONES CON LA IMAGEN
 COperacionesImagen* CAplicacion::getOperacionesImagen() {
     return operacionesImagen_;
@@ -146,9 +154,9 @@ void CAplicacion::inicializarVentanaAbrirImagen(QFileDialog &dialog, QFileDialog
         mimeTypeFilters.append(mimeTypeName);
     mimeTypeFilters.sort();
     dialog.setMimeTypeFilters(mimeTypeFilters);
-    dialog.selectMimeTypeFilter("image/jpeg");
+    dialog.selectMimeTypeFilter("image/png");
     if (acceptMode == QFileDialog::AcceptSave) {
-        dialog.setDefaultSuffix("jpg");
+        dialog.setDefaultSuffix("png");
     }
 }
 
@@ -164,10 +172,13 @@ bool CAplicacion::loadFile(const QString &fileName) {
                                  .arg(QDir::toNativeSeparators(fileName), reader.errorString()));
         return false;
     } else {
-        getPanelPrincipal()->setImagen(newImage);
+        Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+        //getPanelPrincipal()->setImagen(newImage);
         getPanelHistograma()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->calcularHistograma(getOperacionesImagen()->QImage2Mat(newImage))));
         getActionDetectarAutomata()->setDisabled(false); //Habilitamos la posibilidad de detectar automata
         getActionDetectarTransiciones()->setDisabled(false);
+        getActionCargarImagenOriginal()->setDisabled(false);
         return true;
     }
 }
@@ -182,14 +193,23 @@ void CAplicacion::slotSalir() {
 
 void CAplicacion::slotDetectarAutomata() {
     cout << "Detectando imagen" << endl;
-    Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+    Mat aux = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
     Mat resultado = getOperacionesImagen()->detectarAutomata()->iniciarDeteccion(aux);
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+    getActionDetectarAutomata()->setDisabled(true);
 }
 
 void CAplicacion::slotDetectarTransiciones() {
-  //
-   // CDetectarTransiciones* prueba = new CDetectarTransiciones();
-      getOperacionesImagen()->detectarTransiciones()->ejecutar();
+    // CDetectarTransiciones* prueba = new CDetectarTransiciones();
+    Mat aux = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
+    getOperacionesImagen()->detectarTransiciones()->ejecutar(aux);
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->detectarTransiciones()->getImagenTransicionActual()));
+    getActionDetectarTransiciones()->setDisabled(true);
+}
 
+void CAplicacion::slotCargarImagenOriginal() {
+    Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+    getActionDetectarAutomata()->setDisabled(false);
+    getActionDetectarTransiciones()->setDisabled(false);
 }

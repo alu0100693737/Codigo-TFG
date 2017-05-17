@@ -6,6 +6,8 @@ class CAplicacion: public QMainWindow {
   Q_OBJECT
 private:
 
+    QImage imagenPanelPrincipal;
+
     QString pathImagenActual_;
 
     CLabel* panelPrincipal_;
@@ -20,6 +22,7 @@ private:
     QAction* actionSalir_;
     QAction* actionDetectarAutomata_;
     QAction* actionDetectarTransiciones_;
+    QAction* actionCargarImagenOriginal_;
     COperacionesImagen* operacionesImagen_;
 
     //Abrir Imagen
@@ -45,6 +48,7 @@ private:
     QAction* getActionSalir();
     QAction* getActionDetectarAutomata();
     QAction* getActionDetectarTransiciones();
+    QAction* getActionCargarImagenOriginal();
 
     COperacionesImagen* getOperacionesImagen();
 
@@ -55,4 +59,5 @@ public slots:
 
     void slotDetectarAutomata();
     void slotDetectarTransiciones();
+    void slotCargarImagenOriginal();
 };
