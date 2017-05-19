@@ -14,7 +14,9 @@ using namespace cv;
 
 #define CANNYTHRESHOLD 60
 #define ACCUMULATORTHRESHOLD 42
-#define RANGO 50
+#define DISTANCIAPIXELPRINCIPAL 10
+#define DISTANCIAPIXELSECUNDARIO 100
+
 //Para la deteccion, canny entre 26, 118 y acummulador 45
 class CDetectarAutomata {
 private:
@@ -26,27 +28,26 @@ private:
     //Circulos
     vector<Vec3f> detectarCirculos(const Mat& imagen_gray, int cannyThreshold, int accumulatorThreshold);
 
+    //filtra circulos con dimensiones extrañas
+    vector<Vec3f> filtrarCirculos(vector<Vec3f> circulos);
+
     //Lineas
     vector<Vec4i> detectarLineas(const Mat& src_gray);
     vector<Vec4i> HoughProbabilistico(Mat, int, void*);
+
+    //filtra linea por cercania y por duplicidad de principio a fin
     vector<Vec4i> filtrarLineas(vector<Vec4i>& lineas);
-
-    int distanciaEuclidea(int a, int b);
-    int distanciaEuclidea(Point a, Point b);
-
-    bool ventanaConfirmarNodos(int nodos, QString text);
 
 public:
     CDetectarAutomata();
 
     Mat iniciarDeteccion(Mat imagen);
 
-     void codificarDeteccion();
-
     vector<Vec3f> getCirculosDetectados();
     vector<Vec4i> getLineasDetectadas();
 
-
+    int distanciaEuclidea(int a, int b);
+    int distanciaEuclidea(Point a, Point b);
 };
 
 #endif // CDETECTARAUTOMATA_H

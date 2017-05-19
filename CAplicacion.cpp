@@ -197,7 +197,7 @@ void CAplicacion::slotDetectarAutomata() {
     Mat resultado = getOperacionesImagen()->detectarAutomata()->iniciarDeteccion(aux);
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
     getActionDetectarAutomata()->setDisabled(true);
-    getOperacionesImagen()->detectarAutomata()->codificarDeteccion();
+    getOperacionesImagen()->codificarDeteccion();
 }
 
 void CAplicacion::slotDetectarTransiciones() {

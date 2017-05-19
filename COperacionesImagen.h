@@ -7,14 +7,8 @@
 #include "CDetectarAutomata.h"
 #include "CDetectarTransiciones.h"
 #include <QImage>
-
-//#include "opencv/ml.h"
-//reconocimiento de patrones
-/*#define NCLASE1 3
-#define NCLASE2 4
-#define NCLASE3 13
-#define NENTRE (NCLASE1 + NCLASE2 + NCLASE3)
-*/
+#define DISTANCIAPIXELPRINCIPAL 10
+#define DISTANCIAPIXELSECUNDARIO 100
 
 using namespace cv;
 using namespace std;
@@ -22,18 +16,27 @@ using namespace std;
 class COperacionesImagen {
 private:
     CFiltrosImagenes* filtros_;
+
     CDetectarAutomata* detector_;
     CDetectarTransiciones* transiciones_;
+
+    //utilizado en codificarDeteccion
+    bool ventanaConfirmarNodos(int nodos, QString text);
+
 public:
     COperacionesImagen();
 	~COperacionesImagen();
+
+    CFiltrosImagenes* aplicarFiltro();// get filtros_
+
+    CDetectarAutomata* detectarAutomata(); //get funciones deteccion
+    CDetectarTransiciones* detectarTransiciones();
+
+    void codificarDeteccion();
+
     Mat calcularHistograma(Mat imagen);
     QImage Mat2QImage(Mat const& src);
     Mat QImage2Mat(QImage const & src);
-
-    CFiltrosImagenes* aplicarFiltro();// get filtros_
-    CDetectarAutomata* detectarAutomata(); //get funciones deteccion
-    CDetectarTransiciones* detectarTransiciones();
     /*
 	//reconocerPatrones
 	static Ptr<ml::TrainData> prepararDatosEntrenamiento(const Mat& data, const Mat& responses, int ntrain_samples);

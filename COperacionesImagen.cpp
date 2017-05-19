@@ -85,9 +85,50 @@ CDetectarTransiciones* COperacionesImagen::detectarTransiciones() {
     return transiciones_;
 }
 
+void COperacionesImagen::codificarDeteccion() {
+
+    //Si se ha hecho la deteccion
+    if(!detectarAutomata()->getCirculosDetectados().empty() && !detectarAutomata()->getLineasDetectadas().empty()) {
+        cout << " CIRCULOS Y LINEAS " << endl;
+        //Confirmamos el numero de nodos
+        QString text;
+        int aux = detectarAutomata()->getCirculosDetectados().size();
+        if (ventanaConfirmarNodos(aux, text)) { //numero de nodos confirmados, miramos ahora las lineas
+            //cout << " el numero de lineas detectadas es " << getLineasDetectadas().size() << endl;
+            for(int i = 0; i < detectarAutomata()->getLineasDetectadas().size(); i++)
+                //cout << " linea num " << i << " con coordenadas " << getLineasDetectadas().at(i) << endl;
+                for(int j = 0; j < detectarAutomata()->getCirculosDetectados().size(); j++)
+                    if(detectarAutomata()->distanciaEuclidea(detectarAutomata()->getLineasDetectadas()[i][0], detectarAutomata()->getCirculosDetectados()[j][0]) < (100 + detectarAutomata()->getCirculosDetectados()[j][2]))
+                        if(detectarAutomata()->distanciaEuclidea(detectarAutomata()->getLineasDetectadas()[i][1], detectarAutomata()->getCirculosDetectados()[j][1]) < (100 + detectarAutomata()->getCirculosDetectados()[j][2]))
+                            //cout << "Encontrada una cercania de salida entre linea" << i << " y circulo " << j << endl;
+                            for(int k = 0; k < detectarAutomata()->getCirculosDetectados().size(); k++)
+                                if (k != j)
+                                    if(detectarAutomata()->distanciaEuclidea(detectarAutomata()->getLineasDetectadas()[i][2], detectarAutomata()->getCirculosDetectados()[k][0]) < (100 + detectarAutomata()->getCirculosDetectados()[k][2]))
+                                        if(detectarAutomata()->distanciaEuclidea(detectarAutomata()->getLineasDetectadas()[i][3], detectarAutomata()->getCirculosDetectados()[k][1]) < (100 + detectarAutomata()->getCirculosDetectados()[k][2])) {
+                                            cout << " hay una transicion entre circulos " << j << " y " << k << endl;
+                                            //cout << "Encontrada una cercania de entrada entre linea" << i << " y circulo " << k << endl;
+                                        }
+        } else
+            cout << "Num de nodos no coincidente" << endl;
+    } else
+        cout << " ERROR, no se ha detectado la imagen previamente" << endl;
+}
+
+bool COperacionesImagen::ventanaConfirmarNodos(int nodos, QString text) {
+    text = QString::number(nodos);
+    //cout << text.toStdString() << endl;
+    bool ok;
+
+    text = QInputDialog::getText(0, "Codificacion",
+                                 "El autómata tiene los siguientes nodos:", QLineEdit::Normal,
+                                 text, &ok);
+    if(text.isEmpty())
+        return false;
+    return ok;
+}
+
 /*
 Ptr<ml::TrainData> COperacionesImagen::prepararDatosEntrenamiento(const Mat& data, const Mat& responses, int ntrain_samples) {
-	
 	Mat sample_idx = Mat::zeros(1, data.rows, CV_8U);
 	Mat train_samples = sample_idx.colRange(0, ntrain_samples);
 	train_samples.setTo(Scalar::all(1));
