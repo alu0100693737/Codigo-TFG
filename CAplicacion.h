@@ -22,6 +22,7 @@ private:
     QAction* actionSalir_;
     QAction* actionDetectarAutomata_;
     QAction* actionDetectarTransiciones_;
+    QAction* actionCodificarImagen_;
     QAction* actionCargarImagenOriginal_;
     COperacionesImagen* operacionesImagen_;
 
@@ -48,6 +49,7 @@ private:
     QAction* getActionSalir();
     QAction* getActionDetectarAutomata();
     QAction* getActionDetectarTransiciones();
+    QAction* getActionCodificarImagen();
     QAction* getActionCargarImagenOriginal();
 
     COperacionesImagen* getOperacionesImagen();
@@ -59,5 +61,6 @@ public slots:
 
     void slotDetectarAutomata();
     void slotDetectarTransiciones();
+    void slotCodificarImagen();
     void slotCargarImagenOriginal();
 };

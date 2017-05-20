@@ -38,9 +38,11 @@ CAplicacion::CAplicacion() {
     actionSalir_            = new QAction(QIcon("/home/ivan/Documentos/TFG/release/salir.png"), tr("Salir"), this);
     actionDetectarAutomata_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/opencv.png"), tr("Detectar Automata"), this);
     actionDetectarTransiciones_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/transition.png"), tr("Detectar Transiciones"), this);
+    actionCodificarImagen_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/codificar.png"), tr("Codificar Imagen"), this);
     actionCargarImagenOriginal_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/imagenOriginal.png"), tr("Cargar ultima Imagen"), this);
     getActionDetectarAutomata()->setDisabled(true); //Hasta que no se cargue una imagen
     getActionDetectarTransiciones()->setDisabled(true);
+    getActionCodificarImagen()->setDisabled(true);
     getActionCargarImagenOriginal()->setDisabled(true);
 
     getMenuArchivo()->addAction(getActionAbrirImagen());
@@ -48,6 +50,7 @@ CAplicacion::CAplicacion() {
     getMenuArchivo()->addAction(getActionSalir());
     getMenuEditar()->addAction(getActionDetectarAutomata());
     getMenuEditar()->addAction(getActionDetectarTransiciones());
+    getMenuEditar()->addAction(getActionCodificarImagen());
     getMenuEditar()->addAction(getActionCargarImagenOriginal());
     //añadiendo elementos
     getMenuBar()->addMenu(getMenuArchivo());
@@ -64,6 +67,7 @@ CAplicacion::CAplicacion() {
     connect(getActionSalir(), SIGNAL(triggered()), this, SLOT(slotSalir()));
     connect(getActionDetectarAutomata(), SIGNAL(triggered()), this, SLOT(slotDetectarAutomata()));
     connect(getActionDetectarTransiciones(), SIGNAL(triggered()), this, SLOT(slotDetectarTransiciones()));
+    connect(getActionCodificarImagen(), SIGNAL(triggered()), this, SLOT(slotCodificarImagen()));
     connect(getActionCargarImagenOriginal(), SIGNAL(triggered()), this, SLOT(slotCargarImagenOriginal()));
 }
 
@@ -120,6 +124,10 @@ QAction* CAplicacion::getActionDetectarAutomata() {
 
 QAction* CAplicacion::getActionDetectarTransiciones() {
     return actionDetectarTransiciones_;
+}
+
+QAction* CAplicacion::getActionCodificarImagen() {
+    return actionCodificarImagen_;
 }
 
 QAction* CAplicacion::getActionCargarImagenOriginal() {
@@ -179,6 +187,7 @@ bool CAplicacion::loadFile(const QString &fileName) {
         getActionDetectarAutomata()->setDisabled(false); //Habilitamos la posibilidad de detectar automata
         getActionDetectarTransiciones()->setDisabled(false);
         getActionCargarImagenOriginal()->setDisabled(false);
+        getActionCodificarImagen()->setDisabled(true);
         return true;
     }
 }
@@ -197,7 +206,10 @@ void CAplicacion::slotDetectarAutomata() {
     Mat resultado = getOperacionesImagen()->detectarAutomata()->iniciarDeteccion(aux);
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
     getActionDetectarAutomata()->setDisabled(true);
-    getOperacionesImagen()->codificarDeteccion();
+    if(getActionDetectarTransiciones()->isEnabled() == false) {
+        getActionCodificarImagen()->setEnabled(true);
+    }
+
 }
 
 void CAplicacion::slotDetectarTransiciones() {
@@ -206,6 +218,13 @@ void CAplicacion::slotDetectarTransiciones() {
     getOperacionesImagen()->detectarTransiciones()->ejecutar(aux);
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->detectarTransiciones()->getImagenTransicionActual()));
     getActionDetectarTransiciones()->setDisabled(true);
+    if(getActionDetectarAutomata()->isEnabled() == false) {
+        getActionCodificarImagen()->setEnabled(true);
+    }
+}
+
+void CAplicacion::slotCodificarImagen() {
+    getOperacionesImagen()->codificarDeteccion();
 }
 
 void CAplicacion::slotCargarImagenOriginal() {
@@ -213,4 +232,5 @@ void CAplicacion::slotCargarImagenOriginal() {
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
     getActionDetectarAutomata()->setDisabled(false);
     getActionDetectarTransiciones()->setDisabled(false);
+     getActionCodificarImagen()->setDisabled(true);
 }

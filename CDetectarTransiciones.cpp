@@ -15,6 +15,14 @@ void CDetectarTransiciones::setImagenTransicionActual(Mat image) {
         cout << "error en SetImagenTransicionActual" << endl;
 }
 
+vector<ContourWithData>& CDetectarTransiciones::getContornosEncontrados() {
+    return contornosEncontrados_;
+}
+
+vector<char>& CDetectarTransiciones::getLetrasEncontradas() {
+    return letrasEncontradas_;
+}
+
 bool CDetectarTransiciones::ejecutar(Mat image) {
 
     //Leemos la imagen a detectar, el clasificador.xml y image.xml
@@ -22,6 +30,9 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
         cout <<  "Could not open or find the image" << std::endl ;
         return -1;
     }
+
+    getContornosEncontrados().clear();
+    getLetrasEncontradas().clear();
 
 
     //Leemos la clasificacion hecha sobre GenerarClasificador
@@ -110,7 +121,7 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
     for (int i = 0; i < ptContours.size(); i++) {               // for each contour
         ContourWithData contourWithData;                                                    // instantiate a contour with data object
         contourWithData.ptContour = ptContours[i];                                          // assign contour to contour with data
-        contourWithData.boundingRect = cv::boundingRect(contourWithData.ptContour);         // get the bounding rect
+        contourWithData.dimensionContorno = cv::boundingRect(contourWithData.ptContour);         // get the bounding rect
         contourWithData.fltArea = cv::contourArea(contourWithData.ptContour);               // calculate the contour area
         allContoursWithData.push_back(contourWithData);                                     // add contour with data object to list of all contours with data
     }
@@ -133,13 +144,14 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
             validContoursWithData.erase(validContoursWithData.begin() + i);
             i--;
         } else{
-            cout << "Area " << validContoursWithData[i].fltArea  << endl;                                 // draw a green rect around the current char
+            //cout << "Area " << validContoursWithData[i].fltArea  << endl;
+            //cout << validContoursWithData[i].fltArea,// draw a green rect around the current char
             cv::rectangle(matTestingNumbers,                            // draw rectangle on original image
-                          validContoursWithData[i].boundingRect,        // rect to draw
+                          validContoursWithData[i].dimensionContorno,        // rect to draw
                           cv::Scalar(0, 255, 0),                        // green
                           2);                                           // thickness
 
-            cv::Mat matROI = matThresh(validContoursWithData[i].boundingRect);          // get ROI image of bounding rect
+            cv::Mat matROI = matThresh(validContoursWithData[i].dimensionContorno);          // get ROI image of bounding rect
 
             cv::Mat matROIResized;
             cv::resize(matROI, matROIResized, cv::Size(RESIZED_IMAGE_WIDTH, RESIZED_IMAGE_HEIGHT));     // resize image, this will be more consistent for recognition and storage
@@ -155,6 +167,10 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
 
             float fltCurrentChar = (float)matCurrentChar.at<float>(0, 0);
 
+            //Asignamos contorno y letra a contornosEncontrados
+            getContornosEncontrados().push_back(ContourWithData(validContoursWithData[i]));
+            getLetrasEncontradas().push_back( char(int(fltCurrentChar)));
+
             strFinalString = strFinalString + char(int(fltCurrentChar));
             //cv::imshow("matTestingNumbers", matTestingNumbers);
             //cv::waitKey(0);
@@ -164,6 +180,13 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
     }
 
     cout << "\n\n" << "numbers read = " << strFinalString << "\n\n";       // show the full string
+    cout << "Finalmente hay " << getContornosEncontrados().size() << " posibles contornos, analizaremos uno por uno " << endl;
+    for(int i = 0; i < getContornosEncontrados().size(); i++) {
+        getContornosEncontrados().at(i).mostrarContorno();
+        cout << " Letra " << getLetrasEncontradas().at(i) << endl;
+    }
+    cout << getLetrasEncontradas().size() << endl;
+    imshow("Transiciones", matTestingNumbers);
     setImagenTransicionActual(matTestingNumbers);
 
 }

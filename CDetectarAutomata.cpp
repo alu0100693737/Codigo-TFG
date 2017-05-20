@@ -48,7 +48,7 @@ Mat CDetectarAutomata::iniciarDeteccion(Mat imagen) {
         //imshow("HOLA", imagen);
         //waitKey(0);
     }
-    imshow("HOLA", imagen);
+    //imshow("HOLA", imagen);
     return imagen;
 }
 
