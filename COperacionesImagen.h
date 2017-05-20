@@ -37,6 +37,8 @@ public:
     Mat calcularHistograma(Mat imagen);
     QImage Mat2QImage(Mat const& src);
     Mat QImage2Mat(QImage const & src);
+
+    Point puntoMedio(Point a, Point b);
     /*
 	//reconocerPatrones
 	static Ptr<ml::TrainData> prepararDatosEntrenamiento(const Mat& data, const Mat& responses, int ntrain_samples);

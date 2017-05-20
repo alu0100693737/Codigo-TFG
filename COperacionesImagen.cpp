@@ -73,6 +73,13 @@ Mat COperacionesImagen::QImage2Mat(QImage const& src) {
     return result;
 }
 
+Point COperacionesImagen::puntoMedio(Point a, Point b) {
+    //cout << "Los puntos son " << a.x << ", " << a.y << "  " << b.x << ", " << b.y << endl;
+    Point aux((a.x + b.x)/ 2, (a.y + b.y)/2);
+    //cout << aux;
+    return aux;
+}
+
 CFiltrosImagenes* COperacionesImagen::aplicarFiltro() {
     return filtros_;
 }
@@ -87,8 +94,9 @@ CDetectarTransiciones* COperacionesImagen::detectarTransiciones() {
 
 void COperacionesImagen::codificarDeteccion() {
     vector<Point> transitions;
+    vector<Point> auxpuntosMedios;
     //Si se ha hecho la deteccion
-    if(!detectarAutomata()->getCirculosDetectados().empty() && !detectarAutomata()->getLineasDetectadas().empty()) {
+    if(!detectarAutomata()->getCirculosDetectados().empty() && !detectarAutomata()->getLineasDetectadas().empty() && !detectarTransiciones()->getContornosEncontrados().empty() && !detectarTransiciones()->getLetrasEncontradas().empty()) {
         cout << " CIRCULOS Y LINEAS " << endl;
         //Confirmamos el numero de nodos
         QString text;
@@ -107,6 +115,14 @@ void COperacionesImagen::codificarDeteccion() {
                                         if(detectarAutomata()->distanciaEuclidea(detectarAutomata()->getLineasDetectadas()[i][3], detectarAutomata()->getCirculosDetectados()[k][1]) < (100 + detectarAutomata()->getCirculosDetectados()[k][2])) {
                                             transitions.push_back(Point(j,k));
                                             cout << " hay una transicion entre circulos " << j << " y " << k << endl;
+                                            auxpuntosMedios.push_back(
+                                                        puntoMedio(
+                                                                    Point(detectarAutomata()->getCirculosDetectados()[j][0], detectarAutomata()->getCirculosDetectados()[j][1]),
+                                                                    Point(detectarAutomata()->getCirculosDetectados()[k][0], detectarAutomata()->getCirculosDetectados()[k][1])
+                                                        )
+                                                    );
+                                            //calculamos punto medio entre los circulos que tienen una transicion para descubrir posteriornente su letra correspondiente
+
                                             //cout << "Encontrada una cercania de entrada entre linea" << i << " y circulo " << k << endl;
                                         }
         } else
@@ -115,9 +131,12 @@ void COperacionesImagen::codificarDeteccion() {
 
         //Para las transiciones que hemos encontrado, hacemos la busqueda de letras o
         //numeros. en la bisectriz de la linea por cercania
+        //TENIENDO LAS LETRAS, POSICION VALOR Y PUNTO MEDIO ENTRE LAS TRANSICIONES, FALTA ASIGNAR
         if(transitions.size()) {
             for(int i = 0; i < transitions.size(); i++) {
                 cout << "Transicion numero " << i << " " << transitions.at(i) << endl;
+                cout << "Punto medio " << auxpuntosMedios.at(i) << endl;
+                cout << detectarTransiciones()->getContornosEncontrados().size() << " " << detectarTransiciones()->getLetrasEncontradas().size() << endl;
             }
         } else {
             cout << "ERROR, hubo un problema con la deteccion de transiciones entre circulos y lineas" << endl;
