@@ -186,7 +186,7 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
         cout << " Letra " << getLetrasEncontradas().at(i) << endl;
     }
     cout << getLetrasEncontradas().size() << endl;
-    imshow("Transiciones", matTestingNumbers);
+    //imshow("Transiciones", matTestingNumbers);
     setImagenTransicionActual(matTestingNumbers);
 
 }

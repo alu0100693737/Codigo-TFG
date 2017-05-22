@@ -136,7 +136,7 @@ void COperacionesImagen::codificarDeteccion() {
         //TENIENDO LAS LETRAS, POSICION VALOR Y PUNTO MEDIO ENTRE LAS TRANSICIONES, FALTA ASIGNAR
         if(transitions.size()) {
             for(int i = 0; i < transitions.size(); i++) {
-                 //cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
+                //cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
                 for(int k = 0; k < detectarTransiciones()->getContornosEncontrados().size(); k++) {
                     if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i].x, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x, true) < 70) {
                         if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i].y, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y, true) < 60) {
@@ -155,7 +155,25 @@ void COperacionesImagen::codificarDeteccion() {
                     }
                 }
             }
+
+            //calculamos transiciones al mismo nodo
             cout << "Quedan " << detectarTransiciones()->getContornosEncontrados().size() << " Transiciones por mirar" << endl;
+            for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
+                cout << "Contorno " << i << " " << detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno << endl;
+            }
+            for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
+            for(int j = 0; j < detectarAutomata()->getCirculosDetectados().size(); j++) {
+                    if(detectarAutomata()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.x, detectarAutomata()->getCirculosDetectados()[j][0]) < 30)
+                        if((detectarAutomata()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarAutomata()->getCirculosDetectados()[j][1]) < 140) && (detectarAutomata()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarAutomata()->getCirculosDetectados()[j][1] > 20))) {
+                            cout << " contorno " << detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno << endl;
+                            cout << "Transicion a si mismo del nodo " << j << " con letra " << detectarTransiciones()->getLetrasEncontradas()[i] << endl;
+                            detectarTransiciones()->getContornosEncontrados().erase(detectarTransiciones()->getContornosEncontrados().begin() + i);
+                            detectarTransiciones()->getLetrasEncontradas().erase(detectarTransiciones()->getLetrasEncontradas().begin() + i);
+                            i--;
+                            break;
+                        }
+                }
+            }
         } else {
             cout << "ERROR, hubo un problema con la deteccion de transiciones entre circulos y lineas" << endl;
         }

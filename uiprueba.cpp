@@ -110,7 +110,7 @@ int main(int, char* argv[]) {
   int tb1_value = 50; // Initial value of trackbar 1
   int tb2_value = 25; // Initial value of trackbar 1
 
-  orig_img = imread("/home/ivan/Documentos/TFG/grafo.jpg"); // Open and read the image
+  orig_img = imread("/home/ivan/Documentos/TFG/images/GrafoconLetras.png"); // Open and read the image
   if (orig_img.empty()) {
     cout << "Error!!! Image cannot be loaded..." << endl;
     return -1;

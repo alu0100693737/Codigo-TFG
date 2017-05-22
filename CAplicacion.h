@@ -24,6 +24,8 @@ private:
     QAction* actionDetectarTransiciones_;
     QAction* actionCodificarImagen_;
     QAction* actionCargarImagenOriginal_;
+
+    QToolBar* toolbar_;
     COperacionesImagen* operacionesImagen_;
 
     //Abrir Imagen

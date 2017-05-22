@@ -30,7 +30,7 @@ CAplicacion::CAplicacion() {
     layout->addWidget (getPanelHistograma(), 4, 4, 1, 1);
 
     //MENU
-    menu_                   = new QMenuBar(centralWidget);
+    menu_                   = this->menuBar();//w QMenuBar(centralWidget);
     menuArchivo_            = new QMenu("Archivo");
     menuEditar_             = new QMenu("Edicion");
     actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/TFG/release/abrir.png"), tr("Abrir Imagen"), this);
@@ -40,10 +40,16 @@ CAplicacion::CAplicacion() {
     actionDetectarTransiciones_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/transition.png"), tr("Detectar Transiciones"), this);
     actionCodificarImagen_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/codificar.png"), tr("Codificar Imagen"), this);
     actionCargarImagenOriginal_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/imagenOriginal.png"), tr("Cargar ultima Imagen"), this);
+
+    //QAction* prueba = new QAction(QIcon("/home/ivan/Documentos/TFG/release/abrir.png"), tr("Abrir Imagen"), this);
     getActionDetectarAutomata()->setDisabled(true); //Hasta que no se cargue una imagen
     getActionDetectarTransiciones()->setDisabled(true);
     getActionCodificarImagen()->setDisabled(true);
     getActionCargarImagenOriginal()->setDisabled(true);
+
+    //Shortcuts
+    getActionAbrirImagen()->setShortcuts(QKeySequence::New);
+    getActionSalir()->setShortcut(QKeySequence::Close);
 
     getMenuArchivo()->addAction(getActionAbrirImagen());
     getMenuArchivo()->addAction(getActionAbout());
@@ -52,14 +58,25 @@ CAplicacion::CAplicacion() {
     getMenuEditar()->addAction(getActionDetectarTransiciones());
     getMenuEditar()->addAction(getActionCodificarImagen());
     getMenuEditar()->addAction(getActionCargarImagenOriginal());
+
     //añadiendo elementos
     getMenuBar()->addMenu(getMenuArchivo());
     getMenuBar()->addMenu(getMenuEditar());
     getMenuBar()->adjustSize();
     getMenuBar()->setStyleSheet("background-color: white");
+
     setCentralWidget(centralWidget);
-    setMinimumSize(700, 400);
+    setMinimumSize(700, 500);
     setWindowTitle("TFG");
+
+    //Toolbar
+    toolbar_ = new QToolBar(this);
+    toolbar_->addAction(actionAbrirImagen_);
+    toolbar_->addAction(actionDetectarAutomata_);
+    toolbar_->addAction(actionDetectarTransiciones_);
+    toolbar_->addAction(actionCodificarImagen_);
+    toolbar_->addAction(actionAbout_);
+    this->addToolBar(toolbar_);
 
     //conexiones con slots
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
