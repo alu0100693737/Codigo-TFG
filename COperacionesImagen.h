@@ -9,6 +9,7 @@
 #include <QImage>
 #define DISTANCIAPIXELPRINCIPAL 10
 #define DISTANCIAPIXELSECUNDARIO 100
+#define CONTORNOMEDIOLETRA 30
 
 using namespace cv;
 using namespace std;
@@ -33,6 +34,7 @@ public:
     CDetectarTransiciones* detectarTransiciones();
 
     void codificarDeteccion();
+    bool contain(vector<Point> aux, Point a);
 
     Mat calcularHistograma(Mat imagen);
     QImage Mat2QImage(Mat const& src);

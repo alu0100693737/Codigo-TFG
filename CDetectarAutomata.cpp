@@ -73,7 +73,7 @@ vector<Vec3f> CDetectarAutomata::detectarCirculos(const Mat& src_gray, int canny
 vector<Vec3f> CDetectarAutomata::filtrarCirculos(vector<Vec3f> circulos) {
     double radioMedio = 0;
     for(int i = 0; i < circulos.size(); i++) {
-       // cout << "Radio actual " << circulos[i][2] << endl;
+        // cout << "Radio actual " << circulos[i][2] << endl;
         radioMedio += circulos[i][2]; //2 Radios
     }
     radioMedio /= circulos.size();
@@ -181,19 +181,26 @@ vector<Vec4i> CDetectarAutomata::filtrarLineas(vector<Vec4i>& lineas) {
 }
 
 //distancia euclidea entre dos componentes pixels (x's || y's)
+int CDetectarAutomata::distanciaEuclidea(int a, int b, bool mostrar) {
+    if(mostrar == true) {
+        cout << a << " , " << b;
+        cout << " resultado " << sqrt(pow(a - b, 2)) << endl;
+    }
+    return sqrt(pow(a - b, 2));
+}
+
 int CDetectarAutomata::distanciaEuclidea(int a, int b) {
-    //cout << a << " , " << b;
-    //cout << " resultado " << sqrt(pow(a - b, 2)) << endl;
     return sqrt(pow(a - b, 2));
 }
 
 //distancia euclidea entre dos puntos
+/*
 int CDetectarAutomata::distanciaEuclidea(Point a, Point b) {
     //cout << a << " , " << b;
     //cout << " resultado " << sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)) << endl;
     return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
 }
-
+*/
 vector<Vec3f> CDetectarAutomata::getCirculosDetectados() {
     return circles;
 }

@@ -94,6 +94,7 @@ CDetectarTransiciones* COperacionesImagen::detectarTransiciones() {
 
 void COperacionesImagen::codificarDeteccion() {
     vector<Point> transitions;
+
     vector<Point> auxpuntosMedios;
     //Si se ha hecho la deteccion
     if(!detectarAutomata()->getCirculosDetectados().empty() && !detectarAutomata()->getLineasDetectadas().empty() && !detectarTransiciones()->getContornosEncontrados().empty() && !detectarTransiciones()->getLetrasEncontradas().empty()) {
@@ -113,16 +114,17 @@ void COperacionesImagen::codificarDeteccion() {
                                 if (k != j)
                                     if(detectarAutomata()->distanciaEuclidea(detectarAutomata()->getLineasDetectadas()[i][2], detectarAutomata()->getCirculosDetectados()[k][0]) < (100 + detectarAutomata()->getCirculosDetectados()[k][2]))
                                         if(detectarAutomata()->distanciaEuclidea(detectarAutomata()->getLineasDetectadas()[i][3], detectarAutomata()->getCirculosDetectados()[k][1]) < (100 + detectarAutomata()->getCirculosDetectados()[k][2])) {
-                                            transitions.push_back(Point(j,k));
-                                            cout << " hay una transicion entre circulos " << j << " y " << k << endl;
-                                            auxpuntosMedios.push_back(
-                                                        puntoMedio(
-                                                                    Point(detectarAutomata()->getCirculosDetectados()[j][0], detectarAutomata()->getCirculosDetectados()[j][1]),
-                                                                    Point(detectarAutomata()->getCirculosDetectados()[k][0], detectarAutomata()->getCirculosDetectados()[k][1])
+                                            if(!contain(transitions, Point(j, k))) {
+                                                transitions.push_back(Point(j,k));
+                                                cout << " hay una transicion entre circulos " << j << " y " << k << endl;
+                                                auxpuntosMedios.push_back(
+                                                            puntoMedio(
+                                                                Point(detectarAutomata()->getCirculosDetectados()[j][0], detectarAutomata()->getCirculosDetectados()[j][1]),
+                                                        Point(detectarAutomata()->getCirculosDetectados()[k][0], detectarAutomata()->getCirculosDetectados()[k][1])
                                                         )
-                                                    );
+                                                        );
+                                            }
                                             //calculamos punto medio entre los circulos que tienen una transicion para descubrir posteriornente su letra correspondiente
-
                                             //cout << "Encontrada una cercania de entrada entre linea" << i << " y circulo " << k << endl;
                                         }
         } else
@@ -134,10 +136,26 @@ void COperacionesImagen::codificarDeteccion() {
         //TENIENDO LAS LETRAS, POSICION VALOR Y PUNTO MEDIO ENTRE LAS TRANSICIONES, FALTA ASIGNAR
         if(transitions.size()) {
             for(int i = 0; i < transitions.size(); i++) {
-                cout << "Transicion numero " << i << " " << transitions.at(i) << endl;
-                cout << "Punto medio " << auxpuntosMedios.at(i) << endl;
-                cout << detectarTransiciones()->getContornosEncontrados().size() << " " << detectarTransiciones()->getLetrasEncontradas().size() << endl;
+                 //cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
+                for(int k = 0; k < detectarTransiciones()->getContornosEncontrados().size(); k++) {
+                    if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i].x, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x, true) < 70) {
+                        if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i].y, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y, true) < 60) {
+                            cout << "Transicion numero " << i << " " << transitions.at(i) << endl;
+                            cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
+                            cout << "Entornos encontrados " << detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x  << "  " << detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y << endl;
+                            cout << "Letra: " << detectarTransiciones()->getLetrasEncontradas()[k] << endl;
+                            detectarTransiciones()->getContornosEncontrados().erase(detectarTransiciones()->getContornosEncontrados().begin() + k);
+                            detectarTransiciones()->getLetrasEncontradas().erase(detectarTransiciones()->getLetrasEncontradas().begin() + k);
+                            k--;
+                            break;
+                        } else {
+                            cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
+                            cout << "fallo" << endl;
+                        }
+                    }
+                }
             }
+            cout << "Quedan " << detectarTransiciones()->getContornosEncontrados().size() << " Transiciones por mirar" << endl;
         } else {
             cout << "ERROR, hubo un problema con la deteccion de transiciones entre circulos y lineas" << endl;
         }
@@ -157,6 +175,18 @@ bool COperacionesImagen::ventanaConfirmarNodos(int nodos, QString text) {
     if(text.isEmpty())
         return false;
     return ok;
+}
+
+//devuelve si un punto esta dentoro del vector
+bool COperacionesImagen::contain(vector<Point> aux, Point a) {
+    bool contiene = false;
+    for(int i = 0; i < aux.size(); i++) {
+        if(aux[i] == a) {
+            contiene = true;
+            break;
+        }
+    }
+    return contiene;
 }
 
 /*

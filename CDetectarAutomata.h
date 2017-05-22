@@ -47,6 +47,7 @@ public:
     vector<Vec4i> getLineasDetectadas();
 
     int distanciaEuclidea(int a, int b);
+    int distanciaEuclidea(int a, int b, bool mostrar);
     int distanciaEuclidea(Point a, Point b);
 };
 
