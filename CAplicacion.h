@@ -26,6 +26,11 @@ private:
     QAction* actionCargarImagenOriginal_;
 
     QToolBar* toolbar_;
+
+    QLineEdit* nodo_inicio;
+    QLineEdit* nodos_finales;
+    QComboBox* alfabeto_; //0 -> alfabeto a, b, c   1 -> Alfabeto numerico
+
     COperacionesImagen* operacionesImagen_;
 
     //Abrir Imagen
@@ -46,6 +51,12 @@ private:
     QMenuBar* getMenuBar();
     QMenu* getMenuArchivo();
     QMenu* getMenuEditar();
+
+    QToolBar* getToolBar();
+    QLineEdit* getNodoInicio();
+    QLineEdit* getNodosFinales();
+    QComboBox* getAlfabetoActual();
+
     QAction* getActionAbrirImagen();
     QAction* getActionAbout();
     QAction* getActionSalir();

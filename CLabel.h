@@ -9,7 +9,7 @@ private:
     QImage imagen_;
 public:
     CLabel();
-    CLabel(QString text);
+    CLabel(QString text, bool);
     QImage getImagen();
     void setImagen(const QImage);
 };

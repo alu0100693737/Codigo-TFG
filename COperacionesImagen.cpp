@@ -92,18 +92,20 @@ CDetectarTransiciones* COperacionesImagen::detectarTransiciones() {
     return transiciones_;
 }
 
-void COperacionesImagen::codificarDeteccion() {
+void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFinales) {
     vector<Point> transitions;
 
     vector<Point> auxpuntosMedios;
     //Si se ha hecho la deteccion
     if(!detectarAutomata()->getCirculosDetectados().empty() && !detectarAutomata()->getLineasDetectadas().empty() && !detectarTransiciones()->getContornosEncontrados().empty() && !detectarTransiciones()->getLetrasEncontradas().empty()) {
         cout << " CIRCULOS Y LINEAS " << endl;
+
         //Confirmamos el numero de nodos
-        QString text;
+
         int aux = detectarAutomata()->getCirculosDetectados().size();
-        if (ventanaConfirmarNodos(aux, text)) { //numero de nodos confirmados, miramos ahora las lineas
+        if (ventanaConfirmarNodos(aux)) { //numero de nodos confirmados, miramos ahora las lineas
             //cout << " el numero de lineas detectadas es " << getLineasDetectadas().size() << endl;
+            //calculamos punto medio entre los circulos que tienen una transicion para descubrir posteriornente su letra correspondiente
             for(int i = 0; i < detectarAutomata()->getLineasDetectadas().size(); i++)
                 //cout << " linea num " << i << " con coordenadas " << getLineasDetectadas().at(i) << endl;
                 for(int j = 0; j < detectarAutomata()->getCirculosDetectados().size(); j++)
@@ -132,18 +134,31 @@ void COperacionesImagen::codificarDeteccion() {
 
 
         //Para las transiciones que hemos encontrado, hacemos la busqueda de letras o
-        //numeros. en la bisectriz de la linea por cercania
+        //numeros. en el punto medio de la linea por cercania
         //TENIENDO LAS LETRAS, POSICION VALOR Y PUNTO MEDIO ENTRE LAS TRANSICIONES, FALTA ASIGNAR
         if(transitions.size()) {
+
+            ofstream fs("/home/ivan/Documentos/TFG/codificaciones/codificacion.txt");
+
+               // Enviamos una cadena al fichero de salida:
+            fs << detectarAutomata()->getCirculosDetectados().size() << endl;
+            fs << nodoInicial << endl;
+            fs << nodosFinales << endl;
+
+               // Cerrar el fichero,
+               // para luego poder abrirlo para lectura:
+
             for(int i = 0; i < transitions.size(); i++) {
                 //cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
                 for(int k = 0; k < detectarTransiciones()->getContornosEncontrados().size(); k++) {
-                    if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i].x, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x, true) < 70) {
-                        if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i].y, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y, true) < 60) {
+                    if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i].x, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x) < 70) {
+                        if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i].y, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y) < 60) {
                             cout << "Transicion numero " << i << " " << transitions.at(i) << endl;
                             cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
                             cout << "Entornos encontrados " << detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x  << "  " << detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y << endl;
                             cout << "Letra: " << detectarTransiciones()->getLetrasEncontradas()[k] << endl;
+
+                            fs << transitions.at(i).x << " " << transitions.at(i).y << " " << detectarTransiciones()->getLetrasEncontradas()[k] << endl;
                             detectarTransiciones()->getContornosEncontrados().erase(detectarTransiciones()->getContornosEncontrados().begin() + k);
                             detectarTransiciones()->getLetrasEncontradas().erase(detectarTransiciones()->getLetrasEncontradas().begin() + k);
                             k--;
@@ -167,6 +182,7 @@ void COperacionesImagen::codificarDeteccion() {
                         if((detectarAutomata()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarAutomata()->getCirculosDetectados()[j][1]) < 140) && (detectarAutomata()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarAutomata()->getCirculosDetectados()[j][1] > 20))) {
                             cout << " contorno " << detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno << endl;
                             cout << "Transicion a si mismo del nodo " << j << " con letra " << detectarTransiciones()->getLetrasEncontradas()[i] << endl;
+                            fs << j << " " << j << " " << detectarTransiciones()->getLetrasEncontradas()[i] << endl;
                             detectarTransiciones()->getContornosEncontrados().erase(detectarTransiciones()->getContornosEncontrados().begin() + i);
                             detectarTransiciones()->getLetrasEncontradas().erase(detectarTransiciones()->getLetrasEncontradas().begin() + i);
                             i--;
@@ -174,6 +190,9 @@ void COperacionesImagen::codificarDeteccion() {
                         }
                 }
             }
+            fs.close();
+
+
         } else {
             cout << "ERROR, hubo un problema con la deteccion de transiciones entre circulos y lineas" << endl;
         }
@@ -182,8 +201,8 @@ void COperacionesImagen::codificarDeteccion() {
         cout << " ERROR, no se ha detectado la imagen previamente" << endl;
 }
 
-bool COperacionesImagen::ventanaConfirmarNodos(int nodos, QString text) {
-    text = QString::number(nodos);
+bool COperacionesImagen::ventanaConfirmarNodos(int nodos) {
+    QString text = QString::number(nodos);
     //cout << text.toStdString() << endl;
     bool ok;
 

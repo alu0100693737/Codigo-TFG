@@ -15,9 +15,9 @@ CAplicacion::CAplicacion() {
 
     setPathImagenActual(NULL); //Path al principio = NULL
 
-    panelPrincipal_ = new CLabel("Panel Principal");
-    panelOpciones_ = new CLabel("Opciones");
-    panelHistograma_ = new CLabel("Info Imagen");
+    panelPrincipal_ = new CLabel("Panel Principal", true);
+    panelOpciones_ = new CLabel("Opciones", true);
+    panelHistograma_ = new CLabel("Info Imagen", false);
 
     operacionesImagen_ = new COperacionesImagen();
 
@@ -67,16 +67,36 @@ CAplicacion::CAplicacion() {
 
     setCentralWidget(centralWidget);
     setMinimumSize(700, 500);
-    setWindowTitle("TFG");
+    setWindowTitle("Automatas y Lenguajes Formales, TFG");
 
     //Toolbar
     toolbar_ = new QToolBar(this);
-    toolbar_->addAction(actionAbrirImagen_);
-    toolbar_->addAction(actionDetectarAutomata_);
-    toolbar_->addAction(actionDetectarTransiciones_);
-    toolbar_->addAction(actionCodificarImagen_);
-    toolbar_->addAction(actionAbout_);
-    this->addToolBar(toolbar_);
+    getToolBar()->addAction(getActionAbrirImagen());
+    getToolBar()->addAction(getActionDetectarAutomata());
+    getToolBar()->addAction(getActionDetectarTransiciones());
+    getToolBar()->addAction(getActionCodificarImagen());
+    getToolBar()->addAction(getActionAbout());
+    this->addToolBar(getToolBar());
+
+
+    nodo_inicio = new QLineEdit;
+    getNodoInicio()->setPlaceholderText("Nodo de Inicio");
+    nodos_finales = new QLineEdit;
+    getNodosFinales()->setPlaceholderText("Nodos Finales");
+    getNodoInicio()->setFocus();
+
+    alfabeto_ = new QComboBox;
+    getAlfabetoActual()->addItem(tr("Alfabeto a, b, c"));
+    getAlfabetoActual()->addItem(tr("Alfabeto Numerico"));
+
+    //nodo_inicio->setText("Nodo de inicio");
+    // nodo_inicio->displayText("Nodo de inicio");
+    // QStringList list=(QStringList()<<"red"<<"yellow"<<"blue");
+    //  myComboBox->addItems(list);
+    // Add values in the combo box
+    this->getToolBar()->addWidget(getNodoInicio());
+    this->getToolBar()->addWidget(getNodosFinales());
+    this->getToolBar()->addWidget(getAlfabetoActual());
 
     //conexiones con slots
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
@@ -121,6 +141,22 @@ QMenu* CAplicacion::getMenuArchivo() {
 
 QMenu* CAplicacion::getMenuEditar() {
     return menuEditar_;
+}
+
+QToolBar* CAplicacion::getToolBar() {
+    return toolbar_;
+}
+
+QLineEdit* CAplicacion::getNodoInicio() {
+    return nodo_inicio;
+}
+
+QLineEdit* CAplicacion::getNodosFinales() {
+    return nodos_finales;
+}
+
+QComboBox* CAplicacion::getAlfabetoActual() {
+    return alfabeto_;
 }
 
 QAction* CAplicacion::getActionAbrirImagen() {
@@ -198,6 +234,11 @@ bool CAplicacion::loadFile(const QString &fileName) {
         return false;
     } else {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+        //Size size(800, 350);//the dst image size,e.g.100x100
+
+        //Mat src;//src image
+        //cv::resize(aux,aux,size);//resize image
+
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
         //getPanelPrincipal()->setImagen(newImage);
         getPanelHistograma()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->calcularHistograma(getOperacionesImagen()->QImage2Mat(newImage))));
@@ -241,7 +282,25 @@ void CAplicacion::slotDetectarTransiciones() {
 }
 
 void CAplicacion::slotCodificarImagen() {
-    getOperacionesImagen()->codificarDeteccion();
+    if(getNodoInicio()->text().isEmpty() || getNodosFinales()->text().isEmpty()) {
+        QMessageBox::warning(this,"Warning","Recuerde introducir el nodo inicio y los nodos finales.");
+    } else {
+        getOperacionesImagen()->codificarDeteccion(getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData());
+
+        char cadena[128];
+        QString aux;
+        ifstream fe("/home/ivan/Documentos/TFG/codificaciones/codificacion.txt");
+        while (!fe.eof()) {
+            fe.getline (cadena, 256);
+            aux.append("\n");
+            aux.append(cadena);
+            cout << cadena;
+         }
+        fe.close();
+        getPanelHistograma()->setText(aux);
+        //getPanelHistograma()->adjustSize();
+
+    }
 }
 
 void CAplicacion::slotCargarImagenOriginal() {
@@ -249,5 +308,5 @@ void CAplicacion::slotCargarImagenOriginal() {
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
     getActionDetectarAutomata()->setDisabled(false);
     getActionDetectarTransiciones()->setDisabled(false);
-     getActionCodificarImagen()->setDisabled(true);
+    getActionCodificarImagen()->setDisabled(true);
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/imgproc.hpp"
@@ -22,7 +23,7 @@ private:
     CDetectarTransiciones* transiciones_;
 
     //utilizado en codificarDeteccion
-    bool ventanaConfirmarNodos(int nodos, QString text);
+    bool ventanaConfirmarNodos(int nodos);
 
 public:
     COperacionesImagen();
@@ -33,7 +34,7 @@ public:
     CDetectarAutomata* detectarAutomata(); //get funciones deteccion
     CDetectarTransiciones* detectarTransiciones();
 
-    void codificarDeteccion();
+    void codificarDeteccion(string nodoInicial, string nodosFinales);
     bool contain(vector<Point> aux, Point a);
 
     Mat calcularHistograma(Mat imagen);
