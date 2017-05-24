@@ -117,7 +117,7 @@ vector<Vec4i> CDetectarAutomata::HoughProbabilistico(Mat edges, int, void*) {
     cout << "Lineas detectadas inicialmente: " << p_lines.size() << endl;
 
     //filtramos las lineas, duplicaciones
-    filtrarLineas(p_lines);
+    //filtrarLineas(p_lines);
 
     //imshow("probabilistic", probabilistic_hough);
     return p_lines; //datos de la deteccion de lineas

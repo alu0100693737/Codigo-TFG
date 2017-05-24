@@ -17,6 +17,7 @@ private:
     QMenuBar* menu_;
     QMenu* menuArchivo_;
     QMenu* menuEditar_;
+    QMenu* menuFiltro_;
     QAction* actionAbrirImagen_;
     QAction* actionAbout_;
     QAction* actionSalir_;
@@ -24,6 +25,12 @@ private:
     QAction* actionDetectarTransiciones_;
     QAction* actionCodificarImagen_;
     QAction* actionCargarImagenOriginal_;
+    QAction* actionFiltroGray_;
+    QAction* actionFiltroGaussiano_;
+    QAction* actionFiltroMediana_;
+    QAction* actionFiltroSobel_;
+    QAction* actionFiltroLaplaciano_;
+    QAction* actionHistograma_;
 
     QToolBar* toolbar_;
 
@@ -51,6 +58,7 @@ private:
     QMenuBar* getMenuBar();
     QMenu* getMenuArchivo();
     QMenu* getMenuEditar();
+    QMenu* getMenuFiltro();
 
     QToolBar* getToolBar();
     QLineEdit* getNodoInicio();
@@ -64,6 +72,12 @@ private:
     QAction* getActionDetectarTransiciones();
     QAction* getActionCodificarImagen();
     QAction* getActionCargarImagenOriginal();
+    QAction* getActionFiltroGray();
+    QAction* getActionFiltroGaussiano();
+    QAction* getActionFiltroMediana();
+    QAction* getActionFiltroSobel();
+    QAction* getActionFiltroLaplaciano();
+    QAction* getActionHistograma();
 
     COperacionesImagen* getOperacionesImagen();
 
@@ -76,4 +90,11 @@ public slots:
     void slotDetectarTransiciones();
     void slotCodificarImagen();
     void slotCargarImagenOriginal();
+
+    void slotFiltroGray();
+    void slotFiltroGaussiano();
+    void slotFiltroMediana();
+    void slotFiltroSobel();
+    void slotFiltroLaplaciano();
+    void slotHistograma();
 };

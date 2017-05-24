@@ -1,9 +1,9 @@
-/**
+/*/**
  * @file HoughCircle_Demo.cpp
  * @brief Demo code for Hough Transform
  * @author OpenCV team
- */
-/*
+ *//*
+
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
@@ -58,7 +58,7 @@ int main(int argc, char** argv)
 
 
     // Read the image
-    src = imread("/home/ivan/Documentos/TFG/images/ejemplo1_2.png", IMREAD_COLOR );
+    src = imread("/home/ivan/Documentos/TFG/images/grafo.png", IMREAD_COLOR );
     Size size(800, 400);//the dst image size,e.g.100x100
 
     //Mat src;//src image
@@ -104,4 +104,5 @@ int main(int argc, char** argv)
     }
 
     return 0;
-}*/
+}
+*/

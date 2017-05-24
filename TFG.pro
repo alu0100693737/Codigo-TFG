@@ -22,7 +22,8 @@ SOURCES += \
     CContourWithData.cpp \
     CDetectarTransiciones.cpp \
     GenerarClasificador.cpp \
-    pruebablobs.cpp
+    pruebablobs.cpp \
+    pruebalineas.cpp
 
 
 # The following define makes your compiler emit warnings if you use

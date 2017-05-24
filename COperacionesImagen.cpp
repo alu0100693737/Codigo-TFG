@@ -140,13 +140,13 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
 
             ofstream fs("/home/ivan/Documentos/TFG/codificaciones/codificacion.txt");
 
-               // Enviamos una cadena al fichero de salida:
+            // Enviamos una cadena al fichero de salida:
             fs << detectarAutomata()->getCirculosDetectados().size() << endl;
             fs << nodoInicial << endl;
             fs << nodosFinales << endl;
 
-               // Cerrar el fichero,
-               // para luego poder abrirlo para lectura:
+            // Cerrar el fichero,
+            // para luego poder abrirlo para lectura:
 
             for(int i = 0; i < transitions.size(); i++) {
                 //cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
@@ -177,7 +177,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
                 cout << "Contorno " << i << " " << detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno << endl;
             }
             for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
-            for(int j = 0; j < detectarAutomata()->getCirculosDetectados().size(); j++) {
+                for(int j = 0; j < detectarAutomata()->getCirculosDetectados().size(); j++) {
                     if(detectarAutomata()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.x, detectarAutomata()->getCirculosDetectados()[j][0]) < 30)
                         if((detectarAutomata()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarAutomata()->getCirculosDetectados()[j][1]) < 140) && (detectarAutomata()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarAutomata()->getCirculosDetectados()[j][1] > 20))) {
                             cout << " contorno " << detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno << endl;
@@ -190,6 +190,18 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
                         }
                 }
             }
+
+           /* //calculamos transiciones cuando no se detecta la linea
+            for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
+                for(int j = 0; j < detectarAutomata()->getCirculosDetectados().size(); j++) {
+                    if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i], detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.x) < 60) {
+                        if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios.y, detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.y) < 60) {
+                            fs << j << " " << j << " " << detectarTransiciones()->getLetrasEncontradas()[i] << endl;
+                            detectarTransiciones()->getContornosEncontrados().erase(detectarTransiciones()->getContornosEncontrados().begin() + i);
+                            detectarTransiciones()->getLetrasEncontradas().erase(detectarTransiciones()->getLetrasEncontradas().begin() + i);
+                            cout << "·Cuidado" << endl;
+                    }
+                }}}*/
             fs.close();
 
 

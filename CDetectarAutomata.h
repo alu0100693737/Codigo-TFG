@@ -12,7 +12,7 @@
 using namespace std;
 using namespace cv;
 
-#define CANNYTHRESHOLD 60
+#define CANNYTHRESHOLD 30
 #define ACCUMULATORTHRESHOLD 42
 #define DISTANCIAPIXELPRINCIPAL 10
 #define DISTANCIAPIXELSECUNDARIO 100

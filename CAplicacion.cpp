@@ -33,6 +33,7 @@ CAplicacion::CAplicacion() {
     menu_                   = this->menuBar();//w QMenuBar(centralWidget);
     menuArchivo_            = new QMenu("Archivo");
     menuEditar_             = new QMenu("Edicion");
+    menuFiltro_             = new QMenu("Filtros");
     actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/TFG/release/abrir.png"), tr("Abrir Imagen"), this);
     actionAbout_            = new QAction(QIcon("/home/ivan/Documentos/TFG/release/about.png"), tr("About"), this);
     actionSalir_            = new QAction(QIcon("/home/ivan/Documentos/TFG/release/salir.png"), tr("Salir"), this);
@@ -40,6 +41,13 @@ CAplicacion::CAplicacion() {
     actionDetectarTransiciones_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/transition.png"), tr("Detectar Transiciones"), this);
     actionCodificarImagen_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/codificar.png"), tr("Codificar Imagen"), this);
     actionCargarImagenOriginal_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/imagenOriginal.png"), tr("Cargar ultima Imagen"), this);
+    actionFiltroGray_ = new QAction(QIcon(""), tr("Filtro Gray"), this);
+    actionFiltroGaussiano_   = new QAction(QIcon(""), tr("Filtro Gaussiano"), this);
+    actionFiltroMediana_ = new QAction(QIcon(""), tr("Filtro Mediana"), this);
+    actionFiltroSobel_ = new QAction(QIcon(""), tr("Filtro Sobel"), this);
+    actionFiltroLaplaciano_ = new QAction(QIcon(""), tr("Filtro Laplaciano"), this);
+    actionHistograma_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/histograma.png"), tr("Histograma"), this);
+
 
     //QAction* prueba = new QAction(QIcon("/home/ivan/Documentos/TFG/release/abrir.png"), tr("Abrir Imagen"), this);
     getActionDetectarAutomata()->setDisabled(true); //Hasta que no se cargue una imagen
@@ -58,10 +66,17 @@ CAplicacion::CAplicacion() {
     getMenuEditar()->addAction(getActionDetectarTransiciones());
     getMenuEditar()->addAction(getActionCodificarImagen());
     getMenuEditar()->addAction(getActionCargarImagenOriginal());
+    //getMenuFiltro()->addAction(getActionFiltroGray());
+    getMenuFiltro()->addAction(getActionFiltroGaussiano());
+    getMenuFiltro()->addAction(getActionFiltroMediana());
+    getMenuFiltro()->addAction(getActionFiltroSobel());
+    getMenuFiltro()->addAction(getActionFiltroLaplaciano());
+    getMenuFiltro()->addAction(getActionHistograma());
 
     //añadiendo elementos
     getMenuBar()->addMenu(getMenuArchivo());
     getMenuBar()->addMenu(getMenuEditar());
+    getMenuBar()->addMenu(getMenuFiltro());
     getMenuBar()->adjustSize();
     getMenuBar()->setStyleSheet("background-color: white");
 
@@ -89,10 +104,6 @@ CAplicacion::CAplicacion() {
     getAlfabetoActual()->addItem(tr("Alfabeto a, b, c"));
     getAlfabetoActual()->addItem(tr("Alfabeto Numerico"));
 
-    //nodo_inicio->setText("Nodo de inicio");
-    // nodo_inicio->displayText("Nodo de inicio");
-    // QStringList list=(QStringList()<<"red"<<"yellow"<<"blue");
-    //  myComboBox->addItems(list);
     // Add values in the combo box
     this->getToolBar()->addWidget(getNodoInicio());
     this->getToolBar()->addWidget(getNodosFinales());
@@ -106,6 +117,12 @@ CAplicacion::CAplicacion() {
     connect(getActionDetectarTransiciones(), SIGNAL(triggered()), this, SLOT(slotDetectarTransiciones()));
     connect(getActionCodificarImagen(), SIGNAL(triggered()), this, SLOT(slotCodificarImagen()));
     connect(getActionCargarImagenOriginal(), SIGNAL(triggered()), this, SLOT(slotCargarImagenOriginal()));
+    connect(getActionFiltroGray(), SIGNAL(triggered()), this, SLOT(slotFiltroGray()));
+    connect(getActionFiltroGaussiano(), SIGNAL(triggered()), this, SLOT(slotFiltroGaussiano()));
+    connect(getActionFiltroMediana(), SIGNAL(triggered()), this, SLOT(slotFiltroMediana()));
+    connect(getActionFiltroSobel(), SIGNAL(triggered()), this, SLOT(slotFiltroSobel()));
+    connect(getActionFiltroLaplaciano(), SIGNAL(triggered()), this, SLOT(slotFiltroLaplaciano()));
+    connect(getActionHistograma(), SIGNAL(triggered()), this, SLOT(slotHistograma()));
 }
 
 CAplicacion::~CAplicacion() {}
@@ -141,6 +158,10 @@ QMenu* CAplicacion::getMenuArchivo() {
 
 QMenu* CAplicacion::getMenuEditar() {
     return menuEditar_;
+}
+
+QMenu* CAplicacion::getMenuFiltro() {
+    return menuFiltro_;
 }
 
 QToolBar* CAplicacion::getToolBar() {
@@ -185,6 +206,30 @@ QAction* CAplicacion::getActionCodificarImagen() {
 
 QAction* CAplicacion::getActionCargarImagenOriginal() {
     return actionCargarImagenOriginal_;
+}
+
+QAction* CAplicacion::getActionFiltroGray() {
+    return actionFiltroGray_;
+}
+
+QAction* CAplicacion::getActionFiltroGaussiano() {
+    return actionFiltroGaussiano_;
+}
+
+QAction* CAplicacion::getActionFiltroMediana() {
+    return actionFiltroMediana_;
+}
+
+QAction* CAplicacion::getActionFiltroSobel() {
+    return actionFiltroSobel_;
+}
+
+QAction* CAplicacion::getActionFiltroLaplaciano() {
+    return actionFiltroLaplaciano_;
+}
+
+QAction* CAplicacion::getActionHistograma() {
+    return actionHistograma_;
 }
 
 //OPERACIONES CON LA IMAGEN
@@ -295,7 +340,7 @@ void CAplicacion::slotCodificarImagen() {
             aux.append("\n");
             aux.append(cadena);
             cout << cadena;
-         }
+        }
         fe.close();
         getPanelHistograma()->setText(aux);
         //getPanelHistograma()->adjustSize();
@@ -310,3 +355,36 @@ void CAplicacion::slotCargarImagenOriginal() {
     getActionDetectarTransiciones()->setDisabled(false);
     getActionCodificarImagen()->setDisabled(true);
 }
+
+void CAplicacion::slotFiltroGray() {
+    Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_GRAYSCALE );
+
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+}
+
+void CAplicacion::slotFiltroGaussiano() {
+    Mat aux = getOperacionesImagen()->aplicarFiltro()->filtroGaussianBlur(imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR ));
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+}
+
+void CAplicacion::slotFiltroMediana() {
+    Mat aux = getOperacionesImagen()->aplicarFiltro()->filtroMedianBlur(imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR ));
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+}
+
+void CAplicacion::slotFiltroSobel() {
+    Mat aux = getOperacionesImagen()->aplicarFiltro()->filtroSobel(imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR ));
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+}
+
+void CAplicacion::slotFiltroLaplaciano() {
+    Mat aux = getOperacionesImagen()->aplicarFiltro()->filtroLaplacian(imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR ));
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+}
+
+void CAplicacion::slotHistograma() {
+    Mat aux = getOperacionesImagen()->calcularHistograma(imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR ));
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+}
+
+
