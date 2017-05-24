@@ -35,6 +35,7 @@ CAplicacion::CAplicacion() {
     menuEditar_             = new QMenu("Edicion");
     menuFiltro_             = new QMenu("Filtros");
     actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/TFG/release/abrir.png"), tr("Abrir Imagen"), this);
+    actionAbrirFichero_     = new QAction(QIcon("/home/ivan/Documentos/TFG/release/fichero.png"), tr("Abrir Fichero"), this);
     actionAbout_            = new QAction(QIcon("/home/ivan/Documentos/TFG/release/about.png"), tr("About"), this);
     actionSalir_            = new QAction(QIcon("/home/ivan/Documentos/TFG/release/salir.png"), tr("Salir"), this);
     actionDetectarAutomata_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/opencv.png"), tr("Detectar Automata"), this);
@@ -60,6 +61,7 @@ CAplicacion::CAplicacion() {
     getActionSalir()->setShortcut(QKeySequence::Close);
 
     getMenuArchivo()->addAction(getActionAbrirImagen());
+    getMenuArchivo()->addAction(getActionAbrirFichero());
     getMenuArchivo()->addAction(getActionAbout());
     getMenuArchivo()->addAction(getActionSalir());
     getMenuEditar()->addAction(getActionDetectarAutomata());
@@ -111,6 +113,7 @@ CAplicacion::CAplicacion() {
 
     //conexiones con slots
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
+    connect(getActionAbrirFichero(), SIGNAL(triggered()),this,SLOT(slotAbrirFichero()));
     connect(getActionAbout(), SIGNAL(triggered()),this,SLOT(slotAbout()));
     connect(getActionSalir(), SIGNAL(triggered()), this, SLOT(slotSalir()));
     connect(getActionDetectarAutomata(), SIGNAL(triggered()), this, SLOT(slotDetectarAutomata()));
@@ -184,6 +187,10 @@ QAction* CAplicacion::getActionAbrirImagen() {
     return actionAbrirImagen_;
 }
 
+QAction* CAplicacion::getActionAbrirFichero() {
+    return actionAbrirFichero_;
+}
+
 QAction* CAplicacion::getActionAbout() {
     return actionAbout_;
 }
@@ -239,9 +246,15 @@ COperacionesImagen* CAplicacion::getOperacionesImagen() {
 
 //SLOTS
 void CAplicacion::slotAbrirImagen() {
-    QFileDialog dialog(this, tr("Open File"));
+    QFileDialog dialog(this, tr("Abrir Imagen"));
     inicializarVentanaAbrirImagen(dialog, QFileDialog::AcceptOpen);
     while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
+}
+
+void CAplicacion::slotAbrirFichero() {
+    QFileDialog dialog(this, tr("Abrir Fichero"));
+    inicializarVentanaAbrirFichero(dialog, QFileDialog::AcceptOpen);
+    while (dialog.exec() == QDialog::Accepted && !loadFileFichero(dialog.selectedFiles().first())) {}
 }
 
 void CAplicacion::inicializarVentanaAbrirImagen(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode) {
@@ -263,6 +276,28 @@ void CAplicacion::inicializarVentanaAbrirImagen(QFileDialog &dialog, QFileDialog
     dialog.selectMimeTypeFilter("image/png");
     if (acceptMode == QFileDialog::AcceptSave) {
         dialog.setDefaultSuffix("png");
+    }
+}
+
+void CAplicacion::inicializarVentanaAbrirFichero(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode) {
+    static bool firstDialog = true;
+
+    if (firstDialog) {
+        firstDialog = false;
+        const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
+        dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
+    }
+
+    QStringList mimeTypeFilters;
+    const QByteArrayList supportedMimeTypes = acceptMode == QFileDialog::AcceptOpen
+            ? QImageReader::supportedMimeTypes() : QImageWriter::supportedMimeTypes();
+    foreach (const QByteArray &mimeTypeName, supportedMimeTypes)
+        mimeTypeFilters.append(mimeTypeName);
+    mimeTypeFilters.sort();
+    dialog.setMimeTypeFilters(mimeTypeFilters);
+    dialog.selectMimeTypeFilter("text/txt");
+    if (acceptMode == QFileDialog::AcceptSave) {
+        dialog.setDefaultSuffix("txt");
     }
 }
 
@@ -292,6 +327,36 @@ bool CAplicacion::loadFile(const QString &fileName) {
         getActionCargarImagenOriginal()->setDisabled(false);
         getActionCodificarImagen()->setDisabled(true);
         return true;
+    }
+}
+
+bool CAplicacion::loadFileFichero(const QString &fileName) {
+    QImageReader reader(fileName);
+    setPathImagenActual(fileName); //Introduciendo la path de la imagen actual cargada
+    //cout << "File name: " << fileName.toUtf8().constData() << endl;
+    reader.setAutoTransform(true);
+    const QImage newImage = reader.read();
+    if (newImage.isNull()) {
+        QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
+                                 tr("Cannot load %1: %2")
+                                 .arg(QDir::toNativeSeparators(fileName), reader.errorString()));
+        return false;
+    } else {
+        cout << "He leido" << endl;/*
+        Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+        //Size size(800, 350);//the dst image size,e.g.100x100
+
+        //Mat src;//src image
+        //cv::resize(aux,aux,size);//resize image
+
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+        //getPanelPrincipal()->setImagen(newImage);
+        getPanelHistograma()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->calcularHistograma(getOperacionesImagen()->QImage2Mat(newImage))));
+        getActionDetectarAutomata()->setDisabled(false); //Habilitamos la posibilidad de detectar automata
+        getActionDetectarTransiciones()->setDisabled(false);
+        getActionCargarImagenOriginal()->setDisabled(false);
+        getActionCodificarImagen()->setDisabled(true);
+        return true;*/
     }
 }
 

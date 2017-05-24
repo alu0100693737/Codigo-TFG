@@ -19,6 +19,7 @@ private:
     QMenu* menuEditar_;
     QMenu* menuFiltro_;
     QAction* actionAbrirImagen_;
+    QAction* actionAbrirFichero_;
     QAction* actionAbout_;
     QAction* actionSalir_;
     QAction* actionDetectarAutomata_;
@@ -42,8 +43,10 @@ private:
 
     //Abrir Imagen
     bool loadFile(const QString &fileName); //Utilizado slot abrirImagen
+    bool loadFileFichero(const QString &fileName); //Utilizado slot abrirImagen
     //Guarda localizacion elegida, por defecto carpeta imagenes, ordena los archivos y filtra por jpg
     void inicializarVentanaAbrirImagen(QFileDialog&, QFileDialog::AcceptMode);
+    void inicializarVentanaAbrirFichero(QFileDialog&, QFileDialog::AcceptMode);
  public:
     CAplicacion();
     ~CAplicacion();
@@ -66,6 +69,7 @@ private:
     QComboBox* getAlfabetoActual();
 
     QAction* getActionAbrirImagen();
+    QAction* getActionAbrirFichero();
     QAction* getActionAbout();
     QAction* getActionSalir();
     QAction* getActionDetectarAutomata();
@@ -83,6 +87,7 @@ private:
 
 public slots:
     void slotAbrirImagen();
+    void slotAbrirFichero();
     void slotAbout();
     void slotSalir();
 
