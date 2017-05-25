@@ -2,7 +2,8 @@
 
 COperacionesImagen::COperacionesImagen() {
     filtros_ = new CFiltrosImagenes();
-    detector_ = new CDetectarAutomata();
+    circulos_ = new CDetectarCirculo();
+    lineas_   =  new CDetectarLineas();
     transiciones_ = new CDetectarTransiciones();
 }
 
@@ -84,8 +85,12 @@ CFiltrosImagenes* COperacionesImagen::aplicarFiltro() {
     return filtros_;
 }
 
-CDetectarAutomata* COperacionesImagen::detectarAutomata() {
-    return detector_;
+CDetectarCirculo* COperacionesImagen::detectarCirculos() {
+    return circulos_;
+}
+
+CDetectarLineas* COperacionesImagen::detectarLineas() {
+    return lineas_;
 }
 
 CDetectarTransiciones* COperacionesImagen::detectarTransiciones() {
@@ -97,32 +102,32 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
 
     vector<Point> auxpuntosMedios;
     //Si se ha hecho la deteccion
-    if(!detectarAutomata()->getCirculosDetectados().empty() && !detectarAutomata()->getLineasDetectadas().empty() && !detectarTransiciones()->getContornosEncontrados().empty() && !detectarTransiciones()->getLetrasEncontradas().empty()) {
+    if(!detectarCirculos()->getCirculosDetectados().empty() && !detectarLineas()->getLineasDetectadas().empty() && !detectarTransiciones()->getContornosEncontrados().empty() && !detectarTransiciones()->getLetrasEncontradas().empty()) {
         cout << " CIRCULOS Y LINEAS " << endl;
 
         //Confirmamos el numero de nodos
 
-        int aux = detectarAutomata()->getCirculosDetectados().size();
+        int aux = detectarCirculos()->getCirculosDetectados().size();
         if (ventanaConfirmarNodos(aux)) { //numero de nodos confirmados, miramos ahora las lineas
             //cout << " el numero de lineas detectadas es " << getLineasDetectadas().size() << endl;
             //calculamos punto medio entre los circulos que tienen una transicion para descubrir posteriornente su letra correspondiente
-            for(int i = 0; i < detectarAutomata()->getLineasDetectadas().size(); i++)
+            for(int i = 0; i < detectarLineas()->getLineasDetectadas().size(); i++)
                 //cout << " linea num " << i << " con coordenadas " << getLineasDetectadas().at(i) << endl;
-                for(int j = 0; j < detectarAutomata()->getCirculosDetectados().size(); j++)
-                    if(detectarAutomata()->distanciaEuclidea(detectarAutomata()->getLineasDetectadas()[i][0], detectarAutomata()->getCirculosDetectados()[j][0]) < (100 + detectarAutomata()->getCirculosDetectados()[j][2]))
-                        if(detectarAutomata()->distanciaEuclidea(detectarAutomata()->getLineasDetectadas()[i][1], detectarAutomata()->getCirculosDetectados()[j][1]) < (100 + detectarAutomata()->getCirculosDetectados()[j][2]))
+                for(int j = 0; j < detectarCirculos()->getCirculosDetectados().size(); j++)
+                    if(detectarLineas()->distanciaEuclidea(detectarLineas()->getLineasDetectadas()[i][0], detectarCirculos()->getCirculosDetectados()[j][0]) < (100 + detectarCirculos()->getCirculosDetectados()[j][2]))
+                        if(detectarLineas()->distanciaEuclidea(detectarLineas()->getLineasDetectadas()[i][1], detectarCirculos()->getCirculosDetectados()[j][1]) < (100 + detectarCirculos()->getCirculosDetectados()[j][2]))
                             //cout << "Encontrada una cercania de salida entre linea" << i << " y circulo " << j << endl;
-                            for(int k = 0; k < detectarAutomata()->getCirculosDetectados().size(); k++)
+                            for(int k = 0; k < detectarCirculos()->getCirculosDetectados().size(); k++)
                                 if (k != j)
-                                    if(detectarAutomata()->distanciaEuclidea(detectarAutomata()->getLineasDetectadas()[i][2], detectarAutomata()->getCirculosDetectados()[k][0]) < (100 + detectarAutomata()->getCirculosDetectados()[k][2]))
-                                        if(detectarAutomata()->distanciaEuclidea(detectarAutomata()->getLineasDetectadas()[i][3], detectarAutomata()->getCirculosDetectados()[k][1]) < (100 + detectarAutomata()->getCirculosDetectados()[k][2])) {
+                                    if(detectarLineas()->distanciaEuclidea(detectarLineas()->getLineasDetectadas()[i][2], detectarCirculos()->getCirculosDetectados()[k][0]) < (100 + detectarCirculos()->getCirculosDetectados()[k][2]))
+                                        if(detectarLineas()->distanciaEuclidea(detectarLineas()->getLineasDetectadas()[i][3], detectarCirculos()->getCirculosDetectados()[k][1]) < (100 + detectarCirculos()->getCirculosDetectados()[k][2])) {
                                             if(!contain(transitions, Point(j, k))) {
                                                 transitions.push_back(Point(j,k));
                                                 cout << " hay una transicion entre circulos " << j << " y " << k << endl;
                                                 auxpuntosMedios.push_back(
                                                             puntoMedio(
-                                                                Point(detectarAutomata()->getCirculosDetectados()[j][0], detectarAutomata()->getCirculosDetectados()[j][1]),
-                                                        Point(detectarAutomata()->getCirculosDetectados()[k][0], detectarAutomata()->getCirculosDetectados()[k][1])
+                                                                Point(detectarCirculos()->getCirculosDetectados()[j][0], detectarCirculos()->getCirculosDetectados()[j][1]),
+                                                        Point(detectarCirculos()->getCirculosDetectados()[k][0], detectarCirculos()->getCirculosDetectados()[k][1])
                                                         )
                                                         );
                                             }
@@ -141,7 +146,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
             ofstream fs("/home/ivan/Documentos/TFG/codificaciones/codificacion.txt");
 
             // Enviamos una cadena al fichero de salida:
-            fs << detectarAutomata()->getCirculosDetectados().size() << endl;
+            fs << detectarCirculos()->getCirculosDetectados().size() << endl;
             fs << nodoInicial << endl;
             fs << nodosFinales << endl;
 
@@ -151,8 +156,8 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
             for(int i = 0; i < transitions.size(); i++) {
                 //cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
                 for(int k = 0; k < detectarTransiciones()->getContornosEncontrados().size(); k++) {
-                    if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i].x, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x) < 70) {
-                        if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i].y, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y) < 60) {
+                    if(detectarLineas()->distanciaEuclidea(auxpuntosMedios[i].x, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x) < 70) {
+                        if(detectarLineas()->distanciaEuclidea(auxpuntosMedios[i].y, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y) < 60) {
                             cout << "Transicion numero " << i << " " << transitions.at(i) << endl;
                             cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
                             cout << "Entornos encontrados " << detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x  << "  " << detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y << endl;
@@ -176,10 +181,11 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
             for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
                 cout << "Contorno " << i << " " << detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno << endl;
             }
+
             for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
-                for(int j = 0; j < detectarAutomata()->getCirculosDetectados().size(); j++) {
-                    if(detectarAutomata()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.x, detectarAutomata()->getCirculosDetectados()[j][0]) < 30)
-                        if((detectarAutomata()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarAutomata()->getCirculosDetectados()[j][1]) < 140) && (detectarAutomata()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarAutomata()->getCirculosDetectados()[j][1] > 20))) {
+                for(int j = 0; j < detectarCirculos()->getCirculosDetectados().size(); j++) {
+                    if(detectarLineas()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.x, detectarCirculos()->getCirculosDetectados()[j][0]) < 30)
+                        if((detectarLineas()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarCirculos()->getCirculosDetectados()[j][1]) < 140) && (detectarLineas()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarCirculos()->getCirculosDetectados()[j][1] > 20))) {
                             cout << " contorno " << detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno << endl;
                             cout << "Transicion a si mismo del nodo " << j << " con letra " << detectarTransiciones()->getLetrasEncontradas()[i] << endl;
                             fs << j << " " << j << " " << detectarTransiciones()->getLetrasEncontradas()[i] << endl;

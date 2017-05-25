@@ -17,13 +17,14 @@ SOURCES += \
     CAplicacion.cpp \
     CLabel.cpp \
     CFiltrosImagenes.cpp \
-    CDetectarAutomata.cpp \
     pruebanumeros.cpp \
     CContourWithData.cpp \
     CDetectarTransiciones.cpp \
     GenerarClasificador.cpp \
     pruebablobs.cpp \
-    pruebalineas.cpp
+    pruebalineas.cpp \
+    CDetectarLineas.cpp \
+    CDetectarCirculos.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -87,6 +88,7 @@ HEADERS += \
     CAplicacion.h \
     CLabel.h \
     CFiltrosImagenes.h \
-    CDetectarAutomata.h \
     CContourWithData.h \
-    CDetectarTransiciones.h
+    CDetectarTransiciones.h \
+    CDetectarLineas.h \
+    CDetectarCirculos.h

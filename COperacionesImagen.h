@@ -5,7 +5,8 @@
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/imgproc.hpp"
 #include "CFiltrosImagenes.h"
-#include "CDetectarAutomata.h"
+#include "CDetectarCirculos.h"
+#include "CDetectarLineas.h"
 #include "CDetectarTransiciones.h"
 #include <QImage>
 #define DISTANCIAPIXELPRINCIPAL 10
@@ -19,7 +20,8 @@ class COperacionesImagen {
 private:
     CFiltrosImagenes* filtros_;
 
-    CDetectarAutomata* detector_;
+    CDetectarCirculo* circulos_;
+    CDetectarLineas* lineas_;
     CDetectarTransiciones* transiciones_;
 
     //utilizado en codificarDeteccion
@@ -31,7 +33,8 @@ public:
 
     CFiltrosImagenes* aplicarFiltro();// get filtros_
 
-    CDetectarAutomata* detectarAutomata(); //get funciones deteccion
+    CDetectarCirculo* detectarCirculos(); //get funciones deteccion
+    CDetectarLineas* detectarLineas();
     CDetectarTransiciones* detectarTransiciones();
 
     void codificarDeteccion(string nodoInicial, string nodosFinales);

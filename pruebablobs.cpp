@@ -2,8 +2,8 @@
  * @file HoughCircle_Demo.cpp
  * @brief Demo code for Hough Transform
  * @author OpenCV team
- *//*
-
+ */
+/*
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"

@@ -1,99 +1,29 @@
-#include "CDetectarAutomata.h"
+#include "CDetectarLineas.h"
 
-CDetectarAutomata::CDetectarAutomata() {
+CDetectarLineas::CDetectarLineas() {
+
 }
 
-Mat CDetectarAutomata::iniciarDeteccion(Mat imagen) {
-    //Escala de grises
-    Mat src_gray;
-    cvtColor(imagen, src_gray, COLOR_BGR2GRAY );
-
+Mat CDetectarLineas::iniciarDeteccion(Mat imagen) {
     //Deteccion de lineas
     lineasEncontradas = detectarLineas(imagen);
-
-    //Reducción de ruido para la deteccion de circulos
-    GaussianBlur( src_gray, src_gray, Size(9, 9), 2, 2 );
-    circles = detectarCirculos(src_gray, CANNYTHRESHOLD, ACCUMULATORTHRESHOLD); //canny entre 26 y 118, acumulator 45
-
-    cout << "Hay " << getCirculosDetectados().size() << " circulos en la imagen"<< endl;
-    //Dibujamos circulos sobre la imagen original
-    for( size_t i = 0; i < getCirculosDetectados().size(); i++ ) {
-
-        Point center(cvRound(circles[i][0]), cvRound(circles[i][1])); //x y
-        int radius = cvRound(circles[i][2]);
-        //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
-        //punto central
-        circle( imagen, center, 3, Scalar(0,255,0), -1, 8, 0 );
-        //circunferencia
-        circle( imagen, center, radius, Scalar(0,0,255), 3, 8, 0 );
-
-        //Dibujamos el num del circulo en la imagen
-        stringstream ss;
-        ss << i;
-        string text = ss.str();
-        int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
-        double fontScale = 1;
-        int thickness = 2;
-        cv::putText(imagen, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
-    }
-
-
+    //cout << "Acabo de pescarla" << endl;
     //Dibujamos lineas sobre la imagen original
-    for( size_t i = 0; i < getLineasDetectadas().size(); i++ ) {
-        // Mat imagenaux = imagen;
-        Vec4i l = getLineasDetectadas().at(i);
-        line( imagen, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
-        //cout << "linea numero " << i << endl;
-        //cout << " inicio " << l[0] << " , " << l[1] << " " << l[2] << " , " << l[3] << endl;
-        //imshow("HOLA", imagen);
-        //waitKey(0);
+        for( size_t i = 0; i < getLineasDetectadas().size(); i++ ) {
+            // Mat imagenaux = imagen;
+            Vec4i l = getLineasDetectadas().at(i);
+            line( imagen, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+            //cout << "linea numero " << i << endl;
+            //cout << " inicio " << l[0] << " , " << l[1] << " " << l[2] << " , " << l[3] << endl;
+            //imshow("HOLA", imagen);
+
+
+            //waitKey(0);
     }
-    //imshow("HOLA", imagen);
     return imagen;
 }
 
-vector<Vec3f> CDetectarAutomata::detectarCirculos(const Mat& src_gray, int cannyThreshold, int accumulatorThreshold) {
-    // resultados de la deteccion de circulos
-    vector<Vec3f> circl; // posicion (x y) y radio
-
-    /*
-     * Aplicamos la transformada de Hought para la deteccion de circulos
-     * Recordar, metodo HOUGH_Gradient, el unico que esta implementado actualmente
-     * 1, misma resolucion
-     * src_gray.rows/8 distancia minima entre los circulos
-     * cannyThreshold umbral mas alto
-     * umbral de acumulacion. Los circulos que corresponden a los mayores valores del acumuladorr se devolveran primero
-    */
-    HoughCircles( src_gray, circl, HOUGH_GRADIENT, 1, src_gray.rows/8, cannyThreshold, accumulatorThreshold);
-
-    //cout << "circulos es " << circl.size() << endl;
-    return filtrarCirculos(circl);
-}
-
-vector<Vec3f> CDetectarAutomata::filtrarCirculos(vector<Vec3f> circulos) {
-    double radioMedio = 0;
-    for(int i = 0; i < circulos.size(); i++) {
-        // cout << "Radio actual " << circulos[i][2] << endl;
-        radioMedio += circulos[i][2]; //2 Radios
-    }
-    radioMedio /= circulos.size();
-
-
-    //cout << "El radio medio es " << radioMedio << " " << (radioMedio * 1.8) << endl;
-    cout << "Numero de circulos " << circulos.size() << endl;
-
-    for(int i = 0; i < circulos.size(); i++) {
-        if(circulos[i][2] > (radioMedio * 1.8)) {
-            circulos.erase(circulos.begin() + i);
-            cout << "Warning: Se elimino un circulo concreto, controle el tamaño de ellos uniformemente, puede dar problemas" << endl;
-            i--;
-        }
-    }
-    return circulos;
-}
-
-
-vector<Vec4i> CDetectarAutomata::detectarLineas(const Mat& src_gray) {
+vector<Vec4i> CDetectarLineas::detectarLineas(const Mat& src_gray) {
     Mat edges;
 
     // Deteccion de bordes
@@ -103,7 +33,7 @@ vector<Vec4i> CDetectarAutomata::detectarLineas(const Mat& src_gray) {
     return HoughProbabilistico(edges, 0, 0);
 }
 
-vector<Vec4i> CDetectarAutomata::HoughProbabilistico(Mat edges, int, void*) {
+vector<Vec4i> CDetectarLineas::HoughProbabilistico(Mat edges, int, void*) {
     Mat probabilistic_hough;
     vector<Vec4i> p_lines;
     cvtColor(edges, probabilistic_hough, COLOR_GRAY2BGR );
@@ -123,7 +53,7 @@ vector<Vec4i> CDetectarAutomata::HoughProbabilistico(Mat edges, int, void*) {
     return p_lines; //datos de la deteccion de lineas
 }
 
-vector<Vec4i> CDetectarAutomata::filtrarLineas(vector<Vec4i>& lineas) {
+vector<Vec4i> CDetectarLineas::filtrarLineas(vector<Vec4i>& lineas) {
 
     //for(int i = 0; i < lineas.size(); i++)
     //    cout << "Linea " << i << " " << lineas.at(i) << endl;
@@ -181,7 +111,7 @@ vector<Vec4i> CDetectarAutomata::filtrarLineas(vector<Vec4i>& lineas) {
 }
 
 //distancia euclidea entre dos componentes pixels (x's || y's)
-int CDetectarAutomata::distanciaEuclidea(int a, int b, bool mostrar) {
+int CDetectarLineas::distanciaEuclidea(int a, int b, bool mostrar) {
     if(mostrar == true) {
         cout << a << " , " << b;
         cout << " resultado " << sqrt(pow(a - b, 2)) << endl;
@@ -189,24 +119,10 @@ int CDetectarAutomata::distanciaEuclidea(int a, int b, bool mostrar) {
     return sqrt(pow(a - b, 2));
 }
 
-int CDetectarAutomata::distanciaEuclidea(int a, int b) {
+int CDetectarLineas::distanciaEuclidea(int a, int b) {
     return sqrt(pow(a - b, 2));
 }
 
-//distancia euclidea entre dos puntos
-/*
-int CDetectarAutomata::distanciaEuclidea(Point a, Point b) {
-    //cout << a << " , " << b;
-    //cout << " resultado " << sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)) << endl;
-    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
-}
-*/
-vector<Vec3f> CDetectarAutomata::getCirculosDetectados() {
-    return circles;
-}
-
-vector<Vec4i> CDetectarAutomata::getLineasDetectadas() {
+vector<Vec4i> CDetectarLineas::getLineasDetectadas() {
     return lineasEncontradas;
 }
-
-

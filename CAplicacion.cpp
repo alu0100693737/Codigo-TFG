@@ -371,13 +371,17 @@ void CAplicacion::slotSalir() {
 void CAplicacion::slotDetectarAutomata() {
     cout << "Detectando imagen" << endl;
     Mat aux = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
-    Mat resultado = getOperacionesImagen()->detectarAutomata()->iniciarDeteccion(aux);
+
+    Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux);
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+
+    Mat resultado1 = getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux);
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado1));
+
     getActionDetectarAutomata()->setDisabled(true);
     if(getActionDetectarTransiciones()->isEnabled() == false) {
         getActionCodificarImagen()->setEnabled(true);
     }
-
 }
 
 void CAplicacion::slotDetectarTransiciones() {
