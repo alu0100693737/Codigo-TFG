@@ -1,3 +1,5 @@
+#ifndef COPERACIONESIMAGEN_H
+#define COPERACIONESIMAGEN_H
 #pragma once
 #include <iostream>
 #include <fstream>
@@ -51,3 +53,5 @@ public:
 	void entrenamiento(char* imagenes[2]);
     //void clasificacion(string imagen);*/
 };
+
+#endif

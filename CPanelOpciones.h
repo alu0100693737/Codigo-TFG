@@ -5,6 +5,7 @@
 #include <QHBoxLayout>
 #include "CLabel.h"
 
+
 class CPanelOpciones : public QWidget {
 private:
     QScrollBar* cannyThresHold_; //circulos 30

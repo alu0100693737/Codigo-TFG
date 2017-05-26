@@ -13,11 +13,14 @@ using namespace std;
 CAplicacion::CAplicacion() {
 
     setPathImagenActual(NULL); //Path al principio = NULL
+    setStyleSheet("background-color: rgba(34, 0, 209, 0.4);"); //violeta
 
     panelPrincipal_ = new CLabel("Panel Principal", true);
     panelOpciones_ = new CPanelOpciones();
-   // panelOpciones_->
     panelHistograma_ = new CLabel("Info Imagen", false);
+    //verde
+    getPanelOpciones()->setStyleSheet("background-color: rgba(125, 255, 95, 0.8); border: 1px solid black");
+    getPanelHistograma()->setStyleSheet("background-color: white; border: 1px solid black");
 
     operacionesImagen_ = new COperacionesImagen();
 
@@ -88,7 +91,7 @@ CAplicacion::CAplicacion() {
     getMenuBar()->setStyleSheet("background-color: white");
 
     setCentralWidget(centralWidget);
-    setMinimumSize(700, 500);
+    setMinimumSize(900, 700);
     setWindowTitle("Automatas y Lenguajes Formales, TFG");
 
     //Toolbar
@@ -101,13 +104,14 @@ CAplicacion::CAplicacion() {
     getToolBar()->addAction(getActionProcesarImagen());
     getToolBar()->addAction(getActionProcesarImagen());
     getToolBar()->addAction(getActionAbout());
+    getToolBar()->setStyleSheet("background-color: white;");
     this->addToolBar(getToolBar());
 
 
     nodo_inicio = new QLineEdit;
     getNodoInicio()->setPlaceholderText("Nodo de Inicio");
     nodos_finales = new QLineEdit;
-    getNodosFinales()->setPlaceholderText("Nodos Finales");
+    getNodosFinales()->setPlaceholderText("Nodos Finales, Formato: 0 1 2 ...");
     getNodoInicio()->setFocus();
 
     alfabeto_ = new QComboBox;
@@ -136,6 +140,7 @@ CAplicacion::CAplicacion() {
     connect(getActionFiltroSobel(), SIGNAL(triggered()), this, SLOT(slotFiltroSobel()));
     connect(getActionFiltroLaplaciano(), SIGNAL(triggered()), this, SLOT(slotFiltroLaplaciano()));
     connect(getActionHistograma(), SIGNAL(triggered()), this, SLOT(slotHistograma()));
+    connect(getPanelOpciones()->getCannyThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCuidado()));
 }
 
 CAplicacion::~CAplicacion() {}
@@ -265,6 +270,7 @@ COperacionesImagen* CAplicacion::getOperacionesImagen() {
 //SLOTS
 void CAplicacion::slotAbrirImagen() {
     QFileDialog dialog(this, tr("Abrir Imagen"));
+    dialog.setStyleSheet("background-color: white;");
     inicializarVentanaAbrirImagen(dialog, QFileDialog::AcceptOpen);
     while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
 }
@@ -383,7 +389,10 @@ bool CAplicacion::loadFileFichero(const QString &fileName) {
 }
 
 void CAplicacion::slotAbout() {
-    QMessageBox::about(this,"About","Trabajo fin de grado. Iván García Campos.");
+    QMessageBox mensaje;
+    mensaje.setText("Trabajo fin de grado. Iván García Campos.");
+    mensaje.setIcon(QMessageBox::Information);
+    mensaje.exec();
 }
 
 void CAplicacion::slotSalir() {
@@ -422,7 +431,10 @@ void CAplicacion::slotDetectarTransiciones() {
 
 void CAplicacion::slotCodificarImagen() {
     if(getNodoInicio()->text().isEmpty() || getNodosFinales()->text().isEmpty()) {
-        QMessageBox::warning(this,"Warning","Recuerde introducir el nodo inicio y los nodos finales.");
+        QMessageBox mensaje;
+        mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \nRecuerde configurar el alfabeto.");
+        mensaje.setIcon(QMessageBox::Warning);
+        mensaje.exec();
     } else {
         getOperacionesImagen()->codificarDeteccion(getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData());
 
@@ -437,18 +449,19 @@ void CAplicacion::slotCodificarImagen() {
         }
         fe.close();
         getPanelHistograma()->setText(aux);
-        //getPanelHistograma()->adjustSize();
-
     }
 }
 
 void CAplicacion::slotProcesarImagen() {
+    slotDetectarCirculos();
+    slotDetectarLineas();
+    slotDetectarTransiciones();
     if(getNodoInicio()->text().isEmpty() || getNodosFinales()->text().isEmpty()) {
-        QMessageBox::warning(this,"Warning","Recuerde introducir el nodo inicio y los nodos finales.");
+        QMessageBox mensaje;
+        mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \n\nPulse a continuación el botón Codificar Imagen.");
+        mensaje.setIcon(QMessageBox::Warning);
+        mensaje.exec();
     } else {
-        slotDetectarCirculos();
-        slotDetectarLineas();
-        slotDetectarTransiciones();
         slotCodificarImagen();
     }
 }
@@ -457,7 +470,7 @@ void CAplicacion::slotCargarImagenOriginal() {
     Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
     getActionDetectarCirculos()->setDisabled(false);
-
+    getActionProcesarImagen()->setDisabled(false);
     getActionCodificarImagen()->setDisabled(true);
 }
 
@@ -490,6 +503,10 @@ void CAplicacion::slotFiltroLaplaciano() {
 void CAplicacion::slotHistograma() {
     Mat aux = getOperacionesImagen()->calcularHistograma(imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR ));
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+}
+
+void CAplicacion::slotCuidado() {
+    cout << "HEYS " << getPanelOpciones()->getCannyThresHold()->value() << endl;
 }
 
 

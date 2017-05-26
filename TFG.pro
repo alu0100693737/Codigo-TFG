@@ -25,7 +25,8 @@ SOURCES += \
     pruebalineas.cpp \
     CDetectarLineas.cpp \
     CDetectarCirculos.cpp \
-    CPanelOpciones.cpp
+    CPanelOpciones.cpp \
+    CScrollData.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -93,4 +94,5 @@ HEADERS += \
     CDetectarTransiciones.h \
     CDetectarLineas.h \
     CDetectarCirculos.h \
-    CPanelOpciones.h
+    CPanelOpciones.h \
+    CScrollData.h

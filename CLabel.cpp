@@ -1,23 +1,22 @@
 #include "CLabel.h"
 
 CLabel::CLabel() : QLabel() {
-
         setStyleSheet("background-color : rgba( 160, 160, 160, 255); border: 10px solid black");
         setText("Prueba Label propia");
         setAlignment(Qt::AlignCenter);
 }
 
 CLabel::CLabel(QString text, bool style) : QLabel() {
-    QFont f( "Arial", 14, QFont::Bold);
-    setFont(f);
-    cout << "HOLA " << text.toUtf8().constData() << endl;
-
     setText(text);
     setAlignment(Qt::AlignCenter);
-    if(style == true)
+    if(style == true) {
         setStyleSheet("background-color : rgba( 160, 160, 160, 255); border: 5px solid black");
-    else {
-        setStyleSheet("border: 2px solid black");
+        QFont f( "Arial", 14, QFont::Bold);
+        setFont(f);
+    } else {
+        QFont f( "Arial", 9, QFont::Bold);
+        setFont(f);
+        setStyleSheet("background-color : white;");
     }
 }
 

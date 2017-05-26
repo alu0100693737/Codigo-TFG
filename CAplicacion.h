@@ -1,3 +1,5 @@
+#ifndef CAPLICACION_H
+#define CAPLICACION_H
 #include <QtWidgets>
 #include "CLabel.h"
 #include "COperacionesImagen.h"
@@ -110,4 +112,7 @@ public slots:
     void slotFiltroSobel();
     void slotFiltroLaplaciano();
     void slotHistograma();
+
+    void slotCuidado();
 };
+#endif
