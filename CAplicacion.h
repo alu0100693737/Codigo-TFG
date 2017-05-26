@@ -113,6 +113,9 @@ public slots:
     void slotFiltroLaplaciano();
     void slotHistograma();
 
-    void slotCuidado();
+    //QScrollbars
+    void slotCannyThresHold();
+    void slotAccumulatorThresHold();
+    void slotHoughLinesP();
 };
 #endif

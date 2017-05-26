@@ -140,7 +140,10 @@ CAplicacion::CAplicacion() {
     connect(getActionFiltroSobel(), SIGNAL(triggered()), this, SLOT(slotFiltroSobel()));
     connect(getActionFiltroLaplaciano(), SIGNAL(triggered()), this, SLOT(slotFiltroLaplaciano()));
     connect(getActionHistograma(), SIGNAL(triggered()), this, SLOT(slotHistograma()));
-    connect(getPanelOpciones()->getCannyThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCuidado()));
+
+    connect(getPanelOpciones()->getCannyThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCannyThresHold()));
+    connect(getPanelOpciones()->getAccumulatorThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotAccumulatorThresHold()));
+    connect(getPanelOpciones()->getHoughLinesP(), SIGNAL(valueChanged(int)), this, SLOT(slotHoughLinesP()));
 }
 
 CAplicacion::~CAplicacion() {}
@@ -505,8 +508,25 @@ void CAplicacion::slotHistograma() {
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
 }
 
-void CAplicacion::slotCuidado() {
-    cout << "HEYS " << getPanelOpciones()->getCannyThresHold()->value() << endl;
+void CAplicacion::slotCannyThresHold() {
+    //cout << "HEYS " << getPanelOpciones()->getCannyThresHold()->value() << endl;
+    getPanelOpciones()->getValorCannyThresHold()->setText(QString::number(getPanelOpciones()->getCannyThresHold()->value()));
+
+}
+
+void CAplicacion::slotAccumulatorThresHold() {
+   //cout << "HEYS1 " << getPanelOpciones()->getAccumulatorThresHold()->value() << endl;
+    getPanelOpciones()->getValorAccumulatorThresHold()->setText(QString::number(getPanelOpciones()->getAccumulatorThresHold()->value()));
+    if(getActionDetectarTransiciones()->isEnabled()) {
+        slotCargarImagenOriginal();
+        cout << "YES" << endl;
+        //Es circulos, Hay que volver a poner la imagen original, calcular los nuevos circulos y volver a calcular las lineas
+    }
+}
+
+void CAplicacion::slotHoughLinesP() {
+    //cout << "HEYS2 " << getPanelOpciones()->getHoughLinesP()->value() << endl;
+    getPanelOpciones()->getValorHoughLinesP()->setText(QString::number(getPanelOpciones()->getHoughLinesP()->value()));
 }
 
 

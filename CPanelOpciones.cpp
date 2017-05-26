@@ -19,17 +19,22 @@ CPanelOpciones::CPanelOpciones() {
     getHoughLinesP()->setRange(2, 200);
     getHoughLinesP()->setValue(80);
 
+
+    valorCannyThresHold_ = new CLabel(QString::number(getCannyThresHold()->value()), false);
+    valorAccumulatorThresHold_ = new CLabel(QString::number(getAccumulatorThresHold()->value()), false);
+    valorHoughLinesP_ = new CLabel(QString::number(getCannyThresHold()->value()), false);
+
     layout->addWidget(new CLabel(QString("CannyThresHold"), false),  0, 0, 1, 4);
     layout->addWidget(getCannyThresHold(), 1, 0, 1, 3);
-    layout->addWidget(new CLabel(QString::number(getCannyThresHold()->value()), false), 1, 3, 1, 1);
+    layout->addWidget(getValorCannyThresHold(), 1, 3, 1, 1);
 
     layout->addWidget(new CLabel(QString("AcummulatorThresHold"), false),  2, 0, 1, 4);
     layout->addWidget(getAccumulatorThresHold(), 3, 0, 1, 3);
-    layout->addWidget(new CLabel(QString::number(getAccumulatorThresHold()->value()), false), 3, 3, 1, 1);
+    layout->addWidget(getValorAccumulatorThresHold(), 3, 3, 1, 1);
 
     layout->addWidget(new CLabel(QString("HoughLinesP"), false),  4, 0, 1, 4);
     layout->addWidget(getHoughLinesP(), 5, 0, 1, 3);
-    layout->addWidget(new CLabel(QString::number(getHoughLinesP()->value()), false), 5, 3, 1, 1);
+    layout->addWidget(getValorHoughLinesP(), 5, 3, 1, 1);
 
     setLayout(layout);
 }
@@ -46,3 +51,14 @@ QScrollBar* CPanelOpciones::getHoughLinesP() {
     return hougLinesP_;
 }
 
+CLabel* CPanelOpciones::getValorCannyThresHold() {
+    return valorCannyThresHold_;
+}
+
+CLabel* CPanelOpciones::getValorAccumulatorThresHold() {
+    return valorAccumulatorThresHold_;
+}
+
+CLabel* CPanelOpciones::getValorHoughLinesP() {
+    return valorHoughLinesP_;
+}

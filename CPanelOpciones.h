@@ -11,11 +11,20 @@ private:
     QScrollBar* cannyThresHold_; //circulos 30
     QScrollBar* accumulatorThresHold_; //circulos 42
     QScrollBar* hougLinesP_; //80
+
+    CLabel* valorCannyThresHold_;
+    CLabel* valorAccumulatorThresHold_;
+    CLabel* valorHoughLinesP_;
+
 public:
     CPanelOpciones();
     QScrollBar* getCannyThresHold();
     QScrollBar* getAccumulatorThresHold();
     QScrollBar* getHoughLinesP();
+
+    CLabel* getValorCannyThresHold();
+    CLabel* getValorAccumulatorThresHold();
+    CLabel* getValorHoughLinesP();
 };
 
 #endif // CPANELOPCIONES_H
