@@ -2,7 +2,6 @@
 
 
 #include "CAplicacion.h"
-#include "CLabel.h"
 
 #include "opencv2/imgcodecs.hpp" //MAT OPENCV
 #include "opencv2/imgproc.hpp"    //SOBEL
@@ -16,7 +15,8 @@ CAplicacion::CAplicacion() {
     setPathImagenActual(NULL); //Path al principio = NULL
 
     panelPrincipal_ = new CLabel("Panel Principal", true);
-    panelOpciones_ = new CLabel("Opciones", true);
+    panelOpciones_ = new CPanelOpciones();
+   // panelOpciones_->
     panelHistograma_ = new CLabel("Info Imagen", false);
 
     operacionesImagen_ = new COperacionesImagen();
@@ -38,9 +38,11 @@ CAplicacion::CAplicacion() {
     actionAbrirFichero_     = new QAction(QIcon("/home/ivan/Documentos/TFG/release/fichero.png"), tr("Abrir Fichero"), this);
     actionAbout_            = new QAction(QIcon("/home/ivan/Documentos/TFG/release/about.png"), tr("About"), this);
     actionSalir_            = new QAction(QIcon("/home/ivan/Documentos/TFG/release/salir.png"), tr("Salir"), this);
-    actionDetectarAutomata_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/opencv.png"), tr("Detectar Automata"), this);
+    actionDetectarLineas_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/linea.png"), tr("Detectar Lineas"), this);
+    actionDetectarCirculos_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/circulo.png"), tr("Detectar Circulos"), this);
     actionDetectarTransiciones_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/transition.png"), tr("Detectar Transiciones"), this);
     actionCodificarImagen_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/codificar.png"), tr("Codificar Imagen"), this);
+    actionProcesarImagen_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/opencv.png"), tr("Procesar Imagen"), this);
     actionCargarImagenOriginal_ = new QAction(QIcon("/home/ivan/Documentos/TFG/release/imagenOriginal.png"), tr("Cargar ultima Imagen"), this);
     actionFiltroGray_ = new QAction(QIcon(""), tr("Filtro Gray"), this);
     actionFiltroGaussiano_   = new QAction(QIcon(""), tr("Filtro Gaussiano"), this);
@@ -51,9 +53,11 @@ CAplicacion::CAplicacion() {
 
 
     //QAction* prueba = new QAction(QIcon("/home/ivan/Documentos/TFG/release/abrir.png"), tr("Abrir Imagen"), this);
-    getActionDetectarAutomata()->setDisabled(true); //Hasta que no se cargue una imagen
+    getActionDetectarLineas()->setDisabled(true); //Hasta que no se cargue una imagen
+    getActionDetectarCirculos()->setDisabled(true);
     getActionDetectarTransiciones()->setDisabled(true);
     getActionCodificarImagen()->setDisabled(true);
+    getActionProcesarImagen()->setDisabled(true);
     getActionCargarImagenOriginal()->setDisabled(true);
 
     //Shortcuts
@@ -64,7 +68,8 @@ CAplicacion::CAplicacion() {
     getMenuArchivo()->addAction(getActionAbrirFichero());
     getMenuArchivo()->addAction(getActionAbout());
     getMenuArchivo()->addAction(getActionSalir());
-    getMenuEditar()->addAction(getActionDetectarAutomata());
+    getMenuEditar()->addAction(getActionDetectarCirculos());
+    getMenuEditar()->addAction(getActionDetectarLineas());
     getMenuEditar()->addAction(getActionDetectarTransiciones());
     getMenuEditar()->addAction(getActionCodificarImagen());
     getMenuEditar()->addAction(getActionCargarImagenOriginal());
@@ -89,9 +94,12 @@ CAplicacion::CAplicacion() {
     //Toolbar
     toolbar_ = new QToolBar(this);
     getToolBar()->addAction(getActionAbrirImagen());
-    getToolBar()->addAction(getActionDetectarAutomata());
+    getToolBar()->addAction(getActionDetectarCirculos());
+    getToolBar()->addAction(getActionDetectarLineas());
     getToolBar()->addAction(getActionDetectarTransiciones());
     getToolBar()->addAction(getActionCodificarImagen());
+    getToolBar()->addAction(getActionProcesarImagen());
+    getToolBar()->addAction(getActionProcesarImagen());
     getToolBar()->addAction(getActionAbout());
     this->addToolBar(getToolBar());
 
@@ -116,9 +124,11 @@ CAplicacion::CAplicacion() {
     connect(getActionAbrirFichero(), SIGNAL(triggered()),this,SLOT(slotAbrirFichero()));
     connect(getActionAbout(), SIGNAL(triggered()),this,SLOT(slotAbout()));
     connect(getActionSalir(), SIGNAL(triggered()), this, SLOT(slotSalir()));
-    connect(getActionDetectarAutomata(), SIGNAL(triggered()), this, SLOT(slotDetectarAutomata()));
+    connect(getActionDetectarCirculos(), SIGNAL(triggered()), this, SLOT(slotDetectarCirculos()));
+    connect(getActionDetectarLineas(), SIGNAL(triggered()), this, SLOT(slotDetectarLineas()));
     connect(getActionDetectarTransiciones(), SIGNAL(triggered()), this, SLOT(slotDetectarTransiciones()));
     connect(getActionCodificarImagen(), SIGNAL(triggered()), this, SLOT(slotCodificarImagen()));
+    connect(getActionProcesarImagen(), SIGNAL(triggered()), this, SLOT(slotProcesarImagen()));
     connect(getActionCargarImagenOriginal(), SIGNAL(triggered()), this, SLOT(slotCargarImagenOriginal()));
     connect(getActionFiltroGray(), SIGNAL(triggered()), this, SLOT(slotFiltroGray()));
     connect(getActionFiltroGaussiano(), SIGNAL(triggered()), this, SLOT(slotFiltroGaussiano()));
@@ -143,7 +153,7 @@ CLabel* CAplicacion::getPanelPrincipal() {
     return panelPrincipal_;
 }
 
-CLabel* CAplicacion::getPanelOpciones() {
+CPanelOpciones* CAplicacion::getPanelOpciones() {
     return panelOpciones_;
 }
 
@@ -199,8 +209,12 @@ QAction* CAplicacion::getActionSalir() {
     return actionSalir_;
 }
 
-QAction* CAplicacion::getActionDetectarAutomata() {
-    return actionDetectarAutomata_;
+QAction* CAplicacion::getActionDetectarCirculos() {
+    return actionDetectarCirculos_;
+}
+
+QAction* CAplicacion::getActionDetectarLineas() {
+    return actionDetectarLineas_;
 }
 
 QAction* CAplicacion::getActionDetectarTransiciones() {
@@ -209,6 +223,10 @@ QAction* CAplicacion::getActionDetectarTransiciones() {
 
 QAction* CAplicacion::getActionCodificarImagen() {
     return actionCodificarImagen_;
+}
+
+QAction* CAplicacion::getActionProcesarImagen() {
+    return actionProcesarImagen_;
 }
 
 QAction* CAplicacion::getActionCargarImagenOriginal() {
@@ -322,10 +340,14 @@ bool CAplicacion::loadFile(const QString &fileName) {
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
         //getPanelPrincipal()->setImagen(newImage);
         getPanelHistograma()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->calcularHistograma(getOperacionesImagen()->QImage2Mat(newImage))));
-        getActionDetectarAutomata()->setDisabled(false); //Habilitamos la posibilidad de detectar automata
+
+        getActionDetectarCirculos()->setDisabled(false);
+        getActionProcesarImagen()->setDisabled(false);
+        /*getActionDetectarAutomata()->setDisabled(false); //Habilitamos la posibilidad de detectar automata
         getActionDetectarTransiciones()->setDisabled(false);
+        */
         getActionCargarImagenOriginal()->setDisabled(false);
-        getActionCodificarImagen()->setDisabled(true);
+/*        getActionCodificarImagen()->setDisabled(true);*/
         return true;
     }
 }
@@ -368,20 +390,23 @@ void CAplicacion::slotSalir() {
     exit(0);
 }
 
-void CAplicacion::slotDetectarAutomata() {
+void CAplicacion::slotDetectarCirculos() {
+    getActionProcesarImagen()->setDisabled(true);
     cout << "Detectando imagen" << endl;
     Mat aux = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
 
     Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux);
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+    getActionDetectarCirculos()->setDisabled(true);
+    getActionDetectarLineas()->setDisabled(false);
+}
 
+void CAplicacion::slotDetectarLineas() {
+    Mat aux = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
     Mat resultado1 = getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux);
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado1));
-
-    getActionDetectarAutomata()->setDisabled(true);
-    if(getActionDetectarTransiciones()->isEnabled() == false) {
-        getActionCodificarImagen()->setEnabled(true);
-    }
+    getActionDetectarLineas()->setDisabled(true);
+    getActionDetectarTransiciones()->setDisabled(false);
 }
 
 void CAplicacion::slotDetectarTransiciones() {
@@ -390,9 +415,9 @@ void CAplicacion::slotDetectarTransiciones() {
     getOperacionesImagen()->detectarTransiciones()->ejecutar(aux);
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->detectarTransiciones()->getImagenTransicionActual()));
     getActionDetectarTransiciones()->setDisabled(true);
-    if(getActionDetectarAutomata()->isEnabled() == false) {
-        getActionCodificarImagen()->setEnabled(true);
-    }
+
+    getActionCodificarImagen()->setEnabled(true);
+
 }
 
 void CAplicacion::slotCodificarImagen() {
@@ -417,11 +442,22 @@ void CAplicacion::slotCodificarImagen() {
     }
 }
 
+void CAplicacion::slotProcesarImagen() {
+    if(getNodoInicio()->text().isEmpty() || getNodosFinales()->text().isEmpty()) {
+        QMessageBox::warning(this,"Warning","Recuerde introducir el nodo inicio y los nodos finales.");
+    } else {
+        slotDetectarCirculos();
+        slotDetectarLineas();
+        slotDetectarTransiciones();
+        slotCodificarImagen();
+    }
+}
+
 void CAplicacion::slotCargarImagenOriginal() {
     Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
-    getActionDetectarAutomata()->setDisabled(false);
-    getActionDetectarTransiciones()->setDisabled(false);
+    getActionDetectarCirculos()->setDisabled(false);
+
     getActionCodificarImagen()->setDisabled(true);
 }
 

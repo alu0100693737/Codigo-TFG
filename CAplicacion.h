@@ -1,6 +1,7 @@
 #include <QtWidgets>
 #include "CLabel.h"
 #include "COperacionesImagen.h"
+#include "CPanelOpciones.h"
 
 class CAplicacion: public QMainWindow {
   Q_OBJECT
@@ -11,7 +12,7 @@ private:
     QString pathImagenActual_;
 
     CLabel* panelPrincipal_;
-    CLabel* panelOpciones_;
+    CPanelOpciones* panelOpciones_;
     CLabel* panelHistograma_;
 
     QMenuBar* menu_;
@@ -22,9 +23,12 @@ private:
     QAction* actionAbrirFichero_;
     QAction* actionAbout_;
     QAction* actionSalir_;
-    QAction* actionDetectarAutomata_;
+    //Proceso paso a paso
+    QAction* actionDetectarLineas_;
+    QAction* actionDetectarCirculos_;
     QAction* actionDetectarTransiciones_;
     QAction* actionCodificarImagen_;
+    QAction* actionProcesarImagen_; //todo de golpe
     QAction* actionCargarImagenOriginal_;
     QAction* actionFiltroGray_;
     QAction* actionFiltroGaussiano_;
@@ -55,7 +59,7 @@ private:
     void setPathImagenActual(QString newPath);
 
     CLabel* getPanelPrincipal();
-    CLabel* getPanelOpciones();
+    CPanelOpciones* getPanelOpciones();
     CLabel* getPanelHistograma();
 
     QMenuBar* getMenuBar();
@@ -72,9 +76,11 @@ private:
     QAction* getActionAbrirFichero();
     QAction* getActionAbout();
     QAction* getActionSalir();
-    QAction* getActionDetectarAutomata();
+    QAction* getActionDetectarLineas();
+    QAction* getActionDetectarCirculos();
     QAction* getActionDetectarTransiciones();
     QAction* getActionCodificarImagen();
+    QAction* getActionProcesarImagen();
     QAction* getActionCargarImagenOriginal();
     QAction* getActionFiltroGray();
     QAction* getActionFiltroGaussiano();
@@ -91,9 +97,11 @@ public slots:
     void slotAbout();
     void slotSalir();
 
-    void slotDetectarAutomata();
+    void slotDetectarLineas();
+    void slotDetectarCirculos();
     void slotDetectarTransiciones();
     void slotCodificarImagen();
+    void slotProcesarImagen();
     void slotCargarImagenOriginal();
 
     void slotFiltroGray();

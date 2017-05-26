@@ -47,7 +47,7 @@ vector<Vec4i> CDetectarLineas::HoughProbabilistico(Mat edges, int, void*) {
     cout << "Lineas detectadas inicialmente: " << p_lines.size() << endl;
 
     //filtramos las lineas, duplicaciones
-    //filtrarLineas(p_lines);
+    filtrarLineas(p_lines);
 
     //imshow("probabilistic", probabilistic_hough);
     return p_lines; //datos de la deteccion de lineas
@@ -58,8 +58,8 @@ vector<Vec4i> CDetectarLineas::filtrarLineas(vector<Vec4i>& lineas) {
     //for(int i = 0; i < lineas.size(); i++)
     //    cout << "Linea " << i << " " << lineas.at(i) << endl;
     for(int i = 0; i < lineas.size() - 1; i++) {
-        for(int j = i; j < lineas.size(); j++) {
-            if(i != j) {
+        for(int j = i + 1; j < lineas.size(); j++) {
+            //if(i != j) {
                 //0 x1 1 y1 2 x2 3 y2
 
                 //continuacion de lineas en X
@@ -103,7 +103,7 @@ vector<Vec4i> CDetectarLineas::filtrarLineas(vector<Vec4i>& lineas) {
                         }
                     }
                 }
-            }
+
         }
     }
     cout << "Hay " << lineas.size() << " lineas despues de filtrar las lineas" << endl;

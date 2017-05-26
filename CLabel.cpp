@@ -8,14 +8,16 @@ CLabel::CLabel() : QLabel() {
 }
 
 CLabel::CLabel(QString text, bool style) : QLabel() {
-    QFont f( "Arial", 10, QFont::Bold);
+    QFont f( "Arial", 14, QFont::Bold);
     setFont(f);
+    cout << "HOLA " << text.toUtf8().constData() << endl;
+
     setText(text);
     setAlignment(Qt::AlignCenter);
     if(style == true)
         setStyleSheet("background-color : rgba( 160, 160, 160, 255); border: 5px solid black");
     else {
-        setStyleSheet("border: 5px solid black");
+        setStyleSheet("border: 2px solid black");
     }
 }
 

@@ -24,7 +24,8 @@ SOURCES += \
     pruebablobs.cpp \
     pruebalineas.cpp \
     CDetectarLineas.cpp \
-    CDetectarCirculos.cpp
+    CDetectarCirculos.cpp \
+    CPanelOpciones.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -91,4 +92,5 @@ HEADERS += \
     CContourWithData.h \
     CDetectarTransiciones.h \
     CDetectarLineas.h \
-    CDetectarCirculos.h
+    CDetectarCirculos.h \
+    CPanelOpciones.h

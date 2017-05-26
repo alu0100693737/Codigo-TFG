@@ -12,7 +12,7 @@
 using namespace std;
 using namespace cv;
 #define DISTANCIAPIXELPRINCIPAL 10
-#define DISTANCIAPIXELSECUNDARIO 100
+#define DISTANCIAPIXELSECUNDARIO 30
 
 class CDetectarLineas {
 private:
