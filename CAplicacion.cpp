@@ -340,6 +340,13 @@ bool CAplicacion::loadFile(const QString &fileName) {
                                  .arg(QDir::toNativeSeparators(fileName), reader.errorString()));
         return false;
     } else {
+        if(getPathImagenActual().endsWith(".jpg")) {
+            Mat aux1 = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+            getPathImagenActual().replace(".jpg", ".png");
+            imwrite(getPathImagenActual().toStdString(), aux1);
+            cout << "HOLA" << getPathImagenActual().toStdString() << endl;
+        }
+
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         //Size size(800, 350);//the dst image size,e.g.100x100
 
@@ -435,12 +442,12 @@ void CAplicacion::slotDetectarTransiciones() {
 
     getOperacionesImagen()->detectarTransiciones()->ejecutar(aux);
 
-     for (int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
-    cv::rectangle(resultado,                            // draw rectangle on original image
-                  getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
-                  cv::Scalar(0, 255, 0),                        // green
-                  2);
-     }
+    for (int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
+        cv::rectangle(resultado,                            // draw rectangle on original image
+                      getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
+                      cv::Scalar(0, 255, 0),                        // green
+                      2);
+    }
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
     getActionDetectarTransiciones()->setDisabled(true);
     getActionCodificarImagen()->setEnabled(true);
@@ -570,13 +577,13 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
         aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         getOperacionesImagen()->detectarTransiciones()->ejecutar(aux);
 
-         for (int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
-        cv::rectangle(resultado,                            // draw rectangle on original image
-                      getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
-                      cv::Scalar(0, 255, 0),                        // green
-                      2);
-         }
-         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+        for (int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
+            cv::rectangle(resultado,                            // draw rectangle on original image
+                          getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
+                          cv::Scalar(0, 255, 0),                        // green
+                          2);
+        }
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
     } else {  //No deberia ocurrir nada
 
     }

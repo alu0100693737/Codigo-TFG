@@ -197,11 +197,13 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
                 }
             }
 
-           /* //calculamos transiciones cuando no se detecta la linea
-            for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
-                for(int j = 0; j < detectarAutomata()->getCirculosDetectados().size(); j++) {
-                    if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios[i], detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.x) < 60) {
-                        if(detectarAutomata()->distanciaEuclidea(auxpuntosMedios.y, detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.y) < 60) {
+
+            //calculamos transiciones cuando no se detecta la linea
+            //cambiar los puntos medios, calcular todos los posibles NO SE PUEDE OCUPA MUCHA MEMORIA
+            /*for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
+                for(int j = 0; j < detectarCirculos()->getCirculosDetectados().size(); j++) {
+                    if(detectarLineas()->distanciaEuclidea(auxpuntosMedios[j].x, detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.x) < 80) {
+                        if(detectarLineas()->distanciaEuclidea(auxpuntosMedios[j].y, detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.y) < 80) {
                             fs << j << " " << j << " " << detectarTransiciones()->getLetrasEncontradas()[i] << endl;
                             detectarTransiciones()->getContornosEncontrados().erase(detectarTransiciones()->getContornosEncontrados().begin() + i);
                             detectarTransiciones()->getLetrasEncontradas().erase(detectarTransiciones()->getLetrasEncontradas().begin() + i);
