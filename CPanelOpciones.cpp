@@ -8,15 +8,15 @@ CPanelOpciones::CPanelOpciones() {
     hougLinesP_ = new QScrollBar(Qt::Horizontal);
 
     getCannyThresHold()->setStyleSheet("background-color: rgba(232, 255, 141, 0.9);");
-    getCannyThresHold()->setRange(2, 200);
+    getCannyThresHold()->setRange(10, 150);
     getCannyThresHold()->setValue(30);
 
     getAccumulatorThresHold()->setStyleSheet("background-color: rgba(232, 255, 141, 0.9);");
-    getAccumulatorThresHold()->setRange(2, 200);
+    getAccumulatorThresHold()->setRange(10, 150);
     getAccumulatorThresHold()->setValue(42);
 
     getHoughLinesP()->setStyleSheet("background-color: rgba(232, 255, 141, 0.9);");
-    getHoughLinesP()->setRange(2, 200);
+    getHoughLinesP()->setRange(10, 150);
     getHoughLinesP()->setValue(80);
 
 

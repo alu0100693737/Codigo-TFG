@@ -19,14 +19,14 @@ private:
     vector<Vec4i> lineasEncontradas;
 
     //Lineas
-    vector<Vec4i> detectarLineas(const Mat& src_gray);
-    vector<Vec4i> HoughProbabilistico(Mat, int, void*);
+    vector<Vec4i> detectarLineas(const Mat& src_gray, int houghprobabilistico);
+    vector<Vec4i> HoughProbabilistico(Mat, int, void*, int houghprobabilistico);
 
     //filtra linea por cercania y por duplicidad de principio a fin
     vector<Vec4i> filtrarLineas(vector<Vec4i>& lineas);
 public:
     CDetectarLineas();
-    Mat iniciarDeteccion(Mat imagen);
+    Mat iniciarDeteccion(Mat imagen, int houghprobabilistico);
 
     vector<Vec4i> getLineasDetectadas();
 

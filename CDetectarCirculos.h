@@ -12,9 +12,6 @@
 using namespace std;
 using namespace cv;
 
-#define CANNYTHRESHOLD 30
-#define ACCUMULATORTHRESHOLD 42
-
 //Para la deteccion, canny entre 26, 118 y acummulador 45
 class CDetectarCirculo {
 private:
@@ -29,7 +26,7 @@ private:
 public:
     CDetectarCirculo();
 
-    Mat iniciarDeteccion(Mat imagen);
+    Mat iniciarDeteccion(Mat imagen, int cannythreshold, int accumulatorthreshold);
 
     vector<Vec3f> getCirculosDetectados();
 };

@@ -3,14 +3,14 @@
 CDetectarCirculo::CDetectarCirculo() {
 }
 
-Mat CDetectarCirculo::iniciarDeteccion(Mat imagen) {
+Mat CDetectarCirculo::iniciarDeteccion(Mat imagen, int cannythreshold, int accumulatorthreshold) {
     //Escala de grises
     Mat src_gray;
     cvtColor(imagen, src_gray, COLOR_BGR2GRAY );
 
     //Reducción de ruido para la deteccion de circulos
     GaussianBlur( src_gray, src_gray, Size(9, 9), 2, 2 );
-    circles = detectarCirculos(src_gray, CANNYTHRESHOLD, ACCUMULATORTHRESHOLD); //canny entre 26 y 118, acumulator 45
+    circles = detectarCirculos(src_gray, cannythreshold, accumulatorthreshold); //canny entre 26 y 118, acumulator 45
 
     cout << "Hay " << getCirculosDetectados().size() << " circulos en la imagen"<< endl;
     //Dibujamos circulos sobre la imagen original

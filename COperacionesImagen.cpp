@@ -143,7 +143,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
         //TENIENDO LAS LETRAS, POSICION VALOR Y PUNTO MEDIO ENTRE LAS TRANSICIONES, FALTA ASIGNAR
         if(transitions.size()) {
 
-            ofstream fs("/home/ivan/Documentos/TFG/codificaciones/codificacion.txt");
+            ofstream fs("/home/ivan/Documentos/Codigo-TFG/codificaciones/codificacion.txt");
 
             // Enviamos una cadena al fichero de salida:
             fs << detectarCirculos()->getCirculosDetectados().size() << endl;

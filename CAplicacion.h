@@ -114,8 +114,7 @@ public slots:
     void slotHistograma();
 
     //QScrollbars
-    void slotCannyThresHold();
-    void slotAccumulatorThresHold();
-    void slotHoughLinesP();
+    void slotCirculosCannyAccumulatorHoughLinesP();
+   //void slotHoughLinesP();
 };
 #endif

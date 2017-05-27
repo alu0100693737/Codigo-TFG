@@ -41,7 +41,7 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
 
     Mat matClassificationInts;      // we will read the classification numbers into this variable as though it is a vector
 
-    FileStorage fsClassifications("/home/ivan/Documentos/TFG/training/classifications.xml", cv::FileStorage::READ);
+    FileStorage fsClassifications("/home/ivan/Documentos/Codigo-TFG/training/classifications.xml", cv::FileStorage::READ);
 
     if (fsClassifications.isOpened() == false) {
         std::cout << "error, unable to open training classifications file, exiting program\n\n";
@@ -55,7 +55,7 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
 
     Mat matTrainingImagesAsFlattenedFloats;         // we will read multiple images into this single image variable as though it is a vector
 
-    FileStorage fsTrainingImages("/home/ivan/Documentos/TFG/training/images.xml", cv::FileStorage::READ);
+    FileStorage fsTrainingImages("/home/ivan/Documentos/Codigo-TFG/training/images.xml", cv::FileStorage::READ);
 
     if (fsTrainingImages.isOpened() == false) {
         std::cout << "error, unable to open training images file, exiting program\n\n";
@@ -77,7 +77,7 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
     // test ///////////////////////////////////////////////////////////////////////////////
 
     Mat matTestingNumbers = image;
-    //cv::imread("/home/ivan/Documentos/TFG/images/GrafoconLetras.png");            // read in the test numbers image
+    //cv::imread("/home/ivan/Documentos/Codigo-TFG/images/GrafoconLetras.png");            // read in the test numbers image
 
 
     //cv::Laplacian(matTestingNumbers, matTestingNumbers, -1);
