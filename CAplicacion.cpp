@@ -16,6 +16,10 @@ CAplicacion::CAplicacion() {
     setStyleSheet("background-color: rgba(34, 0, 209, 0.4);"); //violeta
 
     panelPrincipal_ = new CLabel("Panel Principal", true);
+
+    Mat aux = imread("/home/ivan/Documentos/Codigo-TFG/images/Cartel.jpg", IMREAD_COLOR );
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+
     panelOpciones_ = new CPanelOpciones();
     panelHistograma_ = new CLabel("Info Imagen", false);
     //verde
