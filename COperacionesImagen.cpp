@@ -105,6 +105,42 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
     if(!detectarCirculos()->getCirculosDetectados().empty() && !detectarLineas()->getLineasDetectadas().empty() && !detectarTransiciones()->getContornosEncontrados().empty() && !detectarTransiciones()->getLetrasEncontradas().empty()) {
         cout << " CIRCULOS Y LINEAS " << endl;
 
+        //eliminando transiciones que son lineas
+        /*for(int k = 0; k < detectarTransiciones()->getContornosEncontrados().size(); k++) {
+            for(int l = 0; l < detectarLineas()->getLineasDetectadas().size(); l++) {
+                if(detectarLineas()->distanciaEuclidea(detectarLineas()->getLineasDetectadas()[l][1], detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y) < 2) {
+                    if(detectarLineas()->distanciaEuclidea(detectarLineas()->getLineasDetectadas()[l][0], detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x) < 30) {
+                    detectarTransiciones()->getContornosEncontrados().erase(detectarTransiciones()->getContornosEncontrados().begin() + k);
+                    detectarTransiciones()->getLetrasEncontradas().erase(detectarTransiciones()->getLetrasEncontradas().begin() + k);
+                    k--;
+                    cout << "Eliminando transicion que es una linea " << endl;
+                }
+                }
+            }
+        }*/
+
+        //Eliminando contornos dentro de circulos
+        for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
+            for(int j = 0; j < detectarCirculos()->getCirculosDetectados().size(); j++) {
+                if(detectarLineas()->distanciaEuclidea(
+                            Point(
+                                detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.x,
+                                detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.y
+                                ),
+                            Point(
+                                detectarCirculos()->getCirculosDetectados()[j][0],
+                                detectarCirculos()->getCirculosDetectados()[j][1]
+                                )
+                            ) < (detectarCirculos()->getCirculosDetectados()[j][2])) {
+
+                    cout << "Eliminando contorno en ";
+                    detectarTransiciones()->getContornosEncontrados().at(i).mostrarContorno();
+                    detectarTransiciones()->getContornosEncontrados().erase(detectarTransiciones()->getContornosEncontrados().begin() + i);
+                    j = 0;
+
+                }
+            }
+        }
         //Confirmamos el numero de nodos
 
         int aux = detectarCirculos()->getCirculosDetectados().size();

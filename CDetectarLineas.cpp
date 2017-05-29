@@ -123,6 +123,10 @@ int CDetectarLineas::distanciaEuclidea(int a, int b) {
     return sqrt(pow(a - b, 2));
 }
 
+int CDetectarLineas::distanciaEuclidea(Point a, Point b) {
+    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+}
+
 vector<Vec4i> CDetectarLineas::getLineasDetectadas() {
     return lineasEncontradas;
 }

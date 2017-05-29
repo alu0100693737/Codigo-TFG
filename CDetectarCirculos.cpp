@@ -56,6 +56,7 @@ vector<Vec3f> CDetectarCirculo::detectarCirculos(const Mat& src_gray, int cannyT
     return filtrarCirculos(circl);
 }
 
+//Eliminamos circulos demasiado grandes
 vector<Vec3f> CDetectarCirculo::filtrarCirculos(vector<Vec3f> circulos) {
     double radioMedio = 0;
     for(int i = 0; i < circulos.size(); i++) {

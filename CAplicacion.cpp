@@ -13,17 +13,17 @@ using namespace std;
 CAplicacion::CAplicacion() {
 
     setPathImagenActual(NULL); //Path al principio = NULL
-    setStyleSheet("background-color: rgba(34, 0, 209, 0.4);"); //violeta
+    setStyleSheet("background-color: rgba(0, 0, 0, 0);");
 
     panelPrincipal_ = new CLabel("Panel Principal", true);
 
-    Mat aux = imread("/home/ivan/Documentos/Codigo-TFG/images/Cartel.jpg", IMREAD_COLOR );
+    Mat aux = imread("/home/ivan/Documentos/Codigo-TFG/images/cartel.png", IMREAD_UNCHANGED);
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
 
     panelOpciones_ = new CPanelOpciones();
     panelHistograma_ = new CLabel("Info Imagen", false);
     //verde
-    getPanelOpciones()->setStyleSheet("background-color: rgba(125, 255, 95, 0.8); border: 1px solid black");
+    getPanelOpciones()->setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
     getPanelHistograma()->setStyleSheet("background-color: white; border: 1px solid black");
 
     operacionesImagen_ = new COperacionesImagen();
@@ -152,128 +152,6 @@ CAplicacion::CAplicacion() {
 
 CAplicacion::~CAplicacion() {}
 
-QString CAplicacion::getPathImagenActual() {
-    return pathImagenActual_;
-}
-
-void CAplicacion::setPathImagenActual(QString path) {
-    pathImagenActual_ = path;
-}
-
-//VENTANA
-CLabel* CAplicacion::getPanelPrincipal() {
-    return panelPrincipal_;
-}
-
-CPanelOpciones* CAplicacion::getPanelOpciones() {
-    return panelOpciones_;
-}
-
-CLabel* CAplicacion::getPanelHistograma() {
-    return panelHistograma_;
-}
-
-QMenuBar* CAplicacion::getMenuBar() {
-    return menu_;
-}
-
-QMenu* CAplicacion::getMenuArchivo() {
-    return menuArchivo_;
-}
-
-QMenu* CAplicacion::getMenuEditar() {
-    return menuEditar_;
-}
-
-QMenu* CAplicacion::getMenuFiltro() {
-    return menuFiltro_;
-}
-
-QToolBar* CAplicacion::getToolBar() {
-    return toolbar_;
-}
-
-QLineEdit* CAplicacion::getNodoInicio() {
-    return nodo_inicio;
-}
-
-QLineEdit* CAplicacion::getNodosFinales() {
-    return nodos_finales;
-}
-
-QComboBox* CAplicacion::getAlfabetoActual() {
-    return alfabeto_;
-}
-
-QAction* CAplicacion::getActionAbrirImagen() {
-    return actionAbrirImagen_;
-}
-
-QAction* CAplicacion::getActionAbrirFichero() {
-    return actionAbrirFichero_;
-}
-
-QAction* CAplicacion::getActionAbout() {
-    return actionAbout_;
-}
-
-QAction* CAplicacion::getActionSalir() {
-    return actionSalir_;
-}
-
-QAction* CAplicacion::getActionDetectarCirculos() {
-    return actionDetectarCirculos_;
-}
-
-QAction* CAplicacion::getActionDetectarLineas() {
-    return actionDetectarLineas_;
-}
-
-QAction* CAplicacion::getActionDetectarTransiciones() {
-    return actionDetectarTransiciones_;
-}
-
-QAction* CAplicacion::getActionCodificarImagen() {
-    return actionCodificarImagen_;
-}
-
-QAction* CAplicacion::getActionProcesarImagen() {
-    return actionProcesarImagen_;
-}
-
-QAction* CAplicacion::getActionCargarImagenOriginal() {
-    return actionCargarImagenOriginal_;
-}
-
-QAction* CAplicacion::getActionFiltroGray() {
-    return actionFiltroGray_;
-}
-
-QAction* CAplicacion::getActionFiltroGaussiano() {
-    return actionFiltroGaussiano_;
-}
-
-QAction* CAplicacion::getActionFiltroMediana() {
-    return actionFiltroMediana_;
-}
-
-QAction* CAplicacion::getActionFiltroSobel() {
-    return actionFiltroSobel_;
-}
-
-QAction* CAplicacion::getActionFiltroLaplaciano() {
-    return actionFiltroLaplaciano_;
-}
-
-QAction* CAplicacion::getActionHistograma() {
-    return actionHistograma_;
-}
-
-//OPERACIONES CON LA IMAGEN
-COperacionesImagen* CAplicacion::getOperacionesImagen() {
-    return operacionesImagen_;
-}
-
 //SLOTS
 void CAplicacion::slotAbrirImagen() {
     QFileDialog dialog(this, tr("Abrir Imagen"));
@@ -344,11 +222,15 @@ bool CAplicacion::loadFile(const QString &fileName) {
                                  .arg(QDir::toNativeSeparators(fileName), reader.errorString()));
         return false;
     } else {
+        //si leemos un jpg, lo convertimos a png guardamos y la cargamos, no borramos la jpg
         if(getPathImagenActual().endsWith(".jpg")) {
             Mat aux1 = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-            getPathImagenActual().replace(".jpg", ".png");
-            imwrite(getPathImagenActual().toStdString(), aux1);
-            cout << "HOLA" << getPathImagenActual().toStdString() << endl;
+            setPathImagenActual(getPathImagenActual().remove(getPathImagenActual().size() - 4, 4));
+            setPathImagenActual(getPathImagenActual().append(".png"));
+            //si no existe la misma imagen en formato png
+            Mat aux2 = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+            if(aux2.empty())
+                imwrite(getPathImagenActual().toStdString(), aux1);
         }
 
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
@@ -477,6 +359,10 @@ void CAplicacion::slotCodificarImagen() {
         }
         fe.close();
         getPanelHistograma()->setText(aux);
+
+        Mat aux3 = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+        imshow("", aux3);
+        waitKey(0);
     }
 }
 
@@ -592,10 +478,128 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
 
     }
 }
-/*
-void CAplicacion::slotHoughLinesP() {
-    //cout << "HEYS2 " << getPanelOpciones()->getHoughLinesP()->value() << endl;
-    getPanelOpciones()->getValorHoughLinesP()->setText(QString::number(getPanelOpciones()->getHoughLinesP()->value()));
-}*/
+
+//get y sets
+QString CAplicacion::getPathImagenActual() {
+    return pathImagenActual_;
+}
+
+void CAplicacion::setPathImagenActual(QString path) {
+    pathImagenActual_ = path;
+}
+
+//VENTANA
+CLabel* CAplicacion::getPanelPrincipal() {
+    return panelPrincipal_;
+}
+
+CPanelOpciones* CAplicacion::getPanelOpciones() {
+    return panelOpciones_;
+}
+
+CLabel* CAplicacion::getPanelHistograma() {
+    return panelHistograma_;
+}
+
+QMenuBar* CAplicacion::getMenuBar() {
+    return menu_;
+}
+
+QMenu* CAplicacion::getMenuArchivo() {
+    return menuArchivo_;
+}
+
+QMenu* CAplicacion::getMenuEditar() {
+    return menuEditar_;
+}
+
+QMenu* CAplicacion::getMenuFiltro() {
+    return menuFiltro_;
+}
+
+QToolBar* CAplicacion::getToolBar() {
+    return toolbar_;
+}
+
+QLineEdit* CAplicacion::getNodoInicio() {
+    return nodo_inicio;
+}
+
+QLineEdit* CAplicacion::getNodosFinales() {
+    return nodos_finales;
+}
+
+QComboBox* CAplicacion::getAlfabetoActual() {
+    return alfabeto_;
+}
+
+QAction* CAplicacion::getActionAbrirImagen() {
+    return actionAbrirImagen_;
+}
+
+QAction* CAplicacion::getActionAbrirFichero() {
+    return actionAbrirFichero_;
+}
+
+QAction* CAplicacion::getActionAbout() {
+    return actionAbout_;
+}
+
+QAction* CAplicacion::getActionSalir() {
+    return actionSalir_;
+}
+
+QAction* CAplicacion::getActionDetectarCirculos() {
+    return actionDetectarCirculos_;
+}
+
+QAction* CAplicacion::getActionDetectarLineas() {
+    return actionDetectarLineas_;
+}
+
+QAction* CAplicacion::getActionDetectarTransiciones() {
+    return actionDetectarTransiciones_;
+}
+
+QAction* CAplicacion::getActionCodificarImagen() {
+    return actionCodificarImagen_;
+}
+
+QAction* CAplicacion::getActionProcesarImagen() {
+    return actionProcesarImagen_;
+}
+
+QAction* CAplicacion::getActionCargarImagenOriginal() {
+    return actionCargarImagenOriginal_;
+}
+
+QAction* CAplicacion::getActionFiltroGray() {
+    return actionFiltroGray_;
+}
+
+QAction* CAplicacion::getActionFiltroGaussiano() {
+    return actionFiltroGaussiano_;
+}
+
+QAction* CAplicacion::getActionFiltroMediana() {
+    return actionFiltroMediana_;
+}
+
+QAction* CAplicacion::getActionFiltroSobel() {
+    return actionFiltroSobel_;
+}
+
+QAction* CAplicacion::getActionFiltroLaplaciano() {
+    return actionFiltroLaplaciano_;
+}
+
+QAction* CAplicacion::getActionHistograma() {
+    return actionHistograma_;
+}
+
+//OPERACIONES CON LA IMAGEN
+COperacionesImagen* CAplicacion::getOperacionesImagen() {
+    return operacionesImagen_;
+}
 
 
