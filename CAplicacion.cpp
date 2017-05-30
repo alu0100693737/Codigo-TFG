@@ -361,8 +361,8 @@ void CAplicacion::slotCodificarImagen() {
         getPanelHistograma()->setText(aux);
 
         Mat aux3 = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        imshow("", aux3);
-        waitKey(0);
+        //imshow("", aux3);
+        //waitKey(0);
     }
 }
 
