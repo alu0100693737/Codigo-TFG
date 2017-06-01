@@ -347,8 +347,12 @@ void CAplicacion::slotCodificarImagen() {
         mensaje.exec();
     } else {
         getOperacionesImagen()->codificarDeteccion(getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData());
-
-        char cadena[128];
+    }
+    //Mat aux3 = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+    //imshow("", aux3);
+    //waitKey(0);
+    /*
+     *         char cadena[128];
         QString aux;
         ifstream fe("/home/ivan/Documentos/Codigo-TFG/codificaciones/codificacion.txt");
         while (!fe.eof()) {
@@ -358,12 +362,9 @@ void CAplicacion::slotCodificarImagen() {
             cout << cadena;
         }
         fe.close();
-        getPanelHistograma()->setText(aux);
 
-        Mat aux3 = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        //imshow("", aux3);
-        //waitKey(0);
-    }
+        getPanelHistograma()->setText(aux);*/
+
 }
 
 void CAplicacion::slotProcesarImagen() {

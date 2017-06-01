@@ -97,6 +97,23 @@ CDetectarTransiciones* COperacionesImagen::detectarTransiciones() {
     return transiciones_;
 }
 
+CAsistenteCodificacion* COperacionesImagen::getAsistente() {
+    return asistente_;
+}
+
+/*
+ *         char cadena[128];
+        QString aux;
+        ifstream fe("/home/ivan/Documentos/Codigo-TFG/codificaciones/codificacion.txt");
+        while (!fe.eof()) {
+            fe.getline (cadena, 256);
+            aux.append("\n");
+            aux.append(cadena);
+            cout << cadena;
+        }
+        fe.close();
+
+        getPanelHistograma()->setText(aux);*/
 void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFinales) {
     vector<Point> transitions;
 
@@ -178,14 +195,6 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
         //numeros. en el punto medio de la linea por cercania
         //TENIENDO LAS LETRAS, POSICION VALOR Y PUNTO MEDIO ENTRE LAS TRANSICIONES, FALTA ASIGNAR
         if(transitions.size()) {
-
-            ofstream fs("/home/ivan/Documentos/Codigo-TFG/codificaciones/codificacion.txt");
-
-            // Enviamos una cadena al fichero de salida:
-            fs << detectarCirculos()->getCirculosDetectados().size() << endl;
-            fs << nodoInicial << endl;
-            fs << nodosFinales << endl;
-
             // Cerrar el fichero,
             // para luego poder abrirlo para lectura:
             vector<int>* auxInicios_ = new vector<int>();
@@ -202,7 +211,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
                             cout << "Entornos encontrados " << detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x  << "  " << detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y << endl;
                             cout << "Letra: " << detectarTransiciones()->getLetrasEncontradas()[k] << endl;
 
-                            fs << transitions.at(i).x << " " << transitions.at(i).y << " " << detectarTransiciones()->getLetrasEncontradas()[k] << endl;
+                            //fs << transitions.at(i).x << " " << transitions.at(i).y << " " << detectarTransiciones()->getLetrasEncontradas()[k] << endl;
 
                             auxInicios_->push_back(transitions.at(i).x);
                             auxDestinos_->push_back(transitions.at(i).y);
@@ -237,7 +246,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
                             auxDestinos_->push_back(j);
                             auxLetras_->push_back(detectarTransiciones()->getLetrasEncontradas()[i]);
 
-                            fs << j << " " << j << " " << detectarTransiciones()->getLetrasEncontradas()[i] << endl;
+                            //fs << j << " " << j << " " << detectarTransiciones()->getLetrasEncontradas()[i] << endl;
                             detectarTransiciones()->getContornosEncontrados().erase(detectarTransiciones()->getContornosEncontrados().begin() + i);
                             detectarTransiciones()->getLetrasEncontradas().erase(detectarTransiciones()->getLetrasEncontradas().begin() + i);
                             i--;
@@ -259,9 +268,10 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
                             cout << "·Cuidado" << endl;
                     }
                 }}}*/
-            fs.close();
-            new CAsistenteCodificacion(auxInicios_, auxDestinos_, auxLetras_);
+            //fs.close();
 
+            asistente_ = new CAsistenteCodificacion(detectarCirculos()->getCirculosDetectados().size(), nodoInicial, nodosFinales, auxInicios_, auxDestinos_, auxLetras_);
+            getAsistente()->show();
         } else {
             cout << "ERROR, hubo un problema con la deteccion de transiciones entre circulos y lineas" << endl;
         }

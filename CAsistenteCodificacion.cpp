@@ -2,73 +2,98 @@
 #include "opencv2/opencv.hpp"   //WINDOW_AUTOSIZE, windows
 using namespace std;
 using namespace cv;
+//sudo setxkbmap -layout 'es,es' -model pc105
+CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string finales, vector<int>* ini, vector<int>* fins, vector<char>* let, QWidget *parent) {
 
-CAsistenteCodificacion::CAsistenteCodificacion(vector<int>* ini, vector<int>* fins, vector<char>* let, QWidget *parent) {
+    numNodos_ = nodos;
+    nodoInicial_ = inicial;
+    nodosFinales_ = finales;
 
-    LCambiar_ = new CLabel("Cambiar", false);
+    LCambiar_ = new CLabel("Cambiar", true);
     LAplicar_ = new CLabel("Aplicar", false);
-    LInicio_ = new CLabel("Inicios",false);
-    LDestino_ = new CLabel("Destinos", false);
-    LLetra_ = new CLabel("Transicion", false);
+    LInicio_ = new CLabel("Inicios",true);
+    LDestino_ = new CLabel("Destinos", true);
+    LLetra_ = new CLabel("Transicion", true);
 
-    cambiar_ = new vector<QCheckBox*>();
-    aplicar_ = new vector<QCheckBox*>();
-    inicios_= new vector<QLineEdit*>();
-    destinos_ = new vector<QLineEdit*>();
-    letras_ = new vector<QLineEdit*>();
+    cambiar_ = new vector<CCheckBox*>();
+    aplicar_ = new vector<CCheckBox*>();
+    inicios_= new vector<CLineEdit*>();
+    destinos_ = new vector<CLineEdit*>();
+    letras_ = new vector<CLineEdit*>();
 
+    aceptar_ = new QPushButton("Codificar");
+    cancelar_ = new QPushButton("Cancelar");
 
+    aceptado_ = false;
+
+    setStyleSheet("background-color: rgba(255, 255, 130, 1);  border-style: outset; border-width: 2px; border-color: beige;");
     QGridLayout *layout = new QGridLayout();
     this->setLayout (layout);
 
-    layout->addWidget(getLCambiar(), 0, 0, 1, 1);
-    layout->addWidget(getLAplicar(), 0, 1, 1, 1);
+    layout->addWidget(getLCambiar(), 0, 0, 1, 2);
+    //layout->addWidget(getLAplicar(), 0, 1, 1, 1);
     layout->addWidget(getLInicio(), 0, 2, 1, 1);
     layout->addWidget(getLDestino(), 0, 3, 1, 1);
     layout->addWidget(getLLetra(), 0, 4, 1, 1);
 
     for(int i = 0; i < ini->size(); i++) {
-        getCheckBoxCambiar()->push_back(new QCheckBox());
-        getCheckBoxAplicar()->push_back(new QCheckBox());
-        getInicios()->push_back(new QLineEdit(QString(ini->at(i))));
-        getDestinos()->push_back(new QLineEdit(QString(fins->at(i))));
-        getLetras()->push_back(new QLineEdit(QString(let->at(i))));
+        getCheckBoxCambiar()->push_back(new CCheckBox());
+        //getCheckBoxAplicar()->push_back(new QCheckBox());
+
+        getInicios()->push_back(new CLineEdit(QString::number(ini->at(i))));
+        //cout << ini->at(i) << " " << fins->at(i) << endl;
+        getDestinos()->push_back(new CLineEdit(QString::number(fins->at(i))));
+        getLetras()->push_back(new CLineEdit(QString(let->at(i))));
     }
 
     for(int i = 0; i < ini->size(); i++) {
-        layout->addWidget(getCheckBoxCambiar()->at(i), i + 1, 0, 1, 1);
-        layout->addWidget(getCheckBoxAplicar()->at(i), i + 1, 1, 1, 1);
-        cout << getInicios()->at(i)->text().toStdString() << endl;
+        layout->addWidget(getCheckBoxCambiar()->at(i), i + 1, 0, 1, 2);
+        //layout->addWidget(getCheckBoxAplicar()->at(i), i + 1, 1, 1, 1);
+
         layout->addWidget(getInicios()->at(i),  i + 1, 2, 1, 1);
         layout->addWidget(getDestinos()->at(i), i + 1, 3, 1, 1);
         layout->addWidget(getLetras()->at(i),  i + 1, 4, 1, 1);
     }
 
-     show();
+    layout->addWidget(getCancelar(), ini->size() + 4, 2, 1, 1);
+    layout->addWidget(getAceptar(), ini->size() + 4, 3, 1, 1);
 
+    connect(getCancelar(), SIGNAL(clicked()), this, SLOT(slotCancelar()));
+    connect(getAceptar(), SIGNAL(clicked()), this, SLOT(slotAceptar()));
     //setMinimumSize(400, 200);
     setWindowTitle("Asistente para la codificación");
 
 }
 
+int CAsistenteCodificacion::getNumNodos() {
+    return numNodos_;
+}
 
-vector<QCheckBox*>* CAsistenteCodificacion::getCheckBoxCambiar() {
+string CAsistenteCodificacion::getNodoInicial() {
+    return nodoInicial_;
+}
+
+string CAsistenteCodificacion::getNodosFinales() {
+    return nodosFinales_;
+}
+
+vector<CCheckBox*>* CAsistenteCodificacion::getCheckBoxCambiar() {
     return cambiar_;
 }
 
-vector<QCheckBox*>* CAsistenteCodificacion::getCheckBoxAplicar() {
+vector<CCheckBox*>* CAsistenteCodificacion::getCheckBoxAplicar() {
     return aplicar_;
 }
 
-vector<QLineEdit*>* CAsistenteCodificacion::getInicios() {
+vector<CLineEdit*>* CAsistenteCodificacion::getInicios() {
     return inicios_;
 }
 
-vector<QLineEdit*>* CAsistenteCodificacion::getDestinos() {
+vector<CLineEdit*>* CAsistenteCodificacion::getDestinos() {
     return destinos_;
 }
 
-vector<QLineEdit*>* CAsistenteCodificacion::getLetras() {
+vector<CLineEdit*>* CAsistenteCodificacion::getLetras() {
     return letras_;
 }
 
@@ -92,3 +117,30 @@ CLabel* CAsistenteCodificacion::getLLetra() {
     return LLetra_;
 }
 
+QPushButton* CAsistenteCodificacion::getAceptar() {
+    return aceptar_;
+}
+
+QPushButton* CAsistenteCodificacion::getCancelar() {
+    return cancelar_;
+}
+
+bool CAsistenteCodificacion::getAceptado() {
+    return aceptado_;
+}
+
+void CAsistenteCodificacion::slotCancelar() {
+    this->close();
+}
+
+void CAsistenteCodificacion::slotAceptar() {
+    ofstream fs("/home/ivan/Documentos/Codigo-TFG/codificaciones/codificacion.txt");
+    fs << getNumNodos() << endl;
+    fs << getNodoInicial() << endl;
+    fs << getNodosFinales() << endl;
+    for(int i = 0; i < getInicios()->size(); i++)
+        fs << getInicios()->at(i)->text().toStdString() << " " << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << endl;
+    fs.close();
+    aceptado_ = true;
+    slotCancelar();
+}

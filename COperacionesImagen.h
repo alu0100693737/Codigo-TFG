@@ -29,6 +29,7 @@ private:
 
     //utilizado en codificarDeteccion
     bool ventanaConfirmarNodos(int nodos);
+    CAsistenteCodificacion* asistente_;
 
 public:
     COperacionesImagen();
@@ -39,6 +40,8 @@ public:
     CDetectarCirculo* detectarCirculos(); //get funciones deteccion
     CDetectarLineas* detectarLineas();
     CDetectarTransiciones* detectarTransiciones();
+
+    CAsistenteCodificacion* getAsistente();
 
     void codificarDeteccion(string nodoInicial, string nodosFinales);
     bool contain(vector<Point> aux, Point a);

@@ -26,8 +26,9 @@ SOURCES += \
     CDetectarLineas.cpp \
     CDetectarCirculos.cpp \
     CPanelOpciones.cpp \
-    CScrollData.cpp \
-    CAsistenteCodificacion.cpp
+    CAsistenteCodificacion.cpp \
+    CLineEdit.cpp \
+    CCheckBox.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -96,5 +97,6 @@ HEADERS += \
     CDetectarLineas.h \
     CDetectarCirculos.h \
     CPanelOpciones.h \
-    CScrollData.h \
-    CAsistenteCodificacion.h
+    CAsistenteCodificacion.h \
+    CLineEdit.h \
+    CCheckBox.h
