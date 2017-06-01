@@ -115,6 +115,7 @@ CAsistenteCodificacion* COperacionesImagen::getAsistente() {
 
         getPanelHistograma()->setText(aux);*/
 void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFinales) {
+
     vector<Point> transitions;
 
     vector<Point> auxpuntosMedios;
@@ -195,6 +196,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
         //numeros. en el punto medio de la linea por cercania
         //TENIENDO LAS LETRAS, POSICION VALOR Y PUNTO MEDIO ENTRE LAS TRANSICIONES, FALTA ASIGNAR
         if(transitions.size()) {
+            cout << "HOLAAAAAAAAAAAA" << endl;
             // Cerrar el fichero,
             // para luego poder abrirlo para lectura:
             vector<int>* auxInicios_ = new vector<int>();
@@ -269,7 +271,14 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
                     }
                 }}}*/
             //fs.close();
+            detectarTransiciones()->getContornosEncontrados().clear();
+            detectarTransiciones()->getLetrasEncontradas().clear();
 
+            cout << detectarCirculos()->getCirculosDetectados().size() << endl;
+            cout << "Nodo inicial " << nodoInicial << " nodosFinales " << nodosFinales << endl;
+            cout << auxInicios_->size()<< endl;
+            cout << auxDestinos_->size() << endl;
+            cout << auxLetras_->size() << endl;
             asistente_ = new CAsistenteCodificacion(detectarCirculos()->getCirculosDetectados().size(), nodoInicial, nodosFinales, auxInicios_, auxDestinos_, auxLetras_);
             getAsistente()->show();
         } else {

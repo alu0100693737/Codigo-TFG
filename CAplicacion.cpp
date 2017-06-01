@@ -322,6 +322,8 @@ void CAplicacion::slotDetectarLineas() {
 }
 
 void CAplicacion::slotDetectarTransiciones() {
+
+    getActionProcesarImagen()->setEnabled(true);
     // CDetectarTransiciones* prueba = new CDetectarTransiciones();
     Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
     Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
@@ -346,6 +348,8 @@ void CAplicacion::slotCodificarImagen() {
         mensaje.setIcon(QMessageBox::Warning);
         mensaje.exec();
     } else {
+        if(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() == 0)
+                slotDetectarTransiciones();
         getOperacionesImagen()->codificarDeteccion(getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData());
     }
     //Mat aux3 = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
@@ -364,10 +368,10 @@ void CAplicacion::slotCodificarImagen() {
         fe.close();
 
         getPanelHistograma()->setText(aux);*/
-
 }
 
 void CAplicacion::slotProcesarImagen() {
+    slotCargarImagenOriginal(); //evitar doble lectura cuando los campos nodos no estan rellenos
     slotDetectarCirculos();
     slotDetectarLineas();
     slotDetectarTransiciones();
@@ -376,6 +380,7 @@ void CAplicacion::slotProcesarImagen() {
         mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \n\nPulse a continuación el botón Codificar Imagen.");
         mensaje.setIcon(QMessageBox::Warning);
         mensaje.exec();
+        getActionProcesarImagen()->setEnabled(true);
     } else {
         slotCodificarImagen();
     }
@@ -391,7 +396,6 @@ void CAplicacion::slotCargarImagenOriginal() {
 
 void CAplicacion::slotFiltroGray() {
     Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_GRAYSCALE );
-
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
 }
 
@@ -424,7 +428,6 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
     getPanelOpciones()->getValorCannyThresHold()->setText(QString::number(getPanelOpciones()->getCannyThresHold()->value()));
     getPanelOpciones()->getValorAccumulatorThresHold()->setText(QString::number(getPanelOpciones()->getAccumulatorThresHold()->value()));
     getPanelOpciones()->getValorHoughLinesP()->setText(QString::number(getPanelOpciones()->getHoughLinesP()->value()));
-
 
     //Ya hemos detectado circulos, será cambiarlos segun las variables
     if(getActionDetectarLineas()->isEnabled()) {
@@ -476,7 +479,7 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
         }
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
     } else {  //No deberia ocurrir nada
-
+        cout << "No debe ocurrir " << endl;
     }
 }
 
@@ -602,5 +605,3 @@ QAction* CAplicacion::getActionHistograma() {
 COperacionesImagen* CAplicacion::getOperacionesImagen() {
     return operacionesImagen_;
 }
-
-
