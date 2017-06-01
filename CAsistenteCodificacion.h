@@ -11,7 +11,7 @@
 #include "CCheckBox.h"
 
 class CAsistenteCodificacion : public QWidget {
-Q_OBJECT
+    Q_OBJECT
 private:
 
     int numNodos_;
@@ -24,6 +24,7 @@ private:
     CLabel* LInicio_;
     CLabel* LDestino_;
     CLabel* LLetra_;
+
     vector<CCheckBox*>* cambiar_;
     vector<CCheckBox*>* aplicar_;
     vector<CLineEdit*>* inicios_;
@@ -33,7 +34,6 @@ private:
     QPushButton* aceptar_;
     QPushButton* cancelar_;
 
-    bool aceptado_;
 public:
     CAsistenteCodificacion(int, string, string, vector<int>* ini, vector<int>* fins, vector<char>* let, QWidget *parent = 0);
 
@@ -56,11 +56,10 @@ public:
     QPushButton* getAceptar();
     QPushButton* getCancelar();
 
-    bool getAceptado();
-
-    public slots:
+public slots:
     void slotCancelar();
     void slotAceptar();
+    void slotCambiar();
 };
 
 #endif // CASISTENTECODIFICACION_H

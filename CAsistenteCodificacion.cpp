@@ -24,8 +24,6 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     aceptar_ = new QPushButton("Codificar");
     cancelar_ = new QPushButton("Cancelar");
 
-    aceptado_ = false;
-
     setStyleSheet("background-color: rgba(255, 255, 130, 1);  border-style: outset; border-width: 2px; border-color: beige;");
     QGridLayout *layout = new QGridLayout();
     this->setLayout (layout);
@@ -37,6 +35,7 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     layout->addWidget(getLLetra(), 0, 4, 1, 1);
 
     for(int i = 0; i < ini->size(); i++) {
+
         getCheckBoxCambiar()->push_back(new CCheckBox());
         //getCheckBoxAplicar()->push_back(new QCheckBox());
 
@@ -60,6 +59,9 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
 
     connect(getCancelar(), SIGNAL(clicked()), this, SLOT(slotCancelar()));
     connect(getAceptar(), SIGNAL(clicked()), this, SLOT(slotAceptar()));
+
+    for(int i = 0; i < getCheckBoxCambiar()->size(); i++)
+        connect(getCheckBoxCambiar()->at(i), SIGNAL(clicked()), this, SLOT(slotCambiar()));
     //setMinimumSize(400, 200);
     setWindowTitle("Asistente para la codificación");
 
@@ -125,10 +127,6 @@ QPushButton* CAsistenteCodificacion::getCancelar() {
     return cancelar_;
 }
 
-bool CAsistenteCodificacion::getAceptado() {
-    return aceptado_;
-}
-
 void CAsistenteCodificacion::slotCancelar() {
     this->close();
 }
@@ -141,6 +139,13 @@ void CAsistenteCodificacion::slotAceptar() {
     for(int i = 0; i < getInicios()->size(); i++)
         fs << getInicios()->at(i)->text().toStdString() << " " << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << endl;
     fs.close();
-    aceptado_ = true;
     slotCancelar();
+}
+
+void CAsistenteCodificacion::slotCambiar() {
+    int i = 0;
+    QString aux = getInicios()->at(i)->text();
+    getInicios()->at(i)->text() = getDestinos()->at(i)->text();
+    getDestinos()->at(i)->text() = aux;
+    cout << "heys" << endl;
 }
