@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////////////////
+//      CContourWithData.h - Declaración de la clase CContourWithData     //
+//                                                                        //
+//               Autor: Iván García Campos                                //
+//                                                                        //
+//            Proyecto de Trabajo Fin de Grado.                           //
+//                                                                        //
+//               Fecha: 05/06/2017                                        //
+////////////////////////////////////////////////////////////////////////////
+
 #ifndef CONTOURWITHDATA_H
 #define CONTOURWITHDATA_H
 
@@ -10,15 +20,15 @@
 using namespace std;
 using namespace cv;
 
-class ContourWithData {
+class CContourWithData {
 public:
 
     std::vector<cv::Point> ptContour;           // Contorno
     cv::Rect dimensionContorno;                      // Rectangulo
     float fltArea;                              // Area del contorno
 
-    ContourWithData();
-    ContourWithData(const ContourWithData& copy);
+    CContourWithData();
+    CContourWithData(const CContourWithData& copy);
 
     //Identifica si el contorno cubre el area minima
     bool checkIfContourIsValid();
@@ -26,7 +36,7 @@ public:
 };
 
 //Ordena los contornos por posicion coordenadas
-static bool sortByBoundingRectXPosition(const ContourWithData& cwdLeft, const ContourWithData& cwdRight) {      // this function allows us to sort
+static bool sortByBoundingRectXPosition(const CContourWithData& cwdLeft, const CContourWithData& cwdRight) {      // this function allows us to sort
     return(cwdLeft.dimensionContorno.x < cwdRight.dimensionContorno.x);                                                   // the contours from left to right
 }
 

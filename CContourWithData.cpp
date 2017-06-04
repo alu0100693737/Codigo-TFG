@@ -1,18 +1,18 @@
 #include "CContourWithData.h"
 
-ContourWithData::ContourWithData() { }
+CContourWithData::CContourWithData() { }
 
-ContourWithData::ContourWithData(const ContourWithData &copy) {
+CContourWithData::CContourWithData(const CContourWithData &copy) {
     ptContour = copy.ptContour;
     dimensionContorno = copy.dimensionContorno;
     fltArea = copy.fltArea;
 }
 
-bool ContourWithData::checkIfContourIsValid() {
+bool CContourWithData::checkIfContourIsValid() {
     if (fltArea < MIN_CONTOUR_AREA) return false;
     return true;
 }
 
-void ContourWithData::mostrarContorno() {
+void CContourWithData::mostrarContorno() {
     cout << "Contorno con dimension " << dimensionContorno << " en " << fltArea;
 }

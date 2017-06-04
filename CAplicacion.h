@@ -1,3 +1,14 @@
+///////////////////////////////////////////////////////////////
+//      CAplicacion.h - Declaración de la clase CAplicacion  //
+//                                                           //
+//               Autor: Iván García Campos                   //
+//                                                           //
+//            Proyecto de Trabajo Fin de Grado.              //
+//                                                           //
+//               Fecha: 05/06/2017                           //
+///////////////////////////////////////////////////////////////
+
+
 #ifndef CAPLICACION_H
 #define CAPLICACION_H
 #include <QtWidgets>
@@ -15,18 +26,25 @@ private:
     QString pathImagenActual_;
 
     CLabel* panelPrincipal_;
+    CLabel* panelComparacion_;
+
     CPanelOpciones* panelOpciones_;
     CLabel* panelHistograma_;
+
+    QGridLayout * layout_; //Layout de la aplicacion
 
     QMenuBar* menu_;
     QMenu* menuArchivo_;
     QMenu* menuEditar_;
+    QMenu* menuCorreccion_;
     QMenu* menuFiltro_;
+
     QAction* actionAbrirImagen_;
     QAction* actionAbrirFichero_;
     QAction* actionAbout_;
     QAction* actionAboutQT_;
     QAction* actionSalir_;
+
     //Proceso paso a paso
     QAction* actionDetectarLineas_;
     QAction* actionDetectarCirculos_;
@@ -34,6 +52,9 @@ private:
     QAction* actionCodificarImagen_;
     QAction* actionProcesarImagen_; //todo de golpe
     QAction* actionCargarImagenOriginal_;
+
+    QAction* actionAbrirFicheroCorrecto_;
+
     QAction* actionFiltroGray_;
     QAction* actionFiltroGaussiano_;
     QAction* actionFiltroMediana_;
@@ -51,24 +72,32 @@ private:
 
     //Abrir Imagen
     bool loadFile(const QString &fileName); //Utilizado slot abrirImagen
-    bool loadFileFichero(const QString &fileName); //Utilizado slot abrirImagen
     //Guarda localizacion elegida, por defecto carpeta imagenes, ordena los archivos y filtra por jpg
     void inicializarVentanaAbrirImagen(QFileDialog&, QFileDialog::AcceptMode);
-    void inicializarVentanaAbrirFichero(QFileDialog&, QFileDialog::AcceptMode);
+
+    //Abrir fichero, devuelve la path
+    QString ventanaAbrirFichero();
+
  public:
     CAplicacion();
+
     ~CAplicacion();
 
     QString getPathImagenActual();
     void setPathImagenActual(QString newPath);
 
     CLabel* getPanelPrincipal();
+    CLabel* getPanelComparacion();
+
     CPanelOpciones* getPanelOpciones();
     CLabel* getPanelHistograma();
+
+    QGridLayout* getLayout();
 
     QMenuBar* getMenuBar();
     QMenu* getMenuArchivo();
     QMenu* getMenuEditar();
+    QMenu* getMenuCorreccion();
     QMenu* getMenuFiltro();
 
     QToolBar* getToolBar();
@@ -81,12 +110,16 @@ private:
     QAction* getActionAbout();
     QAction* getActionAboutQT();
     QAction* getActionSalir();
+
     QAction* getActionDetectarLineas();
     QAction* getActionDetectarCirculos();
     QAction* getActionDetectarTransiciones();
     QAction* getActionCodificarImagen();
     QAction* getActionProcesarImagen();
     QAction* getActionCargarImagenOriginal();
+
+    QAction* getActionAbrirFicheroCorrecto();
+
     QAction* getActionFiltroGray();
     QAction* getActionFiltroGaussiano();
     QAction* getActionFiltroMediana();
@@ -109,6 +142,8 @@ public slots:
     void slotCodificarImagen();
     void slotProcesarImagen();
     void slotCargarImagenOriginal();
+
+    void slotAbrirFicheroCorrecto();
 
     void slotFiltroGray();
     void slotFiltroGaussiano();

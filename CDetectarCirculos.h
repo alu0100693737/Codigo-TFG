@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////////////////
+//      CDetectarCirculos.h - Declaración de la clase CDetectarCirculos   //
+//                                                                        //
+//               Autor: Iván García Campos                                //
+//                                                                        //
+//            Proyecto de Trabajo Fin de Grado.                           //
+//                                                                        //
+//               Fecha: 05/06/2017                                        //
+////////////////////////////////////////////////////////////////////////////
+
 #ifndef CDETECTARCIRCULOS_H
 #define CDETECTARCIRCULOS_H
 #include "opencv2/imgcodecs.hpp"

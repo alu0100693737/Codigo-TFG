@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////////////////
+//CDetectarTransiciones.h - Declaración de la clase CDetectarTransiciones //
+//                                                                        //
+//               Autor: Iván García Campos                                //
+//                                                                        //
+//            Proyecto de Trabajo Fin de Grado.                           //
+//                                                                        //
+//               Fecha: 05/06/2017                                        //
+////////////////////////////////////////////////////////////////////////////
+
 #ifndef CDETECTARTRANSICIONES_H
 #define CDETECTARTRANSICIONES_H
 
@@ -16,7 +26,7 @@ private:
     Mat imagenTransicionActual_;
 
     //datos parejos por posicion
-    vector<ContourWithData> contornosEncontrados_;
+    vector<CContourWithData> contornosEncontrados_;
     vector<char> letrasEncontradas_;
 public:
     CDetectarTransiciones();
@@ -25,7 +35,7 @@ public:
     void setImagenTransicionActual(Mat image);
 
     //Contorno, area y letra correspondiente
-    vector<ContourWithData>& getContornosEncontrados();
+    vector<CContourWithData>& getContornosEncontrados();
     vector<char>& getLetrasEncontradas();
 };
 

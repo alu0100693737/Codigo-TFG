@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////
+//          CLabel.h - Declaración de la clase CLabel        //
+//                                                           //
+//               Autor: Iván García Campos                   //
+//                                                           //
+//            Proyecto de Trabajo Fin de Grado.              //
+//                                                           //
+//               Fecha: 05/06/2017                           //
+///////////////////////////////////////////////////////////////
+
 #ifndef CLABEL_H
 #define CLABEL_H
 #include <QLabel>

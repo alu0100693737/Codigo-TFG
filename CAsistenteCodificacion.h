@@ -1,3 +1,14 @@
+///////////////////////////////////////////////////////////////////////////////
+//CAsistenteCodificacion.h - Declaración de la clase CAsistenteCodificacion  //
+//                                                                           //
+//               Autor: Iván García Campos                                   //
+//                                                                           //
+//            Proyecto de Trabajo Fin de Grado.                              //
+//                                                                           //
+//               Fecha: 05/06/2017                                           //
+///////////////////////////////////////////////////////////////////////////////
+
+
 #ifndef CASISTENTECODIFICACION_H
 #define CASISTENTECODIFICACION_H
 #include <QWidget>

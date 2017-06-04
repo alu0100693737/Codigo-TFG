@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////////////////
+//          CDetectarLineas.h - Declaración de la clase CDetectarLineas   //
+//                                                                        //
+//               Autor: Iván García Campos                                //
+//                                                                        //
+//            Proyecto de Trabajo Fin de Grado.                           //
+//                                                                        //
+//               Fecha: 05/06/2017                                        //
+////////////////////////////////////////////////////////////////////////////
+
 #ifndef CDETECTARLINEAS_H
 #define CDETECTARLINEAS_H
 #include "opencv2/imgcodecs.hpp"

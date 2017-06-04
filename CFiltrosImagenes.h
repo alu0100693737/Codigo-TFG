@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////
+//CFiltrosImagenes.h - Declaración de la clase CFiltrosImagenes //
+//                                                              //
+//               Autor: Iván García Campos                      //
+//                                                              //
+//            Proyecto de Trabajo Fin de Grado.                 //
+//                                                              //
+//               Fecha: 05/06/2017                              //
+//////////////////////////////////////////////////////////////////
+
 #ifndef CFILTROSIMAGENES_H
 #define CFILTROSIMAGENES_H
 #include "opencv2/imgcodecs.hpp" //MAT OPENCV

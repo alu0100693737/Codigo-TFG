@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////
+// CPanelOpciones.h - Declaración de la clase CPanelOpciones //
+//                                                           //
+//               Autor: Iván García Campos                   //
+//                                                           //
+//            Proyecto de Trabajo Fin de Grado.              //
+//                                                           //
+//               Fecha: 05/06/2017                           //
+///////////////////////////////////////////////////////////////
+
 #ifndef CPANELOPCIONES_H
 #define CPANELOPCIONES_H
 #include <QWidget>

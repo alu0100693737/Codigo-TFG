@@ -15,7 +15,7 @@ void CDetectarTransiciones::setImagenTransicionActual(Mat image) {
         cout << "error en SetImagenTransicionActual" << endl;
 }
 
-vector<ContourWithData>& CDetectarTransiciones::getContornosEncontrados() {
+vector<CContourWithData>& CDetectarTransiciones::getContornosEncontrados() {
     return contornosEncontrados_;
 }
 
@@ -36,8 +36,8 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
 
 
     //Leemos la clasificacion hecha sobre GenerarClasificador
-    vector<ContourWithData> allContoursWithData;           // declare empty vectors,
-    vector<ContourWithData> validContoursWithData;         // we will fill these shortly
+    vector<CContourWithData> allContoursWithData;           // declare empty vectors,
+    vector<CContourWithData> validContoursWithData;         // we will fill these shortly
 
     Mat matClassificationInts;      // we will read the classification numbers into this variable as though it is a vector
 
@@ -119,7 +119,7 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
                      cv::CHAIN_APPROX_SIMPLE);               // compress horizontal, vertical, and diagonal segments and leave only their end points
 
     for (int i = 0; i < ptContours.size(); i++) {               // for each contour
-        ContourWithData contourWithData;                                                    // instantiate a contour with data object
+        CContourWithData contourWithData;                                                    // instantiate a contour with data object
         contourWithData.ptContour = ptContours[i];                                          // assign contour to contour with data
         contourWithData.dimensionContorno = cv::boundingRect(contourWithData.ptContour);         // get the bounding rect
         contourWithData.fltArea = cv::contourArea(contourWithData.ptContour);               // calculate the contour area
@@ -168,7 +168,7 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
             float fltCurrentChar = (float)matCurrentChar.at<float>(0, 0);
 
             //Asignamos contorno y letra a contornosEncontrados
-            getContornosEncontrados().push_back(ContourWithData(validContoursWithData[i]));
+            getContornosEncontrados().push_back(CContourWithData(validContoursWithData[i]));
             getLetrasEncontradas().push_back( char(int(fltCurrentChar)));
 
             strFinalString = strFinalString + char(int(fltCurrentChar));

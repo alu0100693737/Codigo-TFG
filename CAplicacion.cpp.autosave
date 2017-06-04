@@ -382,7 +382,6 @@ void CAplicacion::slotAbrirFicheroCorrecto() {
     panelComparacion_ = new CLabel("Panel Comparativa", true);
     getLayout()->addWidget(getPanelComparacion(), 0, 2, 3, 2);
     getPanelComparacion()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
-
     getPanelComparacion()->setText(line);
 }
 
