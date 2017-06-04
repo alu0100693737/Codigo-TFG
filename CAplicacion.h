@@ -2,6 +2,7 @@
 #define CAPLICACION_H
 #include <QtWidgets>
 #include "CLabel.h"
+#include "CLineEdit.h"
 #include "COperacionesImagen.h"
 #include "CPanelOpciones.h"
 
@@ -41,8 +42,8 @@ private:
 
     QToolBar* toolbar_;
 
-    QLineEdit* nodo_inicio;
-    QLineEdit* nodos_finales;
+    CLineEdit* nodo_inicio;
+    CLineEdit* nodos_finales;
     QComboBox* alfabeto_; //0 -> alfabeto a, b, c   1 -> Alfabeto numerico
 
     COperacionesImagen* operacionesImagen_;
@@ -70,8 +71,8 @@ private:
     QMenu* getMenuFiltro();
 
     QToolBar* getToolBar();
-    QLineEdit* getNodoInicio();
-    QLineEdit* getNodosFinales();
+    CLineEdit* getNodoInicio();
+    CLineEdit* getNodosFinales();
     QComboBox* getAlfabetoActual();
 
     QAction* getActionAbrirImagen();

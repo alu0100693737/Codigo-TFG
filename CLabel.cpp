@@ -10,7 +10,8 @@ CLabel::CLabel(QString text, bool style) : QLabel() {
     setText(text);
     setAlignment(Qt::AlignCenter);
     if(style == true) {
-        setStyleSheet("border: 5px solid black");
+        setStyleSheet("background-color: white; border-style: outset; border-width: 2px; border-radius: 10px; border-color: beige; font: bold 14px; padding: 6px;");
+
         QFont f( "Arial", 14, QFont::Bold);
         setFont(f);
     } else {

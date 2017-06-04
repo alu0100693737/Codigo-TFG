@@ -1,6 +1,4 @@
 //detect numbers https://www.mkompf.com/cplus/emeocv.html
-
-
 #include "CAplicacion.h"
 
 #include "opencv2/imgcodecs.hpp" //MAT OPENCV
@@ -112,9 +110,9 @@ CAplicacion::CAplicacion() {
     this->addToolBar(getToolBar());
 
 
-    nodo_inicio = new QLineEdit;
+    nodo_inicio = new CLineEdit;
     getNodoInicio()->setPlaceholderText("Nodo de Inicio");
-    nodos_finales = new QLineEdit;
+    nodos_finales = new CLineEdit;
     getNodosFinales()->setPlaceholderText("Nodos Finales, Formato: 0 1 2 ...");
     getNodoInicio()->setFocus();
 
@@ -525,11 +523,11 @@ QToolBar* CAplicacion::getToolBar() {
     return toolbar_;
 }
 
-QLineEdit* CAplicacion::getNodoInicio() {
+CLineEdit* CAplicacion::getNodoInicio() {
     return nodo_inicio;
 }
 
-QLineEdit* CAplicacion::getNodosFinales() {
+CLineEdit* CAplicacion::getNodosFinales() {
     return nodos_finales;
 }
 

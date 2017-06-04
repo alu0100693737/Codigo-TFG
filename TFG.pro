@@ -28,7 +28,8 @@ SOURCES += \
     CPanelOpciones.cpp \
     CAsistenteCodificacion.cpp \
     CLineEdit.cpp \
-    CCheckBox.cpp
+    CCheckBox.cpp \
+    CPushButton.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -99,4 +100,5 @@ HEADERS += \
     CPanelOpciones.h \
     CAsistenteCodificacion.h \
     CLineEdit.h \
-    CCheckBox.h
+    CCheckBox.h \
+    CPushButton.h
