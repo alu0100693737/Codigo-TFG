@@ -7,6 +7,8 @@
 #include <QPushButton>
 #include <vector>
 #include <QSignalMapper>
+#include <QFileDialog>
+#include <QtWidgets>
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include "CPushButton.h"

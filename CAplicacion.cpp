@@ -109,7 +109,6 @@ CAplicacion::CAplicacion() {
     getToolBar()->setStyleSheet("background-color: white;");
     this->addToolBar(getToolBar());
 
-
     nodo_inicio = new CLineEdit;
     getNodoInicio()->setPlaceholderText("Nodo de Inicio");
     nodos_finales = new CLineEdit;
@@ -232,13 +231,8 @@ bool CAplicacion::loadFile(const QString &fileName) {
         }
 
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        //Size size(800, 350);//the dst image size,e.g.100x100
-
-        //Mat src;//src image
-        //cv::resize(aux,aux,size);//resize image
 
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
-        //getPanelPrincipal()->setImagen(newImage);
         getPanelHistograma()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->calcularHistograma(getOperacionesImagen()->QImage2Mat(newImage))));
 
         getActionDetectarCirculos()->setDisabled(false);

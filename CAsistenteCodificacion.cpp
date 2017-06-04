@@ -29,8 +29,9 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     cancelar_ = new CPushButton("Cancelar");
     help_ = new CPushButton("Help");
 
-    setStyleSheet("background-color: rgba(220, 220, 220, 1);");
+    this->setStyleSheet("background-color: rgba(220, 220, 220, 1);");
     QGridLayout *layout = new QGridLayout();
+
     this->setLayout (layout);
 
     layout->addWidget(getLCambiar(), 0, 0, 1, 1, Qt::AlignHCenter);
@@ -163,36 +164,48 @@ void CAsistenteCodificacion::slotCancelar() {
 }
 
 void CAsistenteCodificacion::slotAceptar() {
-    ofstream fs("/home/ivan/Documentos/Codigo-TFG/codificaciones/codificacion.txt");
-    fs << getNumNodos() << endl;
-    fs << getNodoInicial() << endl;
-    fs << getNodosFinales() << endl;
-    for(int i = 0; i < getInicios()->size(); i++) {
-        if(!getCheckBoxBorrar()->at(i)->isChecked())
-            fs << getInicios()->at(i)->text().toStdString() << " " << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << endl;
+    QFileDialog dialogFile(this, tr("Guardar Codificacion"));
+    dialogFile.setStyleSheet("background-color: white;");
+
+    dialogFile.setDefaultSuffix(".txt");
+
+    QString filename = dialogFile.getSaveFileName(
+                this,
+                tr("Save File"),
+                ".txt",
+                tr("Documents (*.txt)") );
+
+    if( !filename.isNull() ) {
+        cout << filename.toStdString() << endl;
+
+        ofstream fs(filename.toStdString());
+        fs << getNumNodos() << endl;
+        fs << getNodoInicial() << endl;
+        fs << getNodosFinales() << endl;
+        for(int i = 0; i < getInicios()->size(); i++) {
+            if(!getCheckBoxBorrar()->at(i)->isChecked())
+                fs << getInicios()->at(i)->text().toStdString() << " " << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << endl;
+        }
+        fs.close();
+        slotCancelar();
     }
-    fs.close();
-    slotCancelar();
 }
 
 void CAsistenteCodificacion::slotHelp() {
 
-    QWidget window;
-    QHBoxLayout* a = new QHBoxLayout();
-    QLabel* aux = new QLabel();
-    QImage myImage;
-    myImage.load("/home/ivan/Documentos/Codigo-TFG/images/infoAsistente.png");
-    QImage image = myImage.scaled(aux->width(), aux->height(), Qt::IgnoreAspectRatio );
+    //Creo una ventana que tenga la imagen infoAsistente
+    QWidget* window = new QWidget(); QHBoxLayout* a = new QHBoxLayout();
+    QLabel* aux = new QLabel(); QImage myImage;
 
-    aux->setPixmap(QPixmap::fromImage(image));
+    myImage.load("/home/ivan/Documentos/Codigo-TFG/images/infoAsistente.png");
+    aux->setPixmap(QPixmap::fromImage(myImage));
     a->addWidget(aux);
 
-    window.setLayout(a);
-    window.resize(320, 240);
-    window.show();
-    window.setWindowTitle("Ayuda del asistente");
-    cout << "HELP " << endl;
-
+    window->setLayout(a);
+    window->setStyleSheet("background-color: black;");
+    window->setWindowTitle("Ayuda del asistente");
+    this->setFixedSize(this->width(), this->height());
+    window->show();
 }
 
 void CAsistenteCodificacion::slotCambiar(int i) {
