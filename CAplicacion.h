@@ -25,6 +25,7 @@ private:
     QAction* actionAbrirImagen_;
     QAction* actionAbrirFichero_;
     QAction* actionAbout_;
+    QAction* actionAboutQT_;
     QAction* actionSalir_;
     //Proceso paso a paso
     QAction* actionDetectarLineas_;
@@ -78,6 +79,7 @@ private:
     QAction* getActionAbrirImagen();
     QAction* getActionAbrirFichero();
     QAction* getActionAbout();
+    QAction* getActionAboutQT();
     QAction* getActionSalir();
     QAction* getActionDetectarLineas();
     QAction* getActionDetectarCirculos();
@@ -98,6 +100,7 @@ public slots:
     void slotAbrirImagen();
     void slotAbrirFichero();
     void slotAbout();
+    void slotAboutQT();
     void slotSalir();
 
     void slotDetectarLineas();

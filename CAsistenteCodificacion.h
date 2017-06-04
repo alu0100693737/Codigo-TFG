@@ -11,6 +11,7 @@
 #include <QtWidgets>
 #include <QGroupBox>
 #include <QHBoxLayout>
+#include <QPixmap>
 #include "CPushButton.h"
 #include "CLabel.h"
 #include "CLineEdit.h"
@@ -68,6 +69,8 @@ public:
     CPushButton* getAceptar();
     CPushButton* getCancelar();
     CPushButton* getHelp();
+
+    void ventanaInfoCodificacion( string text);
 
 public slots:
     void slotCancelar();

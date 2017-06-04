@@ -164,9 +164,8 @@ void CAsistenteCodificacion::slotCancelar() {
 }
 
 void CAsistenteCodificacion::slotAceptar() {
+    setStyleSheet("background-color: white;");
     QFileDialog dialogFile(this, tr("Guardar Codificacion"));
-    dialogFile.setStyleSheet("background-color: white;");
-
     dialogFile.setDefaultSuffix(".txt");
 
     QString filename = dialogFile.getSaveFileName(
@@ -187,8 +186,25 @@ void CAsistenteCodificacion::slotAceptar() {
                 fs << getInicios()->at(i)->text().toStdString() << " " << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << endl;
         }
         fs.close();
+
+        string text;
+        string line;
+        ifstream myfile (filename.toStdString());
+          if (myfile.is_open())
+          {
+            while ( getline (myfile,line) )
+            {
+                text += line;
+                text += "\n";
+              cout << line << endl;
+            }
+            myfile.close();
+          }
+        ventanaInfoCodificacion(text);
         slotCancelar();
-    }
+    }   else
+            setStyleSheet("background-color: rgba(220, 220, 220, 1);");
+
 }
 
 void CAsistenteCodificacion::slotHelp() {
@@ -213,4 +229,32 @@ void CAsistenteCodificacion::slotCambiar(int i) {
     getInicios()->at(i)->setText(getDestinos()->at(i)->text());
     getDestinos()->at(i)->setText(aux);
     cout << "heys" << endl;
+}
+
+void CAsistenteCodificacion::ventanaInfoCodificacion(string text) {
+    //Creamos una ventana abriendo la codificacion hecha
+      QWidget* window = new QWidget(); QBoxLayout* layout = new QBoxLayout(QBoxLayout::TopToBottom);
+      QLabel* label = new QLabel();
+      label->setText(QString::fromStdString(text));
+      QFont f( "Arial", 14, QFont::Bold);
+      label->setFont( f);
+      layout->setAlignment(Qt::AlignCenter);
+      layout->addWidget(label);
+      window->setStyleSheet("color: white; background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c); border-width: 1px;"
+                            "border-color: #339;"
+                            "border-style: solid;"
+                            "border-radius: 7;"
+                            "padding: 3px;"
+                            "margin-left: 20px;"
+                            "margin-right: 20px;"
+                            "padding-left: 5px;"
+                            "padding-right: 5px;");
+
+      window->setLayout(layout);
+      window->setWindowTitle("Codificacion");
+      window->setMinimumSize(240, 180);
+      window->setFixedWidth(240);
+      window->setStyleSheet("background-color: white");
+
+      window->show();
 }

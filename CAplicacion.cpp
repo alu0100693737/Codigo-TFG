@@ -42,6 +42,7 @@ CAplicacion::CAplicacion() {
     actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/abrir.png"), tr("Abrir Imagen"), this);
     actionAbrirFichero_     = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/fichero.png"), tr("Abrir Fichero"), this);
     actionAbout_            = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/about.png"), tr("About"), this);
+    actionAboutQT_          = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/aboutQT.png"), tr("About QT"), this);
     actionSalir_            = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/salir.png"), tr("Salir"), this);
     actionDetectarLineas_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/linea.png"), tr("Detectar Lineas"), this);
     actionDetectarCirculos_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/circulo.png"), tr("Detectar Circulos"), this);
@@ -72,6 +73,7 @@ CAplicacion::CAplicacion() {
     getMenuArchivo()->addAction(getActionAbrirImagen());
     getMenuArchivo()->addAction(getActionAbrirFichero());
     getMenuArchivo()->addAction(getActionAbout());
+    getMenuArchivo()->addAction(getActionAboutQT());
     getMenuArchivo()->addAction(getActionSalir());
     getMenuEditar()->addAction(getActionDetectarCirculos());
     getMenuEditar()->addAction(getActionDetectarLineas());
@@ -128,6 +130,7 @@ CAplicacion::CAplicacion() {
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
     connect(getActionAbrirFichero(), SIGNAL(triggered()),this,SLOT(slotAbrirFichero()));
     connect(getActionAbout(), SIGNAL(triggered()),this,SLOT(slotAbout()));
+    connect(getActionAboutQT(), SIGNAL(triggered()), this, SLOT(slotAboutQT()));
     connect(getActionSalir(), SIGNAL(triggered()), this, SLOT(slotSalir()));
     connect(getActionDetectarCirculos(), SIGNAL(triggered()), this, SLOT(slotDetectarCirculos()));
     connect(getActionDetectarLineas(), SIGNAL(triggered()), this, SLOT(slotDetectarLineas()));
@@ -159,6 +162,7 @@ void CAplicacion::slotAbrirImagen() {
 
 void CAplicacion::slotAbrirFichero() {
     QFileDialog dialog(this, tr("Abrir Fichero"));
+    dialog.setStyleSheet("background-color: white;");
     inicializarVentanaAbrirFichero(dialog, QFileDialog::AcceptOpen);
     while (dialog.exec() == QDialog::Accepted && !loadFileFichero(dialog.selectedFiles().first())) {}
 }
@@ -169,7 +173,8 @@ void CAplicacion::inicializarVentanaAbrirImagen(QFileDialog &dialog, QFileDialog
     if (firstDialog) {
         firstDialog = false;
         const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
-        dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
+        dialog.setD
+                irectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
     }
 
     QStringList mimeTypeFilters;
@@ -190,20 +195,8 @@ void CAplicacion::inicializarVentanaAbrirFichero(QFileDialog &dialog, QFileDialo
 
     if (firstDialog) {
         firstDialog = false;
-        const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
-        dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
-    }
-
-    QStringList mimeTypeFilters;
-    const QByteArrayList supportedMimeTypes = acceptMode == QFileDialog::AcceptOpen
-            ? QImageReader::supportedMimeTypes() : QImageWriter::supportedMimeTypes();
-    foreach (const QByteArray &mimeTypeName, supportedMimeTypes)
-        mimeTypeFilters.append(mimeTypeName);
-    mimeTypeFilters.sort();
-    dialog.setMimeTypeFilters(mimeTypeFilters);
-    dialog.selectMimeTypeFilter("text/txt");
-    if (acceptMode == QFileDialog::AcceptSave) {
-        dialog.setDefaultSuffix("txt");
+        const QStringList documentsLocations = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation);
+        dialog.setDirectory(documentsLocations.isEmpty() ? QDir::currentPath() : documentsLocations.last());
     }
 }
 
@@ -237,16 +230,14 @@ bool CAplicacion::loadFile(const QString &fileName) {
 
         getActionDetectarCirculos()->setDisabled(false);
         getActionProcesarImagen()->setDisabled(false);
-        /*getActionDetectarAutomata()->setDisabled(false); //Habilitamos la posibilidad de detectar automata
-        getActionDetectarTransiciones()->setDisabled(false);
-        */
+
         getActionCargarImagenOriginal()->setDisabled(false);
-        /*        getActionCodificarImagen()->setDisabled(true);*/
         return true;
     }
 }
 
 bool CAplicacion::loadFileFichero(const QString &fileName) {
+
     QImageReader reader(fileName);
     setPathImagenActual(fileName); //Introduciendo la path de la imagen actual cargada
     //cout << "File name: " << fileName.toUtf8().constData() << endl;
@@ -283,6 +274,12 @@ void CAplicacion::slotAbout() {
     mensaje.exec();
 }
 
+void CAplicacion::slotAboutQT() {
+    setStyleSheet("background-color:white");
+    QMessageBox::aboutQt(this, "About QT");
+    setStyleSheet("background-color:black");
+}
+
 void CAplicacion::slotSalir() {
     exit(0);
 }
@@ -314,7 +311,6 @@ void CAplicacion::slotDetectarLineas() {
 }
 
 void CAplicacion::slotDetectarTransiciones() {
-
     getActionProcesarImagen()->setEnabled(true);
     // CDetectarTransiciones* prueba = new CDetectarTransiciones();
     Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
@@ -341,25 +337,9 @@ void CAplicacion::slotCodificarImagen() {
         mensaje.exec();
     } else {
         if(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() == 0)
-                slotDetectarTransiciones();
+            slotDetectarTransiciones();
         getOperacionesImagen()->codificarDeteccion(getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData());
     }
-    //Mat aux3 = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-    //imshow("", aux3);
-    //waitKey(0);
-    /*
-     *         char cadena[128];
-        QString aux;
-        ifstream fe("/home/ivan/Documentos/Codigo-TFG/codificaciones/codificacion.txt");
-        while (!fe.eof()) {
-            fe.getline (cadena, 256);
-            aux.append("\n");
-            aux.append(cadena);
-            cout << cadena;
-        }
-        fe.close();
-
-        getPanelHistograma()->setText(aux);*/
 }
 
 void CAplicacion::slotProcesarImagen() {
@@ -539,6 +519,10 @@ QAction* CAplicacion::getActionAbrirFichero() {
 
 QAction* CAplicacion::getActionAbout() {
     return actionAbout_;
+}
+
+QAction* CAplicacion::getActionAboutQT() {
+    return actionAboutQT_;
 }
 
 QAction* CAplicacion::getActionSalir() {
