@@ -1,17 +1,84 @@
 \hypertarget{classCDetectarCirculo}{}\section{C\+Detectar\+Circulo Class Reference}
 \label{classCDetectarCirculo}\index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
+
+
+{\ttfamily \#include $<$C\+Detectar\+Circulos.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-Mat {\bfseries iniciar\+Deteccion} (Mat imagen, int cannythreshold, int accumulatorthreshold)\hypertarget{classCDetectarCirculo_a649c9f3888f669032bd3811c902d0ef9}{}\label{classCDetectarCirculo_a649c9f3888f669032bd3811c902d0ef9}
-
+\hyperlink{classCDetectarCirculo_a1afdf8a823810d47823414ebcb6850a9}{C\+Detectar\+Circulo} ()
 \item 
-vector$<$ Vec3f $>$ {\bfseries get\+Circulos\+Detectados} ()\hypertarget{classCDetectarCirculo_a6521238e2bf5be28294aa480ad0933ba}{}\label{classCDetectarCirculo_a6521238e2bf5be28294aa480ad0933ba}
-
+Mat \hyperlink{classCDetectarCirculo_a649c9f3888f669032bd3811c902d0ef9}{iniciar\+Deteccion} (Mat imagen, int cannythreshold, int accumulatorthreshold)
+\item 
+vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_a6521238e2bf5be28294aa480ad0933ba}{get\+Circulos\+Detectados} ()
 \end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_ad6b02b2bc1fbb78ce6d1c1a5d51522f6}{detectar\+Circulos} (const Mat \&imagen\+\_\+gray, int canny\+Threshold, int accumulator\+Threshold)
+\item 
+vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_adc8cdab3f0446334d56e9ac08b304639}{filtrar\+Circulos} (vector$<$ Vec3f $>$ circulos)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_afb2bd271bd772e489fe948caa80bb7b7}{circles}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
+\index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
+\subsubsection[{\texorpdfstring{C\+Detectar\+Circulo()}{CDetectarCirculo()}}]{\setlength{\rightskip}{0pt plus 5cm}C\+Detectar\+Circulo\+::\+C\+Detectar\+Circulo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCDetectarCirculo_a1afdf8a823810d47823414ebcb6850a9}{}\label{classCDetectarCirculo_a1afdf8a823810d47823414ebcb6850a9}
+
+
+\subsection{Member Function Documentation}
+\index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!detectar\+Circulos@{detectar\+Circulos}}
+\index{detectar\+Circulos@{detectar\+Circulos}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
+\subsubsection[{\texorpdfstring{detectar\+Circulos(const Mat \&imagen\+\_\+gray, int canny\+Threshold, int accumulator\+Threshold)}{detectarCirculos(const Mat &imagen_gray, int cannyThreshold, int accumulatorThreshold)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec3f $>$ C\+Detectar\+Circulo\+::detectar\+Circulos (
+\begin{DoxyParamCaption}
+\item[{const Mat \&}]{imagen\+\_\+gray, }
+\item[{int}]{canny\+Threshold, }
+\item[{int}]{accumulator\+Threshold}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarCirculo_ad6b02b2bc1fbb78ce6d1c1a5d51522f6}{}\label{classCDetectarCirculo_ad6b02b2bc1fbb78ce6d1c1a5d51522f6}
+\index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!filtrar\+Circulos@{filtrar\+Circulos}}
+\index{filtrar\+Circulos@{filtrar\+Circulos}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
+\subsubsection[{\texorpdfstring{filtrar\+Circulos(vector$<$ Vec3f $>$ circulos)}{filtrarCirculos(vector< Vec3f > circulos)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec3f $>$ C\+Detectar\+Circulo\+::filtrar\+Circulos (
+\begin{DoxyParamCaption}
+\item[{vector$<$ Vec3f $>$}]{circulos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarCirculo_adc8cdab3f0446334d56e9ac08b304639}{}\label{classCDetectarCirculo_adc8cdab3f0446334d56e9ac08b304639}
+\index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!get\+Circulos\+Detectados@{get\+Circulos\+Detectados}}
+\index{get\+Circulos\+Detectados@{get\+Circulos\+Detectados}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
+\subsubsection[{\texorpdfstring{get\+Circulos\+Detectados()}{getCirculosDetectados()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec3f $>$ C\+Detectar\+Circulo\+::get\+Circulos\+Detectados (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCDetectarCirculo_a6521238e2bf5be28294aa480ad0933ba}{}\label{classCDetectarCirculo_a6521238e2bf5be28294aa480ad0933ba}
+\index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!iniciar\+Deteccion@{iniciar\+Deteccion}}
+\index{iniciar\+Deteccion@{iniciar\+Deteccion}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
+\subsubsection[{\texorpdfstring{iniciar\+Deteccion(\+Mat imagen, int cannythreshold, int accumulatorthreshold)}{iniciarDeteccion(Mat imagen, int cannythreshold, int accumulatorthreshold)}}]{\setlength{\rightskip}{0pt plus 5cm}Mat C\+Detectar\+Circulo\+::iniciar\+Deteccion (
+\begin{DoxyParamCaption}
+\item[{Mat}]{imagen, }
+\item[{int}]{cannythreshold, }
+\item[{int}]{accumulatorthreshold}
+\end{DoxyParamCaption}
+)}\hypertarget{classCDetectarCirculo_a649c9f3888f669032bd3811c902d0ef9}{}\label{classCDetectarCirculo_a649c9f3888f669032bd3811c902d0ef9}
+
+
+\subsection{Member Data Documentation}
+\index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!circles@{circles}}
+\index{circles@{circles}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
+\subsubsection[{\texorpdfstring{circles}{circles}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Vec3f$>$ C\+Detectar\+Circulo\+::circles\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarCirculo_afb2bd271bd772e489fe948caa80bb7b7}{}\label{classCDetectarCirculo_afb2bd271bd772e489fe948caa80bb7b7}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+Detectar\+Circulos.\+h\item 
-C\+Detectar\+Circulos.\+cpp\end{DoxyCompactItemize}
+\hyperlink{CDetectarCirculos_8h}{C\+Detectar\+Circulos.\+h}\item 
+\hyperlink{CDetectarCirculos_8cpp}{C\+Detectar\+Circulos.\+cpp}\end{DoxyCompactItemize}

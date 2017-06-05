@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['accumulatorthreshold_5f',['accumulatorThresHold_',['../classCPanelOpciones.html#a1d0f21eb4ba18ebcfd6068817f17bef2',1,'CPanelOpciones']]],
+  ['aceptar_5f',['aceptar_',['../classCAsistenteCodificacion.html#aef0570ce6c236522a0448a2f2eba39dd',1,'CAsistenteCodificacion']]],
+  ['actionabout_5f',['actionAbout_',['../classCAplicacion.html#ac42dda1caacc0506c7015c79fde8416f',1,'CAplicacion']]],
+  ['actionaboutqt_5f',['actionAboutQT_',['../classCAplicacion.html#af0ed23ead2d1c3aea79b724c3cb70249',1,'CAplicacion']]],
+  ['actionabrirfichero_5f',['actionAbrirFichero_',['../classCAplicacion.html#a4fa499b5119ad7bcc86f53ace963cbbd',1,'CAplicacion']]],
+  ['actionabrirficherocorrecto_5f',['actionAbrirFicheroCorrecto_',['../classCAplicacion.html#abd9f33aa366727875ab9c798e1a4695c',1,'CAplicacion']]],
+  ['actionabririmagen_5f',['actionAbrirImagen_',['../classCAplicacion.html#ac7f0a3871355c19d02bf87f36322cee7',1,'CAplicacion']]],
+  ['actioncargarimagenoriginal_5f',['actionCargarImagenOriginal_',['../classCAplicacion.html#a3768f71b55ac5e2d77fed775d8ebce74',1,'CAplicacion']]],
+  ['actioncodificarimagen_5f',['actionCodificarImagen_',['../classCAplicacion.html#a06464c87dd4924cc8bb92f946239f603',1,'CAplicacion']]],
+  ['actiondetectarcirculos_5f',['actionDetectarCirculos_',['../classCAplicacion.html#ab4c2fb6ecc5d7c21a1f181f0f0af2830',1,'CAplicacion']]],
+  ['actiondetectarlineas_5f',['actionDetectarLineas_',['../classCAplicacion.html#a5b6d0af534cc0f64dfb7598faa30f3ae',1,'CAplicacion']]],
+  ['actiondetectartransiciones_5f',['actionDetectarTransiciones_',['../classCAplicacion.html#acda82e41d91a94e32bbfa21965338f5a',1,'CAplicacion']]],
+  ['actionfiltrogaussiano_5f',['actionFiltroGaussiano_',['../classCAplicacion.html#ae6827414fe74e31b2216ec04f61ad21f',1,'CAplicacion']]],
+  ['actionfiltrogray_5f',['actionFiltroGray_',['../classCAplicacion.html#a62326cfe231c222d4d3411b4f9a5fc81',1,'CAplicacion']]],
+  ['actionfiltrolaplaciano_5f',['actionFiltroLaplaciano_',['../classCAplicacion.html#ad1cce3c330ee913f1129d19bba5f22f0',1,'CAplicacion']]],
+  ['actionfiltromediana_5f',['actionFiltroMediana_',['../classCAplicacion.html#a7121918f17fc9640c91f26961f7ee221',1,'CAplicacion']]],
+  ['actionfiltrosobel_5f',['actionFiltroSobel_',['../classCAplicacion.html#a96511c94f6a4a6da0466d460272f56bf',1,'CAplicacion']]],
+  ['actionhistograma_5f',['actionHistograma_',['../classCAplicacion.html#a60f0707037ad02949ff17858729faff2',1,'CAplicacion']]],
+  ['actionprocesarimagen_5f',['actionProcesarImagen_',['../classCAplicacion.html#a9fa952c19f9da356432fae60a40cdced',1,'CAplicacion']]],
+  ['actionsalir_5f',['actionSalir_',['../classCAplicacion.html#ac878000751c05f9491a9de6671e6cde0',1,'CAplicacion']]],
+  ['alfabeto_5f',['alfabeto_',['../classCAplicacion.html#a2bc2fca932b919c027f2c4a35f837de0',1,'CAplicacion']]],
+  ['anadir_5f',['anadir_',['../classCAsistenteCodificacion.html#a42afd383b49f23e25fa26e1327dac06b',1,'CAsistenteCodificacion']]],
+  ['asistente_5f',['asistente_',['../classCOperacionesImagen.html#a25e6302fe48f708fa1bd20e11334e75f',1,'COperacionesImagen']]]
+];

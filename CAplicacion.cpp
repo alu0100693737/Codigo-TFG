@@ -22,6 +22,7 @@ CAplicacion::CAplicacion() {
     setPathImagenActual(NULL); //Path al principio = NULL
     setStyleSheet("background-color: rgba(0, 0, 0, 0);");
 
+    /// Creamos los Paneles de la Aplicacion y su disposicion
     panelPrincipal_ = new CLabel("Panel Principal", true);
 
     Mat aux = imread("/home/ivan/Documentos/Codigo-TFG/images/cartel.png", IMREAD_UNCHANGED);
@@ -44,7 +45,7 @@ CAplicacion::CAplicacion() {
     getLayout()->addWidget (getPanelOpciones(), 4, 0, 1, 4);
     getLayout()->addWidget (getPanelHistograma(), 4, 4, 1, 1);
 
-    //MENU
+    /// Creamos el Menu
     menu_                   = this->menuBar();//w QMenuBar(centralWidget);
     menuArchivo_            = new QMenu("Archivo");
     menuEditar_             = new QMenu("Edicion");
@@ -73,8 +74,6 @@ CAplicacion::CAplicacion() {
     actionFiltroLaplaciano_ = new QAction(QIcon(""), tr("Filtro Laplaciano"), this);
     actionHistograma_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/histograma.png"), tr("Histograma"), this);
 
-
-    //QAction* prueba = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/abrir.png"), tr("Abrir Imagen"), this);
     getActionDetectarLineas()->setDisabled(true); //Hasta que no se cargue una imagen
     getActionDetectarCirculos()->setDisabled(true);
     getActionDetectarTransiciones()->setDisabled(true);
@@ -84,7 +83,7 @@ CAplicacion::CAplicacion() {
 
     getActionAbrirFicheroCorrecto()->setDisabled(true);
 
-    //Shortcuts
+    ///Shortcuts
     getActionAbrirImagen()->setShortcuts(QKeySequence::New);
     getActionSalir()->setShortcut(QKeySequence::Close);
 
@@ -119,7 +118,7 @@ CAplicacion::CAplicacion() {
     setMinimumSize(900, 700);
     setWindowTitle("Automatas y Lenguajes Formales, TFG");
 
-    //Toolbar
+    ///Añadimos Toolbar
     toolbar_ = new QToolBar(this);
     getToolBar()->addAction(getActionAbrirImagen());
     getToolBar()->addAction(getActionAbrirFichero());
@@ -148,7 +147,7 @@ CAplicacion::CAplicacion() {
     this->getToolBar()->addWidget(getNodosFinales());
     this->getToolBar()->addWidget(getAlfabetoActual());
 
-    //conexiones con slots
+    ///conexiones con slots
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
     connect(getActionAbrirFichero(), SIGNAL(triggered()),this,SLOT(slotAbrirFichero()));
     connect(getActionAbout(), SIGNAL(triggered()),this,SLOT(slotAbout()));
@@ -235,7 +234,7 @@ bool CAplicacion::loadFile(const QString &fileName) {
                                  .arg(QDir::toNativeSeparators(fileName), reader.errorString()));
         return false;
     } else {
-        //si leemos un jpg, lo convertimos a png guardamos y la cargamos, no borramos la jpg
+        ///Si se lee un jpg, se convierte a png guardamos y la cargamos, no borramos la jpg
         if(getPathImagenActual().endsWith(".jpg")) {
             Mat aux1 = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
             setPathImagenActual(getPathImagenActual().remove(getPathImagenActual().size() - 4, 4));
@@ -260,16 +259,16 @@ bool CAplicacion::loadFile(const QString &fileName) {
 }
 
 QString CAplicacion::ventanaAbrirFichero()  {
-    //Creamos ventana
+    ///Creamos ventana
     QFileDialog* window = new QFileDialog();
 
-    //Cargamos el directorio por defecto
+    ///Cargamos el directorio por defecto
     const QStringList documentsLocations = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation);
     window->setDirectory(documentsLocations.isEmpty() ? QDir::currentPath() : documentsLocations.last());
 
     setStyleSheet("background-color: white");
 
-    //Cargamos el fichero txt
+    ///Cargamos la ventana con filtro txt
     QString fileName1 = window->getOpenFileName(this,tr("Abrir Codificación"), "", tr("Text Files (*.txt)"));
     QFile file1(fileName1);
     if(!file1.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -331,7 +330,7 @@ void CAplicacion::slotDetectarLineas() {
 
 void CAplicacion::slotDetectarTransiciones() {
     getActionProcesarImagen()->setEnabled(true);
-    // CDetectarTransiciones* prueba = new CDetectarTransiciones();
+
     Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
     Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
 
@@ -425,6 +424,7 @@ void CAplicacion::slotHistograma() {
 }
 
 void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
+    ///Se consideran los distintos pasos de deteccion que pueda tener la imagen aplicados
     getPanelOpciones()->getValorCannyThresHold()->setText(QString::number(getPanelOpciones()->getCannyThresHold()->value()));
     getPanelOpciones()->getValorAccumulatorThresHold()->setText(QString::number(getPanelOpciones()->getAccumulatorThresHold()->value()));
     getPanelOpciones()->getValorHoughLinesP()->setText(QString::number(getPanelOpciones()->getHoughLinesP()->value()));
@@ -478,8 +478,8 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
                           2);
         }
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
-    } else {  //No deberia ocurrir nada
-        cout << "No debe ocurrir " << endl;
+    } else {
+        cout << "Error!, No debe ocurrir " << endl;
     }
 }
 
@@ -621,7 +621,6 @@ QAction* CAplicacion::getActionHistograma() {
     return actionHistograma_;
 }
 
-//OPERACIONES CON LA IMAGEN
 COperacionesImagen* CAplicacion::getOperacionesImagen() {
     return operacionesImagen_;
 }

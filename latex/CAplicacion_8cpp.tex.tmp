@@ -1,0 +1,9 @@
+\hypertarget{CAplicacion_8cpp}{}\section{C\+Aplicacion.\+cpp File Reference}
+\label{CAplicacion_8cpp}\index{C\+Aplicacion.\+cpp@{C\+Aplicacion.\+cpp}}
+{\ttfamily \#include \char`\"{}C\+Aplicacion.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}opencv2/imgcodecs.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}opencv2/imgproc.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}opencv2/opencv.\+hpp\char`\"{}}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+Include dependency graph for C\+Aplicacion.\+cpp\+:
+% FIG 0

@@ -85,33 +85,321 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classCDetectarLineas-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CDetectarLineas Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="CDetectarLineas_8h_source.html">CDetectarLineas.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8380e777f5cac60aae54ac0cf13b7246"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8380e777f5cac60aae54ac0cf13b7246"></a>
-Mat&#160;</td><td class="memItemRight" valign="bottom"><b>iniciarDeteccion</b> (Mat imagen, int houghprobabilistico)</td></tr>
+<tr class="memitem:a4a48d20f23a63a2a0202a316317e0801"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#a4a48d20f23a63a2a0202a316317e0801">CDetectarLineas</a> ()</td></tr>
+<tr class="separator:a4a48d20f23a63a2a0202a316317e0801"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8380e777f5cac60aae54ac0cf13b7246"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#a8380e777f5cac60aae54ac0cf13b7246">iniciarDeteccion</a> (Mat imagen, int houghprobabilistico)</td></tr>
 <tr class="separator:a8380e777f5cac60aae54ac0cf13b7246"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3c473d7e85a3c4901870af10ff9d5ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3c473d7e85a3c4901870af10ff9d5ed"></a>
-vector&lt; Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getLineasDetectadas</b> ()</td></tr>
+<tr class="memitem:ad3c473d7e85a3c4901870af10ff9d5ed"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#ad3c473d7e85a3c4901870af10ff9d5ed">getLineasDetectadas</a> ()</td></tr>
 <tr class="separator:ad3c473d7e85a3c4901870af10ff9d5ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7493ac0d73201a7c9188f8a283b6a88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7493ac0d73201a7c9188f8a283b6a88"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>distanciaEuclidea</b> (int a, int b)</td></tr>
+<tr class="memitem:ad7493ac0d73201a7c9188f8a283b6a88"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#ad7493ac0d73201a7c9188f8a283b6a88">distanciaEuclidea</a> (int a, int b)</td></tr>
 <tr class="separator:ad7493ac0d73201a7c9188f8a283b6a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe5bf1860071f33e7339742fd88e6e78"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe5bf1860071f33e7339742fd88e6e78"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>distanciaEuclidea</b> (int a, int b, bool mostrar)</td></tr>
+<tr class="memitem:abe5bf1860071f33e7339742fd88e6e78"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#abe5bf1860071f33e7339742fd88e6e78">distanciaEuclidea</a> (int a, int b, bool mostrar)</td></tr>
 <tr class="separator:abe5bf1860071f33e7339742fd88e6e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88fe565263283487188f7c032a661d2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88fe565263283487188f7c032a661d2f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>distanciaEuclidea</b> (Point a, Point b)</td></tr>
+<tr class="memitem:a88fe565263283487188f7c032a661d2f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#a88fe565263283487188f7c032a661d2f">distanciaEuclidea</a> (Point a, Point b)</td></tr>
 <tr class="separator:a88fe565263283487188f7c032a661d2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ae70b53c9bf1434cb25e267ea3ab62c63"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#ae70b53c9bf1434cb25e267ea3ab62c63">detectarLineas</a> (const Mat &amp;src_gray, int houghprobabilistico)</td></tr>
+<tr class="separator:ae70b53c9bf1434cb25e267ea3ab62c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae99dee16338d0e71669d23208e4176de"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#ae99dee16338d0e71669d23208e4176de">HoughProbabilistico</a> (Mat, int, void *, int houghprobabilistico)</td></tr>
+<tr class="separator:ae99dee16338d0e71669d23208e4176de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89b7e5edd431909abd180f059f6abd0f"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#a89b7e5edd431909abd180f059f6abd0f">filtrarLineas</a> (vector&lt; Vec4i &gt; &amp;lineas)</td></tr>
+<tr class="separator:a89b7e5edd431909abd180f059f6abd0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1aab2cfd627e2d3eef1650837ab61436"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#a1aab2cfd627e2d3eef1650837ab61436">lineasEncontradas</a></td></tr>
+<tr class="separator:a1aab2cfd627e2d3eef1650837ab61436"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a4a48d20f23a63a2a0202a316317e0801"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDetectarLineas::CDetectarLineas </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ae70b53c9bf1434cb25e267ea3ab62c63"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; Vec4i &gt; CDetectarLineas::detectarLineas </td>
+          <td>(</td>
+          <td class="paramtype">const Mat &amp;&#160;</td>
+          <td class="paramname"><em>src_gray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>houghprobabilistico</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Deteccion de bordes</p>
+<p>Deteccion de lineas </p>
+
+</div>
+</div>
+<a class="anchor" id="ad7493ac0d73201a7c9188f8a283b6a88"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDetectarLineas::distanciaEuclidea </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abe5bf1860071f33e7339742fd88e6e78"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDetectarLineas::distanciaEuclidea </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>mostrar</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a88fe565263283487188f7c032a661d2f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDetectarLineas::distanciaEuclidea </td>
+          <td>(</td>
+          <td class="paramtype">Point&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Point&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a89b7e5edd431909abd180f059f6abd0f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; Vec4i &gt; CDetectarLineas::filtrarLineas </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; Vec4i &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lineas</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Filtramos la Continuacion de lineas en la coordenada X </p>
+
+</div>
+</div>
+<a class="anchor" id="ad3c473d7e85a3c4901870af10ff9d5ed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; Vec4i &gt; CDetectarLineas::getLineasDetectadas </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae99dee16338d0e71669d23208e4176de"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; Vec4i &gt; CDetectarLineas::HoughProbabilistico </td>
+          <td>(</td>
+          <td class="paramtype">Mat&#160;</td>
+          <td class="paramname"><em>edges</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>houghprobabilistico</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Convertimos la imagen a BGR</p>
+<p>Usamos la transformada de Hough probabilistica</p>
+<p>Filtramos las lineas, duplicaciones </p>
+
+</div>
+</div>
+<a class="anchor" id="a8380e777f5cac60aae54ac0cf13b7246"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mat CDetectarLineas::iniciarDeteccion </td>
+          <td>(</td>
+          <td class="paramtype">Mat&#160;</td>
+          <td class="paramname"><em>imagen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>houghprobabilistico</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a1aab2cfd627e2d3eef1650837ab61436"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;Vec4i&gt; CDetectarLineas::lineasEncontradas</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="CDetectarLineas_8h_source.html">CDetectarLineas.h</a></li>
-<li>CDetectarLineas.cpp</li>
+<li><a class="el" href="CDetectarLineas_8cpp.html">CDetectarLineas.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

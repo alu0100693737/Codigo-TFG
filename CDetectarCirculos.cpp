@@ -14,16 +14,17 @@ CDetectarCirculo::CDetectarCirculo() {
 }
 
 Mat CDetectarCirculo::iniciarDeteccion(Mat imagen, int cannythreshold, int accumulatorthreshold) {
-    //Escala de grises
+    ///Se convierte la imagen a Escala de grises
     Mat src_gray;
     cvtColor(imagen, src_gray, COLOR_BGR2GRAY );
 
-    //Reducción de ruido para la deteccion de circulos
+    ///Reducción de ruido mediante filtro Gaussiano
     GaussianBlur( src_gray, src_gray, Size(9, 9), 2, 2 );
+    ///Se aplica la funcion detectarCirculos
     circles = detectarCirculos(src_gray, cannythreshold, accumulatorthreshold); //canny entre 26 y 118, acumulator 45
 
     cout << "Hay " << getCirculosDetectados().size() << " circulos en la imagen"<< endl;
-    //Dibujamos circulos sobre la imagen original
+    ///Dibujamos lo encontrado sobre la imagen original
     for( size_t i = 0; i < getCirculosDetectados().size(); i++ ) {
 
         Point center(cvRound(circles[i][0]), cvRound(circles[i][1])); //x y
@@ -34,7 +35,7 @@ Mat CDetectarCirculo::iniciarDeteccion(Mat imagen, int cannythreshold, int accum
         //circunferencia
         circle( imagen, center, radius, Scalar(0,0,255), 3, 8, 0 );
 
-        //Dibujamos el num del circulo en la imagen
+        ///Dibujamos el num del circulo en la imagen
         stringstream ss;
         ss << i;
         string text = ss.str();
@@ -43,8 +44,6 @@ Mat CDetectarCirculo::iniciarDeteccion(Mat imagen, int cannythreshold, int accum
         int thickness = 2;
         cv::putText(imagen, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
     }
-
-    //imshow("HOLA", imagen);
     return imagen;
 }
 
@@ -52,7 +51,7 @@ vector<Vec3f> CDetectarCirculo::detectarCirculos(const Mat& src_gray, int cannyT
     // resultados de la deteccion de circulos
     vector<Vec3f> circl; // posicion (x y) y radio
 
-    /*
+    /**
      * Aplicamos la transformada de Hought para la deteccion de circulos
      * Recordar, metodo HOUGH_Gradient, el unico que esta implementado actualmente
      * 1, misma resolucion

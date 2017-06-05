@@ -1,26 +1,131 @@
 \hypertarget{classCDetectarLineas}{}\section{C\+Detectar\+Lineas Class Reference}
 \label{classCDetectarLineas}\index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+
+
+{\ttfamily \#include $<$C\+Detectar\+Lineas.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-Mat {\bfseries iniciar\+Deteccion} (Mat imagen, int houghprobabilistico)\hypertarget{classCDetectarLineas_a8380e777f5cac60aae54ac0cf13b7246}{}\label{classCDetectarLineas_a8380e777f5cac60aae54ac0cf13b7246}
-
+\hyperlink{classCDetectarLineas_a4a48d20f23a63a2a0202a316317e0801}{C\+Detectar\+Lineas} ()
 \item 
-vector$<$ Vec4i $>$ {\bfseries get\+Lineas\+Detectadas} ()\hypertarget{classCDetectarLineas_ad3c473d7e85a3c4901870af10ff9d5ed}{}\label{classCDetectarLineas_ad3c473d7e85a3c4901870af10ff9d5ed}
-
+Mat \hyperlink{classCDetectarLineas_a8380e777f5cac60aae54ac0cf13b7246}{iniciar\+Deteccion} (Mat imagen, int houghprobabilistico)
 \item 
-int {\bfseries distancia\+Euclidea} (int a, int b)\hypertarget{classCDetectarLineas_ad7493ac0d73201a7c9188f8a283b6a88}{}\label{classCDetectarLineas_ad7493ac0d73201a7c9188f8a283b6a88}
-
+vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_ad3c473d7e85a3c4901870af10ff9d5ed}{get\+Lineas\+Detectadas} ()
 \item 
-int {\bfseries distancia\+Euclidea} (int a, int b, bool mostrar)\hypertarget{classCDetectarLineas_abe5bf1860071f33e7339742fd88e6e78}{}\label{classCDetectarLineas_abe5bf1860071f33e7339742fd88e6e78}
-
+int \hyperlink{classCDetectarLineas_ad7493ac0d73201a7c9188f8a283b6a88}{distancia\+Euclidea} (int a, int b)
 \item 
-int {\bfseries distancia\+Euclidea} (Point a, Point b)\hypertarget{classCDetectarLineas_a88fe565263283487188f7c032a661d2f}{}\label{classCDetectarLineas_a88fe565263283487188f7c032a661d2f}
-
+int \hyperlink{classCDetectarLineas_abe5bf1860071f33e7339742fd88e6e78}{distancia\+Euclidea} (int a, int b, bool mostrar)
+\item 
+int \hyperlink{classCDetectarLineas_a88fe565263283487188f7c032a661d2f}{distancia\+Euclidea} (Point a, Point b)
 \end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_ae70b53c9bf1434cb25e267ea3ab62c63}{detectar\+Lineas} (const Mat \&src\+\_\+gray, int houghprobabilistico)
+\item 
+vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_ae99dee16338d0e71669d23208e4176de}{Hough\+Probabilistico} (Mat, int, void $\ast$, int houghprobabilistico)
+\item 
+vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_a89b7e5edd431909abd180f059f6abd0f}{filtrar\+Lineas} (vector$<$ Vec4i $>$ \&lineas)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_a1aab2cfd627e2d3eef1650837ab61436}{lineas\+Encontradas}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+\index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+\subsubsection[{\texorpdfstring{C\+Detectar\+Lineas()}{CDetectarLineas()}}]{\setlength{\rightskip}{0pt plus 5cm}C\+Detectar\+Lineas\+::\+C\+Detectar\+Lineas (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCDetectarLineas_a4a48d20f23a63a2a0202a316317e0801}{}\label{classCDetectarLineas_a4a48d20f23a63a2a0202a316317e0801}
+
+
+\subsection{Member Function Documentation}
+\index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!detectar\+Lineas@{detectar\+Lineas}}
+\index{detectar\+Lineas@{detectar\+Lineas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+\subsubsection[{\texorpdfstring{detectar\+Lineas(const Mat \&src\+\_\+gray, int houghprobabilistico)}{detectarLineas(const Mat &src_gray, int houghprobabilistico)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec4i $>$ C\+Detectar\+Lineas\+::detectar\+Lineas (
+\begin{DoxyParamCaption}
+\item[{const Mat \&}]{src\+\_\+gray, }
+\item[{int}]{houghprobabilistico}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarLineas_ae70b53c9bf1434cb25e267ea3ab62c63}{}\label{classCDetectarLineas_ae70b53c9bf1434cb25e267ea3ab62c63}
+Deteccion de bordes
+
+Deteccion de lineas \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!distancia\+Euclidea@{distancia\+Euclidea}}
+\index{distancia\+Euclidea@{distancia\+Euclidea}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+\subsubsection[{\texorpdfstring{distancia\+Euclidea(int a, int b)}{distanciaEuclidea(int a, int b)}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Detectar\+Lineas\+::distancia\+Euclidea (
+\begin{DoxyParamCaption}
+\item[{int}]{a, }
+\item[{int}]{b}
+\end{DoxyParamCaption}
+)}\hypertarget{classCDetectarLineas_ad7493ac0d73201a7c9188f8a283b6a88}{}\label{classCDetectarLineas_ad7493ac0d73201a7c9188f8a283b6a88}
+\index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!distancia\+Euclidea@{distancia\+Euclidea}}
+\index{distancia\+Euclidea@{distancia\+Euclidea}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+\subsubsection[{\texorpdfstring{distancia\+Euclidea(int a, int b, bool mostrar)}{distanciaEuclidea(int a, int b, bool mostrar)}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Detectar\+Lineas\+::distancia\+Euclidea (
+\begin{DoxyParamCaption}
+\item[{int}]{a, }
+\item[{int}]{b, }
+\item[{bool}]{mostrar}
+\end{DoxyParamCaption}
+)}\hypertarget{classCDetectarLineas_abe5bf1860071f33e7339742fd88e6e78}{}\label{classCDetectarLineas_abe5bf1860071f33e7339742fd88e6e78}
+\index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!distancia\+Euclidea@{distancia\+Euclidea}}
+\index{distancia\+Euclidea@{distancia\+Euclidea}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+\subsubsection[{\texorpdfstring{distancia\+Euclidea(\+Point a, Point b)}{distanciaEuclidea(Point a, Point b)}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Detectar\+Lineas\+::distancia\+Euclidea (
+\begin{DoxyParamCaption}
+\item[{Point}]{a, }
+\item[{Point}]{b}
+\end{DoxyParamCaption}
+)}\hypertarget{classCDetectarLineas_a88fe565263283487188f7c032a661d2f}{}\label{classCDetectarLineas_a88fe565263283487188f7c032a661d2f}
+\index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!filtrar\+Lineas@{filtrar\+Lineas}}
+\index{filtrar\+Lineas@{filtrar\+Lineas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+\subsubsection[{\texorpdfstring{filtrar\+Lineas(vector$<$ Vec4i $>$ \&lineas)}{filtrarLineas(vector< Vec4i > &lineas)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec4i $>$ C\+Detectar\+Lineas\+::filtrar\+Lineas (
+\begin{DoxyParamCaption}
+\item[{vector$<$ Vec4i $>$ \&}]{lineas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarLineas_a89b7e5edd431909abd180f059f6abd0f}{}\label{classCDetectarLineas_a89b7e5edd431909abd180f059f6abd0f}
+Filtramos la Continuacion de lineas en la coordenada X \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!get\+Lineas\+Detectadas@{get\+Lineas\+Detectadas}}
+\index{get\+Lineas\+Detectadas@{get\+Lineas\+Detectadas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+\subsubsection[{\texorpdfstring{get\+Lineas\+Detectadas()}{getLineasDetectadas()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec4i $>$ C\+Detectar\+Lineas\+::get\+Lineas\+Detectadas (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCDetectarLineas_ad3c473d7e85a3c4901870af10ff9d5ed}{}\label{classCDetectarLineas_ad3c473d7e85a3c4901870af10ff9d5ed}
+\index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!Hough\+Probabilistico@{Hough\+Probabilistico}}
+\index{Hough\+Probabilistico@{Hough\+Probabilistico}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+\subsubsection[{\texorpdfstring{Hough\+Probabilistico(\+Mat, int, void $\ast$, int houghprobabilistico)}{HoughProbabilistico(Mat, int, void *, int houghprobabilistico)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec4i $>$ C\+Detectar\+Lineas\+::\+Hough\+Probabilistico (
+\begin{DoxyParamCaption}
+\item[{Mat}]{edges, }
+\item[{int}]{, }
+\item[{void $\ast$}]{, }
+\item[{int}]{houghprobabilistico}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarLineas_ae99dee16338d0e71669d23208e4176de}{}\label{classCDetectarLineas_ae99dee16338d0e71669d23208e4176de}
+Convertimos la imagen a B\+GR
+
+Usamos la transformada de Hough probabilistica
+
+Filtramos las lineas, duplicaciones \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!iniciar\+Deteccion@{iniciar\+Deteccion}}
+\index{iniciar\+Deteccion@{iniciar\+Deteccion}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+\subsubsection[{\texorpdfstring{iniciar\+Deteccion(\+Mat imagen, int houghprobabilistico)}{iniciarDeteccion(Mat imagen, int houghprobabilistico)}}]{\setlength{\rightskip}{0pt plus 5cm}Mat C\+Detectar\+Lineas\+::iniciar\+Deteccion (
+\begin{DoxyParamCaption}
+\item[{Mat}]{imagen, }
+\item[{int}]{houghprobabilistico}
+\end{DoxyParamCaption}
+)}\hypertarget{classCDetectarLineas_a8380e777f5cac60aae54ac0cf13b7246}{}\label{classCDetectarLineas_a8380e777f5cac60aae54ac0cf13b7246}
+
+
+\subsection{Member Data Documentation}
+\index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!lineas\+Encontradas@{lineas\+Encontradas}}
+\index{lineas\+Encontradas@{lineas\+Encontradas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
+\subsubsection[{\texorpdfstring{lineas\+Encontradas}{lineasEncontradas}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Vec4i$>$ C\+Detectar\+Lineas\+::lineas\+Encontradas\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarLineas_a1aab2cfd627e2d3eef1650837ab61436}{}\label{classCDetectarLineas_a1aab2cfd627e2d3eef1650837ab61436}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+Detectar\+Lineas.\+h\item 
-C\+Detectar\+Lineas.\+cpp\end{DoxyCompactItemize}
+\hyperlink{CDetectarLineas_8h}{C\+Detectar\+Lineas.\+h}\item 
+\hyperlink{CDetectarLineas_8cpp}{C\+Detectar\+Lineas.\+cpp}\end{DoxyCompactItemize}

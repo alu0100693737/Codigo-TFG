@@ -2,6 +2,15 @@
 \label{classCAplicacion}\index{C\+Aplicacion@{C\+Aplicacion}}
 
 
+The \hyperlink{classCAplicacion}{C\+Aplicacion} class. Aplicacion con ventana principal de la aplicacion Consta de 3 Paneles. Principal, Opciones e Histograma Si se utiliza la funcionalidad Codificar, ese panel cambia de forma T\+E\+R\+M\+I\+N\+AR.  
+
+
+
+
+{\ttfamily \#include $<$C\+Aplicacion.\+h$>$}
+
+
+
 Inheritance diagram for C\+Aplicacion\+:
 % FIG 0
 
@@ -71,9 +80,14 @@ void {\bfseries slot\+Circulos\+Canny\+Accumulator\+Hough\+LinesP} ()\hypertarge
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-Q\+String {\bfseries get\+Path\+Imagen\+Actual} ()\hypertarget{classCAplicacion_a0cbd1aeb6fcbcc97bcb493acbaba6449}{}\label{classCAplicacion_a0cbd1aeb6fcbcc97bcb493acbaba6449}
+\hyperlink{classCAplicacion_a9b55c20439081bc5630b929b69c9fe36}{C\+Aplicacion} ()\hypertarget{classCAplicacion_a9b55c20439081bc5630b929b69c9fe36}{}\label{classCAplicacion_a9b55c20439081bc5630b929b69c9fe36}
 
-\item 
+\begin{DoxyCompactList}\small\item\em Contructor de la Clase \hyperlink{classCAplicacion}{C\+Aplicacion}. \end{DoxyCompactList}\item 
+\hyperlink{classCAplicacion_a823fdda955cdfe27062d58c692b81eaf}{$\sim$\+C\+Aplicacion} ()\hypertarget{classCAplicacion_a823fdda955cdfe27062d58c692b81eaf}{}\label{classCAplicacion_a823fdda955cdfe27062d58c692b81eaf}
+
+\begin{DoxyCompactList}\small\item\em Destructor de la Clase \hyperlink{classCAplicacion}{C\+Aplicacion}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{classCAplicacion_a0cbd1aeb6fcbcc97bcb493acbaba6449}{get\+Path\+Imagen\+Actual} ()
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve la Path Actual de la Imagen del Panel Principal. \end{DoxyCompactList}\item 
 void {\bfseries set\+Path\+Imagen\+Actual} (Q\+String new\+Path)\hypertarget{classCAplicacion_af698484a797b35e52d029ce88390368f}{}\label{classCAplicacion_af698484a797b35e52d029ce88390368f}
 
 \item 
@@ -176,6 +190,26 @@ Q\+Action $\ast$ {\bfseries get\+Action\+Histograma} ()\hypertarget{classCAplica
 \hyperlink{classCOperacionesImagen}{C\+Operaciones\+Imagen} $\ast$ {\bfseries get\+Operaciones\+Imagen} ()\hypertarget{classCAplicacion_acf0f5ed748482f7957bee4db4dadf840}{}\label{classCAplicacion_acf0f5ed748482f7957bee4db4dadf840}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classCAplicacion}{C\+Aplicacion} class. Aplicacion con ventana principal de la aplicacion Consta de 3 Paneles. Principal, Opciones e Histograma Si se utiliza la funcionalidad Codificar, ese panel cambia de forma T\+E\+R\+M\+I\+N\+AR. 
+
+\subsection{Member Function Documentation}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Path\+Imagen\+Actual@{get\+Path\+Imagen\+Actual}}
+\index{get\+Path\+Imagen\+Actual@{get\+Path\+Imagen\+Actual}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Path\+Imagen\+Actual()}{getPathImagenActual()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String C\+Aplicacion\+::get\+Path\+Imagen\+Actual (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a0cbd1aeb6fcbcc97bcb493acbaba6449}{}\label{classCAplicacion_a0cbd1aeb6fcbcc97bcb493acbaba6449}
+
+
+Metodo que devuelve la Path Actual de la Imagen del Panel Principal. 
+
+\begin{DoxyReturn}{Returns}
+Q\+String Path 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

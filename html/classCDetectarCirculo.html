@@ -85,24 +85,189 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classCDetectarCirculo-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CDetectarCirculo Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="CDetectarCirculos_8h_source.html">CDetectarCirculos.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a649c9f3888f669032bd3811c902d0ef9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a649c9f3888f669032bd3811c902d0ef9"></a>
-Mat&#160;</td><td class="memItemRight" valign="bottom"><b>iniciarDeteccion</b> (Mat imagen, int cannythreshold, int accumulatorthreshold)</td></tr>
+<tr class="memitem:a1afdf8a823810d47823414ebcb6850a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarCirculo.html#a1afdf8a823810d47823414ebcb6850a9">CDetectarCirculo</a> ()</td></tr>
+<tr class="separator:a1afdf8a823810d47823414ebcb6850a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a649c9f3888f669032bd3811c902d0ef9"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarCirculo.html#a649c9f3888f669032bd3811c902d0ef9">iniciarDeteccion</a> (Mat imagen, int cannythreshold, int accumulatorthreshold)</td></tr>
 <tr class="separator:a649c9f3888f669032bd3811c902d0ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6521238e2bf5be28294aa480ad0933ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6521238e2bf5be28294aa480ad0933ba"></a>
-vector&lt; Vec3f &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getCirculosDetectados</b> ()</td></tr>
+<tr class="memitem:a6521238e2bf5be28294aa480ad0933ba"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec3f &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarCirculo.html#a6521238e2bf5be28294aa480ad0933ba">getCirculosDetectados</a> ()</td></tr>
 <tr class="separator:a6521238e2bf5be28294aa480ad0933ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ad6b02b2bc1fbb78ce6d1c1a5d51522f6"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec3f &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarCirculo.html#ad6b02b2bc1fbb78ce6d1c1a5d51522f6">detectarCirculos</a> (const Mat &amp;imagen_gray, int cannyThreshold, int accumulatorThreshold)</td></tr>
+<tr class="separator:ad6b02b2bc1fbb78ce6d1c1a5d51522f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc8cdab3f0446334d56e9ac08b304639"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec3f &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarCirculo.html#adc8cdab3f0446334d56e9ac08b304639">filtrarCirculos</a> (vector&lt; Vec3f &gt; circulos)</td></tr>
+<tr class="separator:adc8cdab3f0446334d56e9ac08b304639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:afb2bd271bd772e489fe948caa80bb7b7"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec3f &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarCirculo.html#afb2bd271bd772e489fe948caa80bb7b7">circles</a></td></tr>
+<tr class="separator:afb2bd271bd772e489fe948caa80bb7b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a1afdf8a823810d47823414ebcb6850a9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDetectarCirculo::CDetectarCirculo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ad6b02b2bc1fbb78ce6d1c1a5d51522f6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; Vec3f &gt; CDetectarCirculo::detectarCirculos </td>
+          <td>(</td>
+          <td class="paramtype">const Mat &amp;&#160;</td>
+          <td class="paramname"><em>imagen_gray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cannyThreshold</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>accumulatorThreshold</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adc8cdab3f0446334d56e9ac08b304639"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; Vec3f &gt; CDetectarCirculo::filtrarCirculos </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; Vec3f &gt;&#160;</td>
+          <td class="paramname"><em>circulos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6521238e2bf5be28294aa480ad0933ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; Vec3f &gt; CDetectarCirculo::getCirculosDetectados </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a649c9f3888f669032bd3811c902d0ef9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mat CDetectarCirculo::iniciarDeteccion </td>
+          <td>(</td>
+          <td class="paramtype">Mat&#160;</td>
+          <td class="paramname"><em>imagen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cannythreshold</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>accumulatorthreshold</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="afb2bd271bd772e489fe948caa80bb7b7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;Vec3f&gt; CDetectarCirculo::circles</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="CDetectarCirculos_8h_source.html">CDetectarCirculos.h</a></li>
-<li>CDetectarCirculos.cpp</li>
+<li><a class="el" href="CDetectarCirculos_8cpp.html">CDetectarCirculos.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
