@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////
+//CDetectarTransiciones.h - Implementacion de la clase CDetectarTransiciones//
+//                                                                          //
+//               Autor: Iván García Campos                                  //
+//                                                                          //
+//            Proyecto de Trabajo Fin de Grado.                             //
+//                                                                          //
+//               Fecha: 05/06/2017                                          //
+//////////////////////////////////////////////////////////////////////////////
+
 #include "CDetectarTransiciones.h"
 
 CDetectarTransiciones::CDetectarTransiciones() {

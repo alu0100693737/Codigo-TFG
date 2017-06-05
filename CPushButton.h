@@ -14,6 +14,7 @@
 #include <iostream>
 using namespace std;
 
+/**Clase heredada de 'QPushButton' que aplica un estilo determinado a este tipo de container*/
 class CPushButton : public QPushButton {
 public:
     CPushButton(QString text);

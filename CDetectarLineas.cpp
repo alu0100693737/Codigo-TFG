@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////////////////
+//       CDetectarLineas.h - Implementacion de la clase CDetectarLineas   //
+//                                                                        //
+//               Autor: Iván García Campos                                //
+//                                                                        //
+//            Proyecto de Trabajo Fin de Grado.                           //
+//                                                                        //
+//               Fecha: 05/06/2017                                        //
+////////////////////////////////////////////////////////////////////////////
+
 #include "CDetectarLineas.h"
 
 CDetectarLineas::CDetectarLineas() {
@@ -26,27 +36,26 @@ Mat CDetectarLineas::iniciarDeteccion(Mat imagen, int houghprobabilistico) {
 vector<Vec4i> CDetectarLineas::detectarLineas(const Mat& src_gray, int houghprobabilistico) {
     Mat edges;
 
-    // Deteccion de bordes
+    /// Deteccion de bordes
     Canny( src_gray, edges, 50, 200, 3 );
 
-    //Deteccion de lineas
+    /// Deteccion de lineas
     return HoughProbabilistico(edges, 0, 0, houghprobabilistico);
 }
 
 vector<Vec4i> CDetectarLineas::HoughProbabilistico(Mat edges, int, void*, int houghprobabilistico) {
     Mat probabilistic_hough;
     vector<Vec4i> p_lines;
+
+    /// Convertimos la imagen a BGR
     cvtColor(edges, probabilistic_hough, COLOR_GRAY2BGR );
 
     /// Usamos la transformada de Hough probabilistica
     HoughLinesP( edges, p_lines, 1, CV_PI/180, houghprobabilistico, 30, 10 ); //70 cambiado a 80, longitudes mas largas
-    //p_lines guarda xstart y start x end y end
-    /*for(int i = 0; i < p_lines.size(); i++) {
-        cout << "Linea " << i << " con datos " << p_lines.at(i) << endl;
-    }*/
-    cout << "Lineas detectadas inicialmente: " << p_lines.size() << endl;
 
-    //filtramos las lineas, duplicaciones
+    //cout << "Lineas detectadas inicialmente: " << p_lines.size() << endl;
+
+    /// Filtramos las lineas, duplicaciones
     filtrarLineas(p_lines);
 
     //imshow("probabilistic", probabilistic_hough);
@@ -55,17 +64,14 @@ vector<Vec4i> CDetectarLineas::HoughProbabilistico(Mat edges, int, void*, int ho
 
 vector<Vec4i> CDetectarLineas::filtrarLineas(vector<Vec4i>& lineas) {
 
-    //for(int i = 0; i < lineas.size(); i++)
-    //    cout << "Linea " << i << " " << lineas.at(i) << endl;
+
     for(int i = 0; i < lineas.size() - 1; i++) {
         for(int j = i + 1; j < lineas.size(); j++) {
-            //if(i != j) {
             //0 x1 1 y1 2 x2 3 y2
 
-            //continuacion de lineas en X
+            /// Filtramos la Continuacion de lineas en la coordenada X
             if(distanciaEuclidea(lineas[i][2], lineas[j][0]) < DISTANCIAPIXELPRINCIPAL) {
-                if(distanciaEuclidea(lineas[i][3], lineas[j][1]) < DISTANCIAPIXELSECUNDARIO) {
-                    //cout << "cuidado" << endl;
+                if(distanciaEuclidea(lineas[i][3], lineas[j][1]) < DISTANCIAPIXELSECUNDARIOLINEAS) {
                     cout << "Unificando lineas en X" << endl;
                     lineas.push_back(Vec4i(lineas[i][0], lineas[i][1], lineas[j][2], lineas[j][3]));
                     lineas.erase(lineas.begin() + (j));
@@ -74,7 +80,7 @@ vector<Vec4i> CDetectarLineas::filtrarLineas(vector<Vec4i>& lineas) {
                 }
                 //continuacion de lineas en Y
             } else if(distanciaEuclidea(lineas[i][3], lineas[j][1]) < DISTANCIAPIXELPRINCIPAL) {
-                if(distanciaEuclidea(lineas[i][2], lineas[j][0]) < DISTANCIAPIXELSECUNDARIO) {
+                if(distanciaEuclidea(lineas[i][2], lineas[j][0]) < DISTANCIAPIXELSECUNDARIOLINEAS) {
                     cout << "Unificando lineas en Y" << endl;
                     lineas.push_back(Vec4i(lineas[i][0], lineas[i][1], lineas[j][2], lineas[j][3]));
                     lineas.erase(lineas.begin() + (j));
@@ -84,8 +90,8 @@ vector<Vec4i> CDetectarLineas::filtrarLineas(vector<Vec4i>& lineas) {
                 //Lineas superpuestas completamente, falta las que son sublineas de una mayor
             } else if(distanciaEuclidea(lineas[i][1], lineas[j][1]) < DISTANCIAPIXELPRINCIPAL) { //Lineas superpuestas
                 if(distanciaEuclidea(lineas[i][3], lineas[j][3]) < DISTANCIAPIXELPRINCIPAL) {
-                    if(distanciaEuclidea(lineas[i][0], lineas[j][0]) < DISTANCIAPIXELSECUNDARIO) {
-                        if(distanciaEuclidea(lineas[i][2], lineas[j][2]) < DISTANCIAPIXELSECUNDARIO) {
+                    if(distanciaEuclidea(lineas[i][0], lineas[j][0]) < DISTANCIAPIXELSECUNDARIOLINEAS) {
+                        if(distanciaEuclidea(lineas[i][2], lineas[j][2]) < DISTANCIAPIXELSECUNDARIOLINEAS) {
                             //cout << lineas[i] << " y " << lineas[j] << endl;
                             //cout << "lineas superpuestas " << i << " " << j << endl;
                             //cout << "Lineas candidatas " << lineas[i][0] << " , " << lineas[j][0] << endl;
@@ -106,7 +112,7 @@ vector<Vec4i> CDetectarLineas::filtrarLineas(vector<Vec4i>& lineas) {
 
         }
     }
-    cout << "Hay " << lineas.size() << " lineas despues de filtrar las lineas" << endl;
+    //cout << "Hay " << lineas.size() << " lineas despues de filtrar las lineas" << endl;
     return lineas;
 }
 

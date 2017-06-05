@@ -12,10 +12,24 @@
 #define CLINEEDIT_H
 #include <QLineEdit>
 
+/**Clase heredada de 'QLineEdit' que aplica un estilo determinado a este tipo de container*/
 class CLineEdit : public QLineEdit{
 public:
+    /**
+     * @brief CLineEdit Constructor con estilo centrado y fondo blanco
+     */
     CLineEdit();
+
+    /**
+     * @brief CLineEdit
+     * @param text Texto a introducir en el QLineEdit
+     */
     CLineEdit(QString text);
+
+    /**
+      * @brief Destructor
+      */
+    ~CLineEdit();
 };
 
 #endif // CLINEEDIT_H

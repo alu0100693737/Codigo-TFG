@@ -12,10 +12,10 @@
 #define CPANELOPCIONES_H
 #include <QWidget>
 #include <QScrollBar>
-#include <QHBoxLayout>
+#include <QGridLayout>
 #include "CLabel.h"
 
-
+/** Clase que almacena un panel con las variables de la Detección de circulos y lineas*/
 class CPanelOpciones : public QWidget {
 private:
     QScrollBar* cannyThresHold_; //circulos 30

@@ -22,7 +22,7 @@
 #include "CDetectarTransiciones.h"
 #include "CAsistenteCodificacion.h"
 #include <QImage>
-#define DISTANCIAPIXELPRINCIPAL 10
+
 #define DISTANCIAPIXELSECUNDARIO 100
 #define CONTORNOMEDIOLETRA 30
 

@@ -1,4 +1,13 @@
 //detect numbers https://www.mkompf.com/cplus/emeocv.html
+///////////////////////////////////////////////////////////////
+//   CAplicacion.h - Implementación de la clase CAplicacion  //
+//                                                           //
+//               Autor: Iván García Campos                   //
+//                                                           //
+//            Proyecto de Trabajo Fin de Grado.              //
+//                                                           //
+//               Fecha: 05/06/2017                           //
+///////////////////////////////////////////////////////////////
 #include "CAplicacion.h"
 
 #include "opencv2/imgcodecs.hpp" //MAT OPENCV
@@ -382,7 +391,6 @@ void CAplicacion::slotAbrirFicheroCorrecto() {
     panelComparacion_ = new CLabel("Panel Comparativa", true);
     getLayout()->addWidget(getPanelComparacion(), 0, 2, 3, 2);
     getPanelComparacion()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
-
     getPanelComparacion()->setText(line);
 }
 

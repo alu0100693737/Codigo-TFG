@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////
+//COperacionesImagen.h - Implementacion de la clase COperacionesImagen  //
+//                                                                      //
+//               Autor: Iván García Campos                              //
+//                                                                      //
+//            Proyecto de Trabajo Fin de Grado.                         //
+//                                                                      //
+//               Fecha: 05/06/2017                                      //
+//////////////////////////////////////////////////////////////////////////
+
 #include "COperacionesImagen.h"
 
 COperacionesImagen::COperacionesImagen() {
@@ -203,7 +213,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
             vector<int>* auxDestinos_= new vector<int>();
             vector<char>* auxLetras_= new vector<char>();
 
-            for(int i = 0; i < transitions.size(); i++) {
+            for(unsigned int i = 0; i < transitions.size(); i++) {
                 //cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
                 for(int k = 0; k < detectarTransiciones()->getContornosEncontrados().size(); k++) {
                     if(detectarLineas()->distanciaEuclidea(auxpuntosMedios[i].x, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x) < 70) {

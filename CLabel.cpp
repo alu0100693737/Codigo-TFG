@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////
+//       CLabel.h - Implementación de la clase CLabel        //
+//                                                           //
+//               Autor: Iván García Campos                   //
+//                                                           //
+//            Proyecto de Trabajo Fin de Grado.              //
+//                                                           //
+//               Fecha: 05/06/2017                           //
+///////////////////////////////////////////////////////////////
+
 #include "CLabel.h"
 
 CLabel::CLabel() : QLabel() {

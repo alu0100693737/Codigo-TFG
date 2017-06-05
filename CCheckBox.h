@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////
-//      CCheckBox.h - Declaración de la clase CCheckBox            //
+//   CCheckBox.h - Declaración    de la clase CCheckBox            //
 //                                                                 //
 //               Autor: Iván García Campos                         //
 //                                                                 //
@@ -12,9 +12,18 @@
 #define CCHECKBOX_H
 #include <QCheckBox>
 
+/**Clase heredada de 'QCheckBox' que aplica un estilo determinado a este tipo de container*/
 class CCheckBox : public QCheckBox {
 public:
+    /**
+     * @brief CCheckBox Constructor con estilo centrado y fondo blanco
+     */
     CCheckBox();
+
+    /**
+      * @brief Destructor
+     */
+      ~CCheckBox();
 };
 
 #endif // CCHECKBOX_H

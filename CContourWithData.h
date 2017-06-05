@@ -8,8 +8,8 @@
 //               Fecha: 05/06/2017                                        //
 ////////////////////////////////////////////////////////////////////////////
 
-#ifndef CONTOURWITHDATA_H
-#define CONTOURWITHDATA_H
+#ifndef CCONTOURWITHDATA_H
+#define CCONTOURWITHDATA_H
 
 #include<opencv2/core/core.hpp>
 #include<opencv2/highgui/highgui.hpp>
@@ -22,9 +22,8 @@ using namespace cv;
 
 class CContourWithData {
 public:
-
     std::vector<cv::Point> ptContour;           // Contorno
-    cv::Rect dimensionContorno;                      // Rectangulo
+    cv::Rect dimensionContorno;                 // Rectangulo
     float fltArea;                              // Area del contorno
 
     CContourWithData();
@@ -36,9 +35,10 @@ public:
 };
 
 //Ordena los contornos por posicion coordenadas
+//Utilizado en  CDetectarTransiciones
 static bool sortByBoundingRectXPosition(const CContourWithData& cwdLeft, const CContourWithData& cwdRight) {      // this function allows us to sort
     return(cwdLeft.dimensionContorno.x < cwdRight.dimensionContorno.x);                                                   // the contours from left to right
 }
 
 
-#endif // CONTOURWITHDATA_H
+#endif

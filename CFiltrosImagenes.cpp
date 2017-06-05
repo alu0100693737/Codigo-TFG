@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////
+//CFiltrosImagenes.h - Implementacion de la clase CFiltrosImagenes  //
+//                                                                  //
+//               Autor: Iván García Campos                          //
+//                                                                  //
+//            Proyecto de Trabajo Fin de Grado.                     //
+//                                                                  //
+//               Fecha: 05/06/2017                                  //
+//////////////////////////////////////////////////////////////////////
+
 #include "CFiltrosImagenes.h"
 
 CFiltrosImagenes::CFiltrosImagenes(){}

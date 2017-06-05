@@ -8,7 +8,6 @@
 //               Fecha: 05/06/2017                           //
 ///////////////////////////////////////////////////////////////
 
-
 #ifndef CAPLICACION_H
 #define CAPLICACION_H
 #include <QtWidgets>
