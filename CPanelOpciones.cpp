@@ -37,7 +37,7 @@ CPanelOpciones::CPanelOpciones() {
     ///Se inicializan los CLabel con los valores de los QScrollBar
     valorCannyThresHold_ = new CLabel(QString::number(getCannyThresHold()->value()), false);
     valorAccumulatorThresHold_ = new CLabel(QString::number(getAccumulatorThresHold()->value()), false);
-    valorHoughLinesP_ = new CLabel(QString::number(getCannyThresHold()->value()), false);
+    valorHoughLinesP_ = new CLabel(QString::number(getHoughLinesP()->value()), false);
 
     ///Agregamos a la ventana los datos
     layout->addWidget(new CLabel(QString("CannyThresHold"), false),  0, 0, 1, 4);

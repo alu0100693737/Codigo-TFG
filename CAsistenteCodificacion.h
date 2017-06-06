@@ -23,10 +23,12 @@
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QPixmap>
+#include <iostream>
 #include "CPushButton.h"
 #include "CLabel.h"
 #include "CLineEdit.h"
 #include "CCheckBox.h"
+using namespace std;
 
 /**
  * @brief

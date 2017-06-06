@@ -30,6 +30,8 @@ CAplicacion::CAplicacion() {
 
     panelOpciones_ = new CPanelOpciones();
     panelHistograma_ = new CLabel("Info Imagen", false);
+
+    panelComparacion_ = new CLabel("Panel Comparativa", true);
     //verde
     getPanelOpciones()->setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
     getPanelHistograma()->setStyleSheet("background-color: white; border: 1px solid black");
@@ -37,13 +39,10 @@ CAplicacion::CAplicacion() {
     operacionesImagen_ = new COperacionesImagen();
 
     QWidget* centralWidget        = new QWidget();
-
     layout_ = new QGridLayout();
 
     centralWidget->setLayout (getLayout());
-    getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 5);
-    getLayout()->addWidget (getPanelOpciones(), 4, 0, 1, 4);
-    getLayout()->addWidget (getPanelHistograma(), 4, 4, 1, 1);
+    inicializarVentanaAplicacionDeteccion();
 
     /// Creamos el Menu
     menu_                   = this->menuBar();//w QMenuBar(centralWidget);
@@ -177,11 +176,32 @@ CAplicacion::CAplicacion() {
 
 CAplicacion::~CAplicacion() {}
 
+void CAplicacion::inicializarVentanaAplicacionDeteccion() {
+    getLayout()->removeWidget(getPanelComparacion());
+    //getPanelComparacion()->clear();
+    getLayout()->addWidget(getPanelComparacion(), 0, 0, 3, 5);
+    getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 5);
+    getLayout()->addWidget (getPanelOpciones(), 4, 0, 1, 4);
+    getLayout()->addWidget (getPanelHistograma(), 4, 4, 1, 1);
+
+    setStyleSheet("background-color: black");
+}
+
+void CAplicacion::inicializarVentanaAplicacionCorreccion() {
+
+    getPanelPrincipal()->clear();
+
+    getLayout()->addWidget(getPanelComparacion(), 0, 2, 3, 2);
+    getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 2);
+    setStyleSheet("background-color: black");
+}
+
 //SLOTS
 void CAplicacion::slotAbrirImagen() {
 
+    inicializarVentanaAplicacionDeteccion();
     //por si estuviera el modo fichero abierto
-    getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 5);
+   //getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 5);
 
     QFileDialog dialog(this, tr("Abrir Imagen"));
     dialog.setStyleSheet("background-color: white;");
@@ -192,9 +212,7 @@ void CAplicacion::slotAbrirImagen() {
 void CAplicacion::slotAbrirFichero() {
     QString line = ventanaAbrirFichero();
 
-    getPanelPrincipal()->clear();
-
-    getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 2);
+    inicializarVentanaAplicacionCorreccion();
     getPanelPrincipal()->setText(line);
     getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
     getActionAbrirFicheroCorrecto()->setDisabled(false);
@@ -387,8 +405,6 @@ void CAplicacion::slotCargarImagenOriginal() {
 void CAplicacion::slotAbrirFicheroCorrecto() {
     QString line = ventanaAbrirFichero();
 
-    panelComparacion_ = new CLabel("Panel Comparativa", true);
-    getLayout()->addWidget(getPanelComparacion(), 0, 2, 3, 2);
     getPanelComparacion()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
     getPanelComparacion()->setText(line);
 }
@@ -479,7 +495,7 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
         }
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
     } else {
-        cout << "Error!, No debe ocurrir " << endl;
+        cout << "Error!, Debe cargar una imagen previamente " << endl;
     }
 }
 

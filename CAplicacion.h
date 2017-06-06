@@ -127,7 +127,10 @@ private:
      */
     void inicializarVentanaAbrirImagen(QFileDialog&, QFileDialog::AcceptMode);
 
-    //Abrir fichero, devuelve la path
+    void inicializarVentanaAplicacionDeteccion();
+    void inicializarVentanaAplicacionCorreccion();
+
+
     /**
      * @brief
      * Metodo que abre un fichero deseado mediante asistente de ventana.

@@ -188,85 +188,103 @@ void CAsistenteCodificacion::slotAceptar() {
     if( !filename.isNull() ) {
         cout << filename.toStdString() << endl;
 
+        // spliteamos nodos finales
+        QString str;
+        QStringList list;
+
+        str = QString::fromStdString(getNodosFinales());
+        list = str.split(QRegExp("\\s+"));
+        for(int i = 0; i < list.size(); i++)
+            cout << " HEYS " << list.at(i).toStdString() << endl;
+
+
         ofstream fs(filename.toStdString());
         fs << getNumNodos() << endl;
         fs << getNodoInicial() << endl;
-        fs << getNodosFinales() << endl;
+        //fs << getNodosFinales() << endl;
         for(int i = 0; i < getInicios()->size(); i++) {
-            if(!getCheckBoxBorrar()->at(i)->isChecked())
-                fs << getInicios()->at(i)->text().toStdString() << " " << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << endl;
-        }
-        fs.close();
+            if(!getCheckBoxBorrar()->at(i)->isChecked()){
+                fs << getInicios()->at(i)->text().toStdString() << " ";
+                //Considerando si es estado final o no
+                if(list.contains(getInicios()->at(i)->text()))
+                    fs << 1 << " ";
+                 else
+                    fs << 0 << " ";
 
-        string text;
-        string line;
-        ifstream myfile (filename.toStdString());
-        if (myfile.is_open())
-        {
-            while ( getline (myfile,line) )
-            {
-                text += line;
-                text += "\n";
-                cout << line << endl;
+                fs << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << endl;
             }
-            myfile.close();
         }
-        ///Crea una nueva ventana con la codificacion deseada por si se desea consultar
-        ventanaInfoCodificacion(text);
-        slotCancelar();
-    }   else
+            fs.close();
+
+            string text;
+            string line;
+            ifstream myfile (filename.toStdString());
+            if (myfile.is_open())
+            {
+                while ( getline (myfile,line) )
+                {
+                    text += line;
+                    text += "\n";
+                    cout << line << endl;
+                }
+                myfile.close();
+            }
+            ///Crea una nueva ventana con la codificacion deseada por si se desea consultar
+            ventanaInfoCodificacion(text);
+            slotCancelar();
+        }   else
         setStyleSheet("background-color: rgba(220, 220, 220, 1);");
 
-}
+    }
 
-void CAsistenteCodificacion::slotHelp() {
+    void CAsistenteCodificacion::slotHelp() {
 
-    ///Crea una ventana que tenga la imagen infoAsistente con informacion relevante
-    QWidget* window = new QWidget(); QHBoxLayout* a = new QHBoxLayout();
-    QLabel* aux = new QLabel(); QImage myImage;
+        ///Crea una ventana que tenga la imagen infoAsistente con informacion relevante
+        QWidget* window = new QWidget(); QHBoxLayout* a = new QHBoxLayout();
+        QLabel* aux = new QLabel(); QImage myImage;
 
-    myImage.load("/home/ivan/Documentos/Codigo-TFG/images/infoAsistente.png");
-    aux->setPixmap(QPixmap::fromImage(myImage));
-    a->addWidget(aux);
+        myImage.load("/home/ivan/Documentos/Codigo-TFG/images/infoAsistente.png");
+        aux->setPixmap(QPixmap::fromImage(myImage));
+        a->addWidget(aux);
 
-    window->setLayout(a);
-    window->setStyleSheet("background-color: black;");
-    window->setWindowTitle("Ayuda del asistente");
-    this->setFixedSize(this->width(), this->height());
-    window->show();
-}
+        window->setLayout(a);
+        window->setStyleSheet("background-color: black;");
+        window->setWindowTitle("Ayuda del asistente");
+        this->setFixedSize(this->width(), this->height());
+        window->show();
+    }
 
-void CAsistenteCodificacion::slotCambiar(int i) {
-    QString aux = getInicios()->at(i)->text();
-    getInicios()->at(i)->setText(getDestinos()->at(i)->text());
-    getDestinos()->at(i)->setText(aux);
-    cout << "heys" << endl;
-}
+    void CAsistenteCodificacion::slotCambiar(int i) {
+        QString aux = getInicios()->at(i)->text();
+        getInicios()->at(i)->setText(getDestinos()->at(i)->text());
+        getDestinos()->at(i)->setText(aux);
+        cout << "heys" << endl;
+    }
 
-void CAsistenteCodificacion::ventanaInfoCodificacion(string text) {
-    ///Aplica un estilo y carga
-    QWidget* window = new QWidget(); QBoxLayout* layout = new QBoxLayout(QBoxLayout::TopToBottom);
-    QLabel* label = new QLabel();
-    label->setText(QString::fromStdString(text));
-    QFont f( "Arial", 14, QFont::Bold);
-    label->setFont( f);
-    layout->setAlignment(Qt::AlignCenter);
-    layout->addWidget(label);
-    window->setStyleSheet("color: white; background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c); border-width: 1px;"
-                          "border-color: #339;"
-                          "border-style: solid;"
-                          "border-radius: 7;"
-                          "padding: 3px;"
-                          "margin-left: 20px;"
-                          "margin-right: 20px;"
-                          "padding-left: 5px;"
-                          "padding-right: 5px;");
+    void CAsistenteCodificacion::ventanaInfoCodificacion(string text) {
+        ///Aplica un estilo y carga
+        QWidget* window = new QWidget(); QBoxLayout* layout = new QBoxLayout(QBoxLayout::TopToBottom);
+        QLabel* label = new QLabel();
+        label->setText(QString::fromStdString(text));
+        QFont f( "Arial", 14, QFont::Bold);
+        label->setFont( f);
+        layout->setAlignment(Qt::AlignCenter);
+        layout->addWidget(label);
+        window->setStyleSheet("color: white; background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c); border-width: 1px;"
+                              "border-color: #339;"
+                              "border-style: solid;"
+                              "border-radius: 7;"
+                              "padding: 3px;"
+                              "margin-left: 20px;"
+                              "margin-right: 20px;"
+                              "padding-left: 5px;"
+                              "padding-right: 5px;");
 
-    window->setLayout(layout);
-    window->setWindowTitle("Codificacion");
-    window->setMinimumSize(240, 180);
-    window->setFixedWidth(240);
-    window->setStyleSheet("background-color: white");
+        window->setLayout(layout);
+        window->setWindowTitle("Codificacion");
+        window->setMinimumSize(240, 180);
+        window->setFixedWidth(240);
+        window->setStyleSheet("background-color: white");
 
-    window->show();
-}
+        window->show();
+    }
