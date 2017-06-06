@@ -12,7 +12,7 @@
 
 CPanelOpciones::CPanelOpciones() {
 
-    ///Se carga el Layout
+    ///Se carga el Layout del panel
     QGridLayout *layout = new QGridLayout();
 
     ///Se inicializan los QScrollBar

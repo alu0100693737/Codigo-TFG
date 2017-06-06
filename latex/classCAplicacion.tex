@@ -2,7 +2,7 @@
 \label{classCAplicacion}\index{C\+Aplicacion@{C\+Aplicacion}}
 
 
-The \hyperlink{classCAplicacion}{C\+Aplicacion} class. Aplicacion con ventana principal de la aplicacion Consta de 3 Paneles. Principal, Opciones e Histograma Si se utiliza la funcionalidad Codificar, ese panel cambia de forma T\+E\+R\+M\+I\+N\+AR.  
+Clase Aplicacion con ventana principal de la aplicacion Consta de 3 Paneles. Principal, Opciones e Histograma Si se utiliza la funcionalidad Codificar, ese panel cambia de forma T\+E\+R\+M\+I\+N\+AR.  
 
 
 
@@ -12,11 +12,23 @@ The \hyperlink{classCAplicacion}{C\+Aplicacion} class. Aplicacion con ventana pr
 
 
 Inheritance diagram for C\+Aplicacion\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{classCAplicacion__inherit__graph}
+\end{center}
+\end{figure}
 
 
 Collaboration diagram for C\+Aplicacion\+:
-% FIG 1
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCAplicacion__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Slots}
 \begin{DoxyCompactItemize}
 \item 
@@ -220,7 +232,7 @@ Q\+Combo\+Box $\ast$ \hyperlink{classCAplicacion_a2bc2fca932b919c027f2c4a35f837d
 
 
 \subsection{Detailed Description}
-The \hyperlink{classCAplicacion}{C\+Aplicacion} class. Aplicacion con ventana principal de la aplicacion Consta de 3 Paneles. Principal, Opciones e Histograma Si se utiliza la funcionalidad Codificar, ese panel cambia de forma T\+E\+R\+M\+I\+N\+AR. 
+Clase Aplicacion con ventana principal de la aplicacion Consta de 3 Paneles. Principal, Opciones e Histograma Si se utiliza la funcionalidad Codificar, ese panel cambia de forma T\+E\+R\+M\+I\+N\+AR. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{C\+Aplicacion@{C\+Aplicacion}!C\+Aplicacion@{C\+Aplicacion}}
@@ -770,7 +782,7 @@ Metodo para Abrir Imagen, utilizado en slot\+Abrir\+Imagen.
 \begin{DoxyReturn}{Returns}
 bool True si ha sido leida la imagen 
 \end{DoxyReturn}
-\index{C\+Aplicacion@{C\+Aplicacion}!set\+Path\+Imagen\+Actual@{set\+Path\+Imagen\+Actual}}
+Si se lee un jpg, se convierte a png guardamos y la cargamos, no borramos la jpg \index{C\+Aplicacion@{C\+Aplicacion}!set\+Path\+Imagen\+Actual@{set\+Path\+Imagen\+Actual}}
 \index{set\+Path\+Imagen\+Actual@{set\+Path\+Imagen\+Actual}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{set\+Path\+Imagen\+Actual(\+Q\+String new\+Path)}{setPathImagenActual(QString newPath)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::set\+Path\+Imagen\+Actual (
 \begin{DoxyParamCaption}
@@ -863,7 +875,7 @@ Metodo Slot que Carga la Imagen Original de path\+Imagen\+Actual\+\_\+.
 
 Metodo Slot que calcula de nuevo las detecciones hechas en la imagen si se modifica algun valor del panel Opciones. 
 
-\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Codificar\+Imagen@{slot\+Codificar\+Imagen}}
+Se consideran los distintos pasos de deteccion que pueda tener la imagen aplicados \index{C\+Aplicacion@{C\+Aplicacion}!slot\+Codificar\+Imagen@{slot\+Codificar\+Imagen}}
 \index{slot\+Codificar\+Imagen@{slot\+Codificar\+Imagen}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{slot\+Codificar\+Imagen}{slotCodificarImagen}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Codificar\+Imagen (
 \begin{DoxyParamCaption}
@@ -1009,7 +1021,11 @@ Metodo que abre un fichero deseado mediante asistente de ventana. Filtra por tex
 \begin{DoxyReturn}{Returns}
 Q\+String Path en la que se encuentra el fichero que se desea abrir 
 \end{DoxyReturn}
+Creamos ventana
 
+Cargamos el directorio por defecto
+
+Cargamos la ventana con filtro txt 
 
 \subsection{Member Data Documentation}
 \index{C\+Aplicacion@{C\+Aplicacion}!action\+About\+\_\+@{action\+About\+\_\+}}

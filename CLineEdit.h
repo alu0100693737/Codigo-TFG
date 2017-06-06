@@ -12,7 +12,10 @@
 #define CLINEEDIT_H
 #include <QLineEdit>
 
-/**Clase heredada de 'QLineEdit' que aplica un estilo determinado a este tipo de container*/
+/**
+ * @brief
+ * Clase heredada de 'QLineEdit' que aplica un estilo determinado a este tipo de container
+*/
 class CLineEdit : public QLineEdit{
 public:
     /**

@@ -2,33 +2,53 @@
 \label{classCLabel}\index{C\+Label@{C\+Label}}
 
 
+Clase heredada de \textquotesingle{}Q\+Label\textquotesingle{} que aplica un estilo determinado a este tipo de container.  
+
+
+
+
 {\ttfamily \#include $<$C\+Label.\+h$>$}
 
 
 
 Inheritance diagram for C\+Label\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=127pt]{classCLabel__inherit__graph}
+\end{center}
+\end{figure}
 
 
 Collaboration diagram for C\+Label\+:
-% FIG 1
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=127pt]{classCLabel__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classCLabel_abf086cf63a3e820257e656e7b608d312}{C\+Label} ()
-\item 
-\hyperlink{classCLabel_a6e88fa51b6c55ae59b71498cdba66ea8}{C\+Label} (Q\+String text, bool)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor por defecto Aplica estilo, alinea centro, color gris y borde. \end{DoxyCompactList}\item 
+\hyperlink{classCLabel_a2f7accc9637b63d705ba5418240eaf2d}{C\+Label} (Q\+String text, bool tipo)
+\begin{DoxyCompactList}\small\item\em Constructor que aplica un estilo con fondo blanco y letra Arial, centrado y texto. \end{DoxyCompactList}\item 
 Q\+Image \hyperlink{classCLabel_a79ebc8b728db45da16020cdeb2439625}{get\+Imagen} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve la imagen del \hyperlink{classCLabel}{C\+Label} si la hubiera. \end{DoxyCompactList}\item 
 void \hyperlink{classCLabel_ac44138a6205fa3b2bc8eee63263e6fc7}{set\+Imagen} (const Q\+Image)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo que introduce una imagen en el \hyperlink{classCLabel}{C\+Label}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 Q\+Image \hyperlink{classCLabel_abc23f3746354e8aac57516f34cb85fba}{imagen\+\_\+}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Imagen actual del \hyperlink{classCLabel}{C\+Label} si la tuviera. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Clase heredada de \textquotesingle{}Q\+Label\textquotesingle{} que aplica un estilo determinado a este tipo de container. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{C\+Label@{C\+Label}!C\+Label@{C\+Label}}
@@ -38,14 +58,29 @@ Q\+Image \hyperlink{classCLabel_abc23f3746354e8aac57516f34cb85fba}{imagen\+\_\+}
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCLabel_abf086cf63a3e820257e656e7b608d312}{}\label{classCLabel_abf086cf63a3e820257e656e7b608d312}
+
+
+Constructor por defecto Aplica estilo, alinea centro, color gris y borde. 
+
 \index{C\+Label@{C\+Label}!C\+Label@{C\+Label}}
 \index{C\+Label@{C\+Label}!C\+Label@{C\+Label}}
-\subsubsection[{\texorpdfstring{C\+Label(\+Q\+String text, bool)}{CLabel(QString text, bool)}}]{\setlength{\rightskip}{0pt plus 5cm}C\+Label\+::\+C\+Label (
+\subsubsection[{\texorpdfstring{C\+Label(\+Q\+String text, bool tipo)}{CLabel(QString text, bool tipo)}}]{\setlength{\rightskip}{0pt plus 5cm}C\+Label\+::\+C\+Label (
 \begin{DoxyParamCaption}
 \item[{Q\+String}]{text, }
-\item[{bool}]{style}
+\item[{bool}]{tipo}
 \end{DoxyParamCaption}
-)}\hypertarget{classCLabel_a6e88fa51b6c55ae59b71498cdba66ea8}{}\label{classCLabel_a6e88fa51b6c55ae59b71498cdba66ea8}
+)}\hypertarget{classCLabel_a2f7accc9637b63d705ba5418240eaf2d}{}\label{classCLabel_a2f7accc9637b63d705ba5418240eaf2d}
+
+
+Constructor que aplica un estilo con fondo blanco y letra Arial, centrado y texto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text.} & Texto \\
+\hline
+{\em tipo.} & False -\/$>$ Letra 9. True -\/$>$ Letra 14 \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
@@ -56,6 +91,13 @@ Q\+Image \hyperlink{classCLabel_abc23f3746354e8aac57516f34cb85fba}{imagen\+\_\+}
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCLabel_a79ebc8b728db45da16020cdeb2439625}{}\label{classCLabel_a79ebc8b728db45da16020cdeb2439625}
+
+
+Metodo que devuelve la imagen del \hyperlink{classCLabel}{C\+Label} si la hubiera. 
+
+\begin{DoxyReturn}{Returns}
+Q\+Image 
+\end{DoxyReturn}
 \index{C\+Label@{C\+Label}!set\+Imagen@{set\+Imagen}}
 \index{set\+Imagen@{set\+Imagen}!C\+Label@{C\+Label}}
 \subsubsection[{\texorpdfstring{set\+Imagen(const Q\+Image)}{setImagen(const QImage)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Label\+::set\+Imagen (
@@ -65,10 +107,18 @@ Q\+Image \hyperlink{classCLabel_abc23f3746354e8aac57516f34cb85fba}{imagen\+\_\+}
 )}\hypertarget{classCLabel_ac44138a6205fa3b2bc8eee63263e6fc7}{}\label{classCLabel_ac44138a6205fa3b2bc8eee63263e6fc7}
 
 
+Metodo que introduce una imagen en el \hyperlink{classCLabel}{C\+Label}. 
+
+
+
 \subsection{Member Data Documentation}
 \index{C\+Label@{C\+Label}!imagen\+\_\+@{imagen\+\_\+}}
 \index{imagen\+\_\+@{imagen\+\_\+}!C\+Label@{C\+Label}}
 \subsubsection[{\texorpdfstring{imagen\+\_\+}{imagen_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Image C\+Label\+::imagen\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCLabel_abc23f3746354e8aac57516f34cb85fba}{}\label{classCLabel_abc23f3746354e8aac57516f34cb85fba}
+
+
+Imagen actual del \hyperlink{classCLabel}{C\+Label} si la tuviera. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

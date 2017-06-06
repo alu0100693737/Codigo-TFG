@@ -13,7 +13,6 @@
 CDetectarTransiciones::CDetectarTransiciones() {
 }
 
-
 Mat CDetectarTransiciones::getImagenTransicionActual() {
     return imagenTransicionActual_;
 }
@@ -35,7 +34,7 @@ vector<char>& CDetectarTransiciones::getLetrasEncontradas() {
 
 bool CDetectarTransiciones::ejecutar(Mat image) {
 
-    //Leemos la imagen a detectar, el clasificador.xml y image.xml
+    ///Leemos la imagen a detectar, el clasificador.xml y image.xml
     if(image.empty()) {
         cout <<  "Could not open or find the image" << std::endl ;
         return -1;
@@ -76,19 +75,16 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
     fsTrainingImages.release();
 
 
-    /*/////////////////////////////////////////////////*/
+    ///Creamos cv::Ptr<cv::ml::KNearest>  kNearest(cv::ml::KNearest::create());
 
-    cv::Ptr<cv::ml::KNearest>  kNearest(cv::ml::KNearest::create());            // instantiate the KNN object
+    cv::Ptr<cv::ml::KNearest>  kNearest(cv::ml::KNearest::create());            /// instantiate the KNN object
 
     // finally we get to the call to train, note that both parameters have to be of type Mat (a single Mat)
     // even though in reality they are multiple images / numbers
     kNearest->train(matTrainingImagesAsFlattenedFloats, cv::ml::ROW_SAMPLE, matClassificationInts);
 
-    // test ///////////////////////////////////////////////////////////////////////////////
-
     Mat matTestingNumbers = image;
     //cv::imread("/home/ivan/Documentos/Codigo-TFG/images/GrafoconLetras.png");            // read in the test numbers image
-
 
     //cv::Laplacian(matTestingNumbers, matTestingNumbers, -1);
     if (matTestingNumbers.empty()) {
@@ -101,14 +97,14 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
     cvtColor(matTestingNumbers, matGrayscale, CV_BGR2GRAY);         // imagen Escala de Grises
     matBlurred = matGrayscale;
 
-    //Suavizado Gaussiano
+    ///Suavizado Gaussiano
     GaussianBlur(matGrayscale,
                  matBlurred,
                  cv::Size(5, 5),            // smoothing window width and height in pixels
                  0);                        // sigma value, determines how much the image will be blurred, zero makes function choose the sigma value
 
 
-    // filtro de escala de grises a blanco y negro
+    /// Filtro de escala de grises a blanco y negro
     adaptiveThreshold(matBlurred,
                       matThresh,
                       255,                                  // make pixels that pass the threshold full white
@@ -122,6 +118,7 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
     vector<vector<Point> > ptContours;        // declare a vector for the contours
     vector<cv::Vec4i> v4iHierarchy;                    // declare a vector for the hierarchy (we won't use this in this program but this may be helpful for reference)
 
+    ///Buscamos contornos en la imagen
     cv::findContours(matThreshCopy,             // input image, make sure to use a copy since the function will modify this image in the course of finding contours
                      ptContours,                             // output contours
                      v4iHierarchy,                           // output hierarchy
@@ -142,7 +139,7 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
         }
     }
 
-    // Ordenamos de izquierda a derecha
+    /// Ordenamos de izquierda a derecha
     std::sort(validContoursWithData.begin(), validContoursWithData.end(), sortByBoundingRectXPosition);
 
 
@@ -172,12 +169,13 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
             cv::Mat matROIFlattenedFloat = matROIFloat.reshape(1, 1);
 
             cv::Mat matCurrentChar(0, 0, CV_32F);
-
+            ///kNearest->findNearest
+            /// Buscamos semejanza entre los contornos y el clasificador
             kNearest->findNearest(matROIFlattenedFloat, 1, matCurrentChar);     // finally we can call find_nearest !!!
 
             float fltCurrentChar = (float)matCurrentChar.at<float>(0, 0);
 
-            //Asignamos contorno y letra a contornosEncontrados
+            ///Asignamos contorno y letra a contornosEncontrados
             getContornosEncontrados().push_back(CContourWithData(validContoursWithData[i]));
             getLetrasEncontradas().push_back( char(int(fltCurrentChar)));
 

@@ -13,6 +13,7 @@
 #include <QCheckBox>
 
 /**
+ * @brief
  * Clase heredada de 'QCheckBox' que aplica un estilo determinado a este tipo de container
 */
 class CCheckBox : public QCheckBox {
@@ -27,7 +28,7 @@ public:
       * @brief
       * Destructor
      */
-      ~CCheckBox();
+    ~CCheckBox();
 };
 
 #endif // CCHECKBOX_H

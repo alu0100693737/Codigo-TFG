@@ -17,14 +17,14 @@
 #include "CPanelOpciones.h"
 
 /**
- * @brief The CAplicacion class.
- * Aplicacion con ventana principal de la aplicacion
+ * @brief
+ * Clase Aplicacion con ventana principal de la aplicacion
  * Consta de 3 Paneles. Principal, Opciones e Histograma
  * Si se utiliza la funcionalidad Codificar, ese panel cambia de forma
  * TERMINAR
  */
 class CAplicacion: public QMainWindow {
-  Q_OBJECT
+    Q_OBJECT
 private:
 
     /// Imagen actual del panel principal
@@ -137,7 +137,7 @@ private:
      */
     QString ventanaAbrirFichero();
 
- public:
+public:
     /**
      * @brief
      * Contructor de la Clase CAplicacion

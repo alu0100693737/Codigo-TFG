@@ -2,52 +2,69 @@
 \label{classCPanelOpciones}\index{C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 
 
+Clase que almacena un panel con las variables de la Detección de circulos y lineas.  
+
+
+
+
 {\ttfamily \#include $<$C\+Panel\+Opciones.\+h$>$}
 
 
 
 Inheritance diagram for C\+Panel\+Opciones\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classCPanelOpciones__inherit__graph}
+\end{center}
+\end{figure}
 
 
 Collaboration diagram for C\+Panel\+Opciones\+:
-% FIG 1
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{classCPanelOpciones__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classCPanelOpciones_ad187a964b9ac72e6571ca699035195a3}{C\+Panel\+Opciones} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor de la clase. \end{DoxyCompactList}\item 
 Q\+Scroll\+Bar $\ast$ \hyperlink{classCPanelOpciones_a69b8584e61b0fbd7a86c9b4b1af4fd60}{get\+Canny\+Thres\+Hold} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que retorna el Q\+Scroll\+Bar de la Variable Canny\+Thres\+Hold. \end{DoxyCompactList}\item 
 Q\+Scroll\+Bar $\ast$ \hyperlink{classCPanelOpciones_adefbced180846a9e7443aa6063ea39f8}{get\+Accumulator\+Thres\+Hold} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que retorna el Q\+Scroll\+Bar de la Variable Accumulator\+Thres\+Hold. \end{DoxyCompactList}\item 
 Q\+Scroll\+Bar $\ast$ \hyperlink{classCPanelOpciones_a26734902c1b8c353c83c6b3530be3c47}{get\+Hough\+LinesP} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que retorna el Q\+Scroll\+Bar de la Variable hough\+LinesP. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCPanelOpciones_a65fee0477e988937ea93176f04657388}{get\+Valor\+Canny\+Thres\+Hold} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que retorna el \hyperlink{classCLabel}{C\+Label} de la Variable Canny\+Thres\+Hold. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCPanelOpciones_a0f051efb1549353b79966471bc6b656f}{get\+Valor\+Accumulator\+Thres\+Hold} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que retorna el \hyperlink{classCLabel}{C\+Label} de la Variable Accumulator\+Thres\+Hold. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCPanelOpciones_aae4983463e8d5e2d07fc93bee488af0b}{get\+Valor\+Hough\+LinesP} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo que retorna el \hyperlink{classCLabel}{C\+Label} de la Variable Hough\+LinesP. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 Q\+Scroll\+Bar $\ast$ \hyperlink{classCPanelOpciones_a02b5fec0793280de210c64541fc47155}{canny\+Thres\+Hold\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Q\+Scroll\+Bar variable canny\+Thres\+Hold por defecto a 30. Utilizada en la deteccion de circulos. \end{DoxyCompactList}\item 
 Q\+Scroll\+Bar $\ast$ \hyperlink{classCPanelOpciones_a1d0f21eb4ba18ebcfd6068817f17bef2}{accumulator\+Thres\+Hold\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Q\+Scroll\+Bar variable accumulator\+Thres\+Hold por defecto a 42. Utilizada en la deteccion de circulos. \end{DoxyCompactList}\item 
 Q\+Scroll\+Bar $\ast$ \hyperlink{classCPanelOpciones_a8e5bbb65d75f9dec3623b1796465c583}{houg\+Lines\+P\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Q\+Scroll\+Bar variable hough\+LinesP por defecto 80. Utilizada en la deteccion de lineas. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCPanelOpciones_a09a2c503f1520a71866669fd84b95ebf}{valor\+Canny\+Thres\+Hold\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{classCLabel}{C\+Label} variable canny\+Thres\+Hold. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCPanelOpciones_a206f20e0afadfa1bfda3c59cd2ca16b2}{valor\+Accumulator\+Thres\+Hold\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{classCLabel}{C\+Label} variable accumulator\+Thres\+Hold. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCPanelOpciones_ab415dcfa099eb5bc1fe6e576fe50e4ca}{valor\+Hough\+Lines\+P\+\_\+}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classCLabel}{C\+Label} variable hough\+LinesP. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Clase que almacena un panel con las variables de la Detección de circulos y lineas 
+Clase que almacena un panel con las variables de la Detección de circulos y lineas. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
@@ -57,7 +74,11 @@ Clase que almacena un panel con las variables de la Detección de circulos y lin
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCPanelOpciones_ad187a964b9ac72e6571ca699035195a3}{}\label{classCPanelOpciones_ad187a964b9ac72e6571ca699035195a3}
-Se carga el Layout
+
+
+Constructor de la clase. 
+
+Se carga el Layout del panel
 
 Se inicializan los Q\+Scroll\+Bar
 
@@ -75,6 +96,13 @@ Agregamos a la ventana los datos
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCPanelOpciones_adefbced180846a9e7443aa6063ea39f8}{}\label{classCPanelOpciones_adefbced180846a9e7443aa6063ea39f8}
+
+
+Metodo que retorna el Q\+Scroll\+Bar de la Variable Accumulator\+Thres\+Hold. 
+
+\begin{DoxyReturn}{Returns}
+Q\+Scroll\+Bar 
+\end{DoxyReturn}
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!get\+Canny\+Thres\+Hold@{get\+Canny\+Thres\+Hold}}
 \index{get\+Canny\+Thres\+Hold@{get\+Canny\+Thres\+Hold}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 \subsubsection[{\texorpdfstring{get\+Canny\+Thres\+Hold()}{getCannyThresHold()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Scroll\+Bar $\ast$ C\+Panel\+Opciones\+::get\+Canny\+Thres\+Hold (
@@ -82,6 +110,13 @@ Agregamos a la ventana los datos
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCPanelOpciones_a69b8584e61b0fbd7a86c9b4b1af4fd60}{}\label{classCPanelOpciones_a69b8584e61b0fbd7a86c9b4b1af4fd60}
+
+
+Metodo que retorna el Q\+Scroll\+Bar de la Variable Canny\+Thres\+Hold. 
+
+\begin{DoxyReturn}{Returns}
+Q\+Scroll\+Bar 
+\end{DoxyReturn}
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!get\+Hough\+LinesP@{get\+Hough\+LinesP}}
 \index{get\+Hough\+LinesP@{get\+Hough\+LinesP}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 \subsubsection[{\texorpdfstring{get\+Hough\+Lines\+P()}{getHoughLinesP()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Scroll\+Bar $\ast$ C\+Panel\+Opciones\+::get\+Hough\+LinesP (
@@ -89,6 +124,13 @@ Agregamos a la ventana los datos
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCPanelOpciones_a26734902c1b8c353c83c6b3530be3c47}{}\label{classCPanelOpciones_a26734902c1b8c353c83c6b3530be3c47}
+
+
+Metodo que retorna el Q\+Scroll\+Bar de la Variable hough\+LinesP. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!get\+Valor\+Accumulator\+Thres\+Hold@{get\+Valor\+Accumulator\+Thres\+Hold}}
 \index{get\+Valor\+Accumulator\+Thres\+Hold@{get\+Valor\+Accumulator\+Thres\+Hold}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 \subsubsection[{\texorpdfstring{get\+Valor\+Accumulator\+Thres\+Hold()}{getValorAccumulatorThresHold()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label} $\ast$ C\+Panel\+Opciones\+::get\+Valor\+Accumulator\+Thres\+Hold (
@@ -96,6 +138,13 @@ Agregamos a la ventana los datos
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCPanelOpciones_a0f051efb1549353b79966471bc6b656f}{}\label{classCPanelOpciones_a0f051efb1549353b79966471bc6b656f}
+
+
+Metodo que retorna el \hyperlink{classCLabel}{C\+Label} de la Variable Accumulator\+Thres\+Hold. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classCLabel}{C\+Label} 
+\end{DoxyReturn}
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!get\+Valor\+Canny\+Thres\+Hold@{get\+Valor\+Canny\+Thres\+Hold}}
 \index{get\+Valor\+Canny\+Thres\+Hold@{get\+Valor\+Canny\+Thres\+Hold}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 \subsubsection[{\texorpdfstring{get\+Valor\+Canny\+Thres\+Hold()}{getValorCannyThresHold()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label} $\ast$ C\+Panel\+Opciones\+::get\+Valor\+Canny\+Thres\+Hold (
@@ -103,6 +152,13 @@ Agregamos a la ventana los datos
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCPanelOpciones_a65fee0477e988937ea93176f04657388}{}\label{classCPanelOpciones_a65fee0477e988937ea93176f04657388}
+
+
+Metodo que retorna el \hyperlink{classCLabel}{C\+Label} de la Variable Canny\+Thres\+Hold. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classCLabel}{C\+Label} 
+\end{DoxyReturn}
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!get\+Valor\+Hough\+LinesP@{get\+Valor\+Hough\+LinesP}}
 \index{get\+Valor\+Hough\+LinesP@{get\+Valor\+Hough\+LinesP}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 \subsubsection[{\texorpdfstring{get\+Valor\+Hough\+Lines\+P()}{getValorHoughLinesP()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label} $\ast$ C\+Panel\+Opciones\+::get\+Valor\+Hough\+LinesP (
@@ -112,25 +168,56 @@ Agregamos a la ventana los datos
 )}\hypertarget{classCPanelOpciones_aae4983463e8d5e2d07fc93bee488af0b}{}\label{classCPanelOpciones_aae4983463e8d5e2d07fc93bee488af0b}
 
 
+Metodo que retorna el \hyperlink{classCLabel}{C\+Label} de la Variable Hough\+LinesP. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
 \subsection{Member Data Documentation}
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!accumulator\+Thres\+Hold\+\_\+@{accumulator\+Thres\+Hold\+\_\+}}
 \index{accumulator\+Thres\+Hold\+\_\+@{accumulator\+Thres\+Hold\+\_\+}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 \subsubsection[{\texorpdfstring{accumulator\+Thres\+Hold\+\_\+}{accumulatorThresHold_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Scroll\+Bar$\ast$ C\+Panel\+Opciones\+::accumulator\+Thres\+Hold\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCPanelOpciones_a1d0f21eb4ba18ebcfd6068817f17bef2}{}\label{classCPanelOpciones_a1d0f21eb4ba18ebcfd6068817f17bef2}
+
+
+Q\+Scroll\+Bar variable accumulator\+Thres\+Hold por defecto a 42. Utilizada en la deteccion de circulos. 
+
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!canny\+Thres\+Hold\+\_\+@{canny\+Thres\+Hold\+\_\+}}
 \index{canny\+Thres\+Hold\+\_\+@{canny\+Thres\+Hold\+\_\+}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 \subsubsection[{\texorpdfstring{canny\+Thres\+Hold\+\_\+}{cannyThresHold_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Scroll\+Bar$\ast$ C\+Panel\+Opciones\+::canny\+Thres\+Hold\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCPanelOpciones_a02b5fec0793280de210c64541fc47155}{}\label{classCPanelOpciones_a02b5fec0793280de210c64541fc47155}
+
+
+Q\+Scroll\+Bar variable canny\+Thres\+Hold por defecto a 30. Utilizada en la deteccion de circulos. 
+
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!houg\+Lines\+P\+\_\+@{houg\+Lines\+P\+\_\+}}
 \index{houg\+Lines\+P\+\_\+@{houg\+Lines\+P\+\_\+}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 \subsubsection[{\texorpdfstring{houg\+Lines\+P\+\_\+}{hougLinesP_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Scroll\+Bar$\ast$ C\+Panel\+Opciones\+::houg\+Lines\+P\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCPanelOpciones_a8e5bbb65d75f9dec3623b1796465c583}{}\label{classCPanelOpciones_a8e5bbb65d75f9dec3623b1796465c583}
+
+
+Q\+Scroll\+Bar variable hough\+LinesP por defecto 80. Utilizada en la deteccion de lineas. 
+
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!valor\+Accumulator\+Thres\+Hold\+\_\+@{valor\+Accumulator\+Thres\+Hold\+\_\+}}
 \index{valor\+Accumulator\+Thres\+Hold\+\_\+@{valor\+Accumulator\+Thres\+Hold\+\_\+}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 \subsubsection[{\texorpdfstring{valor\+Accumulator\+Thres\+Hold\+\_\+}{valorAccumulatorThresHold_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label}$\ast$ C\+Panel\+Opciones\+::valor\+Accumulator\+Thres\+Hold\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCPanelOpciones_a206f20e0afadfa1bfda3c59cd2ca16b2}{}\label{classCPanelOpciones_a206f20e0afadfa1bfda3c59cd2ca16b2}
+
+
+\hyperlink{classCLabel}{C\+Label} variable accumulator\+Thres\+Hold. 
+
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!valor\+Canny\+Thres\+Hold\+\_\+@{valor\+Canny\+Thres\+Hold\+\_\+}}
 \index{valor\+Canny\+Thres\+Hold\+\_\+@{valor\+Canny\+Thres\+Hold\+\_\+}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 \subsubsection[{\texorpdfstring{valor\+Canny\+Thres\+Hold\+\_\+}{valorCannyThresHold_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label}$\ast$ C\+Panel\+Opciones\+::valor\+Canny\+Thres\+Hold\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCPanelOpciones_a09a2c503f1520a71866669fd84b95ebf}{}\label{classCPanelOpciones_a09a2c503f1520a71866669fd84b95ebf}
+
+
+\hyperlink{classCLabel}{C\+Label} variable canny\+Thres\+Hold. 
+
 \index{C\+Panel\+Opciones@{C\+Panel\+Opciones}!valor\+Hough\+Lines\+P\+\_\+@{valor\+Hough\+Lines\+P\+\_\+}}
 \index{valor\+Hough\+Lines\+P\+\_\+@{valor\+Hough\+Lines\+P\+\_\+}!C\+Panel\+Opciones@{C\+Panel\+Opciones}}
 \subsubsection[{\texorpdfstring{valor\+Hough\+Lines\+P\+\_\+}{valorHoughLinesP_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label}$\ast$ C\+Panel\+Opciones\+::valor\+Hough\+Lines\+P\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCPanelOpciones_ab415dcfa099eb5bc1fe6e576fe50e4ca}{}\label{classCPanelOpciones_ab415dcfa099eb5bc1fe6e576fe50e4ca}
+
+
+\hyperlink{classCLabel}{C\+Label} variable hough\+LinesP. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

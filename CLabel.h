@@ -13,14 +13,38 @@
 #include <QLabel>
 #include <iostream>
 using namespace std;
-
+/**
+ * @brief
+ * Clase heredada de 'QLabel' que aplica un estilo determinado a este tipo de container
+ */
 class CLabel : public QLabel {
 private:
+    ///Imagen actual del CLabel si la tuviera
     QImage imagen_;
 public:
+    /**
+     * @brief
+     * Constructor por defecto
+     * Aplica estilo, alinea centro, color gris y borde
+     */
     CLabel();
-    CLabel(QString text, bool);
+    /**
+     * @brief
+     * Constructor que aplica un estilo con fondo blanco y letra Arial, centrado y texto
+     * @param text. Texto
+     * @param tipo. False -> Letra 9. True -> Letra 14
+     */
+    CLabel(QString text, bool tipo);
+    /**
+     * @brief
+     * Metodo que devuelve la imagen del CLabel si la hubiera
+     * @return QImage
+     */
     QImage getImagen();
+    /**
+     * @brief
+     * Metodo que introduce una imagen en el CLabel
+     */
     void setImagen(const QImage);
 };
 

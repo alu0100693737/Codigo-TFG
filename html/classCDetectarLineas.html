@@ -93,38 +93,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Clase para la deteccion de Lineas Valor por defecto para la deteccion, houghLinesP 80.  
+ <a href="classCDetectarLineas.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="CDetectarLineas_8h_source.html">CDetectarLineas.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4a48d20f23a63a2a0202a316317e0801"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#a4a48d20f23a63a2a0202a316317e0801">CDetectarLineas</a> ()</td></tr>
+<tr class="memdesc:a4a48d20f23a63a2a0202a316317e0801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor Vacio.  <a href="#a4a48d20f23a63a2a0202a316317e0801">More...</a><br /></td></tr>
 <tr class="separator:a4a48d20f23a63a2a0202a316317e0801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8380e777f5cac60aae54ac0cf13b7246"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#a8380e777f5cac60aae54ac0cf13b7246">iniciarDeteccion</a> (Mat imagen, int houghprobabilistico)</td></tr>
+<tr class="memdesc:a8380e777f5cac60aae54ac0cf13b7246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que inicia la deteccion de lineas en la imagen.  <a href="#a8380e777f5cac60aae54ac0cf13b7246">More...</a><br /></td></tr>
 <tr class="separator:a8380e777f5cac60aae54ac0cf13b7246"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3c473d7e85a3c4901870af10ff9d5ed"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#ad3c473d7e85a3c4901870af10ff9d5ed">getLineasDetectadas</a> ()</td></tr>
+<tr class="memdesc:ad3c473d7e85a3c4901870af10ff9d5ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el conjunto de lineas detectadas en la imagen.  <a href="#ad3c473d7e85a3c4901870af10ff9d5ed">More...</a><br /></td></tr>
 <tr class="separator:ad3c473d7e85a3c4901870af10ff9d5ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7493ac0d73201a7c9188f8a283b6a88"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#ad7493ac0d73201a7c9188f8a283b6a88">distanciaEuclidea</a> (int a, int b)</td></tr>
+<tr class="memdesc:ad7493ac0d73201a7c9188f8a283b6a88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve la distancia euclidiana entre dos numeros.  <a href="#ad7493ac0d73201a7c9188f8a283b6a88">More...</a><br /></td></tr>
 <tr class="separator:ad7493ac0d73201a7c9188f8a283b6a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe5bf1860071f33e7339742fd88e6e78"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#abe5bf1860071f33e7339742fd88e6e78">distanciaEuclidea</a> (int a, int b, bool mostrar)</td></tr>
+<tr class="memdesc:abe5bf1860071f33e7339742fd88e6e78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve la distancia euclidiana entre dos numeros.  <a href="#abe5bf1860071f33e7339742fd88e6e78">More...</a><br /></td></tr>
 <tr class="separator:abe5bf1860071f33e7339742fd88e6e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88fe565263283487188f7c032a661d2f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#a88fe565263283487188f7c032a661d2f">distanciaEuclidea</a> (Point a, Point b)</td></tr>
+<tr class="memdesc:a88fe565263283487188f7c032a661d2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve la distancia euclidiana entre dos Puntos.  <a href="#a88fe565263283487188f7c032a661d2f">More...</a><br /></td></tr>
 <tr class="separator:a88fe565263283487188f7c032a661d2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:ae70b53c9bf1434cb25e267ea3ab62c63"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#ae70b53c9bf1434cb25e267ea3ab62c63">detectarLineas</a> (const Mat &amp;src_gray, int houghprobabilistico)</td></tr>
+<tr class="memdesc:ae70b53c9bf1434cb25e267ea3ab62c63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que detecta Lineas en una imagen.  <a href="#ae70b53c9bf1434cb25e267ea3ab62c63">More...</a><br /></td></tr>
 <tr class="separator:ae70b53c9bf1434cb25e267ea3ab62c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae99dee16338d0e71669d23208e4176de"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#ae99dee16338d0e71669d23208e4176de">HoughProbabilistico</a> (Mat, int, void *, int houghprobabilistico)</td></tr>
+<tr class="memdesc:ae99dee16338d0e71669d23208e4176de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo para la deteccion de Lineas.  <a href="#ae99dee16338d0e71669d23208e4176de">More...</a><br /></td></tr>
 <tr class="separator:ae99dee16338d0e71669d23208e4176de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89b7e5edd431909abd180f059f6abd0f"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#a89b7e5edd431909abd180f059f6abd0f">filtrarLineas</a> (vector&lt; Vec4i &gt; &amp;lineas)</td></tr>
+<tr class="memdesc:a89b7e5edd431909abd180f059f6abd0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que filtra lineas extrañas por cercania y duplicidad de principio a fin.  <a href="#a89b7e5edd431909abd180f059f6abd0f">More...</a><br /></td></tr>
 <tr class="separator:a89b7e5edd431909abd180f059f6abd0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a1aab2cfd627e2d3eef1650837ab61436"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec4i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarLineas.html#a1aab2cfd627e2d3eef1650837ab61436">lineasEncontradas</a></td></tr>
+<tr class="memdesc:a1aab2cfd627e2d3eef1650837ab61436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector Vec4i de lineas detectadas Estructura x1y1 x2y2.  <a href="#a1aab2cfd627e2d3eef1650837ab61436">More...</a><br /></td></tr>
 <tr class="separator:a1aab2cfd627e2d3eef1650837ab61436"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Clase para la deteccion de Lineas Valor por defecto para la deteccion, houghLinesP 80. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a4a48d20f23a63a2a0202a316317e0801"></a>
 <div class="memitem">
 <div class="memproto">
@@ -137,6 +152,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructor Vacio. </p>
 
 </div>
 </div>
@@ -172,6 +189,16 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Metodo que detecta Lineas en una imagen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src_gray.</td><td>Imagen en escala de grises </td></tr>
+    <tr><td class="paramname">houghprobabilistico.</td><td>Variable deteccion de lineas. Por defecto 80 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Lineas encontradas </dd></dl>
 <p>Deteccion de bordes</p>
 <p>Deteccion de lineas </p>
 
@@ -200,6 +227,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve la distancia euclidiana entre dos numeros. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a.</td><td>Numero a </td></tr>
+    <tr><td class="paramname">b.</td><td>Numero b </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>distancia euclidiana </dd></dl>
 
 </div>
 </div>
@@ -233,6 +270,17 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve la distancia euclidiana entre dos numeros. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a.</td><td>Numero a </td></tr>
+    <tr><td class="paramname">b.</td><td>Numero b </td></tr>
+    <tr><td class="paramname">bool</td><td>mostrar Std resultado </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>distancia euclidiana </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a88fe565263283487188f7c032a661d2f"></a>
@@ -259,6 +307,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve la distancia euclidiana entre dos Puntos. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a.</td><td>Punto a </td></tr>
+    <tr><td class="paramname">b.</td><td>Punto b </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>distancia euclidiana </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a89b7e5edd431909abd180f059f6abd0f"></a>
@@ -282,7 +340,18 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Filtramos la Continuacion de lineas en la coordenada X </p>
+
+<p>Metodo que filtra lineas extrañas por cercania y duplicidad de principio a fin. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lineas</td><td>a filtrar </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>lineas filtradas </dd></dl>
+<p>Filtramos la Continuacion de lineas en la coordenada X</p>
+<p>continuacion de lineas en Y</p>
+<p>Lineas superpuestas completamente, falta las que son sublineas de una mayor </p>
 
 </div>
 </div>
@@ -298,6 +367,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve el conjunto de lineas detectadas en la imagen. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;Vec4i&gt; </dd></dl>
 
 </div>
 </div>
@@ -344,6 +416,15 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Metodo para la deteccion de Lineas. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">houghprobabilistico.</td><td>Valor variable deteccion de lineas </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 <p>Convertimos la imagen a BGR</p>
 <p>Usamos la transformada de Hough probabilistica</p>
 <p>Filtramos las lineas, duplicaciones </p>
@@ -374,6 +455,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que inicia la deteccion de lineas en la imagen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">imagen</td><td></td></tr>
+    <tr><td class="paramname">houghprobabilistico.</td><td>Valor de la variable para la deteccion de lineas </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Imagen resultado de la deteccion </dd></dl>
+<p>Deteccion de lineas</p>
+<p>Dibujamos lineas sobre la imagen original </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -394,6 +487,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Vector Vec4i de lineas detectadas Estructura x1y1 x2y2. </p>
 
 </div>
 </div>

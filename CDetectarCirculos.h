@@ -29,8 +29,11 @@ using namespace cv;
  */
 class CDetectarCirculo {
 private:
-    ///Vector Vec3f de circulos encontrados
-    ///Estructura pos(x, y) y radio
+    /**
+     * @brief
+     * Vector Vec3f de circulos encontrados
+     * Estructura pos(x, y) y radio
+     */
     vector<Vec3f> circles;
 
     /**
@@ -39,13 +42,13 @@ private:
      * @param imagen_gray. Imagen en escala de grises
      * @param cannyThreshold. Primera Variable deteccion de Circulos
      * @param accumulatorThreshold. Segunda Variable deteccion de Circulos
-     */
+     * @return Circulos encontrados
+    */
     vector<Vec3f> detectarCirculos(const Mat& imagen_gray, int cannyThreshold, int accumulatorThreshold);
 
-    //filtra circulos con dimensiones extrañas
     /**
      * @brief
-     * Metodo que filtra circulos con dimensiones extrañas
+     * Metodo que filtra circulos con dimensiones extrañas, demasiado grandes
      * @param circulos. Conjunto de circulos
      * @return. Circulos Filtrados
      */

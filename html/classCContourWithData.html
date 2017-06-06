@@ -92,29 +92,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Clase que guarda contornos encontrados con su contorno, dimension y Area.  
+ <a href="classCContourWithData.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="CContourWithData_8h_source.html">CContourWithData.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a209af0add40f7b312b5bf72c7e9d47b7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCContourWithData.html#a209af0add40f7b312b5bf72c7e9d47b7">CContourWithData</a> ()</td></tr>
+<tr class="memdesc:a209af0add40f7b312b5bf72c7e9d47b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor sin parametros. Vacio.  <a href="#a209af0add40f7b312b5bf72c7e9d47b7">More...</a><br /></td></tr>
 <tr class="separator:a209af0add40f7b312b5bf72c7e9d47b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a756d63b5e03e8809531f13c3231a5c3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCContourWithData.html#a756d63b5e03e8809531f13c3231a5c3b">CContourWithData</a> (const <a class="el" href="classCContourWithData.html">CContourWithData</a> &amp;copy)</td></tr>
+<tr class="memdesc:a756d63b5e03e8809531f13c3231a5c3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor copia.  <a href="#a756d63b5e03e8809531f13c3231a5c3b">More...</a><br /></td></tr>
 <tr class="separator:a756d63b5e03e8809531f13c3231a5c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee393fc1557ce93c93fa16cba9a0f457"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCContourWithData.html#aee393fc1557ce93c93fa16cba9a0f457">checkIfContourIsValid</a> ()</td></tr>
+<tr class="memdesc:aee393fc1557ce93c93fa16cba9a0f457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifica si el contorno cubre el area minima MIN_CONTOUR_AREA.  <a href="#aee393fc1557ce93c93fa16cba9a0f457">More...</a><br /></td></tr>
 <tr class="separator:aee393fc1557ce93c93fa16cba9a0f457"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc8d62ef51d181ee9bf36b250dc14990"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCContourWithData.html#adc8d62ef51d181ee9bf36b250dc14990">mostrarContorno</a> ()</td></tr>
+<tr class="memdesc:adc8d62ef51d181ee9bf36b250dc14990"><td class="mdescLeft">&#160;</td><td class="mdescRight">Muestra los datos de la clase por Std.  <a href="#adc8d62ef51d181ee9bf36b250dc14990">More...</a><br /></td></tr>
 <tr class="separator:adc8d62ef51d181ee9bf36b250dc14990"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ace345d75058a013dc37f3b020736c383"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::Point &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCContourWithData.html#ace345d75058a013dc37f3b020736c383">ptContour</a></td></tr>
+<tr class="memdesc:ace345d75058a013dc37f3b020736c383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contorno Detectado.  <a href="#ace345d75058a013dc37f3b020736c383">More...</a><br /></td></tr>
 <tr class="separator:ace345d75058a013dc37f3b020736c383"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42c9ccab08cb833ecfb7f4b2a3d9a371"><td class="memItemLeft" align="right" valign="top">cv::Rect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCContourWithData.html#a42c9ccab08cb833ecfb7f4b2a3d9a371">dimensionContorno</a></td></tr>
+<tr class="memdesc:a42c9ccab08cb833ecfb7f4b2a3d9a371"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rectangulo alrededor del Contorno.  <a href="#a42c9ccab08cb833ecfb7f4b2a3d9a371">More...</a><br /></td></tr>
 <tr class="separator:a42c9ccab08cb833ecfb7f4b2a3d9a371"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a065c8525870170a4ce67c7428b3c6cff"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCContourWithData.html#a065c8525870170a4ce67c7428b3c6cff">fltArea</a></td></tr>
+<tr class="memdesc:a065c8525870170a4ce67c7428b3c6cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Area del Contorno detectado.  <a href="#a065c8525870170a4ce67c7428b3c6cff">More...</a><br /></td></tr>
 <tr class="separator:a065c8525870170a4ce67c7428b3c6cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Clase que guarda contornos encontrados con su contorno, dimension y Area. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a209af0add40f7b312b5bf72c7e9d47b7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -127,6 +139,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructor sin parametros. Vacio. </p>
 
 </div>
 </div>
@@ -144,6 +158,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor copia. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">copy</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -160,6 +182,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Identifica si el contorno cubre el area minima MIN_CONTOUR_AREA. </p>
+
 </div>
 </div>
 <a class="anchor" id="adc8d62ef51d181ee9bf36b250dc14990"></a>
@@ -175,6 +199,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Muestra los datos de la clase por Std. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -188,6 +214,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Rectangulo alrededor del Contorno. </p>
+
 </div>
 </div>
 <a class="anchor" id="a065c8525870170a4ce67c7428b3c6cff"></a>
@@ -200,6 +228,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Area del Contorno detectado. </p>
+
 </div>
 </div>
 <a class="anchor" id="ace345d75058a013dc37f3b020736c383"></a>
@@ -211,6 +241,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Contorno Detectado. </p>
 
 </div>
 </div>

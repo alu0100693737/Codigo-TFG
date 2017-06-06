@@ -2,30 +2,38 @@
 \label{classCDetectarCirculo}\index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
 
 
+Clase para la deteccion de Circulos Valores por defecto para la deteccion, canny entre 26, 118 y acummulador 45.  
+
+
+
+
 {\ttfamily \#include $<$C\+Detectar\+Circulos.\+h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classCDetectarCirculo_a1afdf8a823810d47823414ebcb6850a9}{C\+Detectar\+Circulo} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor Vacio. \end{DoxyCompactList}\item 
 Mat \hyperlink{classCDetectarCirculo_a649c9f3888f669032bd3811c902d0ef9}{iniciar\+Deteccion} (Mat imagen, int cannythreshold, int accumulatorthreshold)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que inicia la deteccion de Circulos. \end{DoxyCompactList}\item 
 vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_a6521238e2bf5be28294aa480ad0933ba}{get\+Circulos\+Detectados} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el conjunto de circulos detectados en la imagen. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_ad6b02b2bc1fbb78ce6d1c1a5d51522f6}{detectar\+Circulos} (const Mat \&imagen\+\_\+gray, int canny\+Threshold, int accumulator\+Threshold)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que detecta Circulos en una imagen. \end{DoxyCompactList}\item 
 vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_adc8cdab3f0446334d56e9ac08b304639}{filtrar\+Circulos} (vector$<$ Vec3f $>$ circulos)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo que filtra circulos con dimensiones extrañas, demasiado grandes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_afb2bd271bd772e489fe948caa80bb7b7}{circles}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Vector Vec3f de circulos encontrados Estructura pos(x, y) y radio. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Clase para la deteccion de Circulos Valores por defecto para la deteccion, canny entre 26, 118 y acummulador 45. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
@@ -35,6 +43,10 @@ vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_afb2bd271bd772e489fe948caa8
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCDetectarCirculo_a1afdf8a823810d47823414ebcb6850a9}{}\label{classCDetectarCirculo_a1afdf8a823810d47823414ebcb6850a9}
+
+
+Constructor Vacio. 
+
 
 
 \subsection{Member Function Documentation}
@@ -47,13 +59,41 @@ vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_afb2bd271bd772e489fe948caa8
 \item[{int}]{accumulator\+Threshold}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarCirculo_ad6b02b2bc1fbb78ce6d1c1a5d51522f6}{}\label{classCDetectarCirculo_ad6b02b2bc1fbb78ce6d1c1a5d51522f6}
-\index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!filtrar\+Circulos@{filtrar\+Circulos}}
+
+
+Metodo que detecta Circulos en una imagen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em imagen\+\_\+gray.} & Imagen en escala de grises \\
+\hline
+{\em canny\+Threshold.} & Primera Variable deteccion de Circulos \\
+\hline
+{\em accumulator\+Threshold.} & Segunda Variable deteccion de Circulos \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Circulos encontrados 
+\end{DoxyReturn}
+Aplicamos la transformada de Hought para la deteccion de circulos Recordar, metodo H\+O\+U\+G\+H\+\_\+\+Gradient, el unico que esta implementado actualmente 1, misma resolucion src\+\_\+gray.\+rows/8 distancia minima entre los circulos canny\+Threshold umbral mas alto umbral de acumulacion. Los circulos que corresponden a los mayores valores del acumuladorr se devolveran primero\index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!filtrar\+Circulos@{filtrar\+Circulos}}
 \index{filtrar\+Circulos@{filtrar\+Circulos}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
 \subsubsection[{\texorpdfstring{filtrar\+Circulos(vector$<$ Vec3f $>$ circulos)}{filtrarCirculos(vector< Vec3f > circulos)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec3f $>$ C\+Detectar\+Circulo\+::filtrar\+Circulos (
 \begin{DoxyParamCaption}
 \item[{vector$<$ Vec3f $>$}]{circulos}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarCirculo_adc8cdab3f0446334d56e9ac08b304639}{}\label{classCDetectarCirculo_adc8cdab3f0446334d56e9ac08b304639}
+
+
+Metodo que filtra circulos con dimensiones extrañas, demasiado grandes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em circulos.} & Conjunto de circulos \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+. Circulos Filtrados 
+\end{DoxyReturn}
 \index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!get\+Circulos\+Detectados@{get\+Circulos\+Detectados}}
 \index{get\+Circulos\+Detectados@{get\+Circulos\+Detectados}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
 \subsubsection[{\texorpdfstring{get\+Circulos\+Detectados()}{getCirculosDetectados()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec3f $>$ C\+Detectar\+Circulo\+::get\+Circulos\+Detectados (
@@ -61,6 +101,13 @@ vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_afb2bd271bd772e489fe948caa8
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCDetectarCirculo_a6521238e2bf5be28294aa480ad0933ba}{}\label{classCDetectarCirculo_a6521238e2bf5be28294aa480ad0933ba}
+
+
+Metodo que devuelve el conjunto de circulos detectados en la imagen. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 \index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!iniciar\+Deteccion@{iniciar\+Deteccion}}
 \index{iniciar\+Deteccion@{iniciar\+Deteccion}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
 \subsubsection[{\texorpdfstring{iniciar\+Deteccion(\+Mat imagen, int cannythreshold, int accumulatorthreshold)}{iniciarDeteccion(Mat imagen, int cannythreshold, int accumulatorthreshold)}}]{\setlength{\rightskip}{0pt plus 5cm}Mat C\+Detectar\+Circulo\+::iniciar\+Deteccion (
@@ -72,10 +119,38 @@ vector$<$ Vec3f $>$ \hyperlink{classCDetectarCirculo_afb2bd271bd772e489fe948caa8
 )}\hypertarget{classCDetectarCirculo_a649c9f3888f669032bd3811c902d0ef9}{}\label{classCDetectarCirculo_a649c9f3888f669032bd3811c902d0ef9}
 
 
+Metodo que inicia la deteccion de Circulos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em imagen.} & Imagen \\
+\hline
+{\em cannythreshold.} & Primera Variable deteccion de Circulos \\
+\hline
+{\em accumulatorthreshold.} & Segunda Variable deteccion de Circulos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Imagen resultado de la deteccion 
+\end{DoxyReturn}
+Se convierte la imagen a Escala de grises
+
+Reducción de ruido mediante filtro Gaussiano
+
+Se aplica la funcion detectar\+Circulos
+
+Dibujamos lo encontrado sobre la imagen original
+
+Dibujamos el num del circulo en la imagen 
+
 \subsection{Member Data Documentation}
 \index{C\+Detectar\+Circulo@{C\+Detectar\+Circulo}!circles@{circles}}
 \index{circles@{circles}!C\+Detectar\+Circulo@{C\+Detectar\+Circulo}}
 \subsubsection[{\texorpdfstring{circles}{circles}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Vec3f$>$ C\+Detectar\+Circulo\+::circles\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarCirculo_afb2bd271bd772e489fe948caa80bb7b7}{}\label{classCDetectarCirculo_afb2bd271bd772e489fe948caa80bb7b7}
+
+
+Vector Vec3f de circulos encontrados Estructura pos(x, y) y radio. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

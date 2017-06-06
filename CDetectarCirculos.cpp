@@ -65,7 +65,6 @@ vector<Vec3f> CDetectarCirculo::detectarCirculos(const Mat& src_gray, int cannyT
     return filtrarCirculos(circl);
 }
 
-//Eliminamos circulos demasiado grandes
 vector<Vec3f> CDetectarCirculo::filtrarCirculos(vector<Vec3f> circulos) {
     double radioMedio = 0;
     for(int i = 0; i < circulos.size(); i++) {
@@ -88,16 +87,6 @@ vector<Vec3f> CDetectarCirculo::filtrarCirculos(vector<Vec3f> circulos) {
     return circulos;
 }
 
-
-
-//distancia euclidea entre dos puntos
-/*
-int CDetectarAutomata::distanciaEuclidea(Point a, Point b) {
-    //cout << a << " , " << b;
-    //cout << " resultado " << sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)) << endl;
-    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
-}
-*/
 vector<Vec3f> CDetectarCirculo::getCirculosDetectados() {
     return circles;
 }

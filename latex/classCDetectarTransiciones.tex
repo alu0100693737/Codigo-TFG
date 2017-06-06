@@ -2,33 +2,41 @@
 \label{classCDetectarTransiciones}\index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}}
 
 
+Clase para la dereccion de Transiciones a partir de images.\+xml y classification.\+xml Ambos sacados de Generar\+Clasificador. Proceso de Aprendizaje.  
+
+
+
+
 {\ttfamily \#include $<$C\+Detectar\+Transiciones.\+h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classCDetectarTransiciones_a99c333a4c8c5a4bb0e03ac09ab6e50b9}{C\+Detectar\+Transiciones} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor Vacio. \end{DoxyCompactList}\item 
 bool \hyperlink{classCDetectarTransiciones_a19b374a5d7b5ddb01fada5b3a9d952d7}{ejecutar} (Mat image)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que busca las transiciones en una imagen. \end{DoxyCompactList}\item 
 Mat \hyperlink{classCDetectarTransiciones_aa9cea5befc08385a46baf86adc305737}{get\+Imagen\+Transicion\+Actual} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve la imagen actual. \end{DoxyCompactList}\item 
 void \hyperlink{classCDetectarTransiciones_a9f341c8df22490d46b266844b16f8585}{set\+Imagen\+Transicion\+Actual} (Mat image)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que asigna una imagen nueva a la imagen a detectar. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCContourWithData}{C\+Contour\+With\+Data} $>$ \& \hyperlink{classCDetectarTransiciones_a729c3aaffe2cc888e62c81a58814c1e9}{get\+Contornos\+Encontrados} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve los contornos encontrados en la imagen. \end{DoxyCompactList}\item 
 vector$<$ char $>$ \& \hyperlink{classCDetectarTransiciones_a1e7c9eac75874737cf7a2b7d7a4375c7}{get\+Letras\+Encontradas} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve las letras encontradas en la imagen. Emparejado con los contornos. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 Mat \hyperlink{classCDetectarTransiciones_aa58ae70139c85dc3838338eb53a520d3}{imagen\+Transicion\+Actual\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Imagen actual a detectar Transiciones. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCContourWithData}{C\+Contour\+With\+Data} $>$ \hyperlink{classCDetectarTransiciones_a76910f415a085c5e73126ec3fb62a174}{contornos\+Encontrados\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Vector con los contornos encontrados,. \end{DoxyCompactList}\item 
 vector$<$ char $>$ \hyperlink{classCDetectarTransiciones_a0bc5a3fc42f833f3e649e8b8c2fe573d}{letras\+Encontradas\+\_\+}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Vector con las letras encontradas, emparejado con contorno. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Clase para la dereccion de Transiciones a partir de images.\+xml y classification.\+xml Ambos sacados de Generar\+Clasificador. Proceso de Aprendizaje. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}!C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}}
@@ -40,6 +48,10 @@ vector$<$ char $>$ \hyperlink{classCDetectarTransiciones_a0bc5a3fc42f833f3e649e8
 )}\hypertarget{classCDetectarTransiciones_a99c333a4c8c5a4bb0e03ac09ab6e50b9}{}\label{classCDetectarTransiciones_a99c333a4c8c5a4bb0e03ac09ab6e50b9}
 
 
+Constructor Vacio. 
+
+
+
 \subsection{Member Function Documentation}
 \index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}!ejecutar@{ejecutar}}
 \index{ejecutar@{ejecutar}!C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}}
@@ -48,13 +60,48 @@ vector$<$ char $>$ \hyperlink{classCDetectarTransiciones_a0bc5a3fc42f833f3e649e8
 \item[{Mat}]{image}
 \end{DoxyParamCaption}
 )}\hypertarget{classCDetectarTransiciones_a19b374a5d7b5ddb01fada5b3a9d952d7}{}\label{classCDetectarTransiciones_a19b374a5d7b5ddb01fada5b3a9d952d7}
-\index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}!get\+Contornos\+Encontrados@{get\+Contornos\+Encontrados}}
+
+
+Metodo que busca las transiciones en una imagen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Imagen a detectar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Imagen resultado de la deteccion 
+\end{DoxyReturn}
+Leemos la imagen a detectar, el clasificador.\+xml y image.\+xml
+
+Creamos cv\+::\+Ptr$<$cv\+::ml\+::\+K\+Nearest$>$ k\+Nearest(cv\+::ml\+::\+K\+Nearest\+::create());
+
+instantiate the K\+NN object
+
+Suavizado Gaussiano
+
+Filtro de escala de grises a blanco y negro
+
+Buscamos contornos en la imagen
+
+Ordenamos de izquierda a derecha
+
+k\+Nearest-\/$>$find\+Nearest Buscamos semejanza entre los contornos y el clasificador
+
+Asignamos contorno y letra a contornos\+Encontrados \index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}!get\+Contornos\+Encontrados@{get\+Contornos\+Encontrados}}
 \index{get\+Contornos\+Encontrados@{get\+Contornos\+Encontrados}!C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}}
 \subsubsection[{\texorpdfstring{get\+Contornos\+Encontrados()}{getContornosEncontrados()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf C\+Contour\+With\+Data} $>$ \& C\+Detectar\+Transiciones\+::get\+Contornos\+Encontrados (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCDetectarTransiciones_a729c3aaffe2cc888e62c81a58814c1e9}{}\label{classCDetectarTransiciones_a729c3aaffe2cc888e62c81a58814c1e9}
+
+
+Metodo que devuelve los contornos encontrados en la imagen. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+C\+Contour\+With\+Data$>$ 
+\end{DoxyReturn}
 \index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}!get\+Imagen\+Transicion\+Actual@{get\+Imagen\+Transicion\+Actual}}
 \index{get\+Imagen\+Transicion\+Actual@{get\+Imagen\+Transicion\+Actual}!C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}}
 \subsubsection[{\texorpdfstring{get\+Imagen\+Transicion\+Actual()}{getImagenTransicionActual()}}]{\setlength{\rightskip}{0pt plus 5cm}Mat C\+Detectar\+Transiciones\+::get\+Imagen\+Transicion\+Actual (
@@ -62,6 +109,13 @@ vector$<$ char $>$ \hyperlink{classCDetectarTransiciones_a0bc5a3fc42f833f3e649e8
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCDetectarTransiciones_aa9cea5befc08385a46baf86adc305737}{}\label{classCDetectarTransiciones_aa9cea5befc08385a46baf86adc305737}
+
+
+Metodo que devuelve la imagen actual. 
+
+\begin{DoxyReturn}{Returns}
+Mat 
+\end{DoxyReturn}
 \index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}!get\+Letras\+Encontradas@{get\+Letras\+Encontradas}}
 \index{get\+Letras\+Encontradas@{get\+Letras\+Encontradas}!C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}}
 \subsubsection[{\texorpdfstring{get\+Letras\+Encontradas()}{getLetrasEncontradas()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ char $>$ \& C\+Detectar\+Transiciones\+::get\+Letras\+Encontradas (
@@ -69,6 +123,13 @@ vector$<$ char $>$ \hyperlink{classCDetectarTransiciones_a0bc5a3fc42f833f3e649e8
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCDetectarTransiciones_a1e7c9eac75874737cf7a2b7d7a4375c7}{}\label{classCDetectarTransiciones_a1e7c9eac75874737cf7a2b7d7a4375c7}
+
+
+Metodo que devuelve las letras encontradas en la imagen. Emparejado con los contornos. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+C\+Contour\+With\+Data$>$ 
+\end{DoxyReturn}
 \index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}!set\+Imagen\+Transicion\+Actual@{set\+Imagen\+Transicion\+Actual}}
 \index{set\+Imagen\+Transicion\+Actual@{set\+Imagen\+Transicion\+Actual}!C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}}
 \subsubsection[{\texorpdfstring{set\+Imagen\+Transicion\+Actual(\+Mat image)}{setImagenTransicionActual(Mat image)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Detectar\+Transiciones\+::set\+Imagen\+Transicion\+Actual (
@@ -78,16 +139,37 @@ vector$<$ char $>$ \hyperlink{classCDetectarTransiciones_a0bc5a3fc42f833f3e649e8
 )}\hypertarget{classCDetectarTransiciones_a9f341c8df22490d46b266844b16f8585}{}\label{classCDetectarTransiciones_a9f341c8df22490d46b266844b16f8585}
 
 
+Metodo que asigna una imagen nueva a la imagen a detectar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image.} & Nueva imagen \\
+\hline
+\end{DoxyParams}
+
+
 \subsection{Member Data Documentation}
 \index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}!contornos\+Encontrados\+\_\+@{contornos\+Encontrados\+\_\+}}
 \index{contornos\+Encontrados\+\_\+@{contornos\+Encontrados\+\_\+}!C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}}
 \subsubsection[{\texorpdfstring{contornos\+Encontrados\+\_\+}{contornosEncontrados_}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf C\+Contour\+With\+Data}$>$ C\+Detectar\+Transiciones\+::contornos\+Encontrados\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarTransiciones_a76910f415a085c5e73126ec3fb62a174}{}\label{classCDetectarTransiciones_a76910f415a085c5e73126ec3fb62a174}
+
+
+Vector con los contornos encontrados,. 
+
 \index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}!imagen\+Transicion\+Actual\+\_\+@{imagen\+Transicion\+Actual\+\_\+}}
 \index{imagen\+Transicion\+Actual\+\_\+@{imagen\+Transicion\+Actual\+\_\+}!C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}}
 \subsubsection[{\texorpdfstring{imagen\+Transicion\+Actual\+\_\+}{imagenTransicionActual_}}]{\setlength{\rightskip}{0pt plus 5cm}Mat C\+Detectar\+Transiciones\+::imagen\+Transicion\+Actual\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarTransiciones_aa58ae70139c85dc3838338eb53a520d3}{}\label{classCDetectarTransiciones_aa58ae70139c85dc3838338eb53a520d3}
+
+
+Imagen actual a detectar Transiciones. 
+
 \index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}!letras\+Encontradas\+\_\+@{letras\+Encontradas\+\_\+}}
 \index{letras\+Encontradas\+\_\+@{letras\+Encontradas\+\_\+}!C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}}
 \subsubsection[{\texorpdfstring{letras\+Encontradas\+\_\+}{letrasEncontradas_}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$char$>$ C\+Detectar\+Transiciones\+::letras\+Encontradas\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarTransiciones_a0bc5a3fc42f833f3e649e8b8c2fe573d}{}\label{classCDetectarTransiciones_a0bc5a3fc42f833f3e649e8b8c2fe573d}
+
+
+Vector con las letras encontradas, emparejado con contorno. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

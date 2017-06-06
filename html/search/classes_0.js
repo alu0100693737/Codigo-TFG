@@ -12,6 +12,5 @@ var searchData=
   ['clineedit',['CLineEdit',['../classCLineEdit.html',1,'']]],
   ['coperacionesimagen',['COperacionesImagen',['../classCOperacionesImagen.html',1,'']]],
   ['cpanelopciones',['CPanelOpciones',['../classCPanelOpciones.html',1,'']]],
-  ['cpushbutton',['CPushButton',['../classCPushButton.html',1,'']]],
-  ['cscrolldata',['CScrollData',['../classCScrollData.html',1,'']]]
+  ['cpushbutton',['CPushButton',['../classCPushButton.html',1,'']]]
 ];

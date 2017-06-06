@@ -24,10 +24,10 @@ Mat COperacionesImagen::calcularHistograma(Mat imagen) {
     vector<Mat> bgr_planes;
     split(imagen, bgr_planes);
 
-    /// Establish the number of bins
+    // Establish the number of bins
     int histSize = 256;
 
-    /// Rango de colores ( for B,G,R) )
+    // Rango de colores ( for B,G,R) )
     float range[] = { 0, 256 };
     const float* histRange = { range };
 
@@ -35,7 +35,7 @@ Mat COperacionesImagen::calcularHistograma(Mat imagen) {
 
     Mat b_hist, g_hist, r_hist;
 
-    //Calcula el histograma para los 3 canales de color
+    ///Calcula el histograma para los 3 canales de color
     calcHist(&bgr_planes[0], 1, 0, Mat(), b_hist, 1, &histSize, &histRange, uniform, accumulate);
     calcHist(&bgr_planes[1], 1, 0, Mat(), g_hist, 1, &histSize, &histRange, uniform, accumulate);
     calcHist(&bgr_planes[2], 1, 0, Mat(), r_hist, 1, &histSize, &histRange, uniform, accumulate);
@@ -46,12 +46,12 @@ Mat COperacionesImagen::calcularHistograma(Mat imagen) {
 
     Mat histImage(hist_h, hist_w, CV_8UC3, Scalar(0, 0, 0));
 
-    //Normaliza el histograma [0, histImage.rows ]
+    ///Normaliza el histograma [0, histImage.rows ]
     normalize(b_hist, b_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
     normalize(g_hist, g_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
     normalize(r_hist, r_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
 
-    //Dibuja la linea correspondiente para cada canal de color
+    ///Dibuja la linea correspondiente para cada canal de color
     for (int i = 1; i < histSize; i++) {
         line(histImage, Point(bin_w*(i - 1), hist_h - cvRound(b_hist.at<float>(i - 1))),
              Point(bin_w*(i), hist_h - cvRound(b_hist.at<float>(i))),
@@ -129,7 +129,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
     vector<Point> transitions;
 
     vector<Point> auxpuntosMedios;
-    //Si se ha hecho la deteccion
+    ///Si se ha hecho la deteccion
     if(!detectarCirculos()->getCirculosDetectados().empty() && !detectarLineas()->getLineasDetectadas().empty() && !detectarTransiciones()->getContornosEncontrados().empty() && !detectarTransiciones()->getLetrasEncontradas().empty()) {
         cout << " CIRCULOS Y LINEAS " << endl;
 
@@ -147,7 +147,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
             }
         }*/
 
-        //Eliminando contornos dentro de circulos
+        ///Eliminando contornos dentro de circulos
         for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
             for(int j = 0; j < detectarCirculos()->getCirculosDetectados().size(); j++) {
                 if(detectarLineas()->distanciaEuclidea(
@@ -169,7 +169,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
                 }
             }
         }
-        //Confirmamos el numero de nodos
+        ///Confirmamos el numero de nodos
 
         int aux = detectarCirculos()->getCirculosDetectados().size();
         if (ventanaConfirmarNodos(aux)) { //numero de nodos confirmados, miramos ahora las lineas
@@ -202,11 +202,9 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
             cout << "Num de nodos no coincidente" << endl;
 
 
-        //Para las transiciones que hemos encontrado, hacemos la busqueda de letras o
-        //numeros. en el punto medio de la linea por cercania
-        //TENIENDO LAS LETRAS, POSICION VALOR Y PUNTO MEDIO ENTRE LAS TRANSICIONES, FALTA ASIGNAR
+        ///Para las transiciones que hemos encontrado, hacemos la busqueda de letras o
+        ///numeros. en el punto medio de la linea por cercania
         if(transitions.size()) {
-            cout << "HOLAAAAAAAAAAAA" << endl;
             // Cerrar el fichero,
             // para luego poder abrirlo para lectura:
             vector<int>* auxInicios_ = new vector<int>();
@@ -241,7 +239,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
                 }
             }
 
-            //calculamos transiciones al mismo nodo
+            /// Calculamos transiciones al mismo nodo
             cout << "Quedan " << detectarTransiciones()->getContornosEncontrados().size() << " Transiciones por mirar" << endl;
             for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
                 cout << "Contorno " << i << " " << detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno << endl;
@@ -289,6 +287,7 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
             cout << auxInicios_->size()<< endl;
             cout << auxDestinos_->size() << endl;
             cout << auxLetras_->size() << endl;
+            /// Abrimos asistente
             asistente_ = new CAsistenteCodificacion(detectarCirculos()->getCirculosDetectados().size(), nodoInicial, nodosFinales, auxInicios_, auxDestinos_, auxLetras_);
             getAsistente()->show();
         } else {
@@ -312,7 +311,6 @@ bool COperacionesImagen::ventanaConfirmarNodos(int nodos) {
     return ok;
 }
 
-//devuelve si un punto esta dentoro del vector
 bool COperacionesImagen::contain(vector<Point> aux, Point a) {
     bool contiene = false;
     for(int i = 0; i < aux.size(); i++) {

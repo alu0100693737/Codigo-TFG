@@ -92,33 +92,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Clase para la dereccion de Transiciones a partir de images.xml y classification.xml Ambos sacados de GenerarClasificador. Proceso de Aprendizaje.  
+ <a href="classCDetectarTransiciones.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="CDetectarTransiciones_8h_source.html">CDetectarTransiciones.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a99c333a4c8c5a4bb0e03ac09ab6e50b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarTransiciones.html#a99c333a4c8c5a4bb0e03ac09ab6e50b9">CDetectarTransiciones</a> ()</td></tr>
+<tr class="memdesc:a99c333a4c8c5a4bb0e03ac09ab6e50b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor Vacio.  <a href="#a99c333a4c8c5a4bb0e03ac09ab6e50b9">More...</a><br /></td></tr>
 <tr class="separator:a99c333a4c8c5a4bb0e03ac09ab6e50b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19b374a5d7b5ddb01fada5b3a9d952d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarTransiciones.html#a19b374a5d7b5ddb01fada5b3a9d952d7">ejecutar</a> (Mat image)</td></tr>
+<tr class="memdesc:a19b374a5d7b5ddb01fada5b3a9d952d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que busca las transiciones en una imagen.  <a href="#a19b374a5d7b5ddb01fada5b3a9d952d7">More...</a><br /></td></tr>
 <tr class="separator:a19b374a5d7b5ddb01fada5b3a9d952d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9cea5befc08385a46baf86adc305737"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarTransiciones.html#aa9cea5befc08385a46baf86adc305737">getImagenTransicionActual</a> ()</td></tr>
+<tr class="memdesc:aa9cea5befc08385a46baf86adc305737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve la imagen actual.  <a href="#aa9cea5befc08385a46baf86adc305737">More...</a><br /></td></tr>
 <tr class="separator:aa9cea5befc08385a46baf86adc305737"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f341c8df22490d46b266844b16f8585"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarTransiciones.html#a9f341c8df22490d46b266844b16f8585">setImagenTransicionActual</a> (Mat image)</td></tr>
+<tr class="memdesc:a9f341c8df22490d46b266844b16f8585"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que asigna una imagen nueva a la imagen a detectar.  <a href="#a9f341c8df22490d46b266844b16f8585">More...</a><br /></td></tr>
 <tr class="separator:a9f341c8df22490d46b266844b16f8585"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a729c3aaffe2cc888e62c81a58814c1e9"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCContourWithData.html">CContourWithData</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarTransiciones.html#a729c3aaffe2cc888e62c81a58814c1e9">getContornosEncontrados</a> ()</td></tr>
+<tr class="memdesc:a729c3aaffe2cc888e62c81a58814c1e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve los contornos encontrados en la imagen.  <a href="#a729c3aaffe2cc888e62c81a58814c1e9">More...</a><br /></td></tr>
 <tr class="separator:a729c3aaffe2cc888e62c81a58814c1e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e7c9eac75874737cf7a2b7d7a4375c7"><td class="memItemLeft" align="right" valign="top">vector&lt; char &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarTransiciones.html#a1e7c9eac75874737cf7a2b7d7a4375c7">getLetrasEncontradas</a> ()</td></tr>
+<tr class="memdesc:a1e7c9eac75874737cf7a2b7d7a4375c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve las letras encontradas en la imagen. Emparejado con los contornos.  <a href="#a1e7c9eac75874737cf7a2b7d7a4375c7">More...</a><br /></td></tr>
 <tr class="separator:a1e7c9eac75874737cf7a2b7d7a4375c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aa58ae70139c85dc3838338eb53a520d3"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarTransiciones.html#aa58ae70139c85dc3838338eb53a520d3">imagenTransicionActual_</a></td></tr>
+<tr class="memdesc:aa58ae70139c85dc3838338eb53a520d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imagen actual a detectar Transiciones.  <a href="#aa58ae70139c85dc3838338eb53a520d3">More...</a><br /></td></tr>
 <tr class="separator:aa58ae70139c85dc3838338eb53a520d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76910f415a085c5e73126ec3fb62a174"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCContourWithData.html">CContourWithData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarTransiciones.html#a76910f415a085c5e73126ec3fb62a174">contornosEncontrados_</a></td></tr>
+<tr class="memdesc:a76910f415a085c5e73126ec3fb62a174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector con los contornos encontrados,.  <a href="#a76910f415a085c5e73126ec3fb62a174">More...</a><br /></td></tr>
 <tr class="separator:a76910f415a085c5e73126ec3fb62a174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bc5a3fc42f833f3e649e8b8c2fe573d"><td class="memItemLeft" align="right" valign="top">vector&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarTransiciones.html#a0bc5a3fc42f833f3e649e8b8c2fe573d">letrasEncontradas_</a></td></tr>
+<tr class="memdesc:a0bc5a3fc42f833f3e649e8b8c2fe573d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector con las letras encontradas, emparejado con contorno.  <a href="#a0bc5a3fc42f833f3e649e8b8c2fe573d">More...</a><br /></td></tr>
 <tr class="separator:a0bc5a3fc42f833f3e649e8b8c2fe573d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Clase para la dereccion de Transiciones a partir de images.xml y classification.xml Ambos sacados de GenerarClasificador. Proceso de Aprendizaje. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a99c333a4c8c5a4bb0e03ac09ab6e50b9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -131,6 +145,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructor Vacio. </p>
 
 </div>
 </div>
@@ -149,6 +165,24 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que busca las transiciones en una imagen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>Imagen a detectar </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Imagen resultado de la deteccion </dd></dl>
+<p>Leemos la imagen a detectar, el clasificador.xml y image.xml</p>
+<p>Creamos cv::Ptr&lt;cv::ml::KNearest&gt; kNearest(cv::ml::KNearest::create());</p>
+<p>instantiate the KNN object</p>
+<p>Suavizado Gaussiano</p>
+<p>Filtro de escala de grises a blanco y negro</p>
+<p>Buscamos contornos en la imagen</p>
+<p>Ordenamos de izquierda a derecha</p>
+<p>kNearest-&gt;findNearest Buscamos semejanza entre los contornos y el clasificador</p>
+<p>Asignamos contorno y letra a contornosEncontrados </p>
+
 </div>
 </div>
 <a class="anchor" id="a729c3aaffe2cc888e62c81a58814c1e9"></a>
@@ -163,6 +197,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve los contornos encontrados en la imagen. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;CContourWithData&gt; </dd></dl>
 
 </div>
 </div>
@@ -179,6 +216,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve la imagen actual. </p>
+<dl class="section return"><dt>Returns</dt><dd>Mat </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a1e7c9eac75874737cf7a2b7d7a4375c7"></a>
@@ -193,6 +233,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve las letras encontradas en la imagen. Emparejado con los contornos. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;CContourWithData&gt; </dd></dl>
 
 </div>
 </div>
@@ -209,6 +252,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que asigna una imagen nueva a la imagen a detectar. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image.</td><td>Nueva imagen </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -231,6 +282,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Vector con los contornos encontrados,. </p>
+
 </div>
 </div>
 <a class="anchor" id="aa58ae70139c85dc3838338eb53a520d3"></a>
@@ -251,6 +304,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Imagen actual a detectar Transiciones. </p>
+
 </div>
 </div>
 <a class="anchor" id="a0bc5a3fc42f833f3e649e8b8c2fe573d"></a>
@@ -270,6 +325,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Vector con las letras encontradas, emparejado con contorno. </p>
 
 </div>
 </div>

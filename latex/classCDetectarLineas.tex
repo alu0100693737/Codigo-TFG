@@ -2,38 +2,46 @@
 \label{classCDetectarLineas}\index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
 
 
+Clase para la deteccion de Lineas Valor por defecto para la deteccion, hough\+LinesP 80.  
+
+
+
+
 {\ttfamily \#include $<$C\+Detectar\+Lineas.\+h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classCDetectarLineas_a4a48d20f23a63a2a0202a316317e0801}{C\+Detectar\+Lineas} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor Vacio. \end{DoxyCompactList}\item 
 Mat \hyperlink{classCDetectarLineas_a8380e777f5cac60aae54ac0cf13b7246}{iniciar\+Deteccion} (Mat imagen, int houghprobabilistico)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que inicia la deteccion de lineas en la imagen. \end{DoxyCompactList}\item 
 vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_ad3c473d7e85a3c4901870af10ff9d5ed}{get\+Lineas\+Detectadas} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el conjunto de lineas detectadas en la imagen. \end{DoxyCompactList}\item 
 int \hyperlink{classCDetectarLineas_ad7493ac0d73201a7c9188f8a283b6a88}{distancia\+Euclidea} (int a, int b)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve la distancia euclidiana entre dos numeros. \end{DoxyCompactList}\item 
 int \hyperlink{classCDetectarLineas_abe5bf1860071f33e7339742fd88e6e78}{distancia\+Euclidea} (int a, int b, bool mostrar)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve la distancia euclidiana entre dos numeros. \end{DoxyCompactList}\item 
 int \hyperlink{classCDetectarLineas_a88fe565263283487188f7c032a661d2f}{distancia\+Euclidea} (Point a, Point b)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve la distancia euclidiana entre dos Puntos. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_ae70b53c9bf1434cb25e267ea3ab62c63}{detectar\+Lineas} (const Mat \&src\+\_\+gray, int houghprobabilistico)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que detecta Lineas en una imagen. \end{DoxyCompactList}\item 
 vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_ae99dee16338d0e71669d23208e4176de}{Hough\+Probabilistico} (Mat, int, void $\ast$, int houghprobabilistico)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo para la deteccion de Lineas. \end{DoxyCompactList}\item 
 vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_a89b7e5edd431909abd180f059f6abd0f}{filtrar\+Lineas} (vector$<$ Vec4i $>$ \&lineas)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo que filtra lineas extrañas por cercania y duplicidad de principio a fin. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_a1aab2cfd627e2d3eef1650837ab61436}{lineas\+Encontradas}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Vector Vec4i de lineas detectadas Estructura x1y1 x2y2. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Clase para la deteccion de Lineas Valor por defecto para la deteccion, hough\+LinesP 80. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
@@ -45,6 +53,10 @@ vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_a1aab2cfd627e2d3eef1650837ab
 )}\hypertarget{classCDetectarLineas_a4a48d20f23a63a2a0202a316317e0801}{}\label{classCDetectarLineas_a4a48d20f23a63a2a0202a316317e0801}
 
 
+Constructor Vacio. 
+
+
+
 \subsection{Member Function Documentation}
 \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!detectar\+Lineas@{detectar\+Lineas}}
 \index{detectar\+Lineas@{detectar\+Lineas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
@@ -54,6 +66,20 @@ vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_a1aab2cfd627e2d3eef1650837ab
 \item[{int}]{houghprobabilistico}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarLineas_ae70b53c9bf1434cb25e267ea3ab62c63}{}\label{classCDetectarLineas_ae70b53c9bf1434cb25e267ea3ab62c63}
+
+
+Metodo que detecta Lineas en una imagen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src\+\_\+gray.} & Imagen en escala de grises \\
+\hline
+{\em houghprobabilistico.} & Variable deteccion de lineas. Por defecto 80 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lineas encontradas 
+\end{DoxyReturn}
 Deteccion de bordes
 
 Deteccion de lineas \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!distancia\+Euclidea@{distancia\+Euclidea}}
@@ -64,6 +90,20 @@ Deteccion de lineas \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!distancia\+
 \item[{int}]{b}
 \end{DoxyParamCaption}
 )}\hypertarget{classCDetectarLineas_ad7493ac0d73201a7c9188f8a283b6a88}{}\label{classCDetectarLineas_ad7493ac0d73201a7c9188f8a283b6a88}
+
+
+Metodo que devuelve la distancia euclidiana entre dos numeros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a.} & Numero a \\
+\hline
+{\em b.} & Numero b \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+distancia euclidiana 
+\end{DoxyReturn}
 \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!distancia\+Euclidea@{distancia\+Euclidea}}
 \index{distancia\+Euclidea@{distancia\+Euclidea}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
 \subsubsection[{\texorpdfstring{distancia\+Euclidea(int a, int b, bool mostrar)}{distanciaEuclidea(int a, int b, bool mostrar)}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Detectar\+Lineas\+::distancia\+Euclidea (
@@ -73,6 +113,22 @@ Deteccion de lineas \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!distancia\+
 \item[{bool}]{mostrar}
 \end{DoxyParamCaption}
 )}\hypertarget{classCDetectarLineas_abe5bf1860071f33e7339742fd88e6e78}{}\label{classCDetectarLineas_abe5bf1860071f33e7339742fd88e6e78}
+
+
+Metodo que devuelve la distancia euclidiana entre dos numeros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a.} & Numero a \\
+\hline
+{\em b.} & Numero b \\
+\hline
+{\em bool} & mostrar Std resultado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+distancia euclidiana 
+\end{DoxyReturn}
 \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!distancia\+Euclidea@{distancia\+Euclidea}}
 \index{distancia\+Euclidea@{distancia\+Euclidea}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
 \subsubsection[{\texorpdfstring{distancia\+Euclidea(\+Point a, Point b)}{distanciaEuclidea(Point a, Point b)}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Detectar\+Lineas\+::distancia\+Euclidea (
@@ -81,6 +137,20 @@ Deteccion de lineas \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!distancia\+
 \item[{Point}]{b}
 \end{DoxyParamCaption}
 )}\hypertarget{classCDetectarLineas_a88fe565263283487188f7c032a661d2f}{}\label{classCDetectarLineas_a88fe565263283487188f7c032a661d2f}
+
+
+Metodo que devuelve la distancia euclidiana entre dos Puntos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a.} & Punto a \\
+\hline
+{\em b.} & Punto b \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+distancia euclidiana 
+\end{DoxyReturn}
 \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!filtrar\+Lineas@{filtrar\+Lineas}}
 \index{filtrar\+Lineas@{filtrar\+Lineas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
 \subsubsection[{\texorpdfstring{filtrar\+Lineas(vector$<$ Vec4i $>$ \&lineas)}{filtrarLineas(vector< Vec4i > &lineas)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec4i $>$ C\+Detectar\+Lineas\+::filtrar\+Lineas (
@@ -88,13 +158,36 @@ Deteccion de lineas \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!distancia\+
 \item[{vector$<$ Vec4i $>$ \&}]{lineas}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarLineas_a89b7e5edd431909abd180f059f6abd0f}{}\label{classCDetectarLineas_a89b7e5edd431909abd180f059f6abd0f}
-Filtramos la Continuacion de lineas en la coordenada X \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!get\+Lineas\+Detectadas@{get\+Lineas\+Detectadas}}
+
+
+Metodo que filtra lineas extrañas por cercania y duplicidad de principio a fin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lineas} & a filtrar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+lineas filtradas 
+\end{DoxyReturn}
+Filtramos la Continuacion de lineas en la coordenada X
+
+continuacion de lineas en Y
+
+Lineas superpuestas completamente, falta las que son sublineas de una mayor \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!get\+Lineas\+Detectadas@{get\+Lineas\+Detectadas}}
 \index{get\+Lineas\+Detectadas@{get\+Lineas\+Detectadas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
 \subsubsection[{\texorpdfstring{get\+Lineas\+Detectadas()}{getLineasDetectadas()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec4i $>$ C\+Detectar\+Lineas\+::get\+Lineas\+Detectadas (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCDetectarLineas_ad3c473d7e85a3c4901870af10ff9d5ed}{}\label{classCDetectarLineas_ad3c473d7e85a3c4901870af10ff9d5ed}
+
+
+Metodo que devuelve el conjunto de lineas detectadas en la imagen. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+Vec4i$>$ 
+\end{DoxyReturn}
 \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!Hough\+Probabilistico@{Hough\+Probabilistico}}
 \index{Hough\+Probabilistico@{Hough\+Probabilistico}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
 \subsubsection[{\texorpdfstring{Hough\+Probabilistico(\+Mat, int, void $\ast$, int houghprobabilistico)}{HoughProbabilistico(Mat, int, void *, int houghprobabilistico)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec4i $>$ C\+Detectar\+Lineas\+::\+Hough\+Probabilistico (
@@ -105,6 +198,18 @@ Filtramos la Continuacion de lineas en la coordenada X \index{C\+Detectar\+Linea
 \item[{int}]{houghprobabilistico}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarLineas_ae99dee16338d0e71669d23208e4176de}{}\label{classCDetectarLineas_ae99dee16338d0e71669d23208e4176de}
+
+
+Metodo para la deteccion de Lineas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em houghprobabilistico.} & Valor variable deteccion de lineas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 Convertimos la imagen a B\+GR
 
 Usamos la transformada de Hough probabilistica
@@ -119,10 +224,30 @@ Filtramos las lineas, duplicaciones \index{C\+Detectar\+Lineas@{C\+Detectar\+Lin
 )}\hypertarget{classCDetectarLineas_a8380e777f5cac60aae54ac0cf13b7246}{}\label{classCDetectarLineas_a8380e777f5cac60aae54ac0cf13b7246}
 
 
+Metodo que inicia la deteccion de lineas en la imagen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em imagen} & \\
+\hline
+{\em houghprobabilistico.} & Valor de la variable para la deteccion de lineas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Imagen resultado de la deteccion 
+\end{DoxyReturn}
+Deteccion de lineas
+
+Dibujamos lineas sobre la imagen original 
+
 \subsection{Member Data Documentation}
 \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!lineas\+Encontradas@{lineas\+Encontradas}}
 \index{lineas\+Encontradas@{lineas\+Encontradas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
 \subsubsection[{\texorpdfstring{lineas\+Encontradas}{lineasEncontradas}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$Vec4i$>$ C\+Detectar\+Lineas\+::lineas\+Encontradas\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCDetectarLineas_a1aab2cfd627e2d3eef1650837ab61436}{}\label{classCDetectarLineas_a1aab2cfd627e2d3eef1650837ab61436}
+
+
+Vector Vec4i de lineas detectadas Estructura x1y1 x2y2. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

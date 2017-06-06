@@ -2,24 +2,32 @@
 \label{classCFiltrosImagenes}\index{C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}}
 
 
+Clase con diferentes filtros para aplicar sobre imagenes.  
+
+
+
+
 {\ttfamily \#include $<$C\+Filtros\+Imagenes.\+h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classCFiltrosImagenes_a6478e212e79b6c075c13f92fd8a500e2}{C\+Filtros\+Imagenes} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor Vacio. \end{DoxyCompactList}\item 
 Mat \hyperlink{classCFiltrosImagenes_a4fb22fba45bab47d81904429e8f250f0}{filtro\+Gaussian\+Blur} (Mat original)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que aplica el filtro Gaussiano a una imagen. \end{DoxyCompactList}\item 
 Mat \hyperlink{classCFiltrosImagenes_a98ef01d019a234d186e1ac47d76c09de}{filtro\+Median\+Blur} (Mat original)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que aplica el filtro de la Mediana a una imagen. \end{DoxyCompactList}\item 
 Mat \hyperlink{classCFiltrosImagenes_a6ba12449903681d11aba15c065e48e61}{filtro\+Sobel} (Mat original)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que aplica el filtro Sobel a una imagen. \end{DoxyCompactList}\item 
 Mat \hyperlink{classCFiltrosImagenes_ad9cd3070a534acc987a3bf15555590c2}{filtro\+Laplacian} (Mat original)
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que aplica el filtro Laplaciano a una imagen. \end{DoxyCompactList}\item 
 void \hyperlink{classCFiltrosImagenes_ac5bf9185d05955f93480cba9f158641d}{prueba\+Filtros} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo para la prueba de filtros sobre una imagen. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Clase con diferentes filtros para aplicar sobre imagenes. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}!C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}}
@@ -31,6 +39,10 @@ void \hyperlink{classCFiltrosImagenes_ac5bf9185d05955f93480cba9f158641d}{prueba\
 )}\hypertarget{classCFiltrosImagenes_a6478e212e79b6c075c13f92fd8a500e2}{}\label{classCFiltrosImagenes_a6478e212e79b6c075c13f92fd8a500e2}
 
 
+Constructor Vacio. 
+
+
+
 \subsection{Member Function Documentation}
 \index{C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}!filtro\+Gaussian\+Blur@{filtro\+Gaussian\+Blur}}
 \index{filtro\+Gaussian\+Blur@{filtro\+Gaussian\+Blur}!C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}}
@@ -39,34 +51,86 @@ void \hyperlink{classCFiltrosImagenes_ac5bf9185d05955f93480cba9f158641d}{prueba\
 \item[{Mat}]{original}
 \end{DoxyParamCaption}
 )}\hypertarget{classCFiltrosImagenes_a4fb22fba45bab47d81904429e8f250f0}{}\label{classCFiltrosImagenes_a4fb22fba45bab47d81904429e8f250f0}
-\index{C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}!filtro\+Laplacian@{filtro\+Laplacian}}
+
+
+Metodo que aplica el filtro Gaussiano a una imagen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original.} & Imagen a aplicar el filtro \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat Imagen modificada 
+\end{DoxyReturn}
+Difumina reducciendo el ruido . Rapido pero preserva peor los bordes que el filtro de la Mediana (convolucion) \index{C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}!filtro\+Laplacian@{filtro\+Laplacian}}
 \index{filtro\+Laplacian@{filtro\+Laplacian}!C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}}
 \subsubsection[{\texorpdfstring{filtro\+Laplacian(\+Mat original)}{filtroLaplacian(Mat original)}}]{\setlength{\rightskip}{0pt plus 5cm}Mat C\+Filtros\+Imagenes\+::filtro\+Laplacian (
 \begin{DoxyParamCaption}
 \item[{Mat}]{original}
 \end{DoxyParamCaption}
 )}\hypertarget{classCFiltrosImagenes_ad9cd3070a534acc987a3bf15555590c2}{}\label{classCFiltrosImagenes_ad9cd3070a534acc987a3bf15555590c2}
-\index{C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}!filtro\+Median\+Blur@{filtro\+Median\+Blur}}
+
+
+Metodo que aplica el filtro Laplaciano a una imagen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original.} & Imagen a aplicar el filtro \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat Imagen modificada 
+\end{DoxyReturn}
+Destaca las regiones de cambio de intensidad rapida \index{C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}!filtro\+Median\+Blur@{filtro\+Median\+Blur}}
 \index{filtro\+Median\+Blur@{filtro\+Median\+Blur}!C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}}
 \subsubsection[{\texorpdfstring{filtro\+Median\+Blur(\+Mat original)}{filtroMedianBlur(Mat original)}}]{\setlength{\rightskip}{0pt plus 5cm}Mat C\+Filtros\+Imagenes\+::filtro\+Median\+Blur (
 \begin{DoxyParamCaption}
 \item[{Mat}]{original}
 \end{DoxyParamCaption}
 )}\hypertarget{classCFiltrosImagenes_a98ef01d019a234d186e1ac47d76c09de}{}\label{classCFiltrosImagenes_a98ef01d019a234d186e1ac47d76c09de}
-\index{C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}!filtro\+Sobel@{filtro\+Sobel}}
+
+
+Metodo que aplica el filtro de la Mediana a una imagen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original.} & Imagen a aplicar el filtro \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat Imagen modificada 
+\end{DoxyReturn}
+Difumina reducciendo el ruido preservando mejor los bordes que el filtro Gaussiano \index{C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}!filtro\+Sobel@{filtro\+Sobel}}
 \index{filtro\+Sobel@{filtro\+Sobel}!C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}}
 \subsubsection[{\texorpdfstring{filtro\+Sobel(\+Mat original)}{filtroSobel(Mat original)}}]{\setlength{\rightskip}{0pt plus 5cm}Mat C\+Filtros\+Imagenes\+::filtro\+Sobel (
 \begin{DoxyParamCaption}
 \item[{Mat}]{original}
 \end{DoxyParamCaption}
 )}\hypertarget{classCFiltrosImagenes_a6ba12449903681d11aba15c065e48e61}{}\label{classCFiltrosImagenes_a6ba12449903681d11aba15c065e48e61}
-\index{C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}!prueba\+Filtros@{prueba\+Filtros}}
+
+
+Metodo que aplica el filtro Sobel a una imagen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original.} & Imagen a aplicar el filtro \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat Imagen modificada 
+\end{DoxyReturn}
+Busca mejorar la deteccion de bordes buscando cambios en la intensidad de gris a partir de la primera, segunda, tercera o mezcla de derivadas de la imagen \index{C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}!prueba\+Filtros@{prueba\+Filtros}}
 \index{prueba\+Filtros@{prueba\+Filtros}!C\+Filtros\+Imagenes@{C\+Filtros\+Imagenes}}
 \subsubsection[{\texorpdfstring{prueba\+Filtros()}{pruebaFiltros()}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Filtros\+Imagenes\+::prueba\+Filtros (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCFiltrosImagenes_ac5bf9185d05955f93480cba9f158641d}{}\label{classCFiltrosImagenes_ac5bf9185d05955f93480cba9f158641d}
+
+
+Metodo para la prueba de filtros sobre una imagen. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

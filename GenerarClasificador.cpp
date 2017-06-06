@@ -1,4 +1,16 @@
-// GenData.cpp
+///////////////////////////////////////////////////////////////
+// GenerarClasificador.h - Implementacion de un programa para//
+//     la generacion de un clasificador de caracteres        //
+//                                                           //
+//               Autor: Iván García Campos                   //
+//                                                           //
+//            Proyecto de Trabajo Fin de Grado.              //
+//                                                           //
+//               Fecha: 05/06/2017                           //
+///////////////////////////////////////////////////////////////
+/**
+ * Clase para la generador del clasificador de caracteres.
+*/
 /*
 #include<opencv2/core/core.hpp>
 #include<opencv2/highgui/highgui.hpp>

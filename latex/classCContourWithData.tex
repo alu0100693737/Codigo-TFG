@@ -2,29 +2,37 @@
 \label{classCContourWithData}\index{C\+Contour\+With\+Data@{C\+Contour\+With\+Data}}
 
 
+Clase que guarda contornos encontrados con su contorno, dimension y Area.  
+
+
+
+
 {\ttfamily \#include $<$C\+Contour\+With\+Data.\+h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classCContourWithData_a209af0add40f7b312b5bf72c7e9d47b7}{C\+Contour\+With\+Data} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor sin parametros. Vacio. \end{DoxyCompactList}\item 
 \hyperlink{classCContourWithData_a756d63b5e03e8809531f13c3231a5c3b}{C\+Contour\+With\+Data} (const \hyperlink{classCContourWithData}{C\+Contour\+With\+Data} \&copy)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor copia. \end{DoxyCompactList}\item 
 bool \hyperlink{classCContourWithData_aee393fc1557ce93c93fa16cba9a0f457}{check\+If\+Contour\+Is\+Valid} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Identifica si el contorno cubre el area minima M\+I\+N\+\_\+\+C\+O\+N\+T\+O\+U\+R\+\_\+\+A\+R\+EA. \end{DoxyCompactList}\item 
 void \hyperlink{classCContourWithData_adc8d62ef51d181ee9bf36b250dc14990}{mostrar\+Contorno} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Muestra los datos de la clase por Std. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::vector$<$ cv\+::\+Point $>$ \hyperlink{classCContourWithData_ace345d75058a013dc37f3b020736c383}{pt\+Contour}
-\item 
+\begin{DoxyCompactList}\small\item\em Contorno Detectado. \end{DoxyCompactList}\item 
 cv\+::\+Rect \hyperlink{classCContourWithData_a42c9ccab08cb833ecfb7f4b2a3d9a371}{dimension\+Contorno}
-\item 
+\begin{DoxyCompactList}\small\item\em Rectangulo alrededor del Contorno. \end{DoxyCompactList}\item 
 float \hyperlink{classCContourWithData_a065c8525870170a4ce67c7428b3c6cff}{flt\+Area}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Area del Contorno detectado. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Clase que guarda contornos encontrados con su contorno, dimension y Area. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{C\+Contour\+With\+Data@{C\+Contour\+With\+Data}!C\+Contour\+With\+Data@{C\+Contour\+With\+Data}}
@@ -34,6 +42,10 @@ float \hyperlink{classCContourWithData_a065c8525870170a4ce67c7428b3c6cff}{flt\+A
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCContourWithData_a209af0add40f7b312b5bf72c7e9d47b7}{}\label{classCContourWithData_a209af0add40f7b312b5bf72c7e9d47b7}
+
+
+Constructor sin parametros. Vacio. 
+
 \index{C\+Contour\+With\+Data@{C\+Contour\+With\+Data}!C\+Contour\+With\+Data@{C\+Contour\+With\+Data}}
 \index{C\+Contour\+With\+Data@{C\+Contour\+With\+Data}!C\+Contour\+With\+Data@{C\+Contour\+With\+Data}}
 \subsubsection[{\texorpdfstring{C\+Contour\+With\+Data(const C\+Contour\+With\+Data \&copy)}{CContourWithData(const CContourWithData &copy)}}]{\setlength{\rightskip}{0pt plus 5cm}C\+Contour\+With\+Data\+::\+C\+Contour\+With\+Data (
@@ -41,6 +53,15 @@ float \hyperlink{classCContourWithData_a065c8525870170a4ce67c7428b3c6cff}{flt\+A
 \item[{const {\bf C\+Contour\+With\+Data} \&}]{copy}
 \end{DoxyParamCaption}
 )}\hypertarget{classCContourWithData_a756d63b5e03e8809531f13c3231a5c3b}{}\label{classCContourWithData_a756d63b5e03e8809531f13c3231a5c3b}
+
+
+Constructor copia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em copy} & \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
@@ -51,6 +72,10 @@ float \hyperlink{classCContourWithData_a065c8525870170a4ce67c7428b3c6cff}{flt\+A
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCContourWithData_aee393fc1557ce93c93fa16cba9a0f457}{}\label{classCContourWithData_aee393fc1557ce93c93fa16cba9a0f457}
+
+
+Identifica si el contorno cubre el area minima M\+I\+N\+\_\+\+C\+O\+N\+T\+O\+U\+R\+\_\+\+A\+R\+EA. 
+
 \index{C\+Contour\+With\+Data@{C\+Contour\+With\+Data}!mostrar\+Contorno@{mostrar\+Contorno}}
 \index{mostrar\+Contorno@{mostrar\+Contorno}!C\+Contour\+With\+Data@{C\+Contour\+With\+Data}}
 \subsubsection[{\texorpdfstring{mostrar\+Contorno()}{mostrarContorno()}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Contour\+With\+Data\+::mostrar\+Contorno (
@@ -60,16 +85,32 @@ float \hyperlink{classCContourWithData_a065c8525870170a4ce67c7428b3c6cff}{flt\+A
 )}\hypertarget{classCContourWithData_adc8d62ef51d181ee9bf36b250dc14990}{}\label{classCContourWithData_adc8d62ef51d181ee9bf36b250dc14990}
 
 
+Muestra los datos de la clase por Std. 
+
+
+
 \subsection{Member Data Documentation}
 \index{C\+Contour\+With\+Data@{C\+Contour\+With\+Data}!dimension\+Contorno@{dimension\+Contorno}}
 \index{dimension\+Contorno@{dimension\+Contorno}!C\+Contour\+With\+Data@{C\+Contour\+With\+Data}}
 \subsubsection[{\texorpdfstring{dimension\+Contorno}{dimensionContorno}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Rect C\+Contour\+With\+Data\+::dimension\+Contorno}\hypertarget{classCContourWithData_a42c9ccab08cb833ecfb7f4b2a3d9a371}{}\label{classCContourWithData_a42c9ccab08cb833ecfb7f4b2a3d9a371}
+
+
+Rectangulo alrededor del Contorno. 
+
 \index{C\+Contour\+With\+Data@{C\+Contour\+With\+Data}!flt\+Area@{flt\+Area}}
 \index{flt\+Area@{flt\+Area}!C\+Contour\+With\+Data@{C\+Contour\+With\+Data}}
 \subsubsection[{\texorpdfstring{flt\+Area}{fltArea}}]{\setlength{\rightskip}{0pt plus 5cm}float C\+Contour\+With\+Data\+::flt\+Area}\hypertarget{classCContourWithData_a065c8525870170a4ce67c7428b3c6cff}{}\label{classCContourWithData_a065c8525870170a4ce67c7428b3c6cff}
+
+
+Area del Contorno detectado. 
+
 \index{C\+Contour\+With\+Data@{C\+Contour\+With\+Data}!pt\+Contour@{pt\+Contour}}
 \index{pt\+Contour@{pt\+Contour}!C\+Contour\+With\+Data@{C\+Contour\+With\+Data}}
 \subsubsection[{\texorpdfstring{pt\+Contour}{ptContour}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$cv\+::\+Point$>$ C\+Contour\+With\+Data\+::pt\+Contour}\hypertarget{classCContourWithData_ace345d75058a013dc37f3b020736c383}{}\label{classCContourWithData_ace345d75058a013dc37f3b020736c383}
+
+
+Contorno Detectado. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

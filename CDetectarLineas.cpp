@@ -15,10 +15,10 @@ CDetectarLineas::CDetectarLineas() {
 }
 
 Mat CDetectarLineas::iniciarDeteccion(Mat imagen, int houghprobabilistico) {
-    //Deteccion de lineas
+    ///Deteccion de lineas
     lineasEncontradas = detectarLineas(imagen, houghprobabilistico);
     //cout << "Acabo de pescarla" << endl;
-    //Dibujamos lineas sobre la imagen original
+    ///Dibujamos lineas sobre la imagen original
     for( size_t i = 0; i < getLineasDetectadas().size(); i++ ) {
         // Mat imagenaux = imagen;
         Vec4i l = getLineasDetectadas().at(i);
@@ -26,8 +26,6 @@ Mat CDetectarLineas::iniciarDeteccion(Mat imagen, int houghprobabilistico) {
         //cout << "linea numero " << i << endl;
         //cout << " inicio " << l[0] << " , " << l[1] << " " << l[2] << " , " << l[3] << endl;
         //imshow("HOLA", imagen);
-
-
         //waitKey(0);
     }
     return imagen;
@@ -78,7 +76,7 @@ vector<Vec4i> CDetectarLineas::filtrarLineas(vector<Vec4i>& lineas) {
                     lineas.erase(lineas.begin() + (i));
                     j = i + 1; //i avanza solo al eliminar 2 e introducir 1. Inicializamos j
                 }
-                //continuacion de lineas en Y
+                ///continuacion de lineas en Y
             } else if(distanciaEuclidea(lineas[i][3], lineas[j][1]) < DISTANCIAPIXELPRINCIPAL) {
                 if(distanciaEuclidea(lineas[i][2], lineas[j][0]) < DISTANCIAPIXELSECUNDARIOLINEAS) {
                     cout << "Unificando lineas en Y" << endl;
@@ -87,7 +85,7 @@ vector<Vec4i> CDetectarLineas::filtrarLineas(vector<Vec4i>& lineas) {
                     lineas.erase(lineas.begin() + (i));
                     j = i + 1; //i avanza solo al eliminar 2 e introducir 1. Inicializamos j
                 }
-                //Lineas superpuestas completamente, falta las que son sublineas de una mayor
+                ///Lineas superpuestas completamente, falta las que son sublineas de una mayor
             } else if(distanciaEuclidea(lineas[i][1], lineas[j][1]) < DISTANCIAPIXELPRINCIPAL) { //Lineas superpuestas
                 if(distanciaEuclidea(lineas[i][3], lineas[j][3]) < DISTANCIAPIXELPRINCIPAL) {
                     if(distanciaEuclidea(lineas[i][0], lineas[j][0]) < DISTANCIAPIXELSECUNDARIOLINEAS) {

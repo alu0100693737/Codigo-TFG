@@ -2,115 +2,135 @@
 \label{classCAsistenteCodificacion}\index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 
 
+Clase asistente de la codificacion. Utilizada al Procesar o Codificar una Imagen para confirmar que todo es correcto antes de guardarlo en un fichero.  
+
+
+
+
 {\ttfamily \#include $<$C\+Asistente\+Codificacion.\+h$>$}
 
 
 
 Inheritance diagram for C\+Asistente\+Codificacion\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{classCAsistenteCodificacion__inherit__graph}
+\end{center}
+\end{figure}
 
 
 Collaboration diagram for C\+Asistente\+Codificacion\+:
-% FIG 1
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{classCAsistenteCodificacion__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Slots}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{classCAsistenteCodificacion_ab7f28d6c6468d1c92a85c655892d31f2}{slot\+Cancelar} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo Slot que cierra el asistente sin codificar el automata. \end{DoxyCompactList}\item 
 void \hyperlink{classCAsistenteCodificacion_a64f692a920d95d1f482d52b57d865915}{slot\+Aceptar} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo Slot que Acepta el asistente guardandolo en un fichero. \end{DoxyCompactList}\item 
 void \hyperlink{classCAsistenteCodificacion_a55c2125eb7a4cd4e48647976f21ad165}{slot\+Help} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo Slot que. \end{DoxyCompactList}\item 
 void \hyperlink{classCAsistenteCodificacion_ae1301ca578c8c5a8a90f26eb1a99110d}{slot\+Cambiar} (int i)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo Slot que cambia los valores de inicio y destino de la fila correspondiente si el valor del checkbox de esa linea esta marcado. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classCAsistenteCodificacion_a0c2afc1f5979b36212e847524419e8f9}{C\+Asistente\+Codificacion} (int, string, string, vector$<$ int $>$ $\ast$ini, vector$<$ int $>$ $\ast$fins, vector$<$ char $>$ $\ast$let, Q\+Widget $\ast$parent=0)
-\item 
+\hyperlink{classCAsistenteCodificacion_a8648c998d92db260247f676e29a02a40}{C\+Asistente\+Codificacion} (int nodos, string inicial, string finales, vector$<$ int $>$ $\ast$ini, vector$<$ int $>$ $\ast$fins, vector$<$ char $>$ $\ast$let, Q\+Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
 int \hyperlink{classCAsistenteCodificacion_ac65429657b7d034bb8b422ed61b5841c}{get\+Num\+Nodos} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el numero de nodos del automata. \end{DoxyCompactList}\item 
 string \hyperlink{classCAsistenteCodificacion_a249f33a94fb1ec310f61ed79e756a630}{get\+Nodo\+Inicial} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el nodo inicial del automata. \end{DoxyCompactList}\item 
 string \hyperlink{classCAsistenteCodificacion_a73fc973e9134649fa288b499a0723192}{get\+Nodos\+Finales} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve los nodos finales del automata. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAsistenteCodificacion_a3b17ecf32b2b4b5e8d3900cdeaa780ff}{get\+L\+Cambiar} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Cambiar\textquotesingle{}. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAsistenteCodificacion_acee142b78f7055424fb48d6df9dcee98}{get\+L\+Borrar} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Borrar\textquotesingle{}. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAsistenteCodificacion_a63fcc7bde25a4dc813d81f6591997989}{get\+L\+Inicio} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Inicio\textquotesingle{}. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAsistenteCodificacion_abb26c06c814cf91080a1b9d83400a77d}{get\+L\+Destino} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Destino\textquotesingle{}. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAsistenteCodificacion_adf8377459fe4ec5cf0a963fd9282420e}{get\+L\+Letra} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Letra\textquotesingle{}. \end{DoxyCompactList}\item 
 Q\+Label $\ast$ \hyperlink{classCAsistenteCodificacion_a7cdb8dcc5d3027177721fc628e3c53ae}{get\+L\+Anadir} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Añadir\textquotesingle{}. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCCheckBox}{C\+Check\+Box} $\ast$ $>$ $\ast$ \hyperlink{classCAsistenteCodificacion_af5c7ebbcf38b72cb912ccec2c4309323}{get\+Check\+Box\+Cambiar} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el vector de \hyperlink{classCCheckBox}{C\+Check\+Box} Cambiar. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCCheckBox}{C\+Check\+Box} $\ast$ $>$ $\ast$ \hyperlink{classCAsistenteCodificacion_aba95e5e21d3f5cccad79139fc7ffbe7e}{get\+Check\+Box\+Borrar} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el vector de \hyperlink{classCCheckBox}{C\+Check\+Box} Borrar. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCLineEdit}{C\+Line\+Edit} $\ast$ $>$ $\ast$ \hyperlink{classCAsistenteCodificacion_a6e18515302506ef6766a5a4bdbb64dfd}{get\+Inicios} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el vector de \hyperlink{classCLineEdit}{C\+Line\+Edit} Inicios. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCLineEdit}{C\+Line\+Edit} $\ast$ $>$ $\ast$ \hyperlink{classCAsistenteCodificacion_a8e55263b52df54df6353f6a2ae4a88df}{get\+Destinos} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el vector de \hyperlink{classCLineEdit}{C\+Line\+Edit} Destinos Cambiar. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCLineEdit}{C\+Line\+Edit} $\ast$ $>$ $\ast$ \hyperlink{classCAsistenteCodificacion_ae4e5d1b2a9830a026897bed772bfb49e}{get\+Letras} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el vector de \hyperlink{classCLineEdit}{C\+Line\+Edit} Letras. \end{DoxyCompactList}\item 
 Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a7714a288c08739425ed8cd4d927451e6}{get\+Anadir} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el Q\+Line\+Edit con los automatas a añadir. Estos se introducen por Ventana. \end{DoxyCompactList}\item 
 \hyperlink{classCPushButton}{C\+Push\+Button} $\ast$ \hyperlink{classCAsistenteCodificacion_ac8253a5adbe02d45daf20afe4d7678f2}{get\+Aceptar} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el \hyperlink{classCPushButton}{C\+Push\+Button} Aceptar automata. \end{DoxyCompactList}\item 
 \hyperlink{classCPushButton}{C\+Push\+Button} $\ast$ \hyperlink{classCAsistenteCodificacion_a4e1025d9e7c189d22a19d97474499ceb}{get\+Cancelar} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el \hyperlink{classCPushButton}{C\+Push\+Button} Cancelar automata. \end{DoxyCompactList}\item 
 \hyperlink{classCPushButton}{C\+Push\+Button} $\ast$ \hyperlink{classCAsistenteCodificacion_adf9ae1bf08b445fb095246b95b723450}{get\+Help} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el \hyperlink{classCPushButton}{C\+Push\+Button} Ayuda sobre el asistente. \end{DoxyCompactList}\item 
 void \hyperlink{classCAsistenteCodificacion_a8d5a01cef945d9a6b72dd54a9aaecec2}{ventana\+Info\+Codificacion} (string text)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em ventana\+Info\+Codificacion Metodo que crea una ventana Q\+Widget con la informacion resultado de la codificacion \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 int \hyperlink{classCAsistenteCodificacion_a3c77dcdb74837345c1da4a6a7051ee4e}{num\+Nodos\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Numero de nodos del automata. \end{DoxyCompactList}\item 
 string \hyperlink{classCAsistenteCodificacion_ad0d97f8664aa927a414b7fe17b6106d4}{nodo\+Inicial\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Nodo inicial. \end{DoxyCompactList}\item 
 string \hyperlink{classCAsistenteCodificacion_afa94c6d482da4f5eb193ddd7211db25f}{nodos\+Finales\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Nodos finales del automata. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAsistenteCodificacion_af6fcb3e27669afa7b4cc3a3916e90ea3}{L\+Cambiar\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Texto Cambiar. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAsistenteCodificacion_a2820e2c5c034ae5641b3c0a927921be9}{L\+Borrar\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Texto Borrar. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAsistenteCodificacion_a552db8480f43d39488afc2a3485fb8bd}{L\+Inicio\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Texto Inicio. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAsistenteCodificacion_a666efef7460347c564d7a73322ed435c}{L\+Destino\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Texto Destino. \end{DoxyCompactList}\item 
 \hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAsistenteCodificacion_a1da0f6a2c6447b3f0f7e7e9267ef278c}{L\+Letra\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Texto Letra. \end{DoxyCompactList}\item 
 Q\+Label $\ast$ \hyperlink{classCAsistenteCodificacion_acd2847b7726990965a4e5aa5d5278805}{L\+Anadir\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Texto Añadir. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCCheckBox}{C\+Check\+Box} $\ast$ $>$ $\ast$ \hyperlink{classCAsistenteCodificacion_a7c50f4349d8de445b66d49a1a34df74a}{cambiar\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Vector de C\+Checkbox para cambiar el orden de las transiciones. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCCheckBox}{C\+Check\+Box} $\ast$ $>$ $\ast$ \hyperlink{classCAsistenteCodificacion_a6cc0224f0b309b0b997b0178ab7e69e6}{borrar\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Vector de C\+Checkbox para cambiar borrar la transicion que se desee. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCLineEdit}{C\+Line\+Edit} $\ast$ $>$ $\ast$ \hyperlink{classCAsistenteCodificacion_ac0ac600fe894126b5273249b1748a267}{inicios\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Vector de inicios de transiciones. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCLineEdit}{C\+Line\+Edit} $\ast$ $>$ $\ast$ \hyperlink{classCAsistenteCodificacion_a421a87b8ddfa213452349bcf55b22d27}{destinos\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Vector de destinos de transiciones. \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classCLineEdit}{C\+Line\+Edit} $\ast$ $>$ $\ast$ \hyperlink{classCAsistenteCodificacion_ac96318b5bc263836fb7d27269965e7c5}{letras\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Vector de letras entre transiciones. \end{DoxyCompactList}\item 
 Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa26e1327dac06b}{anadir\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em Q\+Line\+Edit para añadir nuevas transiciones si se desea. \end{DoxyCompactList}\item 
 \hyperlink{classCPushButton}{C\+Push\+Button} $\ast$ \hyperlink{classCAsistenteCodificacion_aef0570ce6c236522a0448a2f2eba39dd}{aceptar\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{classCPushButton}{C\+Push\+Button} para aceptar la codificacion del automata. \end{DoxyCompactList}\item 
 \hyperlink{classCPushButton}{C\+Push\+Button} $\ast$ \hyperlink{classCAsistenteCodificacion_a38cc5ae5adde6fa070e0ce0974de7778}{cancelar\+\_\+}
-\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{classCPushButton}{C\+Push\+Button} para cancelar la codificacion del automata. \end{DoxyCompactList}\item 
 \hyperlink{classCPushButton}{C\+Push\+Button} $\ast$ \hyperlink{classCAsistenteCodificacion_a8d7ffb128dc1d576413d2a9a74f3884f}{help\+\_\+}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classCPushButton}{C\+Push\+Button} que ofrece ayuda sobre el funcionamiento del asistente. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Clase asistente de la codificacion. Utilizada al Procesar o Codificar una Imagen para confirmar que todo es correcto antes de guardarlo en un fichero. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
-\subsubsection[{\texorpdfstring{C\+Asistente\+Codificacion(int, string, string, vector$<$ int $>$ $\ast$ini, vector$<$ int $>$ $\ast$fins, vector$<$ char $>$ $\ast$let, Q\+Widget $\ast$parent=0)}{CAsistenteCodificacion(int, string, string, vector< int > *ini, vector< int > *fins, vector< char > *let, QWidget *parent=0)}}]{\setlength{\rightskip}{0pt plus 5cm}C\+Asistente\+Codificacion\+::\+C\+Asistente\+Codificacion (
+\subsubsection[{\texorpdfstring{C\+Asistente\+Codificacion(int nodos, string inicial, string finales, vector$<$ int $>$ $\ast$ini, vector$<$ int $>$ $\ast$fins, vector$<$ char $>$ $\ast$let, Q\+Widget $\ast$parent=0)}{CAsistenteCodificacion(int nodos, string inicial, string finales, vector< int > *ini, vector< int > *fins, vector< char > *let, QWidget *parent=0)}}]{\setlength{\rightskip}{0pt plus 5cm}C\+Asistente\+Codificacion\+::\+C\+Asistente\+Codificacion (
 \begin{DoxyParamCaption}
 \item[{int}]{nodos, }
 \item[{string}]{inicial, }
@@ -120,7 +140,28 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 \item[{vector$<$ char $>$ $\ast$}]{let, }
 \item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)}\hypertarget{classCAsistenteCodificacion_a0c2afc1f5979b36212e847524419e8f9}{}\label{classCAsistenteCodificacion_a0c2afc1f5979b36212e847524419e8f9}
+)}\hypertarget{classCAsistenteCodificacion_a8648c998d92db260247f676e29a02a40}{}\label{classCAsistenteCodificacion_a8648c998d92db260247f676e29a02a40}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodos.} & Numero de nodos del automata \\
+\hline
+{\em inicial.} & Nodo inicial del automata \\
+\hline
+{\em finales.} & Nodos finales del automata \\
+\hline
+{\em ini.} & Conjunto de inicios de transiciones \\
+\hline
+{\em fins} & Conjunto de destinos de transiciones \\
+\hline
+{\em let} & Conjunto de letras entre transiciones \\
+\hline
+{\em parent} & Ventana padre \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
@@ -131,6 +172,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_ac8253a5adbe02d45daf20afe4d7678f2}{}\label{classCAsistenteCodificacion_ac8253a5adbe02d45daf20afe4d7678f2}
+
+
+Metodo que devuelve el \hyperlink{classCPushButton}{C\+Push\+Button} Aceptar automata. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classCPushButton}{C\+Push\+Button} 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+Anadir@{get\+Anadir}}
 \index{get\+Anadir@{get\+Anadir}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+Anadir()}{getAnadir()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Line\+Edit $\ast$ C\+Asistente\+Codificacion\+::get\+Anadir (
@@ -138,6 +186,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_a7714a288c08739425ed8cd4d927451e6}{}\label{classCAsistenteCodificacion_a7714a288c08739425ed8cd4d927451e6}
+
+
+Metodo que devuelve el Q\+Line\+Edit con los automatas a añadir. Estos se introducen por Ventana. 
+
+\begin{DoxyReturn}{Returns}
+Q\+Line\+Edit 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+Cancelar@{get\+Cancelar}}
 \index{get\+Cancelar@{get\+Cancelar}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+Cancelar()}{getCancelar()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Push\+Button} $\ast$ C\+Asistente\+Codificacion\+::get\+Cancelar (
@@ -145,6 +200,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_a4e1025d9e7c189d22a19d97474499ceb}{}\label{classCAsistenteCodificacion_a4e1025d9e7c189d22a19d97474499ceb}
+
+
+Metodo que devuelve el \hyperlink{classCPushButton}{C\+Push\+Button} Cancelar automata. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classCPushButton}{C\+Push\+Button} 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+Check\+Box\+Borrar@{get\+Check\+Box\+Borrar}}
 \index{get\+Check\+Box\+Borrar@{get\+Check\+Box\+Borrar}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+Check\+Box\+Borrar()}{getCheckBoxBorrar()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf C\+Check\+Box} $\ast$ $>$ $\ast$ C\+Asistente\+Codificacion\+::get\+Check\+Box\+Borrar (
@@ -152,6 +214,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_aba95e5e21d3f5cccad79139fc7ffbe7e}{}\label{classCAsistenteCodificacion_aba95e5e21d3f5cccad79139fc7ffbe7e}
+
+
+Metodo que devuelve el vector de \hyperlink{classCCheckBox}{C\+Check\+Box} Borrar. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+C\+Check\+Box$\ast$$>$$\ast$ 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+Check\+Box\+Cambiar@{get\+Check\+Box\+Cambiar}}
 \index{get\+Check\+Box\+Cambiar@{get\+Check\+Box\+Cambiar}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+Check\+Box\+Cambiar()}{getCheckBoxCambiar()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf C\+Check\+Box} $\ast$ $>$ $\ast$ C\+Asistente\+Codificacion\+::get\+Check\+Box\+Cambiar (
@@ -159,6 +228,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_af5c7ebbcf38b72cb912ccec2c4309323}{}\label{classCAsistenteCodificacion_af5c7ebbcf38b72cb912ccec2c4309323}
+
+
+Metodo que devuelve el vector de \hyperlink{classCCheckBox}{C\+Check\+Box} Cambiar. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+C\+Check\+Box$\ast$$>$$\ast$ 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+Destinos@{get\+Destinos}}
 \index{get\+Destinos@{get\+Destinos}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+Destinos()}{getDestinos()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf C\+Line\+Edit} $\ast$ $>$ $\ast$ C\+Asistente\+Codificacion\+::get\+Destinos (
@@ -166,6 +242,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_a8e55263b52df54df6353f6a2ae4a88df}{}\label{classCAsistenteCodificacion_a8e55263b52df54df6353f6a2ae4a88df}
+
+
+Metodo que devuelve el vector de \hyperlink{classCLineEdit}{C\+Line\+Edit} Destinos Cambiar. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+C\+Line\+Edit$\ast$$>$$\ast$ 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+Help@{get\+Help}}
 \index{get\+Help@{get\+Help}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+Help()}{getHelp()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Push\+Button} $\ast$ C\+Asistente\+Codificacion\+::get\+Help (
@@ -173,6 +256,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_adf9ae1bf08b445fb095246b95b723450}{}\label{classCAsistenteCodificacion_adf9ae1bf08b445fb095246b95b723450}
+
+
+Metodo que devuelve el \hyperlink{classCPushButton}{C\+Push\+Button} Ayuda sobre el asistente. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classCPushButton}{C\+Push\+Button} 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+Inicios@{get\+Inicios}}
 \index{get\+Inicios@{get\+Inicios}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+Inicios()}{getInicios()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf C\+Line\+Edit} $\ast$ $>$ $\ast$ C\+Asistente\+Codificacion\+::get\+Inicios (
@@ -180,6 +270,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_a6e18515302506ef6766a5a4bdbb64dfd}{}\label{classCAsistenteCodificacion_a6e18515302506ef6766a5a4bdbb64dfd}
+
+
+Metodo que devuelve el vector de \hyperlink{classCLineEdit}{C\+Line\+Edit} Inicios. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+C\+Line\+Edit$\ast$$>$$\ast$ 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+L\+Anadir@{get\+L\+Anadir}}
 \index{get\+L\+Anadir@{get\+L\+Anadir}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+L\+Anadir()}{getLAnadir()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Label $\ast$ C\+Asistente\+Codificacion\+::get\+L\+Anadir (
@@ -187,6 +284,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_a7cdb8dcc5d3027177721fc628e3c53ae}{}\label{classCAsistenteCodificacion_a7cdb8dcc5d3027177721fc628e3c53ae}
+
+
+Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Añadir\textquotesingle{}. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classCLabel}{C\+Label} 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+L\+Borrar@{get\+L\+Borrar}}
 \index{get\+L\+Borrar@{get\+L\+Borrar}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+L\+Borrar()}{getLBorrar()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label} $\ast$ C\+Asistente\+Codificacion\+::get\+L\+Borrar (
@@ -194,6 +298,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_acee142b78f7055424fb48d6df9dcee98}{}\label{classCAsistenteCodificacion_acee142b78f7055424fb48d6df9dcee98}
+
+
+Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Borrar\textquotesingle{}. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classCLabel}{C\+Label} 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+L\+Cambiar@{get\+L\+Cambiar}}
 \index{get\+L\+Cambiar@{get\+L\+Cambiar}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+L\+Cambiar()}{getLCambiar()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label} $\ast$ C\+Asistente\+Codificacion\+::get\+L\+Cambiar (
@@ -201,6 +312,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_a3b17ecf32b2b4b5e8d3900cdeaa780ff}{}\label{classCAsistenteCodificacion_a3b17ecf32b2b4b5e8d3900cdeaa780ff}
+
+
+Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Cambiar\textquotesingle{}. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classCLabel}{C\+Label} 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+L\+Destino@{get\+L\+Destino}}
 \index{get\+L\+Destino@{get\+L\+Destino}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+L\+Destino()}{getLDestino()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label} $\ast$ C\+Asistente\+Codificacion\+::get\+L\+Destino (
@@ -208,6 +326,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_abb26c06c814cf91080a1b9d83400a77d}{}\label{classCAsistenteCodificacion_abb26c06c814cf91080a1b9d83400a77d}
+
+
+Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Destino\textquotesingle{}. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classCLabel}{C\+Label} 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+Letras@{get\+Letras}}
 \index{get\+Letras@{get\+Letras}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+Letras()}{getLetras()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf C\+Line\+Edit} $\ast$ $>$ $\ast$ C\+Asistente\+Codificacion\+::get\+Letras (
@@ -215,6 +340,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_ae4e5d1b2a9830a026897bed772bfb49e}{}\label{classCAsistenteCodificacion_ae4e5d1b2a9830a026897bed772bfb49e}
+
+
+Metodo que devuelve el vector de \hyperlink{classCLineEdit}{C\+Line\+Edit} Letras. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+C\+Line\+Edit$\ast$$>$$\ast$ 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+L\+Inicio@{get\+L\+Inicio}}
 \index{get\+L\+Inicio@{get\+L\+Inicio}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+L\+Inicio()}{getLInicio()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label} $\ast$ C\+Asistente\+Codificacion\+::get\+L\+Inicio (
@@ -222,6 +354,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_a63fcc7bde25a4dc813d81f6591997989}{}\label{classCAsistenteCodificacion_a63fcc7bde25a4dc813d81f6591997989}
+
+
+Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Inicio\textquotesingle{}. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classCLabel}{C\+Label} 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+L\+Letra@{get\+L\+Letra}}
 \index{get\+L\+Letra@{get\+L\+Letra}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+L\+Letra()}{getLLetra()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label} $\ast$ C\+Asistente\+Codificacion\+::get\+L\+Letra (
@@ -229,6 +368,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_adf8377459fe4ec5cf0a963fd9282420e}{}\label{classCAsistenteCodificacion_adf8377459fe4ec5cf0a963fd9282420e}
+
+
+Metodo que devuelve el \hyperlink{classCLabel}{C\+Label} con el texto \textquotesingle{}Letra\textquotesingle{}. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classCLabel}{C\+Label} 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+Nodo\+Inicial@{get\+Nodo\+Inicial}}
 \index{get\+Nodo\+Inicial@{get\+Nodo\+Inicial}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+Nodo\+Inicial()}{getNodoInicial()}}]{\setlength{\rightskip}{0pt plus 5cm}string C\+Asistente\+Codificacion\+::get\+Nodo\+Inicial (
@@ -236,6 +382,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_a249f33a94fb1ec310f61ed79e756a630}{}\label{classCAsistenteCodificacion_a249f33a94fb1ec310f61ed79e756a630}
+
+
+Metodo que devuelve el nodo inicial del automata. 
+
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+Nodos\+Finales@{get\+Nodos\+Finales}}
 \index{get\+Nodos\+Finales@{get\+Nodos\+Finales}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+Nodos\+Finales()}{getNodosFinales()}}]{\setlength{\rightskip}{0pt plus 5cm}string C\+Asistente\+Codificacion\+::get\+Nodos\+Finales (
@@ -243,6 +396,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_a73fc973e9134649fa288b499a0723192}{}\label{classCAsistenteCodificacion_a73fc973e9134649fa288b499a0723192}
+
+
+Metodo que devuelve los nodos finales del automata. 
+
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!get\+Num\+Nodos@{get\+Num\+Nodos}}
 \index{get\+Num\+Nodos@{get\+Num\+Nodos}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{get\+Num\+Nodos()}{getNumNodos()}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Asistente\+Codificacion\+::get\+Num\+Nodos (
@@ -250,6 +410,13 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAsistenteCodificacion_ac65429657b7d034bb8b422ed61b5841c}{}\label{classCAsistenteCodificacion_ac65429657b7d034bb8b422ed61b5841c}
+
+
+Metodo que devuelve el numero de nodos del automata. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!slot\+Aceptar@{slot\+Aceptar}}
 \index{slot\+Aceptar@{slot\+Aceptar}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{slot\+Aceptar}{slotAceptar}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Asistente\+Codificacion\+::slot\+Aceptar (
@@ -257,13 +424,28 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAsistenteCodificacion_a64f692a920d95d1f482d52b57d865915}{}\label{classCAsistenteCodificacion_a64f692a920d95d1f482d52b57d865915}
-\index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!slot\+Cambiar@{slot\+Cambiar}}
+
+
+Metodo Slot que Acepta el asistente guardandolo en un fichero. 
+
+Abre una ventana para guardar la codificacion en un fichero
+
+Crea una nueva ventana con la codificacion deseada por si se desea consultar \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!slot\+Cambiar@{slot\+Cambiar}}
 \index{slot\+Cambiar@{slot\+Cambiar}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{slot\+Cambiar}{slotCambiar}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Asistente\+Codificacion\+::slot\+Cambiar (
 \begin{DoxyParamCaption}
 \item[{int}]{i}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAsistenteCodificacion_ae1301ca578c8c5a8a90f26eb1a99110d}{}\label{classCAsistenteCodificacion_ae1301ca578c8c5a8a90f26eb1a99110d}
+
+
+Metodo Slot que cambia los valores de inicio y destino de la fila correspondiente si el valor del checkbox de esa linea esta marcado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i.} & Posicion \\
+\hline
+\end{DoxyParams}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!slot\+Cancelar@{slot\+Cancelar}}
 \index{slot\+Cancelar@{slot\+Cancelar}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{slot\+Cancelar}{slotCancelar}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Asistente\+Codificacion\+::slot\+Cancelar (
@@ -271,6 +453,10 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAsistenteCodificacion_ab7f28d6c6468d1c92a85c655892d31f2}{}\label{classCAsistenteCodificacion_ab7f28d6c6468d1c92a85c655892d31f2}
+
+
+Metodo Slot que cierra el asistente sin codificar el automata. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!slot\+Help@{slot\+Help}}
 \index{slot\+Help@{slot\+Help}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{slot\+Help}{slotHelp}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Asistente\+Codificacion\+::slot\+Help (
@@ -278,7 +464,11 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAsistenteCodificacion_a55c2125eb7a4cd4e48647976f21ad165}{}\label{classCAsistenteCodificacion_a55c2125eb7a4cd4e48647976f21ad165}
-\index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!ventana\+Info\+Codificacion@{ventana\+Info\+Codificacion}}
+
+
+Metodo Slot que. 
+
+Crea una ventana que tenga la imagen info\+Asistente con informacion relevante \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!ventana\+Info\+Codificacion@{ventana\+Info\+Codificacion}}
 \index{ventana\+Info\+Codificacion@{ventana\+Info\+Codificacion}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{ventana\+Info\+Codificacion(string text)}{ventanaInfoCodificacion(string text)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Asistente\+Codificacion\+::ventana\+Info\+Codificacion (
 \begin{DoxyParamCaption}
@@ -287,61 +477,142 @@ Q\+Line\+Edit $\ast$ \hyperlink{classCAsistenteCodificacion_a42afd383b49f23e25fa
 )}\hypertarget{classCAsistenteCodificacion_a8d5a01cef945d9a6b72dd54a9aaecec2}{}\label{classCAsistenteCodificacion_a8d5a01cef945d9a6b72dd54a9aaecec2}
 
 
+ventana\+Info\+Codificacion Metodo que crea una ventana Q\+Widget con la informacion resultado de la codificacion 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+Aplica un estilo y carga 
+
 \subsection{Member Data Documentation}
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!aceptar\+\_\+@{aceptar\+\_\+}}
 \index{aceptar\+\_\+@{aceptar\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{aceptar\+\_\+}{aceptar_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Push\+Button}$\ast$ C\+Asistente\+Codificacion\+::aceptar\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_aef0570ce6c236522a0448a2f2eba39dd}{}\label{classCAsistenteCodificacion_aef0570ce6c236522a0448a2f2eba39dd}
+
+
+\hyperlink{classCPushButton}{C\+Push\+Button} para aceptar la codificacion del automata. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!anadir\+\_\+@{anadir\+\_\+}}
 \index{anadir\+\_\+@{anadir\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{anadir\+\_\+}{anadir_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Line\+Edit$\ast$ C\+Asistente\+Codificacion\+::anadir\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_a42afd383b49f23e25fa26e1327dac06b}{}\label{classCAsistenteCodificacion_a42afd383b49f23e25fa26e1327dac06b}
+
+
+Q\+Line\+Edit para añadir nuevas transiciones si se desea. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!borrar\+\_\+@{borrar\+\_\+}}
 \index{borrar\+\_\+@{borrar\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{borrar\+\_\+}{borrar_}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf C\+Check\+Box}$\ast$$>$$\ast$ C\+Asistente\+Codificacion\+::borrar\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_a6cc0224f0b309b0b997b0178ab7e69e6}{}\label{classCAsistenteCodificacion_a6cc0224f0b309b0b997b0178ab7e69e6}
+
+
+Vector de C\+Checkbox para cambiar borrar la transicion que se desee. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!cambiar\+\_\+@{cambiar\+\_\+}}
 \index{cambiar\+\_\+@{cambiar\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{cambiar\+\_\+}{cambiar_}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf C\+Check\+Box}$\ast$$>$$\ast$ C\+Asistente\+Codificacion\+::cambiar\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_a7c50f4349d8de445b66d49a1a34df74a}{}\label{classCAsistenteCodificacion_a7c50f4349d8de445b66d49a1a34df74a}
+
+
+Vector de C\+Checkbox para cambiar el orden de las transiciones. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!cancelar\+\_\+@{cancelar\+\_\+}}
 \index{cancelar\+\_\+@{cancelar\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{cancelar\+\_\+}{cancelar_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Push\+Button}$\ast$ C\+Asistente\+Codificacion\+::cancelar\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_a38cc5ae5adde6fa070e0ce0974de7778}{}\label{classCAsistenteCodificacion_a38cc5ae5adde6fa070e0ce0974de7778}
+
+
+\hyperlink{classCPushButton}{C\+Push\+Button} para cancelar la codificacion del automata. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!destinos\+\_\+@{destinos\+\_\+}}
 \index{destinos\+\_\+@{destinos\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{destinos\+\_\+}{destinos_}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf C\+Line\+Edit}$\ast$$>$$\ast$ C\+Asistente\+Codificacion\+::destinos\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_a421a87b8ddfa213452349bcf55b22d27}{}\label{classCAsistenteCodificacion_a421a87b8ddfa213452349bcf55b22d27}
+
+
+Vector de destinos de transiciones. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!help\+\_\+@{help\+\_\+}}
 \index{help\+\_\+@{help\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{help\+\_\+}{help_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Push\+Button}$\ast$ C\+Asistente\+Codificacion\+::help\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_a8d7ffb128dc1d576413d2a9a74f3884f}{}\label{classCAsistenteCodificacion_a8d7ffb128dc1d576413d2a9a74f3884f}
+
+
+\hyperlink{classCPushButton}{C\+Push\+Button} que ofrece ayuda sobre el funcionamiento del asistente. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!inicios\+\_\+@{inicios\+\_\+}}
 \index{inicios\+\_\+@{inicios\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{inicios\+\_\+}{inicios_}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf C\+Line\+Edit}$\ast$$>$$\ast$ C\+Asistente\+Codificacion\+::inicios\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_ac0ac600fe894126b5273249b1748a267}{}\label{classCAsistenteCodificacion_ac0ac600fe894126b5273249b1748a267}
+
+
+Vector de inicios de transiciones. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!L\+Anadir\+\_\+@{L\+Anadir\+\_\+}}
 \index{L\+Anadir\+\_\+@{L\+Anadir\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{L\+Anadir\+\_\+}{LAnadir_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Label$\ast$ C\+Asistente\+Codificacion\+::\+L\+Anadir\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_acd2847b7726990965a4e5aa5d5278805}{}\label{classCAsistenteCodificacion_acd2847b7726990965a4e5aa5d5278805}
+
+
+Texto Añadir. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!L\+Borrar\+\_\+@{L\+Borrar\+\_\+}}
 \index{L\+Borrar\+\_\+@{L\+Borrar\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{L\+Borrar\+\_\+}{LBorrar_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label}$\ast$ C\+Asistente\+Codificacion\+::\+L\+Borrar\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_a2820e2c5c034ae5641b3c0a927921be9}{}\label{classCAsistenteCodificacion_a2820e2c5c034ae5641b3c0a927921be9}
+
+
+Texto Borrar. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!L\+Cambiar\+\_\+@{L\+Cambiar\+\_\+}}
 \index{L\+Cambiar\+\_\+@{L\+Cambiar\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{L\+Cambiar\+\_\+}{LCambiar_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label}$\ast$ C\+Asistente\+Codificacion\+::\+L\+Cambiar\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_af6fcb3e27669afa7b4cc3a3916e90ea3}{}\label{classCAsistenteCodificacion_af6fcb3e27669afa7b4cc3a3916e90ea3}
+
+
+Texto Cambiar. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!L\+Destino\+\_\+@{L\+Destino\+\_\+}}
 \index{L\+Destino\+\_\+@{L\+Destino\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{L\+Destino\+\_\+}{LDestino_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label}$\ast$ C\+Asistente\+Codificacion\+::\+L\+Destino\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_a666efef7460347c564d7a73322ed435c}{}\label{classCAsistenteCodificacion_a666efef7460347c564d7a73322ed435c}
+
+
+Texto Destino. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!letras\+\_\+@{letras\+\_\+}}
 \index{letras\+\_\+@{letras\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{letras\+\_\+}{letras_}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf C\+Line\+Edit}$\ast$$>$$\ast$ C\+Asistente\+Codificacion\+::letras\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_ac96318b5bc263836fb7d27269965e7c5}{}\label{classCAsistenteCodificacion_ac96318b5bc263836fb7d27269965e7c5}
+
+
+Vector de letras entre transiciones. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!L\+Inicio\+\_\+@{L\+Inicio\+\_\+}}
 \index{L\+Inicio\+\_\+@{L\+Inicio\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{L\+Inicio\+\_\+}{LInicio_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label}$\ast$ C\+Asistente\+Codificacion\+::\+L\+Inicio\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_a552db8480f43d39488afc2a3485fb8bd}{}\label{classCAsistenteCodificacion_a552db8480f43d39488afc2a3485fb8bd}
+
+
+Texto Inicio. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!L\+Letra\+\_\+@{L\+Letra\+\_\+}}
 \index{L\+Letra\+\_\+@{L\+Letra\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{L\+Letra\+\_\+}{LLetra_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label}$\ast$ C\+Asistente\+Codificacion\+::\+L\+Letra\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_a1da0f6a2c6447b3f0f7e7e9267ef278c}{}\label{classCAsistenteCodificacion_a1da0f6a2c6447b3f0f7e7e9267ef278c}
+
+
+Texto Letra. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!nodo\+Inicial\+\_\+@{nodo\+Inicial\+\_\+}}
 \index{nodo\+Inicial\+\_\+@{nodo\+Inicial\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{nodo\+Inicial\+\_\+}{nodoInicial_}}]{\setlength{\rightskip}{0pt plus 5cm}string C\+Asistente\+Codificacion\+::nodo\+Inicial\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_ad0d97f8664aa927a414b7fe17b6106d4}{}\label{classCAsistenteCodificacion_ad0d97f8664aa927a414b7fe17b6106d4}
+
+
+Nodo inicial. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!nodos\+Finales\+\_\+@{nodos\+Finales\+\_\+}}
 \index{nodos\+Finales\+\_\+@{nodos\+Finales\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{nodos\+Finales\+\_\+}{nodosFinales_}}]{\setlength{\rightskip}{0pt plus 5cm}string C\+Asistente\+Codificacion\+::nodos\+Finales\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_afa94c6d482da4f5eb193ddd7211db25f}{}\label{classCAsistenteCodificacion_afa94c6d482da4f5eb193ddd7211db25f}
+
+
+Nodos finales del automata. 
+
 \index{C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}!num\+Nodos\+\_\+@{num\+Nodos\+\_\+}}
 \index{num\+Nodos\+\_\+@{num\+Nodos\+\_\+}!C\+Asistente\+Codificacion@{C\+Asistente\+Codificacion}}
 \subsubsection[{\texorpdfstring{num\+Nodos\+\_\+}{numNodos_}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Asistente\+Codificacion\+::num\+Nodos\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAsistenteCodificacion_a3c77dcdb74837345c1da4a6a7051ee4e}{}\label{classCAsistenteCodificacion_a3c77dcdb74837345c1da4a6a7051ee4e}
+
+
+Numero de nodos del automata. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

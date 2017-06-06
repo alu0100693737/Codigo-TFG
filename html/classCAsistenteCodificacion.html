@@ -93,115 +93,166 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Clase asistente de la codificacion. Utilizada al Procesar o Codificar una Imagen para confirmar que todo es correcto antes de guardarlo en un fichero.  
+ <a href="classCAsistenteCodificacion.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="CAsistenteCodificacion_8h_source.html">CAsistenteCodificacion.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for CAsistenteCodificacion:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCAsistenteCodificacion__inherit__graph.png" border="0" usemap="#CAsistenteCodificacion_inherit__map" alt="Inheritance graph"/></div>
-<!-- MAP 0 -->
+<map name="CAsistenteCodificacion_inherit__map" id="CAsistenteCodificacion_inherit__map">
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for CAsistenteCodificacion:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCAsistenteCodificacion__coll__graph.png" border="0" usemap="#CAsistenteCodificacion_coll__map" alt="Collaboration graph"/></div>
-<!-- MAP 1 -->
+<map name="CAsistenteCodificacion_coll__map" id="CAsistenteCodificacion_coll__map">
+<area shape="rect" id="node3" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. " alt="" coords="103,81,203,108"/>
+<area shape="rect" id="node5" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. " alt="" coords="227,81,289,108"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
 <tr class="memitem:ab7f28d6c6468d1c92a85c655892d31f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#ab7f28d6c6468d1c92a85c655892d31f2">slotCancelar</a> ()</td></tr>
+<tr class="memdesc:ab7f28d6c6468d1c92a85c655892d31f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo Slot que cierra el asistente sin codificar el automata.  <a href="#ab7f28d6c6468d1c92a85c655892d31f2">More...</a><br /></td></tr>
 <tr class="separator:ab7f28d6c6468d1c92a85c655892d31f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64f692a920d95d1f482d52b57d865915"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a64f692a920d95d1f482d52b57d865915">slotAceptar</a> ()</td></tr>
+<tr class="memdesc:a64f692a920d95d1f482d52b57d865915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo Slot que Acepta el asistente guardandolo en un fichero.  <a href="#a64f692a920d95d1f482d52b57d865915">More...</a><br /></td></tr>
 <tr class="separator:a64f692a920d95d1f482d52b57d865915"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55c2125eb7a4cd4e48647976f21ad165"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a55c2125eb7a4cd4e48647976f21ad165">slotHelp</a> ()</td></tr>
+<tr class="memdesc:a55c2125eb7a4cd4e48647976f21ad165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo Slot que.  <a href="#a55c2125eb7a4cd4e48647976f21ad165">More...</a><br /></td></tr>
 <tr class="separator:a55c2125eb7a4cd4e48647976f21ad165"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1301ca578c8c5a8a90f26eb1a99110d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#ae1301ca578c8c5a8a90f26eb1a99110d">slotCambiar</a> (int i)</td></tr>
+<tr class="memdesc:ae1301ca578c8c5a8a90f26eb1a99110d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo Slot que cambia los valores de inicio y destino de la fila correspondiente si el valor del checkbox de esa linea esta marcado.  <a href="#ae1301ca578c8c5a8a90f26eb1a99110d">More...</a><br /></td></tr>
 <tr class="separator:ae1301ca578c8c5a8a90f26eb1a99110d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0c2afc1f5979b36212e847524419e8f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a0c2afc1f5979b36212e847524419e8f9">CAsistenteCodificacion</a> (int, string, string, vector&lt; int &gt; *ini, vector&lt; int &gt; *fins, vector&lt; char &gt; *let, QWidget *parent=0)</td></tr>
-<tr class="separator:a0c2afc1f5979b36212e847524419e8f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8648c998d92db260247f676e29a02a40"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a8648c998d92db260247f676e29a02a40">CAsistenteCodificacion</a> (int nodos, string inicial, string finales, vector&lt; int &gt; *ini, vector&lt; int &gt; *fins, vector&lt; char &gt; *let, QWidget *parent=0)</td></tr>
+<tr class="memdesc:a8648c998d92db260247f676e29a02a40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a8648c998d92db260247f676e29a02a40">More...</a><br /></td></tr>
+<tr class="separator:a8648c998d92db260247f676e29a02a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac65429657b7d034bb8b422ed61b5841c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#ac65429657b7d034bb8b422ed61b5841c">getNumNodos</a> ()</td></tr>
+<tr class="memdesc:ac65429657b7d034bb8b422ed61b5841c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el numero de nodos del automata.  <a href="#ac65429657b7d034bb8b422ed61b5841c">More...</a><br /></td></tr>
 <tr class="separator:ac65429657b7d034bb8b422ed61b5841c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a249f33a94fb1ec310f61ed79e756a630"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a249f33a94fb1ec310f61ed79e756a630">getNodoInicial</a> ()</td></tr>
+<tr class="memdesc:a249f33a94fb1ec310f61ed79e756a630"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el nodo inicial del automata.  <a href="#a249f33a94fb1ec310f61ed79e756a630">More...</a><br /></td></tr>
 <tr class="separator:a249f33a94fb1ec310f61ed79e756a630"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73fc973e9134649fa288b499a0723192"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a73fc973e9134649fa288b499a0723192">getNodosFinales</a> ()</td></tr>
+<tr class="memdesc:a73fc973e9134649fa288b499a0723192"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve los nodos finales del automata.  <a href="#a73fc973e9134649fa288b499a0723192">More...</a><br /></td></tr>
 <tr class="separator:a73fc973e9134649fa288b499a0723192"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b17ecf32b2b4b5e8d3900cdeaa780ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCLabel.html">CLabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a3b17ecf32b2b4b5e8d3900cdeaa780ff">getLCambiar</a> ()</td></tr>
+<tr class="memdesc:a3b17ecf32b2b4b5e8d3900cdeaa780ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Cambiar'.  <a href="#a3b17ecf32b2b4b5e8d3900cdeaa780ff">More...</a><br /></td></tr>
 <tr class="separator:a3b17ecf32b2b4b5e8d3900cdeaa780ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acee142b78f7055424fb48d6df9dcee98"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCLabel.html">CLabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#acee142b78f7055424fb48d6df9dcee98">getLBorrar</a> ()</td></tr>
+<tr class="memdesc:acee142b78f7055424fb48d6df9dcee98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Borrar'.  <a href="#acee142b78f7055424fb48d6df9dcee98">More...</a><br /></td></tr>
 <tr class="separator:acee142b78f7055424fb48d6df9dcee98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63fcc7bde25a4dc813d81f6591997989"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCLabel.html">CLabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a63fcc7bde25a4dc813d81f6591997989">getLInicio</a> ()</td></tr>
+<tr class="memdesc:a63fcc7bde25a4dc813d81f6591997989"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Inicio'.  <a href="#a63fcc7bde25a4dc813d81f6591997989">More...</a><br /></td></tr>
 <tr class="separator:a63fcc7bde25a4dc813d81f6591997989"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb26c06c814cf91080a1b9d83400a77d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCLabel.html">CLabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#abb26c06c814cf91080a1b9d83400a77d">getLDestino</a> ()</td></tr>
+<tr class="memdesc:abb26c06c814cf91080a1b9d83400a77d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Destino'.  <a href="#abb26c06c814cf91080a1b9d83400a77d">More...</a><br /></td></tr>
 <tr class="separator:abb26c06c814cf91080a1b9d83400a77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf8377459fe4ec5cf0a963fd9282420e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCLabel.html">CLabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#adf8377459fe4ec5cf0a963fd9282420e">getLLetra</a> ()</td></tr>
+<tr class="memdesc:adf8377459fe4ec5cf0a963fd9282420e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Letra'.  <a href="#adf8377459fe4ec5cf0a963fd9282420e">More...</a><br /></td></tr>
 <tr class="separator:adf8377459fe4ec5cf0a963fd9282420e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cdb8dcc5d3027177721fc628e3c53ae"><td class="memItemLeft" align="right" valign="top">QLabel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a7cdb8dcc5d3027177721fc628e3c53ae">getLAnadir</a> ()</td></tr>
+<tr class="memdesc:a7cdb8dcc5d3027177721fc628e3c53ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Añadir'.  <a href="#a7cdb8dcc5d3027177721fc628e3c53ae">More...</a><br /></td></tr>
 <tr class="separator:a7cdb8dcc5d3027177721fc628e3c53ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5c7ebbcf38b72cb912ccec2c4309323"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCCheckBox.html">CCheckBox</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#af5c7ebbcf38b72cb912ccec2c4309323">getCheckBoxCambiar</a> ()</td></tr>
+<tr class="memdesc:af5c7ebbcf38b72cb912ccec2c4309323"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el vector de <a class="el" href="classCCheckBox.html" title="Clase heredada de &#39;QCheckBox&#39; que aplica un estilo determinado a este tipo de container. ">CCheckBox</a> Cambiar.  <a href="#af5c7ebbcf38b72cb912ccec2c4309323">More...</a><br /></td></tr>
 <tr class="separator:af5c7ebbcf38b72cb912ccec2c4309323"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba95e5e21d3f5cccad79139fc7ffbe7e"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCCheckBox.html">CCheckBox</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#aba95e5e21d3f5cccad79139fc7ffbe7e">getCheckBoxBorrar</a> ()</td></tr>
+<tr class="memdesc:aba95e5e21d3f5cccad79139fc7ffbe7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el vector de <a class="el" href="classCCheckBox.html" title="Clase heredada de &#39;QCheckBox&#39; que aplica un estilo determinado a este tipo de container. ">CCheckBox</a> Borrar.  <a href="#aba95e5e21d3f5cccad79139fc7ffbe7e">More...</a><br /></td></tr>
 <tr class="separator:aba95e5e21d3f5cccad79139fc7ffbe7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e18515302506ef6766a5a4bdbb64dfd"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCLineEdit.html">CLineEdit</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a6e18515302506ef6766a5a4bdbb64dfd">getInicios</a> ()</td></tr>
+<tr class="memdesc:a6e18515302506ef6766a5a4bdbb64dfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el vector de <a class="el" href="classCLineEdit.html" title="Clase heredada de &#39;QLineEdit&#39; que aplica un estilo determinado a este tipo de container. ">CLineEdit</a> Inicios.  <a href="#a6e18515302506ef6766a5a4bdbb64dfd">More...</a><br /></td></tr>
 <tr class="separator:a6e18515302506ef6766a5a4bdbb64dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e55263b52df54df6353f6a2ae4a88df"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCLineEdit.html">CLineEdit</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a8e55263b52df54df6353f6a2ae4a88df">getDestinos</a> ()</td></tr>
+<tr class="memdesc:a8e55263b52df54df6353f6a2ae4a88df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el vector de <a class="el" href="classCLineEdit.html" title="Clase heredada de &#39;QLineEdit&#39; que aplica un estilo determinado a este tipo de container. ">CLineEdit</a> Destinos Cambiar.  <a href="#a8e55263b52df54df6353f6a2ae4a88df">More...</a><br /></td></tr>
 <tr class="separator:a8e55263b52df54df6353f6a2ae4a88df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4e5d1b2a9830a026897bed772bfb49e"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCLineEdit.html">CLineEdit</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#ae4e5d1b2a9830a026897bed772bfb49e">getLetras</a> ()</td></tr>
+<tr class="memdesc:ae4e5d1b2a9830a026897bed772bfb49e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el vector de <a class="el" href="classCLineEdit.html" title="Clase heredada de &#39;QLineEdit&#39; que aplica un estilo determinado a este tipo de container. ">CLineEdit</a> Letras.  <a href="#ae4e5d1b2a9830a026897bed772bfb49e">More...</a><br /></td></tr>
 <tr class="separator:ae4e5d1b2a9830a026897bed772bfb49e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7714a288c08739425ed8cd4d927451e6"><td class="memItemLeft" align="right" valign="top">QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a7714a288c08739425ed8cd4d927451e6">getAnadir</a> ()</td></tr>
+<tr class="memdesc:a7714a288c08739425ed8cd4d927451e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el QLineEdit con los automatas a añadir. Estos se introducen por Ventana.  <a href="#a7714a288c08739425ed8cd4d927451e6">More...</a><br /></td></tr>
 <tr class="separator:a7714a288c08739425ed8cd4d927451e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8253a5adbe02d45daf20afe4d7678f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPushButton.html">CPushButton</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#ac8253a5adbe02d45daf20afe4d7678f2">getAceptar</a> ()</td></tr>
+<tr class="memdesc:ac8253a5adbe02d45daf20afe4d7678f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el <a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> Aceptar automata.  <a href="#ac8253a5adbe02d45daf20afe4d7678f2">More...</a><br /></td></tr>
 <tr class="separator:ac8253a5adbe02d45daf20afe4d7678f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e1025d9e7c189d22a19d97474499ceb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPushButton.html">CPushButton</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a4e1025d9e7c189d22a19d97474499ceb">getCancelar</a> ()</td></tr>
+<tr class="memdesc:a4e1025d9e7c189d22a19d97474499ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el <a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> Cancelar automata.  <a href="#a4e1025d9e7c189d22a19d97474499ceb">More...</a><br /></td></tr>
 <tr class="separator:a4e1025d9e7c189d22a19d97474499ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf9ae1bf08b445fb095246b95b723450"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPushButton.html">CPushButton</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#adf9ae1bf08b445fb095246b95b723450">getHelp</a> ()</td></tr>
+<tr class="memdesc:adf9ae1bf08b445fb095246b95b723450"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el <a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> Ayuda sobre el asistente.  <a href="#adf9ae1bf08b445fb095246b95b723450">More...</a><br /></td></tr>
 <tr class="separator:adf9ae1bf08b445fb095246b95b723450"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d5a01cef945d9a6b72dd54a9aaecec2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a8d5a01cef945d9a6b72dd54a9aaecec2">ventanaInfoCodificacion</a> (string text)</td></tr>
+<tr class="memdesc:a8d5a01cef945d9a6b72dd54a9aaecec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">ventanaInfoCodificacion Metodo que crea una ventana QWidget con la informacion resultado de la codificacion  <a href="#a8d5a01cef945d9a6b72dd54a9aaecec2">More...</a><br /></td></tr>
 <tr class="separator:a8d5a01cef945d9a6b72dd54a9aaecec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a3c77dcdb74837345c1da4a6a7051ee4e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a3c77dcdb74837345c1da4a6a7051ee4e">numNodos_</a></td></tr>
+<tr class="memdesc:a3c77dcdb74837345c1da4a6a7051ee4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numero de nodos del automata.  <a href="#a3c77dcdb74837345c1da4a6a7051ee4e">More...</a><br /></td></tr>
 <tr class="separator:a3c77dcdb74837345c1da4a6a7051ee4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0d97f8664aa927a414b7fe17b6106d4"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#ad0d97f8664aa927a414b7fe17b6106d4">nodoInicial_</a></td></tr>
+<tr class="memdesc:ad0d97f8664aa927a414b7fe17b6106d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nodo inicial.  <a href="#ad0d97f8664aa927a414b7fe17b6106d4">More...</a><br /></td></tr>
 <tr class="separator:ad0d97f8664aa927a414b7fe17b6106d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa94c6d482da4f5eb193ddd7211db25f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#afa94c6d482da4f5eb193ddd7211db25f">nodosFinales_</a></td></tr>
+<tr class="memdesc:afa94c6d482da4f5eb193ddd7211db25f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nodos finales del automata.  <a href="#afa94c6d482da4f5eb193ddd7211db25f">More...</a><br /></td></tr>
 <tr class="separator:afa94c6d482da4f5eb193ddd7211db25f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6fcb3e27669afa7b4cc3a3916e90ea3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCLabel.html">CLabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#af6fcb3e27669afa7b4cc3a3916e90ea3">LCambiar_</a></td></tr>
+<tr class="memdesc:af6fcb3e27669afa7b4cc3a3916e90ea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texto Cambiar.  <a href="#af6fcb3e27669afa7b4cc3a3916e90ea3">More...</a><br /></td></tr>
 <tr class="separator:af6fcb3e27669afa7b4cc3a3916e90ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2820e2c5c034ae5641b3c0a927921be9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCLabel.html">CLabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a2820e2c5c034ae5641b3c0a927921be9">LBorrar_</a></td></tr>
+<tr class="memdesc:a2820e2c5c034ae5641b3c0a927921be9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texto Borrar.  <a href="#a2820e2c5c034ae5641b3c0a927921be9">More...</a><br /></td></tr>
 <tr class="separator:a2820e2c5c034ae5641b3c0a927921be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a552db8480f43d39488afc2a3485fb8bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCLabel.html">CLabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a552db8480f43d39488afc2a3485fb8bd">LInicio_</a></td></tr>
+<tr class="memdesc:a552db8480f43d39488afc2a3485fb8bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texto Inicio.  <a href="#a552db8480f43d39488afc2a3485fb8bd">More...</a><br /></td></tr>
 <tr class="separator:a552db8480f43d39488afc2a3485fb8bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a666efef7460347c564d7a73322ed435c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCLabel.html">CLabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a666efef7460347c564d7a73322ed435c">LDestino_</a></td></tr>
+<tr class="memdesc:a666efef7460347c564d7a73322ed435c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texto Destino.  <a href="#a666efef7460347c564d7a73322ed435c">More...</a><br /></td></tr>
 <tr class="separator:a666efef7460347c564d7a73322ed435c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1da0f6a2c6447b3f0f7e7e9267ef278c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCLabel.html">CLabel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a1da0f6a2c6447b3f0f7e7e9267ef278c">LLetra_</a></td></tr>
+<tr class="memdesc:a1da0f6a2c6447b3f0f7e7e9267ef278c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texto Letra.  <a href="#a1da0f6a2c6447b3f0f7e7e9267ef278c">More...</a><br /></td></tr>
 <tr class="separator:a1da0f6a2c6447b3f0f7e7e9267ef278c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd2847b7726990965a4e5aa5d5278805"><td class="memItemLeft" align="right" valign="top">QLabel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#acd2847b7726990965a4e5aa5d5278805">LAnadir_</a></td></tr>
+<tr class="memdesc:acd2847b7726990965a4e5aa5d5278805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texto Añadir.  <a href="#acd2847b7726990965a4e5aa5d5278805">More...</a><br /></td></tr>
 <tr class="separator:acd2847b7726990965a4e5aa5d5278805"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c50f4349d8de445b66d49a1a34df74a"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCCheckBox.html">CCheckBox</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a7c50f4349d8de445b66d49a1a34df74a">cambiar_</a></td></tr>
+<tr class="memdesc:a7c50f4349d8de445b66d49a1a34df74a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de CCheckbox para cambiar el orden de las transiciones.  <a href="#a7c50f4349d8de445b66d49a1a34df74a">More...</a><br /></td></tr>
 <tr class="separator:a7c50f4349d8de445b66d49a1a34df74a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cc0224f0b309b0b997b0178ab7e69e6"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCCheckBox.html">CCheckBox</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a6cc0224f0b309b0b997b0178ab7e69e6">borrar_</a></td></tr>
+<tr class="memdesc:a6cc0224f0b309b0b997b0178ab7e69e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de CCheckbox para cambiar borrar la transicion que se desee.  <a href="#a6cc0224f0b309b0b997b0178ab7e69e6">More...</a><br /></td></tr>
 <tr class="separator:a6cc0224f0b309b0b997b0178ab7e69e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0ac600fe894126b5273249b1748a267"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCLineEdit.html">CLineEdit</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#ac0ac600fe894126b5273249b1748a267">inicios_</a></td></tr>
+<tr class="memdesc:ac0ac600fe894126b5273249b1748a267"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de inicios de transiciones.  <a href="#ac0ac600fe894126b5273249b1748a267">More...</a><br /></td></tr>
 <tr class="separator:ac0ac600fe894126b5273249b1748a267"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a421a87b8ddfa213452349bcf55b22d27"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCLineEdit.html">CLineEdit</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a421a87b8ddfa213452349bcf55b22d27">destinos_</a></td></tr>
+<tr class="memdesc:a421a87b8ddfa213452349bcf55b22d27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de destinos de transiciones.  <a href="#a421a87b8ddfa213452349bcf55b22d27">More...</a><br /></td></tr>
 <tr class="separator:a421a87b8ddfa213452349bcf55b22d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac96318b5bc263836fb7d27269965e7c5"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classCLineEdit.html">CLineEdit</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#ac96318b5bc263836fb7d27269965e7c5">letras_</a></td></tr>
+<tr class="memdesc:ac96318b5bc263836fb7d27269965e7c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de letras entre transiciones.  <a href="#ac96318b5bc263836fb7d27269965e7c5">More...</a><br /></td></tr>
 <tr class="separator:ac96318b5bc263836fb7d27269965e7c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42afd383b49f23e25fa26e1327dac06b"><td class="memItemLeft" align="right" valign="top">QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a42afd383b49f23e25fa26e1327dac06b">anadir_</a></td></tr>
+<tr class="memdesc:a42afd383b49f23e25fa26e1327dac06b"><td class="mdescLeft">&#160;</td><td class="mdescRight">QLineEdit para añadir nuevas transiciones si se desea.  <a href="#a42afd383b49f23e25fa26e1327dac06b">More...</a><br /></td></tr>
 <tr class="separator:a42afd383b49f23e25fa26e1327dac06b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef0570ce6c236522a0448a2f2eba39dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPushButton.html">CPushButton</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#aef0570ce6c236522a0448a2f2eba39dd">aceptar_</a></td></tr>
+<tr class="memdesc:aef0570ce6c236522a0448a2f2eba39dd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> para aceptar la codificacion del automata.  <a href="#aef0570ce6c236522a0448a2f2eba39dd">More...</a><br /></td></tr>
 <tr class="separator:aef0570ce6c236522a0448a2f2eba39dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38cc5ae5adde6fa070e0ce0974de7778"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPushButton.html">CPushButton</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a38cc5ae5adde6fa070e0ce0974de7778">cancelar_</a></td></tr>
+<tr class="memdesc:a38cc5ae5adde6fa070e0ce0974de7778"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> para cancelar la codificacion del automata.  <a href="#a38cc5ae5adde6fa070e0ce0974de7778">More...</a><br /></td></tr>
 <tr class="separator:a38cc5ae5adde6fa070e0ce0974de7778"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d7ffb128dc1d576413d2a9a74f3884f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCPushButton.html">CPushButton</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAsistenteCodificacion.html#a8d7ffb128dc1d576413d2a9a74f3884f">help_</a></td></tr>
+<tr class="memdesc:a8d7ffb128dc1d576413d2a9a74f3884f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> que ofrece ayuda sobre el funcionamiento del asistente.  <a href="#a8d7ffb128dc1d576413d2a9a74f3884f">More...</a><br /></td></tr>
 <tr class="separator:a8d7ffb128dc1d576413d2a9a74f3884f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a0c2afc1f5979b36212e847524419e8f9"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Clase asistente de la codificacion. Utilizada al Procesar o Codificar una Imagen para confirmar que todo es correcto antes de guardarlo en un fichero. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a8648c998d92db260247f676e29a02a40"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -255,6 +306,20 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodos.</td><td>Numero de nodos del automata </td></tr>
+    <tr><td class="paramname">inicial.</td><td>Nodo inicial del automata </td></tr>
+    <tr><td class="paramname">finales.</td><td>Nodos finales del automata </td></tr>
+    <tr><td class="paramname">ini.</td><td>Conjunto de inicios de transiciones </td></tr>
+    <tr><td class="paramname">fins</td><td>Conjunto de destinos de transiciones </td></tr>
+    <tr><td class="paramname">let</td><td>Conjunto de letras entre transiciones </td></tr>
+    <tr><td class="paramname">parent</td><td>Ventana padre </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -271,6 +336,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve el <a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> Aceptar automata. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a7714a288c08739425ed8cd4d927451e6"></a>
@@ -285,6 +353,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve el QLineEdit con los automatas a añadir. Estos se introducen por Ventana. </p>
+<dl class="section return"><dt>Returns</dt><dd>QLineEdit </dd></dl>
 
 </div>
 </div>
@@ -301,6 +372,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve el <a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> Cancelar automata. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="aba95e5e21d3f5cccad79139fc7ffbe7e"></a>
@@ -315,6 +389,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve el vector de <a class="el" href="classCCheckBox.html" title="Clase heredada de &#39;QCheckBox&#39; que aplica un estilo determinado a este tipo de container. ">CCheckBox</a> Borrar. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;CCheckBox*&gt;* </dd></dl>
 
 </div>
 </div>
@@ -331,6 +408,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve el vector de <a class="el" href="classCCheckBox.html" title="Clase heredada de &#39;QCheckBox&#39; que aplica un estilo determinado a este tipo de container. ">CCheckBox</a> Cambiar. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;CCheckBox*&gt;* </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a8e55263b52df54df6353f6a2ae4a88df"></a>
@@ -345,6 +425,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve el vector de <a class="el" href="classCLineEdit.html" title="Clase heredada de &#39;QLineEdit&#39; que aplica un estilo determinado a este tipo de container. ">CLineEdit</a> Destinos Cambiar. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;CLineEdit*&gt;* </dd></dl>
 
 </div>
 </div>
@@ -361,6 +444,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve el <a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> Ayuda sobre el asistente. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a6e18515302506ef6766a5a4bdbb64dfd"></a>
@@ -375,6 +461,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve el vector de <a class="el" href="classCLineEdit.html" title="Clase heredada de &#39;QLineEdit&#39; que aplica un estilo determinado a este tipo de container. ">CLineEdit</a> Inicios. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;CLineEdit*&gt;* </dd></dl>
 
 </div>
 </div>
@@ -391,6 +480,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Añadir'. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="acee142b78f7055424fb48d6df9dcee98"></a>
@@ -405,6 +497,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Borrar'. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> </dd></dl>
 
 </div>
 </div>
@@ -421,6 +516,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Cambiar'. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="abb26c06c814cf91080a1b9d83400a77d"></a>
@@ -435,6 +533,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Destino'. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> </dd></dl>
 
 </div>
 </div>
@@ -451,6 +552,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve el vector de <a class="el" href="classCLineEdit.html" title="Clase heredada de &#39;QLineEdit&#39; que aplica un estilo determinado a este tipo de container. ">CLineEdit</a> Letras. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;CLineEdit*&gt;* </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a63fcc7bde25a4dc813d81f6591997989"></a>
@@ -465,6 +569,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Inicio'. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> </dd></dl>
 
 </div>
 </div>
@@ -481,6 +588,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve el <a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> con el texto 'Letra'. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. ">CLabel</a> </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a249f33a94fb1ec310f61ed79e756a630"></a>
@@ -495,6 +605,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve el nodo inicial del automata. </p>
+<dl class="section return"><dt>Returns</dt><dd>string </dd></dl>
 
 </div>
 </div>
@@ -511,6 +624,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Metodo que devuelve los nodos finales del automata. </p>
+<dl class="section return"><dt>Returns</dt><dd>string </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="ac65429657b7d034bb8b422ed61b5841c"></a>
@@ -525,6 +641,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Metodo que devuelve el numero de nodos del automata. </p>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
 
 </div>
 </div>
@@ -548,6 +667,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Metodo Slot que Acepta el asistente guardandolo en un fichero. </p>
+<p>Abre una ventana para guardar la codificacion en un fichero</p>
+<p>Crea una nueva ventana con la codificacion deseada por si se desea consultar </p>
 
 </div>
 </div>
@@ -573,6 +696,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Metodo Slot que cambia los valores de inicio y destino de la fila correspondiente si el valor del checkbox de esa linea esta marcado. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i.</td><td>Posicion </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ab7f28d6c6468d1c92a85c655892d31f2"></a>
@@ -595,6 +726,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Metodo Slot que cierra el asistente sin codificar el automata. </p>
 
 </div>
 </div>
@@ -619,6 +752,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Metodo Slot que. </p>
+<p>Crea una ventana que tenga la imagen infoAsistente con informacion relevante </p>
+
 </div>
 </div>
 <a class="anchor" id="a8d5a01cef945d9a6b72dd54a9aaecec2"></a>
@@ -634,6 +770,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>ventanaInfoCodificacion Metodo que crea una ventana QWidget con la informacion resultado de la codificacion </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Aplica un estilo y carga </p>
 
 </div>
 </div>
@@ -656,6 +801,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p><a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> para aceptar la codificacion del automata. </p>
+
 </div>
 </div>
 <a class="anchor" id="a42afd383b49f23e25fa26e1327dac06b"></a>
@@ -675,6 +822,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>QLineEdit para añadir nuevas transiciones si se desea. </p>
 
 </div>
 </div>
@@ -696,6 +845,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Vector de CCheckbox para cambiar borrar la transicion que se desee. </p>
+
 </div>
 </div>
 <a class="anchor" id="a7c50f4349d8de445b66d49a1a34df74a"></a>
@@ -715,6 +866,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Vector de CCheckbox para cambiar el orden de las transiciones. </p>
 
 </div>
 </div>
@@ -736,6 +889,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p><a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> para cancelar la codificacion del automata. </p>
+
 </div>
 </div>
 <a class="anchor" id="a421a87b8ddfa213452349bcf55b22d27"></a>
@@ -755,6 +910,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Vector de destinos de transiciones. </p>
 
 </div>
 </div>
@@ -776,6 +933,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p><a class="el" href="classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. ">CPushButton</a> que ofrece ayuda sobre el funcionamiento del asistente. </p>
+
 </div>
 </div>
 <a class="anchor" id="ac0ac600fe894126b5273249b1748a267"></a>
@@ -795,6 +954,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Vector de inicios de transiciones. </p>
 
 </div>
 </div>
@@ -816,6 +977,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Texto Añadir. </p>
+
 </div>
 </div>
 <a class="anchor" id="a2820e2c5c034ae5641b3c0a927921be9"></a>
@@ -835,6 +998,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Texto Borrar. </p>
 
 </div>
 </div>
@@ -856,6 +1021,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Texto Cambiar. </p>
+
 </div>
 </div>
 <a class="anchor" id="a666efef7460347c564d7a73322ed435c"></a>
@@ -875,6 +1042,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Texto Destino. </p>
 
 </div>
 </div>
@@ -896,6 +1065,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Vector de letras entre transiciones. </p>
+
 </div>
 </div>
 <a class="anchor" id="a552db8480f43d39488afc2a3485fb8bd"></a>
@@ -915,6 +1086,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Texto Inicio. </p>
 
 </div>
 </div>
@@ -936,6 +1109,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Texto Letra. </p>
+
 </div>
 </div>
 <a class="anchor" id="ad0d97f8664aa927a414b7fe17b6106d4"></a>
@@ -955,6 +1130,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Nodo inicial. </p>
 
 </div>
 </div>
@@ -976,6 +1153,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Nodos finales del automata. </p>
+
 </div>
 </div>
 <a class="anchor" id="a3c77dcdb74837345c1da4a6a7051ee4e"></a>
@@ -995,6 +1174,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Numero de nodos del automata. </p>
 
 </div>
 </div>

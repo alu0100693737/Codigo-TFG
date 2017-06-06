@@ -20,25 +20,53 @@
 using namespace std;
 using namespace cv;
 
+/**
+ * @brief
+ * Clase que guarda contornos encontrados con su contorno, dimension y Area
+ */
 class CContourWithData {
 public:
-    std::vector<cv::Point> ptContour;           // Contorno
-    cv::Rect dimensionContorno;                 // Rectangulo
-    float fltArea;                              // Area del contorno
+    /// Contorno Detectado
+    std::vector<cv::Point> ptContour;
+    /// Rectangulo alrededor del Contorno
+    cv::Rect dimensionContorno;
+    /// Area del Contorno detectado
+    float fltArea;
 
+    /**
+     * @brief
+     * Constructor sin parametros. Vacio
+     */
     CContourWithData();
+    /**
+     * @brief
+     * Constructor copia
+     * @param copy
+     */
     CContourWithData(const CContourWithData& copy);
 
-    //Identifica si el contorno cubre el area minima
+    /**
+     * @brief
+     * Identifica si el contorno cubre el area minima MIN_CONTOUR_AREA
+     */
     bool checkIfContourIsValid();
+    /**
+     * @brief
+     * Muestra los datos de la clase por Std
+     */
     void mostrarContorno();
 };
 
-//Ordena los contornos por posicion coordenadas
-//Utilizado en  CDetectarTransiciones
+/**
+ * @brief
+ * Metodo estatico que ordena los contornos por posiciones coordenadas
+ * Utilizado en CDetectarTransiciones
+ * @param cwdLeft
+ * @param cwdRight
+ * @return Bool si param1 es menor que param2
+ */
 static bool sortByBoundingRectXPosition(const CContourWithData& cwdLeft, const CContourWithData& cwdRight) {      // this function allows us to sort
     return(cwdLeft.dimensionContorno.x < cwdRight.dimensionContorno.x);                                                   // the contours from left to right
 }
-
 
 #endif

@@ -7,7 +7,7 @@ var searchData=
   ['caplicacion',['CAplicacion',['../classCAplicacion.html',1,'CAplicacion'],['../classCAplicacion.html#a9b55c20439081bc5630b929b69c9fe36',1,'CAplicacion::CAplicacion()']]],
   ['caplicacion_2ecpp',['CAplicacion.cpp',['../CAplicacion_8cpp.html',1,'']]],
   ['caplicacion_2eh',['CAplicacion.h',['../CAplicacion_8h.html',1,'']]],
-  ['casistentecodificacion',['CAsistenteCodificacion',['../classCAsistenteCodificacion.html',1,'CAsistenteCodificacion'],['../classCAsistenteCodificacion.html#a0c2afc1f5979b36212e847524419e8f9',1,'CAsistenteCodificacion::CAsistenteCodificacion()']]],
+  ['casistentecodificacion',['CAsistenteCodificacion',['../classCAsistenteCodificacion.html',1,'CAsistenteCodificacion'],['../classCAsistenteCodificacion.html#a8648c998d92db260247f676e29a02a40',1,'CAsistenteCodificacion::CAsistenteCodificacion()']]],
   ['casistentecodificacion_2ecpp',['CAsistenteCodificacion.cpp',['../CAsistenteCodificacion_8cpp.html',1,'']]],
   ['casistentecodificacion_2eh',['CAsistenteCodificacion.h',['../CAsistenteCodificacion_8h.html',1,'']]],
   ['ccheckbox',['CCheckBox',['../classCCheckBox.html',1,'CCheckBox'],['../classCCheckBox.html#ae4ff02f8007433bdf27553a850b52a24',1,'CCheckBox::CCheckBox()']]],
@@ -31,7 +31,7 @@ var searchData=
   ['checkifcontourisvalid',['checkIfContourIsValid',['../classCContourWithData.html#aee393fc1557ce93c93fa16cba9a0f457',1,'CContourWithData']]],
   ['circles',['circles',['../classCDetectarCirculo.html#afb2bd271bd772e489fe948caa80bb7b7',1,'CDetectarCirculo']]],
   ['circulos_5f',['circulos_',['../classCOperacionesImagen.html#a385572b456e0aeaa055392daecf325d6',1,'COperacionesImagen']]],
-  ['clabel',['CLabel',['../classCLabel.html',1,'CLabel'],['../classCLabel.html#abf086cf63a3e820257e656e7b608d312',1,'CLabel::CLabel()'],['../classCLabel.html#a6e88fa51b6c55ae59b71498cdba66ea8',1,'CLabel::CLabel(QString text, bool)']]],
+  ['clabel',['CLabel',['../classCLabel.html',1,'CLabel'],['../classCLabel.html#abf086cf63a3e820257e656e7b608d312',1,'CLabel::CLabel()'],['../classCLabel.html#a2f7accc9637b63d705ba5418240eaf2d',1,'CLabel::CLabel(QString text, bool tipo)']]],
   ['clabel_2ecpp',['CLabel.cpp',['../CLabel_8cpp.html',1,'']]],
   ['clabel_2eh',['CLabel.h',['../CLabel_8h.html',1,'']]],
   ['clineedit',['CLineEdit',['../classCLineEdit.html',1,'CLineEdit'],['../classCLineEdit.html#afb3493949a61a9d51eea5182bfc0a591',1,'CLineEdit::CLineEdit()'],['../classCLineEdit.html#a67d172f77a4cd9233aee3684248436f5',1,'CLineEdit::CLineEdit(QString text)']]],
@@ -49,7 +49,5 @@ var searchData=
   ['cpanelopciones_2eh',['CPanelOpciones.h',['../CPanelOpciones_8h.html',1,'']]],
   ['cpushbutton',['CPushButton',['../classCPushButton.html',1,'CPushButton'],['../classCPushButton.html#a57826ce36e788184e955d492c93425c9',1,'CPushButton::CPushButton()']]],
   ['cpushbutton_2ecpp',['CPushButton.cpp',['../CPushButton_8cpp.html',1,'']]],
-  ['cpushbutton_2eh',['CPushButton.h',['../CPushButton_8h.html',1,'']]],
-  ['cscrolldata',['CScrollData',['../classCScrollData.html',1,'CScrollData'],['../classCScrollData.html#a40a7526c7f85947ec1fb404a8af3137d',1,'CScrollData::CScrollData()']]],
-  ['cscrolldata_2eh',['CScrollData.h',['../CScrollData_8h.html',1,'']]]
+  ['cpushbutton_2eh',['CPushButton.h',['../CPushButton_8h.html',1,'']]]
 ];

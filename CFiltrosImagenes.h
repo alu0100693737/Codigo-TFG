@@ -15,14 +15,50 @@
 #include "opencv2/highgui.hpp"    //Prueba de los filtros, imshow
 using namespace cv;
 
+/**
+ * @brief
+ * Clase con diferentes filtros para aplicar sobre imagenes
+ */
 class CFiltrosImagenes {
 public:
+    /**
+     * @brief
+     * Constructor Vacio
+     */
     CFiltrosImagenes();
+    /**
+     * @brief
+     * Metodo que aplica el filtro Gaussiano a una imagen
+     * @param original. Imagen a aplicar el filtro
+     * @return Mat Imagen modificada
+     */
     Mat filtroGaussianBlur(Mat original);
+    /**
+     * @brief
+     * Metodo que aplica el filtro de la Mediana a una imagen
+     * @param original. Imagen a aplicar el filtro
+     * @return Mat Imagen modificada
+     */
     Mat filtroMedianBlur(Mat original);
+    /**
+     * @brief
+     * Metodo que aplica el filtro Sobel a una imagen
+     * @param original. Imagen a aplicar el filtro
+     * @return Mat Imagen modificada
+     */
     Mat filtroSobel(Mat original);
+    /**
+     * @brief
+     * Metodo que aplica el filtro Laplaciano a una imagen
+     * @param original. Imagen a aplicar el filtro
+     * @return Mat Imagen modificada
+     */
     Mat filtroLaplacian(Mat original);
 
+    /**
+     * @brief
+     * Metodo para la prueba de filtros sobre una imagen
+     */
     void pruebaFiltros();
 };
 

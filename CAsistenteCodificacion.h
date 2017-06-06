@@ -28,65 +28,212 @@
 #include "CLineEdit.h"
 #include "CCheckBox.h"
 
+/**
+ * @brief
+ * Clase asistente de la codificacion.
+ * Utilizada al Procesar o Codificar una Imagen para confirmar que todo es correcto
+ * antes de guardarlo en un fichero
+ */
 class CAsistenteCodificacion : public QWidget {
     Q_OBJECT
 private:
+    /// Numero de nodos del automata
     int numNodos_;
+    /// Nodo inicial
     string nodoInicial_;
+    /// Nodos finales del automata
     string nodosFinales_;
 
-    //Texto de la GUI
+    /// Texto Cambiar
     CLabel* LCambiar_;
+    /// Texto Borrar
     CLabel* LBorrar_;
+    /// Texto Inicio
     CLabel* LInicio_;
+    /// Texto Destino
     CLabel* LDestino_;
+    /// Texto Letra
     CLabel* LLetra_;
+    /// Texto Añadir
     QLabel* LAnadir_;
 
+    /// Vector de CCheckbox para cambiar el orden de las transiciones
     vector<CCheckBox*>* cambiar_;
+    /// Vector de CCheckbox para cambiar borrar la transicion que se desee
     vector<CCheckBox*>* borrar_;
+    /// Vector de inicios de transiciones
     vector<CLineEdit*>* inicios_;
+    /// Vector de destinos de transiciones
     vector<CLineEdit*>* destinos_;
+    /// Vector de letras entre transiciones
     vector<CLineEdit*>* letras_;
 
+    /// QLineEdit para añadir nuevas transiciones si se desea
     QLineEdit* anadir_;
 
+    /// CPushButton para aceptar la codificacion del automata
     CPushButton* aceptar_;
+    /// CPushButton para cancelar la codificacion del automata
     CPushButton* cancelar_;
+    /// CPushButton que ofrece ayuda sobre el funcionamiento del asistente
     CPushButton* help_;
 
 public:
-    CAsistenteCodificacion(int, string, string, vector<int>* ini, vector<int>* fins, vector<char>* let, QWidget *parent = 0);
+    /**
+     * @brief
+     * Constructor
+     * @param nodos. Numero de nodos del automata
+     * @param inicial. Nodo inicial del automata
+     * @param finales. Nodos finales del automata
+     * @param ini.     Conjunto de inicios de transiciones
+     * @param fins     Conjunto de destinos de transiciones
+     * @param let      Conjunto de letras entre transiciones
+     * @param parent   Ventana padre
+     */
+    CAsistenteCodificacion(int nodos, string inicial, string finales, vector<int>* ini, vector<int>* fins, vector<char>* let, QWidget *parent = 0);
 
+    /**
+     * @brief
+     * Metodo que devuelve el numero de nodos del automata
+     * @return  int
+     */
     int getNumNodos();
+    /**
+     * @brief
+     * Metodo que devuelve el nodo inicial del automata
+     * @return string
+     */
     string getNodoInicial();
+    /**
+     * @brief
+     * Metodo que devuelve los nodos finales del automata
+     * @return string
+     */
     string getNodosFinales();
 
+    /**
+     * @brief
+     * Metodo que devuelve el CLabel con el texto 'Cambiar'
+     * @return CLabel
+     */
     CLabel* getLCambiar();
+    /**
+     * @brief
+     * Metodo que devuelve el CLabel con el texto 'Borrar'
+     * @return CLabel
+     */
     CLabel* getLBorrar();
+    /**
+     * @brief
+     * Metodo que devuelve el CLabel con el texto 'Inicio'
+     * @return CLabel
+     */
     CLabel* getLInicio();
+    /**
+     * @brief
+     * Metodo que devuelve el CLabel con el texto 'Destino'
+     * @return CLabel
+     */
     CLabel* getLDestino();
+    /**
+     * @brief
+     * Metodo que devuelve el CLabel con el texto 'Letra'
+     * @return CLabel
+     */
     CLabel* getLLetra();
+    /**
+     * @brief
+     * Metodo que devuelve el CLabel con el texto 'Añadir'
+     * @return CLabel
+     */
     QLabel* getLAnadir();
 
+    /**
+     * @brief
+     * Metodo que devuelve el vector de CCheckBox Cambiar
+     * @return vector<CCheckBox*>*
+     */
     vector<CCheckBox*>* getCheckBoxCambiar();
+    /**
+     * @brief
+     * Metodo que devuelve el vector de CCheckBox Borrar
+     * @return vector<CCheckBox*>*
+     */
     vector<CCheckBox*>* getCheckBoxBorrar();
+    /**
+     * @brief
+     * Metodo que devuelve el vector de CLineEdit Inicios
+     * @return vector<CLineEdit*>*
+     */
     vector<CLineEdit*>* getInicios();
+    /**
+     * @brief
+     * Metodo que devuelve el vector de CLineEdit Destinos Cambiar
+     * @return vector<CLineEdit*>*
+     */
     vector<CLineEdit*>* getDestinos();
+    /**
+     * @brief
+     * Metodo que devuelve el vector de CLineEdit Letras
+     * @return vector<CLineEdit*>*
+     */
     vector<CLineEdit*>* getLetras();
 
+    /**
+     * @brief
+     * Metodo que devuelve el QLineEdit con los automatas a añadir. Estos se introducen por Ventana
+     * @return QLineEdit
+     */
     QLineEdit* getAnadir();
 
+    /**
+     * @brief
+     * Metodo que devuelve el CPushButton Aceptar automata
+     * @return CPushButton
+     */
     CPushButton* getAceptar();
+    /**
+     * @brief
+     * Metodo que devuelve el CPushButton Cancelar automata
+     * @return CPushButton
+     */
     CPushButton* getCancelar();
+    /**
+     * @brief
+     * Metodo que devuelve el CPushButton Ayuda sobre el asistente
+     * @return CPushButton
+     */
     CPushButton* getHelp();
 
+    /**
+     * @brief ventanaInfoCodificacion
+     * Metodo que crea una ventana QWidget con la informacion resultado de la codificacion
+     * @param text
+     */
     void ventanaInfoCodificacion( string text);
 
 public slots:
+    /**
+     * @brief
+     * Metodo Slot que cierra el asistente sin codificar el automata
+     */
     void slotCancelar();
+    /**
+     * @brief
+     * Metodo Slot que Acepta el asistente guardandolo en un fichero
+     */
     void slotAceptar();
+    /**
+     * @brief
+     * Metodo Slot que
+     */
     void slotHelp();
+    /**
+     * @brief
+     * Metodo Slot que cambia los valores de inicio y destino de la fila correspondiente
+     * si el valor del checkbox de esa linea esta marcado
+     * @param i. Posicion
+     */
     void slotCambiar(int i);
 };
 
