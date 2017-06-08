@@ -109,6 +109,8 @@ private:
     /// Clase para aplicar operaciones sobre la Imagen. Deteccion, filtros y Asistente
     COperacionesImagen* operacionesImagen_;
 
+    QTextEdit* textEditCrearFichero_;
+
     /**
      * @brief
      * Metodo para Abrir Imagen, utilizado en slotAbrirImagen
@@ -421,6 +423,8 @@ public:
      */
     COperacionesImagen* getOperacionesImagen();
 
+    QTextEdit* getTextEditCrearFichero();
+
 public slots:
 
     /**
@@ -541,6 +545,6 @@ public slots:
      * @brief
      * Metodo Slot que guarda el Automata creado en el fichero que se especifique
      */
-    void slotGuardar(QString text);
+    void slotGuardar();
 };
 #endif

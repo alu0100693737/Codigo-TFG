@@ -179,6 +179,9 @@ void CAsistenteCodificacion::slotAceptar() {
     QFileDialog dialogFile(this, tr("Guardar Codificacion"));
     dialogFile.setDefaultSuffix(".txt");
 
+    const QStringList documentsLocations = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation);
+    dialogFile.setDirectory(documentsLocations.last());
+
     QString filename = dialogFile.getSaveFileName(
                 this,
                 tr("Save File"),

@@ -1,4 +1,4 @@
-//detect numbers https://www.mkompf.com/cplus/emeocv.html
+﻿//detect numbers https://www.mkompf.com/cplus/emeocv.html
 ///////////////////////////////////////////////////////////////
 //   CAplicacion.h - Implementación de la clase CAplicacion  //
 //                                                           //
@@ -51,8 +51,8 @@ CAplicacion::CAplicacion() {
     menuCorreccion_         = new QMenu("Correccion");
     menuFiltro_             = new QMenu("Filtros");
 
-    actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/imagenOriginal.png"), tr("Abrir Imagen"), this);
-    actionAbrirFichero_     = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/fichero.png"), tr("Abrir Fichero"), this);
+    actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/imagenOriginal.png"), tr("Abrir Imagen para su detección"), this);
+    actionAbrirFichero_     = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/fichero.png"), tr("Abrir Fichero para su correccion"), this);
     actionCrearNuevoFichero_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/nuevoFichero.png"), tr("Crear Nuevo Automata"), this);
     actionAbout_            = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/about.png"), tr("About"), this);
     actionAboutQT_          = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/aboutQT.png"), tr("About QT"), this);
@@ -285,7 +285,7 @@ QString CAplicacion::ventanaAbrirFichero()  {
 
     ///Cargamos el directorio por defecto
     const QStringList documentsLocations = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation);
-    window->setDirectory(documentsLocations.isEmpty() ? QDir::currentPath() : documentsLocations.last());
+    window->setDirectory(documentsLocations.last());
 
     setStyleSheet("background-color: white");
 
@@ -316,34 +316,26 @@ void CAplicacion::slotAbout() {
 void CAplicacion::slotCrearNuevoFichero() {
     QWidget* window = new QWidget(); QGridLayout* layout = new QGridLayout();
 
-    QTextEdit* textEdit = new QTextEdit();
-    textEdit->setPlaceholderText("6 \n 5 \n 0 2 0 b 2 a 4\n 1 5 1 a 3 5 b ");
-    textEdit->setFontWeight(14);
-    textEdit->setPlainText("GH");
-    cout << "HEYS " << textEdit->toPlainText().toStdString() << endl;
+    textEditCrearFichero_ = new QTextEdit();
+    getTextEditCrearFichero()->setPlaceholderText("6 \n 5 \n 0 2 0 b 2 a 4\n 1 5 1 a 3 5 b ");
+    getTextEditCrearFichero()->setFontWeight(14);
+    getTextEditCrearFichero()->setStyleSheet("background-color: white");
+    getTextEditCrearFichero()->setFixedWidth(350);
+    getTextEditCrearFichero()->setFixedHeight(400);
+
     CLabel* text = new CLabel("Cree un nuevo automata ", true);
 
-    QPushButton* cancelar = new QPushButton("Help");
-    QPushButton* guardar = new QPushButton("Guardar");
+    CPushButton* cancelar = new CPushButton("Help");
+    CPushButton* guardar = new CPushButton("Guardar");
 
-    textEdit->setStyleSheet("background-color: white");
-    textEdit->setFixedWidth(350);
-    textEdit->setFixedHeight(400);
 
     layout->addWidget(text, 0, 0, 1, 4);
-    layout->addWidget(textEdit, 1, 0, 1, 4);
+    layout->addWidget(getTextEditCrearFichero(), 1, 0, 1, 4);
     layout->addWidget(cancelar, 4, 1, 1, 1);
     layout->addWidget(guardar, 4, 2, 1, 1);
 
     connect(cancelar, SIGNAL(clicked()), this, SLOT(slotHelp()));
-
-    QSignalMapper* signalMapper = new QSignalMapper(this);
-
-    //Utilizado para guardar fichero
-    connect(guardar, SIGNAL(clicked()), signalMapper, SLOT(map()));
-    signalMapper->setMapping(guardar, textEdit->toPlainText());
-
-    connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(slotGuardar(QString)));
+    connect(guardar, SIGNAL(clicked()), this, SLOT(slotGuardar()));
 
     //connect(guardar, SIGNAL(clicked()), this, SLOT(slotGuardar(textEdit->toPlainText())));
     window->setLayout(layout);
@@ -543,34 +535,38 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
 
 void CAplicacion::slotHelp() {
     ///Crea una ventana que tenga la imagen infoAsistente con informacion relevante
-    QWidget* window = new QWidget(); QHBoxLayout* a = new QHBoxLayout();
+    QWidget* window = new QWidget(); QGridLayout* a = new QGridLayout();
     window->setStyleSheet("background-color: white");
+    CLabel* text = new CLabel("Información, formato de codificación", true);
     QLabel* aux = new QLabel(); QImage myImage;
 
     myImage.load("/home/ivan/Documentos/Codigo-TFG/images/explicacionNuevoFichero.png");
     aux->setPixmap(QPixmap::fromImage(myImage));
-    a->addWidget(aux);
+    a->addWidget(text, 0, 0, 1, 1);
+    a->addWidget(aux, 1, 0, 1, 1);
 
     window->setLayout(a);
     window->setStyleSheet("background-color: black;");
-    window->setWindowTitle("Ayuda Crer Nuevo Fichero");
+    window->setWindowTitle("Ayuda");
     this->setFixedSize(this->width(), this->height());
     window->show();
 }
 
-void CAplicacion::slotGuardar(QString text) {
-    cout << "Text " << text.toStdString() << endl;
-
+void CAplicacion::slotGuardar() {
+    //this->ma//cout << "Text " << text.toStdString() << endl;
+    cout << textEditCrearFichero_->toPlainText().toStdString() << endl;
     ///Abre una ventana para guardar la codificacion en un fichero
     setStyleSheet("background-color: white;");
     QFileDialog dialogFile(this, tr("Guardar Codificacion"));
     dialogFile.setDefaultSuffix(".txt");
+    const QStringList documentsLocations = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation);
+    dialogFile.setDirectory(documentsLocations.last());
 
     QString filename = dialogFile.getSaveFileName(
                 this,
                 tr("Save File"),
-                ".txt",
-                tr("Documents (*.txt)") );
+                documentsLocations.last(),
+                tr("Documentos (*.txt)") );
 
     if( !filename.isNull() ) {
         cout << filename.toStdString() << endl;
@@ -724,4 +720,8 @@ QAction* CAplicacion::getActionHistograma() {
 
 COperacionesImagen* CAplicacion::getOperacionesImagen() {
     return operacionesImagen_;
+}
+
+QTextEdit* CAplicacion::getTextEditCrearFichero() {
+    return textEditCrearFichero_;
 }
