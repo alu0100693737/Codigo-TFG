@@ -47,12 +47,13 @@ CAplicacion::CAplicacion() {
     /// Creamos el Menu
     menu_                   = this->menuBar();//w QMenuBar(centralWidget);
     menuArchivo_            = new QMenu("Archivo");
-    menuEditar_             = new QMenu("Edicion");
+    menuEditar_             = new QMenu("Deteccion");
     menuCorreccion_         = new QMenu("Correccion");
     menuFiltro_             = new QMenu("Filtros");
 
     actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/imagenOriginal.png"), tr("Abrir Imagen"), this);
     actionAbrirFichero_     = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/fichero.png"), tr("Abrir Fichero"), this);
+    actionCrearNuevoFichero_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/nuevoFichero.png"), tr("Crear Nuevo Automata"), this);
     actionAbout_            = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/about.png"), tr("About"), this);
     actionAboutQT_          = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/aboutQT.png"), tr("About QT"), this);
     actionSalir_            = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/salir.png"), tr("Salir"), this);
@@ -88,14 +89,15 @@ CAplicacion::CAplicacion() {
 
     getMenuArchivo()->addAction(getActionAbrirImagen());
     getMenuArchivo()->addAction(getActionAbrirFichero());
+    getMenuArchivo()->addAction(getActionCrearNuevoFichero());
     getMenuArchivo()->addAction(getActionAbout());
     getMenuArchivo()->addAction(getActionAboutQT());
     getMenuArchivo()->addAction(getActionSalir());
-    getMenuEditar()->addAction(getActionDetectarCirculos());
-    getMenuEditar()->addAction(getActionDetectarLineas());
-    getMenuEditar()->addAction(getActionDetectarTransiciones());
-    getMenuEditar()->addAction(getActionCodificarImagen());
-    getMenuEditar()->addAction(getActionCargarImagenOriginal());
+    getMenuDeteccion()->addAction(getActionDetectarCirculos());
+    getMenuDeteccion()->addAction(getActionDetectarLineas());
+    getMenuDeteccion()->addAction(getActionDetectarTransiciones());
+    getMenuDeteccion()->addAction(getActionCodificarImagen());
+    getMenuDeteccion()->addAction(getActionCargarImagenOriginal());
 
     getMenuCorreccion()->addAction(getActionAbrirFicheroCorrecto());
 
@@ -107,7 +109,7 @@ CAplicacion::CAplicacion() {
 
     //añadiendo elementos
     getMenuBar()->addMenu(getMenuArchivo());
-    getMenuBar()->addMenu(getMenuEditar());
+    getMenuBar()->addMenu(getMenuDeteccion());
     getMenuBar()->addMenu(getMenuCorreccion());
     getMenuBar()->addMenu(getMenuFiltro());
     getMenuBar()->adjustSize();
@@ -149,6 +151,7 @@ CAplicacion::CAplicacion() {
     ///conexiones con slots
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
     connect(getActionAbrirFichero(), SIGNAL(triggered()),this,SLOT(slotAbrirFichero()));
+    connect(getActionCrearNuevoFichero(), SIGNAL(triggered()), this, SLOT(slotCrearNuevoFichero()));
     connect(getActionAbout(), SIGNAL(triggered()),this,SLOT(slotAbout()));
     connect(getActionAboutQT(), SIGNAL(triggered()), this, SLOT(slotAboutQT()));
     connect(getActionSalir(), SIGNAL(triggered()), this, SLOT(slotSalir()));
@@ -201,7 +204,7 @@ void CAplicacion::slotAbrirImagen() {
 
     inicializarVentanaAplicacionDeteccion();
     //por si estuviera el modo fichero abierto
-   //getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 5);
+    //getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 5);
 
     QFileDialog dialog(this, tr("Abrir Imagen"));
     dialog.setStyleSheet("background-color: white;");
@@ -308,6 +311,45 @@ void CAplicacion::slotAbout() {
     mensaje.setText("Trabajo fin de grado. Iván García Campos.");
     mensaje.setIcon(QMessageBox::Information);
     mensaje.exec();
+}
+
+void CAplicacion::slotCrearNuevoFichero() {
+    QWidget* window = new QWidget(); QGridLayout* layout = new QGridLayout();
+
+    QTextEdit* textEdit = new QTextEdit();
+    textEdit->setPlaceholderText("6 \n 5 \n 0 2 0 b 2 a 4\n 1 5 1 a 3 5 b ");
+    textEdit->setFontWeight(14);
+    textEdit->setPlainText("GH");
+    cout << "HEYS " << textEdit->toPlainText().toStdString() << endl;
+    CLabel* text = new CLabel("Cree un nuevo automata ", true);
+
+    QPushButton* cancelar = new QPushButton("Help");
+    QPushButton* guardar = new QPushButton("Guardar");
+
+    textEdit->setStyleSheet("background-color: white");
+    textEdit->setFixedWidth(350);
+    textEdit->setFixedHeight(400);
+
+    layout->addWidget(text, 0, 0, 1, 4);
+    layout->addWidget(textEdit, 1, 0, 1, 4);
+    layout->addWidget(cancelar, 4, 1, 1, 1);
+    layout->addWidget(guardar, 4, 2, 1, 1);
+
+    connect(cancelar, SIGNAL(clicked()), this, SLOT(slotHelp()));
+
+    QSignalMapper* signalMapper = new QSignalMapper(this);
+
+    //Utilizado para guardar fichero
+    connect(guardar, SIGNAL(clicked()), signalMapper, SLOT(map()));
+    signalMapper->setMapping(guardar, textEdit->toPlainText());
+
+    connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(slotGuardar(QString)));
+
+    //connect(guardar, SIGNAL(clicked()), this, SLOT(slotGuardar(textEdit->toPlainText())));
+    window->setLayout(layout);
+    window->setStyleSheet("background-color: grey;");
+    window->setWindowTitle("Crear Nuevo Fichero");
+    window->show();
 }
 
 void CAplicacion::slotAboutQT() {
@@ -499,6 +541,45 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
     }
 }
 
+void CAplicacion::slotHelp() {
+    ///Crea una ventana que tenga la imagen infoAsistente con informacion relevante
+    QWidget* window = new QWidget(); QHBoxLayout* a = new QHBoxLayout();
+    window->setStyleSheet("background-color: white");
+    QLabel* aux = new QLabel(); QImage myImage;
+
+    myImage.load("/home/ivan/Documentos/Codigo-TFG/images/explicacionNuevoFichero.png");
+    aux->setPixmap(QPixmap::fromImage(myImage));
+    a->addWidget(aux);
+
+    window->setLayout(a);
+    window->setStyleSheet("background-color: black;");
+    window->setWindowTitle("Ayuda Crer Nuevo Fichero");
+    this->setFixedSize(this->width(), this->height());
+    window->show();
+}
+
+void CAplicacion::slotGuardar(QString text) {
+    cout << "Text " << text.toStdString() << endl;
+
+    ///Abre una ventana para guardar la codificacion en un fichero
+    setStyleSheet("background-color: white;");
+    QFileDialog dialogFile(this, tr("Guardar Codificacion"));
+    dialogFile.setDefaultSuffix(".txt");
+
+    QString filename = dialogFile.getSaveFileName(
+                this,
+                tr("Save File"),
+                ".txt",
+                tr("Documents (*.txt)") );
+
+    if( !filename.isNull() ) {
+        cout << filename.toStdString() << endl;
+        ofstream fs(filename.toStdString());
+        fs.close();
+    }
+    setStyleSheet("background-color: black;");
+}
+
 //get y sets
 QString CAplicacion::getPathImagenActual() {
     return pathImagenActual_;
@@ -537,7 +618,7 @@ QMenu* CAplicacion::getMenuArchivo() {
     return menuArchivo_;
 }
 
-QMenu* CAplicacion::getMenuEditar() {
+QMenu* CAplicacion::getMenuDeteccion() {
     return menuEditar_;
 }
 
@@ -571,6 +652,10 @@ QAction* CAplicacion::getActionAbrirImagen() {
 
 QAction* CAplicacion::getActionAbrirFichero() {
     return actionAbrirFichero_;
+}
+
+QAction* CAplicacion::getActionCrearNuevoFichero() {
+    return actionCrearNuevoFichero_;
 }
 
 QAction* CAplicacion::getActionAbout() {

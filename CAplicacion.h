@@ -58,6 +58,8 @@ private:
     QAction* actionAbrirImagen_;
     /// Accion Abrir Fichero del Submenu Archivo
     QAction* actionAbrirFichero_;
+    /// Accion Nuevo Fichero del Submenu Archivo
+    QAction* actionCrearNuevoFichero_;
     /// Accion About del Submenu Archivo
     QAction* actionAbout_;
     /// Accion About Qt del Submenu Archivo
@@ -229,7 +231,7 @@ public:
      * @return
      * Submenu Editar
      */
-    QMenu* getMenuEditar();
+    QMenu* getMenuDeteccion();
     /**
      * @brief
      * Metodo que devuelve el submenu Correccion del Menu de la Aplicacion
@@ -288,6 +290,13 @@ public:
      * QAction
      */
     QAction* getActionAbrirFichero();
+    /**
+     * @brief
+     * Metodo que devuelve la Accion Crear Nuevo Fichero
+     * @return
+     * QAction
+     */
+    QAction* getActionCrearNuevoFichero();
     /**
      * @brief
      * Metodo que devuelve la Accion About
@@ -426,6 +435,11 @@ public slots:
     void slotAbrirFichero();
     /**
      * @brief
+     * Metodo Slot que Abre un Fichero y lo coloca en el Panel Principal
+     */
+    void slotCrearNuevoFichero();
+    /**
+     * @brief
      * Metodo Slot que Abre un QMessageBox con Informacion Relevante del Proyecto
      */
     void slotAbout();
@@ -518,5 +532,15 @@ public slots:
      * Metodo Slot que calcula de nuevo las detecciones hechas en la imagen si se modifica algun valor del panel Opciones
      */
     void slotCirculosCannyAccumulatorHoughLinesP();
+    /**
+     * @brief
+     * Metodo Slot utilizado en crear nuevo fichero que ofrece informacion, formato fichero automata
+     */
+    void slotHelp();
+    /**
+     * @brief
+     * Metodo Slot que guarda el Automata creado en el fichero que se especifique
+     */
+    void slotGuardar(QString text);
 };
 #endif

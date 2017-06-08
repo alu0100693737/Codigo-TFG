@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////
+﻿//////////////////////////////////////////////////////////////////////////////////
 //CAsistenteCodificacion.h - Implementacion de la clase CAsistenteCodificacion  //
 //                                                                              //
 //               Autor: Iván García Campos                                      //
@@ -35,7 +35,7 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     anadir_ = new QLineEdit();
     getAnadir()->setPlaceholderText("Formato: 2 3 b ; 4 5 a");
 
-    aceptar_ = new CPushButton("Codificar");
+    aceptar_ = new CPushButton("Aceptar");
     cancelar_ = new CPushButton("Cancelar");
     help_ = new CPushButton("Help");
 
@@ -194,8 +194,8 @@ void CAsistenteCodificacion::slotAceptar() {
 
         str = QString::fromStdString(getNodosFinales());
         list = str.split(QRegExp("\\s+"));
-        for(int i = 0; i < list.size(); i++)
-            cout << " HEYS " << list.at(i).toStdString() << endl;
+        /*for(int i = 0; i < list.size(); i++)
+            cout << " HEYS " << list.at(i).toStdString() << endl;*/
 
 
         ofstream fs(filename.toStdString());
