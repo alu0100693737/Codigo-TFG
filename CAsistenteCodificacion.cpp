@@ -14,7 +14,6 @@ using namespace std;
 using namespace cv;
 //sudo setxkbmap -layout 'es,es' -model pc105
 CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string finales, vector<int>* ini, vector<int>* fins, vector<char>* let, QWidget *parent) {
-
     numNodos_ = nodos;
     nodoInicial_ = inicial;
     nodosFinales_ = finales;
@@ -35,9 +34,10 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     anadir_ = new QLineEdit();
     getAnadir()->setPlaceholderText("Formato: 2 3 b ; 4 5 a");
 
-    aceptar_ = new CPushButton("Aceptar");
-    cancelar_ = new CPushButton("Cancelar");
-    help_ = new CPushButton("Help");
+    guardarComoFichero_ = new CPushButton("Guardar como Fichero", false);
+    cancelar_ = new CPushButton("Cancelar", false);
+    help_ = new CPushButton("Help", false);
+    corregirAutomata_ = new CPushButton("Corregir automata", false);
 
     this->setStyleSheet("background-color: rgba(220, 220, 220, 1);");
     QGridLayout *layout = new QGridLayout();
@@ -76,12 +76,15 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     layout->addWidget(getAnadir(), ini->size() + 2, 2, 1, 3);
     layout->addWidget(new QLabel(), ini->size() + 3, 0, 1, 5);
 
-    layout->addWidget(getCancelar(), ini->size() + 4, 1, 1, 1);
-    layout->addWidget(getAceptar(), ini->size() + 4, 2, 1, 1);
-    layout->addWidget(getHelp(), ini->size() + 4, 3, 1, 1);
+    QHBoxLayout* prueba = new QHBoxLayout();
+    prueba->addWidget(getCancelar()); prueba->addWidget(getGuardarComoFichero()); prueba->addWidget(getCorregirAutomata());
+    prueba->addWidget(getHelp());
+    prueba->setSpacing(10);
+    layout->addLayout(prueba, ini->size() + 3, 0, 2, 5);
 
     connect(getCancelar(), SIGNAL(clicked()), this, SLOT(slotCancelar()));
-    connect(getAceptar(), SIGNAL(clicked()), this, SLOT(slotAceptar()));
+    connect(getGuardarComoFichero(), SIGNAL(clicked()), this, SLOT(slotGuardarComoFichero()));
+    connect(getCorregirAutomata(), SIGNAL(clicked()), this, SLOT(slotCorregirAutomata()));
     connect(getHelp(), SIGNAL(clicked()), this, SLOT(slotHelp()));
 
     //Necesario para poder saber que CCheckBox se esta cliked()
@@ -92,7 +95,6 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     }
     connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(slotCambiar(int)));
 
-    //setMinimumSize(400, 200);
     this->setFixedSize(this->width(), this->height());
     setWindowTitle("Asistente para la codificación");
 }
@@ -157,8 +159,12 @@ QLineEdit* CAsistenteCodificacion::getAnadir() {
     return anadir_;
 }
 
-CPushButton* CAsistenteCodificacion::getAceptar() {
-    return aceptar_;
+CPushButton* CAsistenteCodificacion::getGuardarComoFichero() {
+    return guardarComoFichero_;
+}
+
+CPushButton* CAsistenteCodificacion::getCorregirAutomata() {
+    return corregirAutomata_;
 }
 
 CPushButton* CAsistenteCodificacion::getCancelar() {
@@ -173,7 +179,7 @@ void CAsistenteCodificacion::slotCancelar() {
     this->close();
 }
 
-void CAsistenteCodificacion::slotAceptar() {
+void CAsistenteCodificacion::slotGuardarComoFichero() {
     ///Abre una ventana para guardar la codificacion en un fichero
     setStyleSheet("background-color: white;");
     QFileDialog dialogFile(this, tr("Guardar Codificacion"));
@@ -185,109 +191,179 @@ void CAsistenteCodificacion::slotAceptar() {
     QString filename = dialogFile.getSaveFileName(
                 this,
                 tr("Save File"),
-                ".txt",
+                "",
                 tr("Documents (*.txt)") );
 
     if( !filename.isNull() ) {
-        cout << filename.toStdString() << endl;
-
+        filename.append(".txt");
+        vector<int> marcados;
         // spliteamos nodos finales
         QString str;
         QStringList list;
 
         str = QString::fromStdString(getNodosFinales());
         list = str.split(QRegExp("\\s+"));
-        /*for(int i = 0; i < list.size(); i++)
-            cout << " HEYS " << list.at(i).toStdString() << endl;*/
-
 
         ofstream fs(filename.toStdString());
         fs << getNumNodos() << endl;
         fs << getNodoInicial() << endl;
         //fs << getNodosFinales() << endl;
         for(int i = 0; i < getInicios()->size(); i++) {
-            if(!getCheckBoxBorrar()->at(i)->isChecked()){
+            if((!getCheckBoxBorrar()->at(i)->isChecked())){
+                std::vector<int>::iterator it;
+                it = std::find (marcados.begin(), marcados.end(), i);
+                if (it == marcados.end()) {
+                    fs << getInicios()->at(i)->text().toStdString() << " ";
+                    //cout << "HY" << getInicios()->at(i)->text().toStdString() << " ";
+                    //Considerando si es estado final o no
+                    if(list.contains(getInicios()->at(i)->text()))
+                        fs << 1 << " ";
+                    else
+                        fs << 0 << " ";
+                    fs << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << " ";
+                    for(int j = i + 1; j < getInicios()->size(); j++) {
+                        if(getInicios()->at(i)->text() == getInicios()->at(j)->text()) {
+                            fs << getDestinos()->at(j)->text().toStdString() << " " << getLetras()->at(j)->text().toStdString() << " ";
+                            marcados.push_back(j);
+                        }
+                    }
+                    fs << endl;
+                }
+            }
+        }
+        fs.close();
+
+        string text;
+        string line;
+        ifstream myfile (filename.toStdString());
+        if (myfile.is_open())
+        {
+            while ( getline (myfile,line) )
+            {
+                text += line;
+                text += "\n";
+                cout << line << endl;
+            }
+            myfile.close();
+        }
+        ///Crea una nueva ventana con la codificacion deseada por si se desea consultar
+        ventanaInfoCodificacion(text);
+        slotCancelar();
+    }   else
+        setStyleSheet("background-color: rgba(220, 220, 220, 1);");
+
+}
+
+void CAsistenteCodificacion::slotCorregirAutomata() {
+    guardarAutomataTemporal();
+    this->close();
+
+
+    /*QFile file1(PATH_TEMPORAL);
+    if(!file1.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        cout << "Error, fichero invalido, fallo en el fichero temporal" << endl;
+        return QString();
+    }
+
+    QTextStream in(&file1);
+    QString line;
+    while(!in.atEnd()){
+        line += in.readLine();
+        line += "\n";
+    }*/
+
+            cout << "YES" << endl;
+    //new CAplicacion.prueba();
+}
+
+void CAsistenteCodificacion::guardarAutomataTemporal() {
+    vector<int> marcados;
+    // spliteamos nodos finales
+    QString str;
+    QStringList list;
+
+    str = QString::fromStdString(getNodosFinales());
+    list = str.split(QRegExp("\\s+"));
+
+    ofstream fs(PATH_TEMPORAL);
+    fs << getNumNodos() << endl;
+    fs << getNodoInicial() << endl;
+    //fs << getNodosFinales() << endl;
+    for(int i = 0; i < getInicios()->size(); i++) {
+        if((!getCheckBoxBorrar()->at(i)->isChecked())){
+            std::vector<int>::iterator it;
+            it = std::find (marcados.begin(), marcados.end(), i);
+            if (it == marcados.end()) {
                 fs << getInicios()->at(i)->text().toStdString() << " ";
+                //cout << "HY" << getInicios()->at(i)->text().toStdString() << " ";
                 //Considerando si es estado final o no
                 if(list.contains(getInicios()->at(i)->text()))
                     fs << 1 << " ";
-                 else
+                else
                     fs << 0 << " ";
-
-                fs << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << endl;
+                fs << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << " ";
+                for(int j = i + 1; j < getInicios()->size(); j++) {
+                    if(getInicios()->at(i)->text() == getInicios()->at(j)->text()) {
+                        fs << getDestinos()->at(j)->text().toStdString() << " " << getLetras()->at(j)->text().toStdString() << " ";
+                        marcados.push_back(j);
+                    }
+                }
+                fs << endl;
             }
         }
-            fs.close();
-
-            string text;
-            string line;
-            ifstream myfile (filename.toStdString());
-            if (myfile.is_open())
-            {
-                while ( getline (myfile,line) )
-                {
-                    text += line;
-                    text += "\n";
-                    cout << line << endl;
-                }
-                myfile.close();
-            }
-            ///Crea una nueva ventana con la codificacion deseada por si se desea consultar
-            ventanaInfoCodificacion(text);
-            slotCancelar();
-        }   else
-        setStyleSheet("background-color: rgba(220, 220, 220, 1);");
-
     }
+    fs.close();
 
-    void CAsistenteCodificacion::slotHelp() {
+}
 
-        ///Crea una ventana que tenga la imagen infoAsistente con informacion relevante
-        QWidget* window = new QWidget(); QHBoxLayout* a = new QHBoxLayout();
-        QLabel* aux = new QLabel(); QImage myImage;
+void CAsistenteCodificacion::slotHelp() {
 
-        myImage.load("/home/ivan/Documentos/Codigo-TFG/images/infoAsistente.png");
-        aux->setPixmap(QPixmap::fromImage(myImage));
-        a->addWidget(aux);
+    ///Crea una ventana que tenga la imagen infoAsistente con informacion relevante
+    QWidget* window = new QWidget(); QHBoxLayout* a = new QHBoxLayout();
+    QLabel* aux = new QLabel(); QImage myImage;
 
-        window->setLayout(a);
-        window->setStyleSheet("background-color: black;");
-        window->setWindowTitle("Ayuda del asistente");
-        this->setFixedSize(this->width(), this->height());
-        window->show();
-    }
+    myImage.load("/home/ivan/Documentos/Codigo-TFG/images/infoAsistente.png");
+    aux->setPixmap(QPixmap::fromImage(myImage));
+    a->addWidget(aux);
 
-    void CAsistenteCodificacion::slotCambiar(int i) {
-        QString aux = getInicios()->at(i)->text();
-        getInicios()->at(i)->setText(getDestinos()->at(i)->text());
-        getDestinos()->at(i)->setText(aux);
-        cout << "heys" << endl;
-    }
+    window->setLayout(a);
+    window->setStyleSheet("background-color: black;");
+    window->setWindowTitle("Ayuda del asistente");
+    this->setFixedSize(this->width(), this->height());
+    window->show();
+}
 
-    void CAsistenteCodificacion::ventanaInfoCodificacion(string text) {
-        ///Aplica un estilo y carga
-        QWidget* window = new QWidget(); QBoxLayout* layout = new QBoxLayout(QBoxLayout::TopToBottom);
-        QLabel* label = new QLabel();
-        label->setText(QString::fromStdString(text));
-        QFont f( "Arial", 14, QFont::Bold);
-        label->setFont( f);
-        layout->setAlignment(Qt::AlignCenter);
-        layout->addWidget(label);
-        window->setStyleSheet("color: white; background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c); border-width: 1px;"
-                              "border-color: #339;"
-                              "border-style: solid;"
-                              "border-radius: 7;"
-                              "padding: 3px;"
-                              "margin-left: 20px;"
-                              "margin-right: 20px;"
-                              "padding-left: 5px;"
-                              "padding-right: 5px;");
+void CAsistenteCodificacion::slotCambiar(int i) {
+    QString aux = getInicios()->at(i)->text();
+    getInicios()->at(i)->setText(getDestinos()->at(i)->text());
+    getDestinos()->at(i)->setText(aux);
+    cout << "heys" << endl;
+}
 
-        window->setLayout(layout);
-        window->setWindowTitle("Codificacion");
-        window->setMinimumSize(240, 180);
-        window->setFixedWidth(240);
-        window->setStyleSheet("background-color: white");
+void CAsistenteCodificacion::ventanaInfoCodificacion(string text) {
+    ///Aplica un estilo y carga
+    QWidget* window = new QWidget(); QBoxLayout* layout = new QBoxLayout(QBoxLayout::TopToBottom);
+    QLabel* label = new QLabel();
+    label->setText(QString::fromStdString(text));
+    QFont f( "Arial", 14, QFont::Bold);
+    label->setFont( f);
+    layout->setAlignment(Qt::AlignCenter);
+    layout->addWidget(label);
+    window->setStyleSheet("color: white; background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c); border-width: 1px;"
+                          "border-color: #339;"
+                          "border-style: solid;"
+                          "border-radius: 7;"
+                          "padding: 3px;"
+                          "margin-left: 20px;"
+                          "margin-right: 20px;"
+                          "padding-left: 5px;"
+                          "padding-right: 5px;");
 
-        window->show();
-    }
+    window->setLayout(layout);
+    window->setWindowTitle("Codificacion");
+    window->setMinimumSize(240, 180);
+    window->setFixedWidth(240);
+    window->setStyleSheet("background-color: white");
+
+    window->show();
+}

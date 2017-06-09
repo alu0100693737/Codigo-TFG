@@ -24,7 +24,8 @@ public:
      * @brief
      * Constructor que aplica el estilo
      * @param text. Texto del Button
+     * @param estilo. Estilo utilizado, cambia el tamano de la letra
      */
-    CPushButton(QString text);
+    CPushButton(QString text, bool estilo);
 };
 #endif // CPUSHBUTTON_H

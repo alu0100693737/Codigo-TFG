@@ -29,7 +29,7 @@
 #include "CLineEdit.h"
 #include "CCheckBox.h"
 using namespace std;
-
+#define PATH_TEMPORAL "/home/ivan/Documentos/Codigo-TFG/codificaciones/temporal.txt"
 /**
  * @brief
  * Clase asistente de la codificacion.
@@ -74,8 +74,9 @@ private:
     QLineEdit* anadir_;
 
     /// CPushButton para aceptar la codificacion del automata
-    CPushButton* aceptar_;
+    CPushButton* guardarComoFichero_;
     /// CPushButton para cancelar la codificacion del automata
+    CPushButton* corregirAutomata_;
     CPushButton* cancelar_;
     /// CPushButton que ofrece ayuda sobre el funcionamiento del asistente
     CPushButton* help_;
@@ -193,13 +194,21 @@ public:
      * Metodo que devuelve el CPushButton Aceptar automata
      * @return CPushButton
      */
-    CPushButton* getAceptar();
+    CPushButton* getGuardarComoFichero();
     /**
      * @brief
      * Metodo que devuelve el CPushButton Cancelar automata
      * @return CPushButton
      */
     CPushButton* getCancelar();
+    /**
+     * @brief
+     * Metodo que devuelve el CPushButton Corregir Automata sobre el asistente
+     * @return CPushButton
+     */
+    CPushButton* getCorregirAutomata();
+
+    void guardarAutomataTemporal();
     /**
      * @brief
      * Metodo que devuelve el CPushButton Ayuda sobre el asistente
@@ -224,10 +233,15 @@ public slots:
      * @brief
      * Metodo Slot que Acepta el asistente guardandolo en un fichero
      */
-    void slotAceptar();
+    void slotGuardarComoFichero();
     /**
      * @brief
-     * Metodo Slot que
+     * Metodo Slot que lanza la accion corregir automata
+     */
+    void slotCorregirAutomata();
+    /**
+     * @brief
+     * Metodo Slot que lanza una ventana de ayuda
      */
     void slotHelp();
     /**

@@ -15,7 +15,7 @@
 #include "CLineEdit.h"
 #include "COperacionesImagen.h"
 #include "CPanelOpciones.h"
-
+#define PATH_TEMPORAL "/home/ivan/Documentos/Codigo-TFG/codificaciones/temporal.txt"
 /**
  * @brief
  * Clase Aplicacion con ventana principal de la aplicacion
@@ -110,6 +110,7 @@ private:
     COperacionesImagen* operacionesImagen_;
 
     QTextEdit* textEditCrearFichero_;
+    QTimer* checkUpdatesTimer_;
 
     /**
      * @brief
@@ -424,6 +425,7 @@ public:
     COperacionesImagen* getOperacionesImagen();
 
     QTextEdit* getTextEditCrearFichero();
+    QTimer* getCheckUpdatesTimer();
 
 public slots:
 
@@ -546,5 +548,7 @@ public slots:
      * Metodo Slot que guarda el Automata creado en el fichero que se especifique
      */
     void slotGuardar();
+
+    void prueba();
 };
 #endif

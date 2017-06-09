@@ -148,6 +148,8 @@ CAplicacion::CAplicacion() {
     this->getToolBar()->addWidget(getNodosFinales());
     this->getToolBar()->addWidget(getAlfabetoActual());
 
+     checkUpdatesTimer_ = new QTimer(this); //timer para asistente codificacion
+
     ///conexiones con slots
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
     connect(getActionAbrirFichero(), SIGNAL(triggered()),this,SLOT(slotAbrirFichero()));
@@ -175,6 +177,8 @@ CAplicacion::CAplicacion() {
     connect(getPanelOpciones()->getCannyThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
     connect(getPanelOpciones()->getAccumulatorThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
     connect(getPanelOpciones()->getHoughLinesP(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
+
+    connect(getCheckUpdatesTimer(), SIGNAL(timeout()), this, SLOT(prueba()));
 }
 
 CAplicacion::~CAplicacion() {}
@@ -325,8 +329,8 @@ void CAplicacion::slotCrearNuevoFichero() {
 
     CLabel* text = new CLabel("Cree un nuevo automata ", true);
 
-    CPushButton* cancelar = new CPushButton("Help");
-    CPushButton* guardar = new CPushButton("Guardar");
+    CPushButton* cancelar = new CPushButton("Help", true);
+    CPushButton* guardar = new CPushButton("Guardar", true);
 
 
     layout->addWidget(text, 0, 0, 1, 4);
@@ -409,6 +413,8 @@ void CAplicacion::slotCodificarImagen() {
         if(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() == 0)
             slotDetectarTransiciones();
         getOperacionesImagen()->codificarDeteccion(getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData());
+
+        getCheckUpdatesTimer()->start(10000);
     }
 }
 
@@ -569,11 +575,27 @@ void CAplicacion::slotGuardar() {
                 tr("Documentos (*.txt)") );
 
     if( !filename.isNull() ) {
+        filename.append(".txt");
         cout << filename.toStdString() << endl;
         ofstream fs(filename.toStdString());
+        fs << getTextEditCrearFichero()->toPlainText().toStdString();
         fs.close();
     }
     setStyleSheet("background-color: black;");
+}
+
+void CAplicacion::prueba() {
+    ifstream fich(PATH_TEMPORAL, ios::in | ios::binary);
+    //fich.read(mes, 20);
+       if(fich.good())
+          cout << "HOLA" << endl;
+       else {
+          cout << "Error al leer de Fichero" << endl;
+          if(fich.fail()) cout << "Bit fail activo" << endl;
+          if(fich.eof())  cout << "Bit eof activo" << endl;
+          if(fich.bad())  cout << "Bit bad activo" << endl;
+       }
+       fich.close();
 }
 
 //get y sets
@@ -724,4 +746,8 @@ COperacionesImagen* CAplicacion::getOperacionesImagen() {
 
 QTextEdit* CAplicacion::getTextEditCrearFichero() {
     return textEditCrearFichero_;
+}
+
+QTimer* CAplicacion::getCheckUpdatesTimer() {
+    return checkUpdatesTimer_;
 }

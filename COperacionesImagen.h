@@ -23,6 +23,7 @@
 #include "CAsistenteCodificacion.h"
 #include <QImage>
 
+
 #define DISTANCIAPIXELSECUNDARIO 100
 #define CONTORNOMEDIOLETRA 30
 
