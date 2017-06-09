@@ -41,6 +41,8 @@ CAplicacion::CAplicacion() {
     QWidget* centralWidget        = new QWidget();
     layout_ = new QGridLayout();
 
+    restaurarValores_ = new CPushButton("Restaurar ScrollBar's", false);
+
     centralWidget->setLayout (getLayout());
     inicializarVentanaAplicacionDeteccion();
 
@@ -178,7 +180,8 @@ CAplicacion::CAplicacion() {
     connect(getPanelOpciones()->getAccumulatorThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
     connect(getPanelOpciones()->getHoughLinesP(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
 
-    connect(getCheckUpdatesTimer(), SIGNAL(timeout()), this, SLOT(prueba()));
+    connect(getRestaurarValores(), SIGNAL(clicked()), this, SLOT(slotRestaurarValores()));
+    connect(getCheckUpdatesTimer(), SIGNAL(timeout()), this, SLOT(checkFicheroTemporalCreado()));
 }
 
 CAplicacion::~CAplicacion() {}
@@ -189,7 +192,15 @@ void CAplicacion::inicializarVentanaAplicacionDeteccion() {
     getLayout()->addWidget(getPanelComparacion(), 0, 0, 3, 5);
     getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 5);
     getLayout()->addWidget (getPanelOpciones(), 4, 0, 1, 4);
-    getLayout()->addWidget (getPanelHistograma(), 4, 4, 1, 1);
+
+    QVBoxLayout* layout1 = new QVBoxLayout();
+    layout1->addWidget(getRestaurarValores());/* layout1->addWidget(getGuardarComoFichero()); layout1->addWidget(getCorregirAutomata());
+
+layout1->addWidget(getHelp());*/
+
+    layout1->setSpacing(10);
+    getLayout()->addLayout(layout1, 4, 4, 1, 1);
+    //getLayout()->addWidget (getPanelHistograma(), 4, 4, 1, 1);
 
     setStyleSheet("background-color: black");
 }
@@ -273,7 +284,9 @@ bool CAplicacion::loadFile(const QString &fileName) {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
 
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
-        getPanelHistograma()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->calcularHistograma(getOperacionesImagen()->QImage2Mat(newImage))));
+
+        //si se desea poner el histograma en panel Histograma
+        //getPanelHistograma()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->calcularHistograma(getOperacionesImagen()->QImage2Mat(newImage))));
 
         getActionDetectarCirculos()->setDisabled(false);
         getActionProcesarImagen()->setDisabled(false);
@@ -585,7 +598,7 @@ void CAplicacion::slotGuardar() {
     setStyleSheet("background-color: black;");
 }
 
-void CAplicacion::prueba() {
+void CAplicacion::checkFicheroTemporalCreado() {
     ifstream fich(PATH_TEMPORAL, ios::in | ios::binary);
     //fich.read(mes, 20);
     if(fich.good()) {
@@ -612,6 +625,10 @@ void CAplicacion::prueba() {
         if(fich.bad())  cout << "Bit bad activo" << endl;
     }
     fich.close();
+}
+
+void CAplicacion::slotRestaurarValores() {
+    cout << "hola" << endl;
 }
 
 //get y sets
@@ -766,4 +783,8 @@ QTextEdit* CAplicacion::getTextEditCrearFichero() {
 
 QTimer* CAplicacion::getCheckUpdatesTimer() {
     return checkUpdatesTimer_;
+}
+
+CPushButton* CAplicacion::getRestaurarValores() {
+    return restaurarValores_;
 }

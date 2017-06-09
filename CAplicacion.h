@@ -44,6 +44,11 @@ private:
     /// Layout de la aplicacion, formato GridLayout
     QGridLayout * layout_;
 
+    /// Boton para restaurar valores de los ScrollBar
+    CPushButton* restaurarValores_;
+    CLabel* perspectivaActual_;
+    CPushButton* cambiarPerspectiva_;
+
     /// Menu de la aplicacion, contiene Archivo, Editar, Correccion y Filtros
     QMenuBar* menu_;
     /// Submenu Archivo de la Aplicacion
@@ -215,6 +220,7 @@ public:
      */
     QGridLayout* getLayout();
 
+    CPushButton* getRestaurarValores();
     /**
      * @brief
      * Metodo que devuelve el Menu de la Aplicacion
@@ -550,6 +556,10 @@ public slots:
      */
     void slotGuardar();
 
-    void prueba();
+    void checkFicheroTemporalCreado();
+
+    /**
+      restaurar valores scrollbar*/
+    void slotRestaurarValores();
 };
 #endif

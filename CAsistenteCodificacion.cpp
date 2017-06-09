@@ -76,11 +76,11 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     layout->addWidget(getAnadir(), ini->size() + 2, 2, 1, 3);
     layout->addWidget(new QLabel(), ini->size() + 3, 0, 1, 5);
 
-    QHBoxLayout* prueba = new QHBoxLayout();
-    prueba->addWidget(getCancelar()); prueba->addWidget(getGuardarComoFichero()); prueba->addWidget(getCorregirAutomata());
-    prueba->addWidget(getHelp());
-    prueba->setSpacing(10);
-    layout->addLayout(prueba, ini->size() + 3, 0, 2, 5);
+    QHBoxLayout* layout1 = new QHBoxLayout();
+    layout1->addWidget(getCancelar()); layout1->addWidget(getGuardarComoFichero()); layout1->addWidget(getCorregirAutomata());
+    layout1->addWidget(getHelp());
+    layout1->setSpacing(10);
+    layout->addLayout(layout1, ini->size() + 3, 0, 2, 5);
 
     connect(getCancelar(), SIGNAL(clicked()), this, SLOT(slotCancelar()));
     connect(getGuardarComoFichero(), SIGNAL(clicked()), this, SLOT(slotGuardarComoFichero()));
