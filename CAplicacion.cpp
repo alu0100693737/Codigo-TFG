@@ -148,7 +148,7 @@ CAplicacion::CAplicacion() {
     this->getToolBar()->addWidget(getNodosFinales());
     this->getToolBar()->addWidget(getAlfabetoActual());
 
-     checkUpdatesTimer_ = new QTimer(this); //timer para asistente codificacion
+    checkUpdatesTimer_ = new QTimer(this); //timer para asistente codificacion
 
     ///conexiones con slots
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
@@ -410,11 +410,12 @@ void CAplicacion::slotCodificarImagen() {
         mensaje.setIcon(QMessageBox::Warning);
         mensaje.exec();
     } else {
+        cout << "Se borro el fichero temporal de la ejecucion anterior" << remove(PATH_TEMPORAL);
         if(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() == 0)
             slotDetectarTransiciones();
         getOperacionesImagen()->codificarDeteccion(getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData());
 
-        getCheckUpdatesTimer()->start(10000);
+        getCheckUpdatesTimer()->start(1000);
     }
 }
 
@@ -587,15 +588,30 @@ void CAplicacion::slotGuardar() {
 void CAplicacion::prueba() {
     ifstream fich(PATH_TEMPORAL, ios::in | ios::binary);
     //fich.read(mes, 20);
-       if(fich.good())
-          cout << "HOLA" << endl;
-       else {
-          cout << "Error al leer de Fichero" << endl;
-          if(fich.fail()) cout << "Bit fail activo" << endl;
-          if(fich.eof())  cout << "Bit eof activo" << endl;
-          if(fich.bad())  cout << "Bit bad activo" << endl;
-       }
-       fich.close();
+    if(fich.good()) {
+        cout << "HOLA" << endl;
+        QFile file1(PATH_TEMPORAL);
+        if(!file1.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            cout << "Error Guardando el fichero codificado" << endl;
+        } else {
+            QTextStream in(&file1);
+            QString line;
+            while(!in.atEnd()){
+                line += in.readLine();
+                line += "\n";
+            }
+            inicializarVentanaAplicacionCorreccion();
+            getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
+            getPanelPrincipal()->setText(line);
+            getCheckUpdatesTimer()->stop();
+        }
+    } else {
+        cout << "Fichero Codificado aun no creado \n Error al leer de Fichero" << endl;
+        if(fich.fail()) cout << "Bit fail activo" << endl;
+        if(fich.eof())  cout << "Bit eof activo" << endl;
+        if(fich.bad())  cout << "Bit bad activo" << endl;
+    }
+    fich.close();
 }
 
 //get y sets

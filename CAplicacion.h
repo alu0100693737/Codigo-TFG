@@ -11,6 +11,7 @@
 #ifndef CAPLICACION_H
 #define CAPLICACION_H
 #include <QtWidgets>
+#include <stdio.h>  // remove file path temporal
 #include "CLabel.h"
 #include "CLineEdit.h"
 #include "COperacionesImagen.h"

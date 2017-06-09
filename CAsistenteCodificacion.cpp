@@ -257,23 +257,6 @@ void CAsistenteCodificacion::slotGuardarComoFichero() {
 void CAsistenteCodificacion::slotCorregirAutomata() {
     guardarAutomataTemporal();
     this->close();
-
-
-    /*QFile file1(PATH_TEMPORAL);
-    if(!file1.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        cout << "Error, fichero invalido, fallo en el fichero temporal" << endl;
-        return QString();
-    }
-
-    QTextStream in(&file1);
-    QString line;
-    while(!in.atEnd()){
-        line += in.readLine();
-        line += "\n";
-    }*/
-
-            cout << "YES" << endl;
-    //new CAplicacion.prueba();
 }
 
 void CAsistenteCodificacion::guardarAutomataTemporal() {
