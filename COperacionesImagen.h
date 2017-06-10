@@ -10,7 +10,7 @@
 
 #ifndef COPERACIONESIMAGEN_H
 #define COPERACIONESIMAGEN_H
-#pragma once
+
 #include <iostream>
 #include <fstream>
 #include "opencv2/highgui.hpp"
@@ -22,7 +22,6 @@
 #include "CDetectarTransiciones.h"
 #include "CAsistenteCodificacion.h"
 #include <QImage>
-
 
 #define DISTANCIAPIXELSECUNDARIO 100
 #define CONTORNOMEDIOLETRA 30

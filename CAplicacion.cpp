@@ -32,8 +32,7 @@ CAplicacion::CAplicacion() {
     panelHistograma_ = new CLabel("Info Imagen", false);
 
     panelComparacion_ = new CLabel("Panel Comparativa", true);
-    //verde
-    getPanelOpciones()->setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
+
     getPanelHistograma()->setStyleSheet("background-color: white; border: 1px solid black");
 
     operacionesImagen_ = new COperacionesImagen();
@@ -41,6 +40,8 @@ CAplicacion::CAplicacion() {
     QWidget* centralWidget        = new QWidget();
     layout_ = new QGridLayout();
 
+    perspectivaActual_ = new CLabel("Deteccion", true);
+    cambiarPerspectiva_ = new CPushButton("Cambiar Perspectiva", false);
     restaurarValores_ = new CPushButton("Restaurar ScrollBar's", false);
 
     centralWidget->setLayout (getLayout());
@@ -181,43 +182,62 @@ CAplicacion::CAplicacion() {
     connect(getPanelOpciones()->getHoughLinesP(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
 
     connect(getRestaurarValores(), SIGNAL(clicked()), this, SLOT(slotRestaurarValores()));
+    connect(getCambiarPerspectiva(), SIGNAL(clicked()), this, SLOT(slotCambiarPerspectiva()));
+
     connect(getCheckUpdatesTimer(), SIGNAL(timeout()), this, SLOT(checkFicheroTemporalCreado()));
 }
 
 CAplicacion::~CAplicacion() {}
 
 void CAplicacion::inicializarVentanaAplicacionDeteccion() {
-    getLayout()->removeWidget(getPanelComparacion());
-    //getPanelComparacion()->clear();
-    getLayout()->addWidget(getPanelComparacion(), 0, 0, 3, 5);
-    getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 5);
-    getLayout()->addWidget (getPanelOpciones(), 4, 0, 1, 4);
+    setStyleSheet("background-color: black");
 
+    //getLayout()->removeWidget(getPanelComparacion());
+    //getPanelComparacion()->clear();
+    getLayout()->addWidget(getPanelComparacion(), 0, 0, 3, 4);
+    getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 4);
+    getLayout()->addWidget (getPanelOpciones(), 4, 0, 1, 3);
+
+    //Si teniamos una imagen previamente cargada
+    if(getPathImagenActual() != NULL) {
+        Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+    } else {
+        Mat aux = imread("/home/ivan/Documentos/Codigo-TFG/images/cartel.png", IMREAD_UNCHANGED);
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+    }
     QVBoxLayout* layout1 = new QVBoxLayout();
+    layout1->addWidget(getPerspectivaActual());
+    layout1->addWidget(getCambiarPerspectiva());
+    layout1->setSpacing(10);
     layout1->addWidget(getRestaurarValores());/* layout1->addWidget(getGuardarComoFichero()); layout1->addWidget(getCorregirAutomata());
 
 layout1->addWidget(getHelp());*/
 
     layout1->setSpacing(10);
-    getLayout()->addLayout(layout1, 4, 4, 1, 1);
+    getLayout()->addLayout(layout1, 4, 3, 1, 1);
     //getLayout()->addWidget (getPanelHistograma(), 4, 4, 1, 1);
-
-    setStyleSheet("background-color: black");
 }
 
 void CAplicacion::inicializarVentanaAplicacionCorreccion() {
 
     getPanelPrincipal()->clear();
 
+    //getLayout()->removeWidget(getPanelOpciones());
+    //delete getPanelOpciones();
+
+    //getLayout()->removeWidget(getPanelOpciones());
     getLayout()->addWidget(getPanelComparacion(), 0, 2, 3, 2);
     getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 2);
+
     setStyleSheet("background-color: black");
 }
 
 //SLOTS
 void CAplicacion::slotAbrirImagen() {
-
-    inicializarVentanaAplicacionDeteccion();
+    if(getPerspectivaActual()->text() == "Correccion")
+        slotCambiarPerspectiva();
+    //inicializarVentanaAplicacionDeteccion();
     //por si estuviera el modo fichero abierto
     //getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 5);
 
@@ -230,10 +250,13 @@ void CAplicacion::slotAbrirImagen() {
 void CAplicacion::slotAbrirFichero() {
     QString line = ventanaAbrirFichero();
 
-    inicializarVentanaAplicacionCorreccion();
+    //inicializarVentanaAplicacionCorreccion();
+    if(getPerspectivaActual()->text() == "Deteccion")
+        slotCambiarPerspectiva();
     getPanelPrincipal()->setText(line);
     getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
     getActionAbrirFicheroCorrecto()->setDisabled(false);
+    setStyleSheet("background-color: black");
 }
 
 void CAplicacion::inicializarVentanaAbrirImagen(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode) {
@@ -331,7 +354,7 @@ void CAplicacion::slotAbout() {
 }
 
 void CAplicacion::slotCrearNuevoFichero() {
-    QWidget* window = new QWidget(); QGridLayout* layout = new QGridLayout();
+    ventanaCrearFichero_ = new QWidget(); QGridLayout* layout = new QGridLayout();
 
     textEditCrearFichero_ = new QTextEdit();
     getTextEditCrearFichero()->setPlaceholderText("6 \n 5 \n 0 2 0 b 2 a 4\n 1 5 1 a 3 5 b ");
@@ -344,21 +367,23 @@ void CAplicacion::slotCrearNuevoFichero() {
 
     CPushButton* cancelar = new CPushButton("Help", true);
     CPushButton* guardar = new CPushButton("Guardar", true);
+    CPushButton* codificar = new CPushButton("Codificar", true);
 
-
-    layout->addWidget(text, 0, 0, 1, 4);
-    layout->addWidget(getTextEditCrearFichero(), 1, 0, 1, 4);
-    layout->addWidget(cancelar, 4, 1, 1, 1);
-    layout->addWidget(guardar, 4, 2, 1, 1);
+    layout->addWidget(text, 0, 0, 1, 3);
+    layout->addWidget(getTextEditCrearFichero(), 1, 0, 1, 3);
+    layout->addWidget(cancelar, 4, 0, 1, 1);
+    layout->addWidget(guardar, 4, 1, 1, 1);
+    layout->addWidget(codificar, 4, 2, 1, 1);
 
     connect(cancelar, SIGNAL(clicked()), this, SLOT(slotHelp()));
     connect(guardar, SIGNAL(clicked()), this, SLOT(slotGuardar()));
 
-    //connect(guardar, SIGNAL(clicked()), this, SLOT(slotGuardar(textEdit->toPlainText())));
-    window->setLayout(layout);
-    window->setStyleSheet("background-color: grey;");
-    window->setWindowTitle("Crear Nuevo Fichero");
-    window->show();
+    connect(codificar, SIGNAL(clicked()), this, SLOT(slotCodificarNuevoFichero()));
+
+    getVentanaCrearFichero()->setLayout(layout);
+    getVentanaCrearFichero()->setStyleSheet("background-color: grey;");
+    getVentanaCrearFichero()->setWindowTitle("Crear Nuevo Fichero");
+    getVentanaCrearFichero()->show();
 }
 
 void CAplicacion::slotAboutQT() {
@@ -427,7 +452,7 @@ void CAplicacion::slotCodificarImagen() {
         if(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() == 0)
             slotDetectarTransiciones();
         getOperacionesImagen()->codificarDeteccion(getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData());
-
+        //slotCambiarPerspectiva();
         getCheckUpdatesTimer()->start(1000);
     }
 }
@@ -494,6 +519,7 @@ void CAplicacion::slotHistograma() {
 }
 
 void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
+    cout << "HEYS" << endl;
     ///Se consideran los distintos pasos de deteccion que pueda tener la imagen aplicados
     getPanelOpciones()->getValorCannyThresHold()->setText(QString::number(getPanelOpciones()->getCannyThresHold()->value()));
     getPanelOpciones()->getValorAccumulatorThresHold()->setText(QString::number(getPanelOpciones()->getAccumulatorThresHold()->value()));
@@ -598,6 +624,33 @@ void CAplicacion::slotGuardar() {
     setStyleSheet("background-color: black;");
 }
 
+void CAplicacion::slotCodificarNuevoFichero() {
+    cout << "Se borro el fichero temporal de la ejecucion anterior" << remove(PATH_TEMPORAL);
+    ofstream fs(PATH_TEMPORAL);
+    fs << getTextEditCrearFichero()->toPlainText().toStdString();
+    fs.close();
+    checkFicheroTemporalCreado();
+    getVentanaCrearFichero()->close();
+    //cout << text.toStdString() << endl;
+
+    /*ifstream fich(PATH_TEMPORAL, ios::in | ios::binary);
+
+    if(fich.good()) {
+        cout << "HOLA" << endl;
+        QFile file1(PATH_TEMPORAL);
+        if(!file1.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            cout << "Error Guardando el fichero codificado" << endl;
+        } else {
+            QTextStream in(&file1);
+            QString line;
+            while(!in.atEnd()){
+                line += in.readLine();
+                line += "\n";
+            }
+            if(getPerspectivaActual()->text() == "Deteccion")
+                slotCambiarPerspectiva();*/
+}
+
 void CAplicacion::checkFicheroTemporalCreado() {
     ifstream fich(PATH_TEMPORAL, ios::in | ios::binary);
     //fich.read(mes, 20);
@@ -613,9 +666,11 @@ void CAplicacion::checkFicheroTemporalCreado() {
                 line += in.readLine();
                 line += "\n";
             }
-            inicializarVentanaAplicacionCorreccion();
+            if(getPerspectivaActual()->text() == "Deteccion")
+                slotCambiarPerspectiva();
+            /*inicializarVentanaAplicacionCorreccion();*
             getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
-            getPanelPrincipal()->setText(line);
+            */getPanelPrincipal()->setText(line);
             getCheckUpdatesTimer()->stop();
         }
     } else {
@@ -628,7 +683,42 @@ void CAplicacion::checkFicheroTemporalCreado() {
 }
 
 void CAplicacion::slotRestaurarValores() {
-    cout << "hola" << endl;
+    if(getRestaurarValores()->text() == "Cargar Fichero Correcto") {
+        slotAbrirFicheroCorrecto();
+        setStyleSheet("background-color: black");
+    } else {
+        getPanelOpciones()->getCannyThresHold()->setValue(CANNYTHRESHOLD);
+        getPanelOpciones()->getAccumulatorThresHold()->setValue(ACCUMULATORTHRESHOLD);
+        getPanelOpciones()->getHoughLinesP()->setValue(HOUGHLINESP);
+        cout << "hola" << endl;
+    }
+}
+
+void CAplicacion::slotCambiarPerspectiva() {
+    if(getPerspectivaActual()->text() == "Deteccion") {
+        inicializarVentanaAplicacionCorreccion();
+        getPanelOpciones()->iniciarVistaCorreccion();
+        getRestaurarValores()->setText("Cargar Fichero Correcto");
+        getPerspectivaActual()->setText("Correccion");
+        getActionDetectarLineas()->setEnabled(false);
+        getActionDetectarCirculos()->setEnabled(false);
+        getActionDetectarTransiciones()->setEnabled(false);
+    } else {
+        inicializarVentanaAplicacionDeteccion();
+        if(getPathImagenActual() != NULL) {
+            getActionDetectarCirculos()->setEnabled(true);
+            getActionProcesarImagen()->setEnabled(true);
+        }
+        getPanelOpciones()->iniciarVistaDeteccion();
+        getRestaurarValores()->setText("Restaurar ScrollBar's");
+        getPerspectivaActual()->setText("Deteccion");
+        //connect(getCheckUpdatesTimer(), SIGNAL(timeout()), this, SLOT(checkFicheroTemporalCreado()));
+        connect(getPanelOpciones()->getCannyThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
+        connect(getPanelOpciones()->getAccumulatorThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
+        connect(getPanelOpciones()->getHoughLinesP(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
+
+
+    }
 }
 
 //get y sets
@@ -787,4 +877,16 @@ QTimer* CAplicacion::getCheckUpdatesTimer() {
 
 CPushButton* CAplicacion::getRestaurarValores() {
     return restaurarValores_;
+}
+
+CPushButton* CAplicacion::getCambiarPerspectiva() {
+    return cambiarPerspectiva_;
+}
+
+CLabel* CAplicacion::getPerspectivaActual() {
+    return perspectivaActual_;
+}
+
+QWidget* CAplicacion::getVentanaCrearFichero() {
+    return ventanaCrearFichero_;
 }

@@ -11,10 +11,18 @@
 #include "CPanelOpciones.h"
 
 CPanelOpciones::CPanelOpciones() {
-
     ///Se carga el Layout del panel
-    QGridLayout *layout = new QGridLayout();
+    layout_ = new QGridLayout();
+    setFixedHeight(140);
+    //verde
+    setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
 
+    ///Agregamos a la ventana los datos
+    setLayout(layout_);
+    iniciarVistaDeteccion();
+}
+
+void CPanelOpciones::iniciarVistaDeteccion() {
     ///Se inicializan los QScrollBar
     cannyThresHold_ = new QScrollBar(Qt::Horizontal);
     accumulatorThresHold_ = new QScrollBar(Qt::Horizontal);
@@ -24,35 +32,81 @@ CPanelOpciones::CPanelOpciones() {
 
     getCannyThresHold()->setStyleSheet("background-color: rgba(232, 255, 141, 0.9);");
     getCannyThresHold()->setRange(10, 150);
-    getCannyThresHold()->setValue(30);
+    getCannyThresHold()->setValue(CANNYTHRESHOLD);
 
     getAccumulatorThresHold()->setStyleSheet("background-color: rgba(232, 255, 141, 0.9);");
     getAccumulatorThresHold()->setRange(10, 150);
-    getAccumulatorThresHold()->setValue(42);
+    getAccumulatorThresHold()->setValue(ACCUMULATORTHRESHOLD);
 
     getHoughLinesP()->setStyleSheet("background-color: rgba(232, 255, 141, 0.9);");
     getHoughLinesP()->setRange(10, 150);
-    getHoughLinesP()->setValue(80);
+    getHoughLinesP()->setValue(HOUGHLINESP);
+
+    lCannyThresHold_ = new CLabel(QString("CannyThresHold"), false);
+    lAccumulatorThresHold_ = new CLabel(QString("AccumulatorThresHold"), false);
+    lHoughLinesP_ = new CLabel(QString("HoughLinesP"), false);
 
     ///Se inicializan los CLabel con los valores de los QScrollBar
     valorCannyThresHold_ = new CLabel(QString::number(getCannyThresHold()->value()), false);
     valorAccumulatorThresHold_ = new CLabel(QString::number(getAccumulatorThresHold()->value()), false);
     valorHoughLinesP_ = new CLabel(QString::number(getHoughLinesP()->value()), false);
 
-    ///Agregamos a la ventana los datos
-    layout->addWidget(new CLabel(QString("CannyThresHold"), false),  0, 0, 1, 4);
-    layout->addWidget(getCannyThresHold(), 1, 0, 1, 3);
-    layout->addWidget(getValorCannyThresHold(), 1, 3, 1, 1);
+    // simplificarAutomata_ = new CPushButton("Simplificar Automata", true);
+    // corregirFichero_ = new CPushButton("Corregir Fichero", true);
 
-    layout->addWidget(new CLabel(QString("AcummulatorThresHold"), false),  2, 0, 1, 4);
-    layout->addWidget(getAccumulatorThresHold(), 3, 0, 1, 3);
-    layout->addWidget(getValorAccumulatorThresHold(), 3, 3, 1, 1);
+    if(!getLayout()->isEmpty()) {
+        getLayout()->removeWidget(getSimplificarFichero());
+        getLayout()->removeWidget(getCorregirFichero());
 
-    layout->addWidget(new CLabel(QString("HoughLinesP"), false),  4, 0, 1, 4);
-    layout->addWidget(getHoughLinesP(), 5, 0, 1, 3);
-    layout->addWidget(getValorHoughLinesP(), 5, 3, 1, 1);
+        delete getSimplificarFichero();
+        delete getCorregirFichero();
+    }
 
-    setLayout(layout);
+    getLayout()->addWidget(getLCannyThresHold(),  0, 0, 1, 4);
+    getLayout()->addWidget(getCannyThresHold(), 1, 0, 1, 3);
+    getLayout()->addWidget(getValorCannyThresHold(), 1, 3, 1, 1);
+
+    getLayout()->addWidget(getLAccumulatorThresHold(),  2, 0, 1, 4);
+    getLayout()->addWidget(getAccumulatorThresHold(), 3, 0, 1, 3);
+    getLayout()->addWidget(getValorAccumulatorThresHold(), 3, 3, 1, 1);
+
+    getLayout()->addWidget(getLHoughLinesP(),  4, 0, 1, 4);
+    getLayout()->addWidget(getHoughLinesP(), 5, 0, 1, 3);
+    getLayout()->addWidget(getValorHoughLinesP(), 5, 3, 1, 1);
+}
+
+void CPanelOpciones::iniciarVistaCorreccion() {
+
+    getLayout()->removeWidget(getCannyThresHold());
+    getLayout()->removeWidget(getValorCannyThresHold());
+    getLayout()->removeWidget(getLCannyThresHold());
+    getLayout()->removeWidget(getAccumulatorThresHold());
+    getLayout()->removeWidget(getValorAccumulatorThresHold());
+    getLayout()->removeWidget(getLAccumulatorThresHold());
+    getLayout()->removeWidget(getValorHoughLinesP());
+    getLayout()->removeWidget(getHoughLinesP());
+    getLayout()->removeWidget(getLHoughLinesP());
+
+    delete getLCannyThresHold();
+    delete getCannyThresHold();
+    delete getValorCannyThresHold();
+    delete getLAccumulatorThresHold();
+    delete getAccumulatorThresHold();
+    delete getValorAccumulatorThresHold();
+    delete getLHoughLinesP();
+    delete getHoughLinesP();
+    delete getValorHoughLinesP();
+
+    /// Valores para la codificacion 2 Botones
+    simplificarAutomata_ = new CPushButton("Simplificar Automata", true);
+    corregirFichero_ = new CPushButton("Corregir Fichero", true);
+
+    getLayout()->addWidget(getSimplificarFichero(),  0, 0, 3, 4);
+    getLayout()->addWidget(getCorregirFichero(), 3, 0, 3, 4);
+}
+
+QGridLayout* CPanelOpciones::getLayout() {
+    return layout_;
 }
 
 QScrollBar* CPanelOpciones::getCannyThresHold() {
@@ -67,6 +121,18 @@ QScrollBar* CPanelOpciones::getHoughLinesP() {
     return hougLinesP_;
 }
 
+CLabel* CPanelOpciones::getLCannyThresHold() {
+    return lCannyThresHold_;
+}
+
+CLabel* CPanelOpciones::getLAccumulatorThresHold() {
+    return lAccumulatorThresHold_;
+}
+
+CLabel* CPanelOpciones::getLHoughLinesP() {
+    return lHoughLinesP_;
+}
+
 CLabel* CPanelOpciones::getValorCannyThresHold() {
     return valorCannyThresHold_;
 }
@@ -77,4 +143,12 @@ CLabel* CPanelOpciones::getValorAccumulatorThresHold() {
 
 CLabel* CPanelOpciones::getValorHoughLinesP() {
     return valorHoughLinesP_;
+}
+
+CPushButton* CPanelOpciones::getSimplificarFichero() {
+    return simplificarAutomata_;
+}
+
+CPushButton* CPanelOpciones::getCorregirFichero() {
+    return corregirFichero_;
 }

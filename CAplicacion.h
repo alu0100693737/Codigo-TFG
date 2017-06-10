@@ -46,7 +46,7 @@ private:
 
     /// Boton para restaurar valores de los ScrollBar
     CPushButton* restaurarValores_;
-    CLabel* perspectivaActual_;
+    CLabel* perspectivaActual_; // 'Deteccion' 'Codificacion'
     CPushButton* cambiarPerspectiva_;
 
     /// Menu de la aplicacion, contiene Archivo, Editar, Correccion y Filtros
@@ -117,6 +117,9 @@ private:
 
     QTextEdit* textEditCrearFichero_;
     QTimer* checkUpdatesTimer_;
+
+    QWidget* ventanaCrearFichero_;
+
 
     /**
      * @brief
@@ -221,6 +224,8 @@ public:
     QGridLayout* getLayout();
 
     CPushButton* getRestaurarValores();
+    CPushButton* getCambiarPerspectiva();
+    CLabel* getPerspectivaActual();
     /**
      * @brief
      * Metodo que devuelve el Menu de la Aplicacion
@@ -434,6 +439,8 @@ public:
     QTextEdit* getTextEditCrearFichero();
     QTimer* getCheckUpdatesTimer();
 
+    QWidget* getVentanaCrearFichero();
+
 public slots:
 
     /**
@@ -555,11 +562,13 @@ public slots:
      * Metodo Slot que guarda el Automata creado en el fichero que se especifique
      */
     void slotGuardar();
+    void slotCodificarNuevoFichero();
 
     void checkFicheroTemporalCreado();
 
     /**
       restaurar valores scrollbar*/
     void slotRestaurarValores();
+    void slotCambiarPerspectiva();
 };
 #endif
