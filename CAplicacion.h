@@ -12,12 +12,20 @@
 #define CAPLICACION_H
 #include <algorithm>
 #include <QtWidgets>
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
+#include "opencv2/core.hpp"
 #include <stdio.h>  // remove file path temporal
 #include "CLabel.h"
 #include "CLineEdit.h"
+#include <iostream>
 #include "COperacionesImagen.h"
 #include "CPanelOpciones.h"
 #define PATH_TEMPORAL "/home/ivan/Documentos/Codigo-TFG/codificaciones/temporal.txt"
+
+using namespace std;
+using namespace cv;
 /**
  * @brief
  * Clase Aplicacion con ventana principal de la aplicacion
@@ -122,6 +130,13 @@ private:
     QTimer* checkUpdatesTimer_;
 
     vector<int>* circulosEliminar_;
+    vector<Vec3f> circulosAnadir_;
+
+    vector<int>* lineasEliminar_;
+    vector<Vec4i> lineasAnadir_;
+
+    vector<int>* transicionesEliminar_;
+    vector<CContourWithData> transicionesAnadir_;
 
     QWidget* ventanaCrearFichero_;
 
@@ -447,6 +462,15 @@ public:
     QTimer* getCheckUpdatesTimer();
 
     vector<int>* getCirculosEliminar();
+    vector<Vec3f>& getCirculosAnadir();
+
+    vector<int>* getLineasEliminar();
+    vector<Vec4i> getLineasAnadir();
+
+    vector<int>* getTransicionesEliminar();
+    vector<CContourWithData> getTransicionesAnadir();
+
+    Mat mostrarCirculosFinales(Mat imagen);
 
     QWidget* getVentanaCrearFichero();
 

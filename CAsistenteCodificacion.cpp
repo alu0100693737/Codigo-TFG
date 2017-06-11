@@ -176,6 +176,7 @@ CPushButton* CAsistenteCodificacion::getHelp() {
 }
 
 void CAsistenteCodificacion::slotCancelar() {
+    ofstream fs(PATH_TEMPORAL);
     this->close();
 }
 
