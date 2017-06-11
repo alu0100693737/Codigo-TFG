@@ -76,7 +76,7 @@ public:
      * Metodo que devuelve el conjunto de circulos detectados en la imagen
      * @return
      */
-    vector<Vec3f> getCirculosDetectados();
+    vector<Vec3f>& getCirculosDetectados();
 };
 
 #endif // CDETECTARAUTOMATA_H

@@ -87,7 +87,7 @@ vector<Vec3f> CDetectarCirculo::filtrarCirculos(vector<Vec3f> circulos) {
     return circulos;
 }
 
-vector<Vec3f> CDetectarCirculo::getCirculosDetectados() {
+vector<Vec3f>& CDetectarCirculo::getCirculosDetectados() {
     return circles;
 }
 
