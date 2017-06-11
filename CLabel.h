@@ -12,12 +12,16 @@
 #define CLABEL_H
 #include <QLabel>
 #include <iostream>
+#include <QLabel>
+#include <QWidget>
+#include <Qt>
 using namespace std;
 /**
  * @brief
  * Clase heredada de 'QLabel' que aplica un estilo determinado a este tipo de container
  */
 class CLabel : public QLabel {
+    Q_OBJECT
 private:
     ///Imagen actual del CLabel si la tuviera
     QImage imagen_;
@@ -46,6 +50,12 @@ public:
      * Metodo que introduce una imagen en el CLabel
      */
     void setImagen(const QImage);
+
+signals:
+    void clicked(QMouseEvent* event);
+
+protected:
+    void mousePressEvent(QMouseEvent* event);
 };
 
 #endif // CLABEL_H

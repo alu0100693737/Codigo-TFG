@@ -84,6 +84,13 @@ CAplicacion::CAplicacion() {
     getActionProcesarImagen()->setDisabled(true);
     getActionCargarImagenOriginal()->setDisabled(true);
 
+    getActionFiltroGaussiano()->setDisabled(true);
+    getActionFiltroGray()->setDisabled(true);
+    getActionFiltroLaplaciano()->setDisabled(true);
+    getActionFiltroMediana()->setDisabled(true);
+    getActionFiltroSobel()->setDisabled(true);
+    getActionHistograma()->setDisabled(true);
+
     getActionAbrirFicheroCorrecto()->setDisabled(true);
 
     ///Shortcuts
@@ -109,6 +116,8 @@ CAplicacion::CAplicacion() {
     getMenuFiltro()->addAction(getActionFiltroSobel());
     getMenuFiltro()->addAction(getActionFiltroLaplaciano());
     getMenuFiltro()->addAction(getActionHistograma());
+
+    // getPanelPrincipal()->addAction(getActionPanelPrincipal());
 
     //añadiendo elementos
     getMenuBar()->addMenu(getMenuArchivo());
@@ -153,6 +162,8 @@ CAplicacion::CAplicacion() {
 
     checkUpdatesTimer_ = new QTimer(this); //timer para asistente codificacion
 
+    circulosEliminar_ = new vector<int>;
+
     ///conexiones con slots
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
     connect(getActionAbrirFichero(), SIGNAL(triggered()),this,SLOT(slotAbrirFichero()));
@@ -180,6 +191,15 @@ CAplicacion::CAplicacion() {
     connect(getPanelOpciones()->getCannyThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
     connect(getPanelOpciones()->getAccumulatorThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
     connect(getPanelOpciones()->getHoughLinesP(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
+
+    /*QSignalMapper* signalMapper = new QSignalMapper(this);
+
+        connect(getPanelPrincipal(), SIGNAL(clicked()), signalMapper, SLOT(map()));
+        signalMapper->setMapping(getCheckBoxCambiar()->at(i), i);
+    }
+    connect(signalMapper, SIGNAL(mapped(QMouseEvent*)), this, SLOT(slotCambiar(QMouseEvent*)));*/
+
+    connect(getPanelPrincipal(), SIGNAL(clicked(QMouseEvent*)), this, SLOT(slotPanelPrincipal(QMouseEvent*)));
 
     connect(getRestaurarValores(), SIGNAL(clicked()), this, SLOT(slotRestaurarValores()));
     connect(getCambiarPerspectiva(), SIGNAL(clicked()), this, SLOT(slotCambiarPerspectiva()));
@@ -211,8 +231,7 @@ void CAplicacion::inicializarVentanaAplicacionDeteccion() {
     layout1->addWidget(getCambiarPerspectiva());
     layout1->setSpacing(10);
     layout1->addWidget(getRestaurarValores());/* layout1->addWidget(getGuardarComoFichero()); layout1->addWidget(getCorregirAutomata());
-
-layout1->addWidget(getHelp());*/
+    layout1->addWidget(getHelp());*/
 
     layout1->setSpacing(10);
     getLayout()->addLayout(layout1, 4, 3, 1, 1);
@@ -223,10 +242,6 @@ void CAplicacion::inicializarVentanaAplicacionCorreccion() {
 
     getPanelPrincipal()->clear();
 
-    //getLayout()->removeWidget(getPanelOpciones());
-    //delete getPanelOpciones();
-
-    //getLayout()->removeWidget(getPanelOpciones());
     getLayout()->addWidget(getPanelComparacion(), 0, 2, 3, 2);
     getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 2);
 
@@ -315,6 +330,12 @@ bool CAplicacion::loadFile(const QString &fileName) {
         getActionProcesarImagen()->setDisabled(false);
 
         getActionCargarImagenOriginal()->setDisabled(false);
+        getActionFiltroGaussiano()->setDisabled(false);
+        getActionFiltroGray()->setDisabled(false);
+        getActionFiltroLaplaciano()->setDisabled(false);
+        getActionFiltroMediana()->setDisabled(false);
+        getActionFiltroSobel()->setDisabled(false);
+        getActionHistograma()->setDisabled(false);
         return true;
     }
 }
@@ -397,11 +418,34 @@ void CAplicacion::slotSalir() {
 }
 
 void CAplicacion::slotDetectarCirculos() {
+
+    getCirculosEliminar()->clear();
+
     getActionProcesarImagen()->setDisabled(true);
     cout << "Detectando imagen" << endl;
     Mat aux = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
 
     Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+    //Dinujamos cirtulos
+
+    for( size_t i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
+        Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
+        int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
+        //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
+        //punto central
+        circle( resultado, center, 3, Scalar(0,255,0), -1, 8, 0 );
+        //circunferencia
+        circle( resultado, center, radius, Scalar(0,0,255), 3, 8, 0 );
+
+        ///Dibujamos el num del circulo en la imagen
+        stringstream ss;
+        ss << i;
+        string text = ss.str();
+        int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
+        double fontScale = 1;
+        int thickness = 2;
+        cv::putText(resultado, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
+    }
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
     getActionDetectarCirculos()->setDisabled(true);
     getActionDetectarLineas()->setDisabled(false);
@@ -519,7 +563,8 @@ void CAplicacion::slotHistograma() {
 }
 
 void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
-    cout << "HEYS" << endl;
+    getCirculosEliminar()->clear();
+
     ///Se consideran los distintos pasos de deteccion que pueda tener la imagen aplicados
     getPanelOpciones()->getValorCannyThresHold()->setText(QString::number(getPanelOpciones()->getCannyThresHold()->value()));
     getPanelOpciones()->getValorAccumulatorThresHold()->setText(QString::number(getPanelOpciones()->getAccumulatorThresHold()->value()));
@@ -531,6 +576,28 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
 
         Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+        for( size_t i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
+
+            Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
+            int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
+            //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
+            //punto central
+            circle( resultado, center, 3, Scalar(0,255,0), -1, 8, 0 );
+            //circunferencia
+            circle( resultado, center, radius, Scalar(0,0,255), 3, 8, 0 );
+
+            ///Dibujamos el num del circulo en la imagen
+            stringstream ss;
+            ss << i;
+            string text = ss.str();
+            int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
+            double fontScale = 1;
+            int thickness = 2;
+            cv::putText(resultado, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
+        }
+
+
+
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
 
         //Es circulos y lineas, calculamos ambos
@@ -651,6 +718,69 @@ void CAplicacion::slotCodificarNuevoFichero() {
                 slotCambiarPerspectiva();*/
 }
 
+void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
+
+    if(getActionDetectarLineas()->isEnabled()) { // ya se han detectado circulos
+        //cout << "Paso Circulos"<< endl;
+        unsigned x( evt -> x() ), y( evt -> y() );
+        bool borrado = false;
+        for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++) {
+            if(getOperacionesImagen()->detectarLineas()->distanciaEuclidea(x, getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]) < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]) {
+                if(getOperacionesImagen()->detectarLineas()->distanciaEuclidea(y, getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1]) < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]) {
+                    //Borramos
+
+                    cout << "Size antes " << getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size() << endl;
+                    cout << "Borrando circulo" << endl;
+                    getCirculosEliminar()->push_back(i);
+                    cout << "Aumentando el tamano de circulos a eliminar " << getCirculosEliminar()->size() << endl;
+                    //getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().erase(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().begin() + i);
+                    cout << "Circulo borrado " << i << endl;
+                    borrado = true;
+                }
+            }
+        }
+        if(borrado == true) {
+            //Cargamos Imagen Original
+            Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+            getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+
+            Mat resultado = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+            int contador = 0;
+            for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
+                cout << "Nodos a eliminar " << getCirculosEliminar()->size() << endl;
+                if (std::find(getCirculosEliminar()->begin(), getCirculosEliminar()->end(), i) == getCirculosEliminar()->end()) {
+                    cout << " el nodo " << i << " tiene que dibujarse" << endl;
+                    Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
+                    int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
+                    //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
+                    //punto central
+                    circle( resultado, center, 3, Scalar(0,255,0), -1, 8, 0 );
+                    //circunferencia
+                    circle( resultado, center, radius, Scalar(0,0,255), 3, 8, 0 );
+
+                    ///Dibujamos el num del circulo en la imagen
+                    stringstream ss;
+                    ss << contador;
+                    string text = ss.str();
+                    int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
+                    double fontScale = 1;
+                    int thickness = 2;
+                    cv::putText(resultado, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
+                    contador++;
+                } else {
+                    cout << "NO dibujado" << endl;
+                }
+            }
+            getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+        }
+
+        //cout << "Clicked at : " << x  << " " << y << endl;
+
+    } else if(getActionCodificarImagen()->isEnabled()) {
+        cout << "Paso transiciones" << endl;
+    }
+}
+
 void CAplicacion::checkFicheroTemporalCreado() {
     ifstream fich(PATH_TEMPORAL, ios::in | ios::binary);
     //fich.read(mes, 20);
@@ -676,8 +806,8 @@ void CAplicacion::checkFicheroTemporalCreado() {
     } else {
         cout << "Fichero Codificado aun no creado \n Error al leer de Fichero" << endl;
         if(fich.fail()) cout << "Bit fail activo" << endl;
-        if(fich.eof())  cout << "Bit eof activo" << endl;
-        if(fich.bad())  cout << "Bit bad activo" << endl;
+        //if(fich.eof())  cout << "Bit eof activo" << endl;
+        //if(fich.bad())  cout << "Bit bad activo" << endl;
     }
     fich.close();
 }
@@ -690,7 +820,6 @@ void CAplicacion::slotRestaurarValores() {
         getPanelOpciones()->getCannyThresHold()->setValue(CANNYTHRESHOLD);
         getPanelOpciones()->getAccumulatorThresHold()->setValue(ACCUMULATORTHRESHOLD);
         getPanelOpciones()->getHoughLinesP()->setValue(HOUGHLINESP);
-        cout << "hola" << endl;
     }
 }
 
@@ -716,8 +845,6 @@ void CAplicacion::slotCambiarPerspectiva() {
         connect(getPanelOpciones()->getCannyThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
         connect(getPanelOpciones()->getAccumulatorThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
         connect(getPanelOpciones()->getHoughLinesP(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
-
-
     }
 }
 
@@ -863,6 +990,10 @@ QAction* CAplicacion::getActionHistograma() {
     return actionHistograma_;
 }
 
+QAction* CAplicacion::getActionPanelPrincipal() {
+    return actionPanelPrincipal_;
+}
+
 COperacionesImagen* CAplicacion::getOperacionesImagen() {
     return operacionesImagen_;
 }
@@ -885,6 +1016,10 @@ CPushButton* CAplicacion::getCambiarPerspectiva() {
 
 CLabel* CAplicacion::getPerspectivaActual() {
     return perspectivaActual_;
+}
+
+vector<int>* CAplicacion::getCirculosEliminar() {
+    return circulosEliminar_;
 }
 
 QWidget* CAplicacion::getVentanaCrearFichero() {

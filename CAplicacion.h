@@ -10,6 +10,7 @@
 
 #ifndef CAPLICACION_H
 #define CAPLICACION_H
+#include <algorithm>
 #include <QtWidgets>
 #include <stdio.h>  // remove file path temporal
 #include "CLabel.h"
@@ -102,6 +103,8 @@ private:
     /// Accion Filtro Histograma. Submenu Filtro
     QAction* actionHistograma_;
 
+    QAction* actionPanelPrincipal_;
+
     /// Toolbal de la aplicacion. Opciones de Deteccion de la imagen
     QToolBar* toolbar_;
 
@@ -117,6 +120,8 @@ private:
 
     QTextEdit* textEditCrearFichero_;
     QTimer* checkUpdatesTimer_;
+
+    vector<int>* circulosEliminar_;
 
     QWidget* ventanaCrearFichero_;
 
@@ -427,7 +432,9 @@ public:
      */
     QAction* getActionHistograma();
 
+    QAction* getActionPanelHistograma();
 
+    QAction* getActionPanelPrincipal();
     /**
      * @brief
      * Metodo que devuelve el atributo operacionesImagen_
@@ -438,6 +445,8 @@ public:
 
     QTextEdit* getTextEditCrearFichero();
     QTimer* getCheckUpdatesTimer();
+
+    vector<int>* getCirculosEliminar();
 
     QWidget* getVentanaCrearFichero();
 
@@ -566,6 +575,7 @@ public slots:
 
     void checkFicheroTemporalCreado();
 
+    void slotPanelPrincipal(QMouseEvent*);
     /**
       restaurar valores scrollbar*/
     void slotRestaurarValores();

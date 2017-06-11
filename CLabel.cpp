@@ -40,3 +40,7 @@ void CLabel::setImagen(const QImage imagenNueva) {
     setScaledContents(true);
     setPixmap(QPixmap::fromImage(getImagen()));
 }
+
+void CLabel::mousePressEvent(QMouseEvent* event) {
+    emit clicked(event);
+}

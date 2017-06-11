@@ -25,7 +25,7 @@ Mat CDetectarCirculo::iniciarDeteccion(Mat imagen, int cannythreshold, int accum
 
     cout << "Hay " << getCirculosDetectados().size() << " circulos en la imagen"<< endl;
     ///Dibujamos lo encontrado sobre la imagen original
-    for( size_t i = 0; i < getCirculosDetectados().size(); i++ ) {
+    /*for( size_t i = 0; i < getCirculosDetectados().size(); i++ ) {
 
         Point center(cvRound(circles[i][0]), cvRound(circles[i][1])); //x y
         int radius = cvRound(circles[i][2]);
@@ -43,7 +43,7 @@ Mat CDetectarCirculo::iniciarDeteccion(Mat imagen, int cannythreshold, int accum
         double fontScale = 1;
         int thickness = 2;
         cv::putText(imagen, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
-    }
+    }*/
     return imagen;
 }
 

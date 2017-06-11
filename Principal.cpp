@@ -15,6 +15,7 @@ int main(int argc,char* argv[]) {
     CAplicacion window;
     window.show();
     cout << "Version: " << CV_MAJOR_VERSION << endl;
+
     return app.exec();
 }
 

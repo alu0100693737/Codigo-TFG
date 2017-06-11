@@ -85,8 +85,10 @@ DISTFILES += \
     release/abrir.png \
     release/opencv.png \
     release/salir.png \
+    release/icon.ico \
     release/transition.png \
-    grafo.png
+    grafo.png \
+    release/icon.ico
 
 HEADERS += \
     COperacionesImagen.h \
@@ -102,3 +104,9 @@ HEADERS += \
     CLineEdit.h \
     CCheckBox.h \
     CPushButton.h
+
+
+RC_ICONS = release/icon.ico
+
+RESOURCES += \
+    resource.qrc
