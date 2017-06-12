@@ -427,29 +427,8 @@ void CAplicacion::slotDetectarCirculos() {
     Mat aux = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
 
     Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
-    //Dinujamos cirtulos
-
-    /*for( size_t i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
-        Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
-        int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
-        //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
-        //punto central
-        circle( resultado, center, 3, Scalar(0,255,0), -1, 8, 0 );
-        //circunferencia
-        circle( resultado, center, radius, Scalar(0,0,255), 3, 8, 0 );
-
-        ///Dibujamos el num del circulo en la imagen
-        stringstream ss;
-        ss << i;
-        string text = ss.str();
-        int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
-        double fontScale = 1;
-        int thickness = 2;
-        cv::putText(resultado, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
-    }*/
-    //Mat resultado = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+    //Dibujamos circulos
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(resultado)));
-    //getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
     getActionDetectarCirculos()->setDisabled(true);
     getActionDetectarLineas()->setDisabled(false);
 }
@@ -576,42 +555,22 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
     //Ya hemos detectado circulos, será cambiarlos segun las variables
     if(getActionDetectarLineas()->isEnabled()) {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+        //getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
 
         Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
-        for( size_t i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
-
-            Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
-            int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
-            //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
-            //punto central
-            circle( resultado, center, 3, Scalar(0,255,0), -1, 8, 0 );
-            //circunferencia
-            circle( resultado, center, radius, Scalar(0,0,255), 3, 8, 0 );
-
-            ///Dibujamos el num del circulo en la imagen
-            stringstream ss;
-            ss << i;
-            string text = ss.str();
-            int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
-            double fontScale = 1;
-            int thickness = 2;
-            cv::putText(resultado, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
-        }
-
-
-
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(resultado)));
 
         //Es circulos y lineas, calculamos ambos
     } else if (getActionDetectarTransiciones()->isEnabled()) {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
 
         Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+        resultado = mostrarCirculosFinales(resultado);
+
         aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
 
+        //Dibujamos lineas
         for( size_t i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
             Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
             line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
@@ -621,22 +580,24 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
     } else if (getActionCodificarImagen()->isEnabled()) {
 
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
-
         Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+
+        //Dibujamos circulos
+        resultado = mostrarCirculosFinales(resultado);
 
         aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
 
+        //Dibujamos lineas
         for( size_t i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
             Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
             line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
         }
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
 
         aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         getOperacionesImagen()->detectarTransiciones()->ejecutar(aux);
 
+        //Dibujar Transiciones
         for (int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
             cv::rectangle(resultado,                            // draw rectangle on original image
                           getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
@@ -724,26 +685,25 @@ void CAplicacion::slotCodificarNuevoFichero() {
 void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
 
     if(getActionDetectarLineas()->isEnabled()) { // ya se han detectado circulos
-
         unsigned x( evt -> x() ), y( evt -> y() );
         bool borrado = false;
         //Comprobamos sobre los nodos principales
         for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++) {
             //Comprobamos que no se quiera eliminar algo ya en la lista de eliminar
             //if(std::find(getCirculosEliminar()->begin(), getCirculosEliminar()->end(), i) == getCirculosEliminar()->end()) { //Si no ha sido eliminado anteriormente
-                if(getOperacionesImagen()->detectarLineas()->distanciaEuclidea(x, getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]) < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]) {
-                    if(getOperacionesImagen()->detectarLineas()->distanciaEuclidea(y, getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1]) < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]) {
-                        //Borramos
-                        cout << "Borrando circulo" << endl;
-                        getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().erase(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().begin() + i);
-                        //cout << "Aumentando el tamano de circulos a eliminar " << getCirculosEliminar()->size() << endl;
-                        //getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().erase(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().begin() + i);
-                        //cout << "Circulo borrado " << i << endl;
-                        borrado = true;
-                    }
+            if(getOperacionesImagen()->detectarLineas()->distanciaEuclidea(x, getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]) < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]) {
+                if(getOperacionesImagen()->detectarLineas()->distanciaEuclidea(y, getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1]) < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]) {
+                    //Borramos
+                    cout << "Borrando circulo" << endl;
+                    getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().erase(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().begin() + i);
+                    //cout << "Aumentando el tamano de circulos a eliminar " << getCirculosEliminar()->size() << endl;
+                    //getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().erase(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().begin() + i);
+                    //cout << "Circulo borrado " << i << endl;
+                    borrado = true;
                 }
+            }
         }
-        if(borrado == true) {
+        if(borrado == true) { //se Borro un circulo
             //Se vuelve a dibujar la imagen con los nuevos circulos
             Mat resultado = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
             getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(resultado)));
@@ -757,8 +717,59 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
             Mat resultado = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
             getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(resultado)));
         }
-    } else if(getActionCodificarImagen()->isEnabled()) {
-        cout << "Paso transiciones" << endl;
+    } else if(getActionDetectarTransiciones()->isEnabled()) {
+        cout << "Lineas" << endl;
+        unsigned x( evt -> x() ), y( evt -> y() );
+        bool borrado = false;
+        int contador = 0;
+        cout << "Lineas iniciales" << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
+        //Comprobamos sobre los nodos principales
+        for(int i = 0; i < getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++) {
+            cout << "Linea contador vale  " << contador << endl;
+            contador++;
+            //Comprobamos que no se quiera eliminar algo ya en la lista de eliminar
+            //if(std::find(getCirculosEliminar()->begin(), getCirculosEliminar()->end(), i) == getCirculosEliminar()->end()) { //Si no ha sido eliminado anteriormente
+            if(getOperacionesImagen()->calcularDatoEnRectaEntreDosPuntos(
+                        Point(
+                            getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][0],
+                            getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][1]
+                            ),
+                        Point(
+                            getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][2],
+                            getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][3]
+                            ),
+                        Point(x, y))
+                    )  {
+                //si se detecta linea, elimino corto la busqueda y recargo imagen
+                i = getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size();
+                borrado = true;
+                cout << "Lineas iniciales" << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
+                getOperacionesImagen()->detectarLineas()->getLineasDetectadas().erase(getOperacionesImagen()->detectarLineas()->getLineasDetectadas().begin() + i);
+                 cout << "Lineas Despues de borrar" << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
+            } else {
+                cout << "No toca" << endl;
+
+            }
+        }
+
+        if(borrado == true) {
+        //Pintamos el final
+        Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+
+        Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+        resultado = mostrarCirculosFinales(resultado);
+
+        //aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+        //getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
+
+        //Dibujamos lineas
+        cout << "Lineas detectadas " << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
+        for( int i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
+            Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
+            line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+        }
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+        }
     }
 }
 
@@ -1029,28 +1040,8 @@ vector<CContourWithData> CAplicacion::getTransicionesAnadir() {
 Mat CAplicacion::mostrarCirculosFinales(Mat resultado) {
     //nodos originales que no se quieran eliminar
     for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
-            Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
-            int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
-            //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
-            //punto central
-            circle( resultado, center, 3, Scalar(0,255,0), -1, 8, 0 );
-            //circunferencia
-            circle( resultado, center, radius, Scalar(0,0,255), 3, 8, 0 );
-
-            ///Dibujamos el num del circulo en la imagen
-            stringstream ss;
-            ss << i;
-            string text = ss.str();
-            int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
-            double fontScale = 1;
-            int thickness = 2;
-            cv::putText(resultado, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
-    }
-    //Para aquellos que queremos dibujar
-   /* cout << "Circulos a dibujarse " << getCirculosAnadir().size() << endl;
-    for(int i = 0; i < getCirculosAnadir().size(); i++) {
-        Point center(cvRound(getCirculosAnadir()[i][0]), cvRound(getCirculosAnadir()[i][1])); //x y
-        int radius = cvRound(getCirculosAnadir()[i][2]);
+        Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
+        int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
         //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
         //punto central
         circle( resultado, center, 3, Scalar(0,255,0), -1, 8, 0 );
@@ -1059,14 +1050,13 @@ Mat CAplicacion::mostrarCirculosFinales(Mat resultado) {
 
         ///Dibujamos el num del circulo en la imagen
         stringstream ss;
-        ss << contador;
+        ss << i;
         string text = ss.str();
         int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
         double fontScale = 1;
         int thickness = 2;
         cv::putText(resultado, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
-        contador++;
-    }*/
+    }
     return resultado;
 }
 

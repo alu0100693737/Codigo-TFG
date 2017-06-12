@@ -61,8 +61,6 @@ vector<Vec4i> CDetectarLineas::HoughProbabilistico(Mat edges, int, void*, int ho
 }
 
 vector<Vec4i> CDetectarLineas::filtrarLineas(vector<Vec4i>& lineas) {
-
-
     for(int i = 0; i < lineas.size() - 1; i++) {
         for(int j = i + 1; j < lineas.size(); j++) {
             //0 x1 1 y1 2 x2 3 y2
@@ -131,6 +129,6 @@ int CDetectarLineas::distanciaEuclidea(Point a, Point b) {
     return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
 }
 
-vector<Vec4i> CDetectarLineas::getLineasDetectadas() {
+vector<Vec4i>& CDetectarLineas::getLineasDetectadas() {
     return lineasEncontradas;
 }

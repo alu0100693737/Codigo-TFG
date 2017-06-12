@@ -111,19 +111,6 @@ CAsistenteCodificacion* COperacionesImagen::getAsistente() {
     return asistente_;
 }
 
-/*
- *         char cadena[128];
-        QString aux;
-        ifstream fe("/home/ivan/Documentos/Codigo-TFG/codificaciones/codificacion.txt");
-        while (!fe.eof()) {
-            fe.getline (cadena, 256);
-            aux.append("\n");
-            aux.append(cadena);
-            cout << cadena;
-        }
-        fe.close();
-
-        getPanelHistograma()->setText(aux);*/
 void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFinales) {
 
     vector<Point> transitions;
@@ -322,6 +309,18 @@ bool COperacionesImagen::contain(vector<Point> aux, Point a) {
     return contiene;
 }
 
+bool COperacionesImagen::calcularDatoEnRectaEntreDosPuntos(Point a, Point b, Point dato) {
+    //calculamos ecuacion de la recta entre a y b
+    if ((((dato.x - a.x) / (b.x - a.x)) - ((dato.y - a.y) / (b.y - a.y))) < 2) {
+        cout << a << " " << b << " " << dato  << "Heys" << endl;
+        return true;
+    } else {
+        //cout << "No toca " << endl;
+        return false;
+    }
+}
+
+
 /*
 Ptr<ml::TrainData> COperacionesImagen::prepararDatosEntrenamiento(const Mat& data, const Mat& responses, int ntrain_samples) {
     Mat sample_idx = Mat::zeros(1, data.rows, CV_8U);
@@ -418,7 +417,19 @@ void COperacionesImagen::entrenamiento(char* imagenes[2]) {
 void COperacionesImagen::clasificacion(string img) {
     Mat image3n = imread("img");
     Mat imagen_bin = Mat(imagen.size(), 8, 1);
+/*
+ *         char cadena[128];
+        QString aux;
+        ifstream fe("/home/ivan/Documentos/Codigo-TFG/codificaciones/codificacion.txt");
+        while (!fe.eof()) {
+            fe.getline (cadena, 256);
+            aux.append("\n");
+            aux.append(cadena);
+            cout << cadena;
+        }
+        fe.close();
 
+        getPanelHistograma()->setText(aux);
     cvtColor(imagen, imagen, CV_BGR2GRAY);
     threshold(imagen, imagen_bin, 128, 255, CV_THRESH_BINARY);
     Mat imagen_color = Mat(imagen.size(), CV_8UC1, 3);

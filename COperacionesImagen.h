@@ -169,6 +169,9 @@ public:
      * @return Punto medio
      */
     Point puntoMedio(Point a, Point b);
+
+    //www.vitutor.com/geo/rec/d_7.html
+    bool calcularDatoEnRectaEntreDosPuntos(Point a, Point b, Point dato);
     /*
     //reconocerPatrones
     static Ptr<ml::TrainData> prepararDatosEntrenamiento(const Mat& data, const Mat& responses, int ntrain_samples);

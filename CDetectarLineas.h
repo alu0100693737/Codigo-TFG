@@ -82,7 +82,7 @@ public:
      * Metodo que devuelve el conjunto de lineas detectadas en la imagen
      * @return vector<Vec4i>
      */
-    vector<Vec4i> getLineasDetectadas();
+    vector<Vec4i>& getLineasDetectadas();
 
 
     /**
