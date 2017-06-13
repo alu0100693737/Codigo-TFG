@@ -156,20 +156,19 @@ CAplicacion::CAplicacion() {
     getAlfabetoActual()->addItem(tr("Alfabeto a, b, c"));
     getAlfabetoActual()->addItem(tr("Alfabeto Numerico"));
 
+    checkEliminarAnadirLinea_ = new QCheckBox();
+    getCheckEliminarAnadirLinea()->click();
+    textEliminarAnadirLinea_ = new CLabel("Eliminar Lineas", true);
+    lineaAceptada_ = false;
+
     // Add values in the combo box
     this->getToolBar()->addWidget(getNodoInicio());
     this->getToolBar()->addWidget(getNodosFinales());
     this->getToolBar()->addWidget(getAlfabetoActual());
+    this->getToolBar()->addWidget(getTextAnadirEliminar());
+    this->getToolBar()->addWidget(getCheckEliminarAnadirLinea());
 
     checkUpdatesTimer_ = new QTimer(this); //timer para asistente codificacion
-
-    circulosEliminar_ = new vector<int>;
-    //circulosAnadir_ = new vector<Vec3f>;
-    lineasEliminar_ = new vector<int>;
-    //lineasAnadir_ = new vector<Vec4i>;
-    transicionesEliminar_ = new vector<int>;
-    //transicionesAnadir_ = new vector<CContourWithData>;
-
 
     ///conexiones con slots
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
@@ -204,6 +203,7 @@ CAplicacion::CAplicacion() {
     connect(getRestaurarValores(), SIGNAL(clicked()), this, SLOT(slotRestaurarValores()));
     connect(getCambiarPerspectiva(), SIGNAL(clicked()), this, SLOT(slotCambiarPerspectiva()));
 
+    connect(getCheckEliminarAnadirLinea(), SIGNAL(clicked()), this, SLOT(slotCambiarTextEliminarAnadirLinea()));
     connect(getCheckUpdatesTimer(), SIGNAL(timeout()), this, SLOT(checkFicheroTemporalCreado()));
 }
 
@@ -689,16 +689,11 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
         bool borrado = false;
         //Comprobamos sobre los nodos principales
         for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++) {
-            //Comprobamos que no se quiera eliminar algo ya en la lista de eliminar
-            //if(std::find(getCirculosEliminar()->begin(), getCirculosEliminar()->end(), i) == getCirculosEliminar()->end()) { //Si no ha sido eliminado anteriormente
             if(getOperacionesImagen()->detectarLineas()->distanciaEuclidea(x, getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]) < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]) {
                 if(getOperacionesImagen()->detectarLineas()->distanciaEuclidea(y, getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1]) < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]) {
                     //Borramos
                     cout << "Borrando circulo" << endl;
                     getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().erase(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().begin() + i);
-                    //cout << "Aumentando el tamano de circulos a eliminar " << getCirculosEliminar()->size() << endl;
-                    //getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().erase(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().begin() + i);
-                    //cout << "Circulo borrado " << i << endl;
                     borrado = true;
                 }
             }
@@ -717,58 +712,113 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
             Mat resultado = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
             getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(resultado)));
         }
-    } else if(getActionDetectarTransiciones()->isEnabled()) {
+    } else if(getActionDetectarTransiciones()->isEnabled()) { //Trabajando sobre lineas
         cout << "Lineas" << endl;
         unsigned x( evt -> x() ), y( evt -> y() );
-        bool borrado = false;
-        int contador = 0;
-        cout << "Lineas iniciales" << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
-        //Comprobamos sobre los nodos principales
-        for(int i = 0; i < getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++) {
-            cout << "Linea contador vale  " << contador << endl;
-            contador++;
-            //Comprobamos que no se quiera eliminar algo ya en la lista de eliminar
-            //if(std::find(getCirculosEliminar()->begin(), getCirculosEliminar()->end(), i) == getCirculosEliminar()->end()) { //Si no ha sido eliminado anteriormente
-            if(getOperacionesImagen()->calcularDatoEnRectaEntreDosPuntos(
-                        Point(
-                            getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][0],
-                            getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][1]
-                            ),
-                        Point(
-                            getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][2],
-                            getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][3]
-                            ),
-                        Point(x, y))
-                    )  {
-                //si se detecta linea, elimino corto la busqueda y recargo imagen
-                i = getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size();
-                borrado = true;
-                cout << "Lineas iniciales" << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
-                getOperacionesImagen()->detectarLineas()->getLineasDetectadas().erase(getOperacionesImagen()->detectarLineas()->getLineasDetectadas().begin() + i);
-                 cout << "Lineas Despues de borrar" << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
-            } else {
-                cout << "No toca" << endl;
+        cout << "He pulsado " << x << ", " << y << endl;
 
+        if(getCheckEliminarAnadirLinea()->isChecked()) {
+            bool borrado = false;
+
+            cout << "Lineas iniciales" << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
+
+            for(int i = 0; i < getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++) {
+                if(borrado == false) {
+                    //cout << "Evaluando linea " << getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i] << endl;
+                    //cout << "Posicion " << i << endl;
+
+                    if(getOperacionesImagen()->calcularDatoEnRectaEntreDosPuntos(
+                                Point(
+                                    getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][0],
+                                    getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][1]
+                                    ),
+                                Point(
+                                    getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][2],
+                                    getOperacionesImagen()->detectarLineas()->getLineasDetectadas()[i][3]
+                                    ),
+                                Point(x, y))
+                            )  {
+                        //si se detecta linea, elimino corto la busqueda y recargo imagen
+
+                        borrado = true;
+                        //cout << "Lineas iniciales" << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
+                        getOperacionesImagen()->detectarLineas()->getLineasDetectadas().erase(getOperacionesImagen()->detectarLineas()->getLineasDetectadas().begin() + i);
+                        //cout << "Lineas Despues de borrar" << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
+                    } else {
+                        //cout << "No toca" << endl;
+
+                    }
+                }
+            }
+
+            if(borrado == true) {
+                //Pintamos el final
+                Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+
+                Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+                resultado = mostrarCirculosFinales(resultado);
+
+                //Dibujamos lineas
+                cout << "Lineas detectadas " << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
+                for( int i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
+                    Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
+                    line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+                }
+                getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+            }
+            else {
+                cout << "No se esta pulsando un lugar donde se detecte linea a borrar" << endl;
+            }
+        } else {
+            if (!getLineaAceptada()) {
+                puntoInicioNuevaLinea_ = new Point(x, y);
+                QMessageBox mensaje;
+                mensaje.setText("Clikee en otro punto de la imagen para agregar el punto final de la linea");
+                mensaje.setIcon(QMessageBox::Information);
+                mensaje.exec();
+                lineaAceptada_ = true;
+            } else {
+
+                Mat aux = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
+
+                Vec4i l = Vec4i(getPuntoInicioNuevaLinea()->x, getPuntoInicioNuevaLinea()->y, x, y);
+                getOperacionesImagen()->detectarLineas()->getLineasDetectadas().push_back(l);
+                line( aux, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+                getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+                cout << "debemos añadir linea" << endl;
+                lineaAceptada_ = false;
             }
         }
+    } else if (getActionCodificarImagen()->isEnabled()) {
+        if(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() > 0) {
+            cout << "contornos antes " << getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() << endl;
+            getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().erase(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().begin());
+            cout << "contornos despues " << getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() << endl;
+            cout << "Trabajando con las transiciones " << endl;
 
-        if(borrado == true) {
-        //Pintamos el final
-        Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+            Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+            Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
 
-        Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
-        resultado = mostrarCirculosFinales(resultado);
+            //Dibujamos circulos
+            resultado = mostrarCirculosFinales(resultado);
 
-        //aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        //getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
+            aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+            getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
 
-        //Dibujamos lineas
-        cout << "Lineas detectadas " << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
-        for( int i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
-            Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
-            line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
-        }
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+            //Dibujamos lineas
+            for( size_t i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
+                Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
+                line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+            }
+
+            //Deteccion de transiciones
+            for (int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
+                cv::rectangle(resultado,                            // draw rectangle on original image
+                              getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
+                              cv::Scalar(0, 255, 0),                        // green
+                              2);
+            }
+            getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
         }
     }
 }
@@ -841,6 +891,13 @@ void CAplicacion::slotCambiarPerspectiva() {
         connect(getPanelOpciones()->getAccumulatorThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
         connect(getPanelOpciones()->getHoughLinesP(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
     }
+}
+
+void CAplicacion::slotCambiarTextEliminarAnadirLinea() {
+    if(getCheckEliminarAnadirLinea()->isChecked())
+        getTextAnadirEliminar()->setText("Eliminar Lineas");
+    else
+        getTextAnadirEliminar()->setText("Añadir Lineas");
 }
 
 //get y sets
@@ -1013,30 +1070,6 @@ CLabel* CAplicacion::getPerspectivaActual() {
     return perspectivaActual_;
 }
 
-vector<int>* CAplicacion::getCirculosEliminar() {
-    return circulosEliminar_;
-}
-
-vector<Vec3f>& CAplicacion::getCirculosAnadir() {
-    return circulosAnadir_;
-}
-
-vector<int>* CAplicacion::getLineasEliminar() {
-    return lineasEliminar_;
-}
-
-vector<Vec4i> CAplicacion::getLineasAnadir() {
-    return lineasAnadir_;
-}
-
-vector<int>* CAplicacion::getTransicionesEliminar() {
-    return transicionesEliminar_;
-}
-
-vector<CContourWithData> CAplicacion::getTransicionesAnadir() {
-    return transicionesAnadir_;
-}
-
 Mat CAplicacion::mostrarCirculosFinales(Mat resultado) {
     //nodos originales que no se quieran eliminar
     for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
@@ -1062,4 +1095,20 @@ Mat CAplicacion::mostrarCirculosFinales(Mat resultado) {
 
 QWidget* CAplicacion::getVentanaCrearFichero() {
     return ventanaCrearFichero_;
+}
+
+QCheckBox* CAplicacion::getCheckEliminarAnadirLinea() {
+    return checkEliminarAnadirLinea_;
+}
+
+CLabel* CAplicacion::getTextAnadirEliminar() {
+    return textEliminarAnadirLinea_;
+}
+
+bool CAplicacion::getLineaAceptada() {
+    return lineaAceptada_;
+}
+
+Point* CAplicacion::getPuntoInicioNuevaLinea() {
+    return puntoInicioNuevaLinea_;
 }

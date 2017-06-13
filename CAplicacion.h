@@ -129,14 +129,10 @@ private:
     QTextEdit* textEditCrearFichero_;
     QTimer* checkUpdatesTimer_;
 
-    vector<int>* circulosEliminar_;
-    vector<Vec3f> circulosAnadir_;
-
-    vector<int>* lineasEliminar_;
-    vector<Vec4i> lineasAnadir_;
-
-    vector<int>* transicionesEliminar_;
-    vector<CContourWithData> transicionesAnadir_;
+    CLabel* textEliminarAnadirLinea_;
+    QCheckBox* checkEliminarAnadirLinea_; //off para eliminar, on añadir
+    bool lineaAceptada_;
+    Point* puntoInicioNuevaLinea_;
 
     QWidget* ventanaCrearFichero_;
 
@@ -461,18 +457,17 @@ public:
     QTextEdit* getTextEditCrearFichero();
     QTimer* getCheckUpdatesTimer();
 
-    vector<int>* getCirculosEliminar();
-    vector<Vec3f>& getCirculosAnadir();
+    //Lineas
+    CLabel* getTextAnadirEliminar();
+    QCheckBox* getCheckEliminarAnadirLinea();
 
-    vector<int>* getLineasEliminar();
-    vector<Vec4i> getLineasAnadir();
-
-    vector<int>* getTransicionesEliminar();
-    vector<CContourWithData> getTransicionesAnadir();
+    bool getLineaAceptada();
+    Point* getPuntoInicioNuevaLinea();
 
     Mat mostrarCirculosFinales(Mat imagen);
 
     QWidget* getVentanaCrearFichero();
+
 
 public slots:
 
@@ -604,5 +599,7 @@ public slots:
       restaurar valores scrollbar*/
     void slotRestaurarValores();
     void slotCambiarPerspectiva();
+
+    void slotCambiarTextEliminarAnadirLinea();
 };
 #endif

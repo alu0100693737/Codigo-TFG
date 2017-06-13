@@ -22,6 +22,7 @@
 #include "CDetectarTransiciones.h"
 #include "CAsistenteCodificacion.h"
 #include <QImage>
+#include <cmath>        // std::abs
 
 #define DISTANCIAPIXELSECUNDARIO 100
 #define CONTORNOMEDIOLETRA 30

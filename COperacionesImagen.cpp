@@ -311,12 +311,37 @@ bool COperacionesImagen::contain(vector<Point> aux, Point a) {
 
 bool COperacionesImagen::calcularDatoEnRectaEntreDosPuntos(Point a, Point b, Point dato) {
     //calculamos ecuacion de la recta entre a y b
-    if ((((dato.x - a.x) / (b.x - a.x)) - ((dato.y - a.y) / (b.y - a.y))) < 2) {
-        cout << a << " " << b << " " << dato  << "Heys" << endl;
-        return true;
+    if((b.x - a.x) != 0) {
+        if((b.y - a.y) != 0) {
+            if ((abs(((double)(dato.x - a.x) / (double)(b.x - a.x)) - ((double)(dato.y - a.y) / (double)(b.y - a.y))) < 0.8 )) {
+                cout << "Valor " << (double)(((double)(dato.x - a.x) / (double)(b.x - a.x)) - ((double)(dato.y - a.y) / (double)(b.y - a.y))) << endl;
+                cout << a << " " << b << " " << dato  << "Heys" << endl;
+                return true;
+            } else {
+                //cout << "Valor MAlo" << (((double)(dato.x - a.x) / (double)(b.x - a.x)) - ((double)(dato.y - a.y) / (double)(b.y - a.y))) << endl;
+                //cout << "No toca " << endl;
+                return false;
+            }
+        } else if (abs((double)(dato.x - a.x) / (double)(b.x - a.x)) < 0.8){
+            cout << "Valor " << ((double)(dato.x - a.x) / (double)(b.x - a.x));
+             cout << a << " " << b << " " << dato  << "Heys" << endl;
+            return true;
+        } else {
+            //cout << "Valor Malo " << (double)abs((double)(dato.x - a.x) / (double)(b.x - a.x)) << endl;
+            return false;
+        }
+    } else  if((b.y - a.y) != 0) {
+        if (abs((double)(dato.y - a.y) / (double)(b.y - a.y)) < 0.8) {
+            cout << "Valor " << ((double)(dato.y - a.y) / (double)(b.y - a.y)) << endl;
+            cout << a << " " << b << " " << dato  << "Heys" << endl;
+            return true;
+        } else {
+           // cout << "Valor Malo " << abs((double)(dato.y - a.y) / (double)(b.y - a.y)) << endl;
+            return false;
+        }
     } else {
-        //cout << "No toca " << endl;
-        return false;
+        cout << "No deberia ocurrir" << endl;
+        return true; //dividendos igual a 0
     }
 }
 
