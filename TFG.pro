@@ -106,7 +106,8 @@ HEADERS += \
     CPushButton.h
 
 
-RC_ICONS = release/icon.ico
+RC_ICONS = release/icon.ico \
+            release/icon.png
 
 RESOURCES += \
     resource.qrc
