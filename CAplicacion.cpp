@@ -125,7 +125,7 @@ CAplicacion::CAplicacion() {
 
     setCentralWidget(centralWidget);
     setMinimumSize(900, 700);
-    setWindowTitle("Automatas y Lenguajes Formales, TFG");
+    setWindowTitle("Automatas y Lenguajes Formales, DCAFI");
 
     ///Añadimos Toolbar
     toolbar_ = new QToolBar(this);
