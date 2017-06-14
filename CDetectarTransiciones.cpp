@@ -42,7 +42,6 @@ bool CDetectarTransiciones::ejecutar(Mat image) {
     getContornosEncontrados().clear();
     getLetrasEncontradas().clear();
 
-
     //Leemos la clasificacion hecha sobre GenerarClasificador
     vector<CContourWithData> allContoursWithData;           // declare empty vectors,
     vector<CContourWithData> validContoursWithData;         // we will fill these shortly

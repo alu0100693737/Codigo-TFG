@@ -107,11 +107,7 @@ CDetectarTransiciones* COperacionesImagen::detectarTransiciones() {
     return transiciones_;
 }
 
-CAsistenteCodificacion* COperacionesImagen::getAsistente() {
-    return asistente_;
-}
-
-void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFinales) {
+void COperacionesImagen::codificarDeteccion() {
 
     vector<Point> transitions;
 
@@ -194,9 +190,9 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
         if(transitions.size()) {
             // Cerrar el fichero,
             // para luego poder abrirlo para lectura:
-            vector<int>* auxInicios_ = new vector<int>();
-            vector<int>* auxDestinos_= new vector<int>();
-            vector<char>* auxLetras_= new vector<char>();
+            auxInicios_ = new vector<int>();
+            auxDestinos_= new vector<int>();
+            auxLetras_= new vector<char>();
 
             for(unsigned int i = 0; i < transitions.size(); i++) {
                 //cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
@@ -270,13 +266,11 @@ void COperacionesImagen::codificarDeteccion(string nodoInicial, string nodosFina
             detectarTransiciones()->getLetrasEncontradas().clear();
 
             cout << detectarCirculos()->getCirculosDetectados().size() << endl;
-            cout << "Nodo inicial " << nodoInicial << " nodosFinales " << nodosFinales << endl;
+            //cout << "Nodo inicial " << nodoInicial << " nodosFinales " << nodosFinales << endl;
             cout << auxInicios_->size()<< endl;
             cout << auxDestinos_->size() << endl;
             cout << auxLetras_->size() << endl;
-            /// Abrimos asistente
-            asistente_ = new CAsistenteCodificacion(detectarCirculos()->getCirculosDetectados().size(), nodoInicial, nodosFinales, auxInicios_, auxDestinos_, auxLetras_);
-            getAsistente()->show();
+
         } else {
             cout << "ERROR, hubo un problema con la deteccion de transiciones entre circulos y lineas" << endl;
         }
@@ -343,6 +337,18 @@ bool COperacionesImagen::calcularDatoEnRectaEntreDosPuntos(Point a, Point b, Poi
         cout << "No deberia ocurrir" << endl;
         return true; //dividendos igual a 0
     }
+}
+
+vector<int>* COperacionesImagen::getIniciosAsistente() {
+     return auxInicios_;
+}
+
+vector<int>* COperacionesImagen::getDestinosAsistente() {
+    return auxDestinos_;
+}
+
+vector<char>* COperacionesImagen::getLetrasAsistente() {
+    return auxLetras_;
 }
 
 

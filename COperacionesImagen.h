@@ -69,13 +69,12 @@ private:
      */
     bool ventanaConfirmarNodos(int nodos);
 
-    /**
-     * @brief
-     * Atributo de la clase CAsistenteCodificacion para la confirmacion del automata detectado en la imagen
-     */
-    CAsistenteCodificacion* asistente_;
+    vector<int>* auxInicios_;
+    vector<int>* auxDestinos_;
+    vector<char>* auxLetras_;
 
 public:
+
     /**
      * @brief
      * Constructor. Inicializa valores
@@ -116,18 +115,11 @@ public:
 
     /**
      * @brief
-     * Metodo que devuelve el atributo asistente
-     * @return
-     */
-    CAsistenteCodificacion* getAsistente();
-
-    /**
-     * @brief
      * Metodo que codifica la deteccion del automata de la imagen
      * @param nodoInicial
      * @param nodosFinales
      */
-    void codificarDeteccion(string nodoInicial, string nodosFinales);
+    void codificarDeteccion();
 
     /**
      * @brief
@@ -173,6 +165,11 @@ public:
 
     //www.vitutor.com/geo/rec/d_7.html
     bool calcularDatoEnRectaEntreDosPuntos(Point a, Point b, Point dato);
+
+    vector<int>* getIniciosAsistente();
+    vector<int>* getDestinosAsistente();
+    vector<char>* getLetrasAsistente();
+
     /*
     //reconocerPatrones
     static Ptr<ml::TrainData> prepararDatosEntrenamiento(const Mat& data, const Mat& responses, int ntrain_samples);

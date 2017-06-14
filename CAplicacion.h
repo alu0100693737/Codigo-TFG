@@ -136,6 +136,12 @@ private:
 
     QWidget* ventanaCrearFichero_;
 
+    /**
+     * @brief
+     * Atributo de la clase CAsistenteCodificacion para la confirmacion del automata detectado en la imagen
+     */
+    CAsistenteCodificacion* asistente_;
+
 
     /**
      * @brief
@@ -468,6 +474,12 @@ public:
 
     QWidget* getVentanaCrearFichero();
 
+    /**
+     * @brief
+     * Metodo que devuelve el atributo asistente
+     * @return
+     */
+    CAsistenteCodificacion* getAsistente();
 
 public slots:
 

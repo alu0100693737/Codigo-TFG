@@ -24,5 +24,5 @@ bool CContourWithData::checkIfContourIsValid() {
 }
 
 void CContourWithData::mostrarContorno() {
-    cout << "Contorno con dimension " << dimensionContorno << " en " << fltArea;
+    cout << "Contorno con dimension " << dimensionContorno.x << " en " << fltArea;
 }

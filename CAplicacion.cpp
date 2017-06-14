@@ -25,13 +25,8 @@ CAplicacion::CAplicacion() {
 
     /// Creamos los Paneles de la Aplicacion y su disposicion
     panelPrincipal_ = new CLabel("Panel Principal", true);
-
-    Mat aux = imread("/home/ivan/Documentos/Codigo-TFG/images/cartel.png", IMREAD_UNCHANGED);
-    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
-
     panelOpciones_ = new CPanelOpciones();
     panelHistograma_ = new CLabel("Info Imagen", false);
-
     panelComparacion_ = new CLabel("Panel Comparativa", true);
 
     getPanelHistograma()->setStyleSheet("background-color: white; border: 1px solid black");
@@ -223,7 +218,7 @@ void CAplicacion::inicializarVentanaAplicacionDeteccion() {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
     } else {
-        Mat aux = imread("/home/ivan/Documentos/Codigo-TFG/images/cartel.png", IMREAD_UNCHANGED);
+        Mat aux = imread("/home/ivan/Documentos/Codigo-TFG/images/cartel1.png", IMREAD_UNCHANGED);
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
     }
     QVBoxLayout* layout1 = new QVBoxLayout();
@@ -322,10 +317,6 @@ bool CAplicacion::loadFile(const QString &fileName) {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
 
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
-
-        //si se desea poner el histograma en panel Histograma
-        //getPanelHistograma()->setImagen(getOperacionesImagen()->Mat2QImage(getOperacionesImagen()->calcularHistograma(getOperacionesImagen()->QImage2Mat(newImage))));
-
         getActionDetectarCirculos()->setDisabled(false);
         getActionProcesarImagen()->setDisabled(false);
 
@@ -418,7 +409,6 @@ void CAplicacion::slotSalir() {
 }
 
 void CAplicacion::slotDetectarCirculos() {
-
     //getCirculosEliminar()->clear();
     //getCirculosAnadir().clear();
 
@@ -477,7 +467,10 @@ void CAplicacion::slotCodificarImagen() {
         cout << "Se borro el fichero temporal de la ejecucion anterior" << remove(PATH_TEMPORAL);
         if(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() == 0)
             slotDetectarTransiciones();
-        getOperacionesImagen()->codificarDeteccion(getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData());
+        getOperacionesImagen()->codificarDeteccion();
+        /// Abrimos asistente
+        asistente_ = new CAsistenteCodificacion(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(), getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData(), getOperacionesImagen()->getIniciosAsistente(), getOperacionesImagen()->getDestinosAsistente(), getOperacionesImagen()->getLetrasAsistente());
+        getAsistente()->show();
         //slotCambiarPerspectiva();
         getCheckUpdatesTimer()->start(1000);
     }
@@ -753,9 +746,7 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
 
             if(borrado == true) {
                 //Pintamos el final
-                Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-
-                Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+                Mat resultado = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
                 resultado = mostrarCirculosFinales(resultado);
 
                 //Dibujamos lineas
@@ -778,7 +769,6 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
                 mensaje.exec();
                 lineaAceptada_ = true;
             } else {
-
                 Mat aux = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
 
                 Vec4i l = Vec4i(getPuntoInicioNuevaLinea()->x, getPuntoInicioNuevaLinea()->y, x, y);
@@ -791,34 +781,90 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
         }
     } else if (getActionCodificarImagen()->isEnabled()) {
         if(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() > 0) {
-            cout << "contornos antes " << getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() << endl;
-            getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().erase(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().begin());
-            cout << "contornos despues " << getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() << endl;
-            cout << "Trabajando con las transiciones " << endl;
+            bool borrado = false;
+            cout << "Lineas" << endl;
+            unsigned x( evt -> x() ), y( evt -> y() );
+            cout << "He pulsado " << x << ", " << y << endl;
 
-            Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-            Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+            cout << "x y valen " << x << ", " << y << endl;
+            for(int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++)
+                //dimension de contorno 30 pixeles
+                if(borrado == false) {
+                    if((x - getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.x) <= 30) {
+                        if((y - getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.y) <= 50) {
+                            getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().erase(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().begin() + i);
+                            getOperacionesImagen()->detectarTransiciones()->getLetrasEncontradas().erase(getOperacionesImagen()->detectarTransiciones()->getLetrasEncontradas().begin() + i);
+                            borrado = true;
+                            cout << "He encontrado una transicion" << endl;
+                        }
+                    }
+                }
+            //find (myvector.begin(), myvector.end(), 30);
 
-            //Dibujamos circulos
-            resultado = mostrarCirculosFinales(resultado);
+            if(borrado == true) {
+                Mat resultado = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+                //Dibujamos circulos
+                resultado = mostrarCirculosFinales(resultado);
 
-            aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-            getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
+                //Dibujamos lineas
+                for( size_t i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
+                    Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
+                    line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+                }
 
-            //Dibujamos lineas
-            for( size_t i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
-                Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
-                line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+                //Deteccion de transiciones
+                for (int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
+                    cv::rectangle(resultado,                            // draw rectangle on original image
+                                  getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
+                                  cv::Scalar(0, 255, 0),                        // green
+                                  2);
+                }
+                getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+            } else { //Creacion de transicion
+                QString text;
+                //cout << text.toStdString() << endl;
+                bool ok;
+
+                text = QInputDialog::getText(0, "Nueva Transicion",
+                                             "¿Quiere añadir una nueva transición?", QLineEdit::Normal,
+                                             text, &ok);
+                if(!text.isEmpty()) {
+                    CContourWithData contourWithData;
+                    contourWithData.dimensionContorno.x = x;
+                    contourWithData.dimensionContorno.y = y;
+                    cout << "HEYS" << contourWithData.dimensionContorno << endl;
+                    cout << "antes " << getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() << endl;
+
+                    getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().push_back(contourWithData);
+                    //getOperacionesImagen()->detectarTransiciones()->getLetrasEncontradas().push_back();
+
+                    const char* pepe = text.toStdString().c_str();
+                    char * p2;
+
+                    p2 = const_cast<char *>(pepe);
+                    char hola = *p2;
+                    cout << p2 << endl;
+                    getOperacionesImagen()->detectarTransiciones()->getLetrasEncontradas().push_back(hola);
+
+
+                    //getOperacionesImagen()->detectarTransiciones()->getLetrasEncontradas().push_back(&p);
+                    cout << "despues " << getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() << endl;
+                    Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
+                    cv::rectangle(resultado,                            // draw rectangle on original image
+                                      contourWithData.dimensionContorno,        // rect to draw
+                                      cv::Scalar(0, 255, 0),                        // green
+                                      2);
+                    int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
+                    double fontScale = 1;
+                    int thickness = 2;
+                    cv::putText(resultado, text.toStdString(), Point(contourWithData.dimensionContorno.x + 10, contourWithData.dimensionContorno.y + 10), fontFace, fontScale, Scalar::all(255), thickness,8);
+
+
+                    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+                    cout << "HOLA " << endl;
+
             }
-
-            //Deteccion de transiciones
-            for (int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
-                cv::rectangle(resultado,                            // draw rectangle on original image
-                              getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
-                              cv::Scalar(0, 255, 0),                        // green
-                              2);
             }
-            getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
         }
     }
 }
@@ -827,7 +873,7 @@ void CAplicacion::checkFicheroTemporalCreado() {
     ifstream fich(PATH_TEMPORAL, ios::in | ios::binary);
     //fich.read(mes, 20);
     if(fich.good()) {
-        if(!fich.peek() == std::ifstream::traits_type::eof() ) { // si el fichero no esta vacio
+        if(!fich.eof()) {//peek() == std::ifstream::traits_type::eof() ) { // si el fichero no esta vacio
             cout << "HOLA" << endl;
             QFile file1(PATH_TEMPORAL);
             if(!file1.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -839,15 +885,20 @@ void CAplicacion::checkFicheroTemporalCreado() {
                     line += in.readLine();
                     line += "\n";
                 }
-                if(getPerspectivaActual()->text() == "Deteccion")
+                if(getPerspectivaActual()->text() == "Deteccion") {
+                    cout << "HEYS" << endl;
                     slotCambiarPerspectiva();
+                }
+                cout << "HOLA " << endl;
                 /*inicializarVentanaAplicacionCorreccion();*
             getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
             */getPanelPrincipal()->setText(line);
                 getCheckUpdatesTimer()->stop();
             }
-        } else  //si fichero vacio ->opcion cancelar del asistente
+        } else { //si fichero vacio ->opcion cancelar del asistente
             getCheckUpdatesTimer()->stop();
+            cout << "fichero vacio" << endl;
+        }
     } else {
         cout << "Fichero Codificado aun no creado \n Error al leer de Fichero" << endl;
         if(fich.fail()) cout << "Bit fail activo" << endl;
@@ -877,12 +928,14 @@ void CAplicacion::slotCambiarPerspectiva() {
         getActionDetectarLineas()->setEnabled(false);
         getActionDetectarCirculos()->setEnabled(false);
         getActionDetectarTransiciones()->setEnabled(false);
+        getActionAbrirFicheroCorrecto()->setEnabled(true);
     } else {
         inicializarVentanaAplicacionDeteccion();
         if(getPathImagenActual() != NULL) {
             getActionDetectarCirculos()->setEnabled(true);
             getActionProcesarImagen()->setEnabled(true);
         }
+        getActionAbrirFicheroCorrecto()->setEnabled(false);
         getPanelOpciones()->iniciarVistaDeteccion();
         getRestaurarValores()->setText("Restaurar ScrollBar's");
         getPerspectivaActual()->setText("Deteccion");
@@ -1095,6 +1148,10 @@ Mat CAplicacion::mostrarCirculosFinales(Mat resultado) {
 
 QWidget* CAplicacion::getVentanaCrearFichero() {
     return ventanaCrearFichero_;
+}
+
+CAsistenteCodificacion* CAplicacion::getAsistente() {
+    return asistente_;
 }
 
 QCheckBox* CAplicacion::getCheckEliminarAnadirLinea() {
