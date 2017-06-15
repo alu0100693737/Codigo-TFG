@@ -164,6 +164,7 @@ CAplicacion::CAplicacion() {
     this->getToolBar()->addWidget(getCheckEliminarAnadirLinea());
 
     checkUpdatesTimer_ = new QTimer(this); //timer para asistente codificacion
+    dibujadaTransiciones_ = false;
 
     ///conexiones con slots
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
@@ -358,6 +359,24 @@ QString CAplicacion::ventanaAbrirFichero()  {
     return line;
 }
 
+void CAplicacion::dibujarSentidoTransiciones() {
+    dibujadaTransiciones_ = true;
+    cout << "HOLA " << endl;
+    Mat prueba = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
+    cv::Point pt[3];
+    pt[0] = Point(400, 400);
+    pt[1] = Point(390, 380);
+    pt[2] = Point(410, 380);
+
+    fillConvexPoly(prueba, pt, 3, Scalar(0, 0, 200));
+
+    //No he borrado lineas y circulos, hay que volver a buscar la transicion ahora entre los encontrados y las lineas que hay
+    imshow("HOLA", prueba);
+    /*
+     * dibujaremos un draw polyne en los nodos destinos y pondremos un listener
+     * */
+}
+
 void CAplicacion::slotAbout() {
     QMessageBox mensaje;
     mensaje.setText("Trabajo fin de grado. Iván García Campos.");
@@ -470,6 +489,9 @@ void CAplicacion::slotCodificarImagen() {
         getOperacionesImagen()->codificarDeteccion();
         /// Abrimos asistente
         asistente_ = new CAsistenteCodificacion(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(), getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData(), getOperacionesImagen()->getIniciosAsistente(), getOperacionesImagen()->getDestinosAsistente(), getOperacionesImagen()->getLetrasAsistente());
+
+        dibujarSentidoTransiciones();
+
         getAsistente()->show();
         //slotCambiarPerspectiva();
         getCheckUpdatesTimer()->start(1000);
@@ -866,6 +888,9 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
             }
             }
         }
+    } else if (getDibujadaTransiciones()) {
+        //Si esta abierto el asistente y se han dibujado los poligonos en los nodos destino estar pendientes si se pulsa alguno para
+        //para cambiar el destino de esa transicion
     }
 }
 
@@ -1169,3 +1194,8 @@ bool CAplicacion::getLineaAceptada() {
 Point* CAplicacion::getPuntoInicioNuevaLinea() {
     return puntoInicioNuevaLinea_;
 }
+
+bool CAplicacion::getDibujadaTransiciones() {
+    return dibujadaTransiciones_;
+}
+

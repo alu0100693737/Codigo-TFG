@@ -142,6 +142,9 @@ private:
      */
     CAsistenteCodificacion* asistente_;
 
+    bool dibujadaTransiciones_;
+    void dibujarSentidoTransiciones();
+
 
     /**
      * @brief
@@ -165,7 +168,6 @@ private:
 
     void inicializarVentanaAplicacionDeteccion();
     void inicializarVentanaAplicacionCorreccion();
-
 
     /**
      * @brief
@@ -473,6 +475,8 @@ public:
     Mat mostrarCirculosFinales(Mat imagen);
 
     QWidget* getVentanaCrearFichero();
+
+    bool getDibujadaTransiciones();
 
     /**
      * @brief
