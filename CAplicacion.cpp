@@ -131,13 +131,18 @@ CAplicacion::CAplicacion() {
     toolbar_ = new QToolBar(this);
     getToolBar()->addAction(getActionAbrirImagen());
     getToolBar()->addAction(getActionAbrirFichero());
+
+    getToolBar()->addAction(getActionProcesarImagen());
+
+    QWidget* empty = new QWidget();
+    empty->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
+    getToolBar()->addWidget(empty);
+
     getToolBar()->addAction(getActionDetectarCirculos());
     getToolBar()->addAction(getActionDetectarLineas());
     getToolBar()->addAction(getActionDetectarTransiciones());
     getToolBar()->addAction(getActionCodificarImagen());
-    getToolBar()->addAction(getActionProcesarImagen());
-    getToolBar()->addAction(getActionProcesarImagen());
-    getToolBar()->addAction(getActionAbout());
+
     getToolBar()->setStyleSheet("background-color: white;");
     this->addToolBar(getToolBar());
 
@@ -153,9 +158,14 @@ CAplicacion::CAplicacion() {
 
     checkEliminarAnadirLinea_ = new QCheckBox();
     getCheckEliminarAnadirLinea()->click();
-    textEliminarAnadirLinea_ = new CLabel("Eliminar Lineas", true);
+    textEliminarAnadirLinea_ = new CLabel("Eliminar Lineas", false);
     lineaAceptada_ = false;
 
+    QWidget* empty1 = new QWidget();
+    empty1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
+    getToolBar()->addWidget(empty1);
+
+    getToolBar()->addAction(getActionAbout());
     // Add values in the combo box
     this->getToolBar()->addWidget(getNodoInicio());
     this->getToolBar()->addWidget(getNodosFinales());
@@ -201,6 +211,8 @@ CAplicacion::CAplicacion() {
 
     connect(getCheckEliminarAnadirLinea(), SIGNAL(clicked()), this, SLOT(slotCambiarTextEliminarAnadirLinea()));
     connect(getCheckUpdatesTimer(), SIGNAL(timeout()), this, SLOT(checkFicheroTemporalCreado()));
+
+    slotCambiarPerspectiva(); //Empezamos con la perspectiva codificacion
 }
 
 CAplicacion::~CAplicacion() {}
@@ -219,8 +231,8 @@ void CAplicacion::inicializarVentanaAplicacionDeteccion() {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
     } else {
-        Mat aux = imread("/home/ivan/Documentos/Codigo-TFG/images/cartel1.png", IMREAD_UNCHANGED);
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+       /* Mat aux = imread("/home/ivan/Documentos/Codigo-TFG/images/cartel1.png", IMREAD_UNCHANGED);
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));*/
     }
     QVBoxLayout* layout1 = new QVBoxLayout();
     layout1->addWidget(getPerspectivaActual());
@@ -361,27 +373,76 @@ QString CAplicacion::ventanaAbrirFichero()  {
 
 void CAplicacion::dibujarSentidoTransiciones() {
     dibujadaTransiciones_ = true;
-    cout << "HOLA " << endl;
-    Mat prueba = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
-    cv::Point pt[3];
-    pt[0] = Point(400, 400);
-    pt[1] = Point(390, 380);
-    pt[2] = Point(410, 380);
 
-    fillConvexPoly(prueba, pt, 3, Scalar(0, 0, 200));
+    Mat prueba = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+
+    for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
+        Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
+        int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
+        //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
+        //punto central
+        circle( prueba, center, 3, Scalar(0,255,0), -1, 8, 0 );
+        //circunferencia
+        circle( prueba, center, radius, Scalar(255,255,255), 2, 8, 0 );
+    }
+
+    Scalar rojo = Scalar(0, 0, 200);
+    Scalar azul = Scalar(200, 0, 0);
+    Scalar verde = Scalar(0, 200, 0);
+    vector<Scalar> colores;
+    colores.push_back(rojo); colores.push_back(azul); colores.push_back(verde);
+
+    for(int i= 0; i < getOperacionesImagen()->getIniciosAsistente()->size(); i++) {
+        arrowedLine(prueba,
+                    Point(
+                        getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[getOperacionesImagen()->getIniciosAsistente()->at(i)][0],
+                getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[getOperacionesImagen()->getIniciosAsistente()->at(i)][1]
+                ),
+                Point(
+                    getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[getOperacionesImagen()->getDestinosAsistente()->at(i)][0],
+                getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[getOperacionesImagen()->getDestinosAsistente()->at(i)][1]
+                ),
+                colores.at(i % 3), 3, LINE_AA);
+    }
+
+    for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
+        ///Dibujamos el num del circulo en la imagen
+        Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
+        int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
+
+        stringstream ss;
+        ss << i;
+        string text = ss.str();
+        int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
+        double fontScale = 1;
+        int thickness = 2;
+        cv::putText(prueba, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
+    }
+
+    for (int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
+        cv::rectangle(prueba,                            // draw rectangle on original image
+                      getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
+                      cv::Scalar(255, 255, 255),                        // green
+                      2);
+    }
 
     //No he borrado lineas y circulos, hay que volver a buscar la transicion ahora entre los encontrados y las lineas que hay
-    imshow("HOLA", prueba);
-    /*
-     * dibujaremos un draw polyne en los nodos destinos y pondremos un listener
-     * */
+    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(prueba)));
 }
 
 void CAplicacion::slotAbout() {
-    QMessageBox mensaje;
-    mensaje.setText("Trabajo fin de grado. Iván García Campos.");
-    mensaje.setIcon(QMessageBox::Information);
-    mensaje.exec();
+    QWidget* window = new QWidget(); QHBoxLayout* a = new QHBoxLayout();
+    QLabel* aux = new QLabel(); QImage myImage;
+
+    myImage.load("/home/ivan/Documentos/Codigo-TFG/images/cartel1.png");
+    aux->setPixmap(QPixmap::fromImage(myImage));
+    a->addWidget(aux);
+
+    window->setLayout(a);
+    window->setStyleSheet("background-color: black;");
+    window->setWindowTitle("Ayuda del asistente");
+    this->setFixedSize(this->width(), this->height());
+    window->show();
 }
 
 void CAplicacion::slotCrearNuevoFichero() {
@@ -801,7 +862,7 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
                 lineaAceptada_ = false;
             }
         }
-    } else if (getActionCodificarImagen()->isEnabled()) {
+    } else if (getActionCodificarImagen()->isEnabled() && !getDibujadaTransiciones()) {
         if(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() > 0) {
             bool borrado = false;
             cout << "Lineas" << endl;
@@ -873,9 +934,9 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
                     cout << "despues " << getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() << endl;
                     Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
                     cv::rectangle(resultado,                            // draw rectangle on original image
-                                      contourWithData.dimensionContorno,        // rect to draw
-                                      cv::Scalar(0, 255, 0),                        // green
-                                      2);
+                                  contourWithData.dimensionContorno,        // rect to draw
+                                  cv::Scalar(0, 255, 0),                        // green
+                                  2);
                     int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
                     double fontScale = 1;
                     int thickness = 2;
@@ -885,10 +946,28 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
                     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
                     cout << "HOLA " << endl;
 
-            }
+                }
             }
         }
     } else if (getDibujadaTransiciones()) {
+        unsigned x( evt -> x() ), y( evt -> y() );
+        bool pulsado = false;
+        //Comprobamos sobre los nodos principales
+        for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++) {
+            if(getOperacionesImagen()->detectarLineas()->distanciaEuclidea(x, getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]) < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]) {
+                if(getOperacionesImagen()->detectarLineas()->distanciaEuclidea(y, getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1]) < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]) {
+                    //Borramos
+                    ///Creamos una lista de candidatos si hubiera varios disponibles para cambiar
+                    /// si es uno cambiamos directamente, si es dos, o mas preguntamos cual quiere por mensaje con qlineedit
+                   pulsado = true;
+                }
+            }
+        }
+        if(pulsado == true) { //se Borro un circulo
+            cout << "YES" << endl ;
+            //Se vuelve a dibujar la imagen con los nuevos circulos
+            dibujarSentidoTransiciones();
+        }
         //Si esta abierto el asistente y se han dibujado los poligonos en los nodos destino estar pendientes si se pulsa alguno para
         //para cambiar el destino de esa transicion
     }
@@ -899,303 +978,311 @@ void CAplicacion::checkFicheroTemporalCreado() {
     //fich.read(mes, 20);
     if(fich.good()) {
         if(!fich.eof()) {//peek() == std::ifstream::traits_type::eof() ) { // si el fichero no esta vacio
-            cout << "HOLA" << endl;
-            QFile file1(PATH_TEMPORAL);
-            if(!file1.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                cout << "Error Guardando el fichero codificado" << endl;
+            QFile newFile(PATH_TEMPORAL);
+            newFile.open( QIODevice::WriteOnly|QIODevice::Append );
+            if (newFile.pos() == 0) {
+              cout << "Cancelado" << endl;// is empty
             } else {
-                QTextStream in(&file1);
-                QString line;
-                while(!in.atEnd()){
-                    line += in.readLine();
-                    line += "\n";
-                }
-                if(getPerspectivaActual()->text() == "Deteccion") {
-                    cout << "HEYS" << endl;
-                    slotCambiarPerspectiva();
-                }
-                cout << "HOLA " << endl;
-                /*inicializarVentanaAplicacionCorreccion();*
+                cout << "HOLA" << endl;
+                QFile file1(PATH_TEMPORAL);
+                if(!file1.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                    cout << "Error Guardando el fichero codificado" << endl;
+                } else {
+                    QTextStream in(&file1);
+                    QString line;
+                    while(!in.atEnd()){
+                        line += in.readLine();
+                        line += "\n";
+                    }
+                    if(getPerspectivaActual()->text() == "Deteccion") {
+                        cout << "HEYS" << endl;
+                        slotCambiarPerspectiva();
+                    }
+                    cout << "HOLA " << endl;
+                    /*inicializarVentanaAplicacionCorreccion();*
             getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
             */getPanelPrincipal()->setText(line);
-                getCheckUpdatesTimer()->stop();
+                    getCheckUpdatesTimer()->stop();
+                }
             }
-        } else { //si fichero vacio ->opcion cancelar del asistente
-            getCheckUpdatesTimer()->stop();
-            cout << "fichero vacio" << endl;
+
         }
-    } else {
-        cout << "Fichero Codificado aun no creado \n Error al leer de Fichero" << endl;
-        if(fich.fail()) cout << "Bit fail activo" << endl;
-        //if(fich.eof())  cout << "Bit eof activo" << endl;
-        //if(fich.bad())  cout << "Bit bad activo" << endl;
-    }
-    fich.close();
-}
-
-void CAplicacion::slotRestaurarValores() {
-    if(getRestaurarValores()->text() == "Cargar Fichero Correcto") {
-        slotAbrirFicheroCorrecto();
-        setStyleSheet("background-color: black");
-    } else {
-        getPanelOpciones()->getCannyThresHold()->setValue(CANNYTHRESHOLD);
-        getPanelOpciones()->getAccumulatorThresHold()->setValue(ACCUMULATORTHRESHOLD);
-        getPanelOpciones()->getHoughLinesP()->setValue(HOUGHLINESP);
-    }
-}
-
-void CAplicacion::slotCambiarPerspectiva() {
-    if(getPerspectivaActual()->text() == "Deteccion") {
-        inicializarVentanaAplicacionCorreccion();
-        getPanelOpciones()->iniciarVistaCorreccion();
-        getRestaurarValores()->setText("Cargar Fichero Correcto");
-        getPerspectivaActual()->setText("Correccion");
-        getActionDetectarLineas()->setEnabled(false);
-        getActionDetectarCirculos()->setEnabled(false);
-        getActionDetectarTransiciones()->setEnabled(false);
-        getActionAbrirFicheroCorrecto()->setEnabled(true);
-    } else {
-        inicializarVentanaAplicacionDeteccion();
-        if(getPathImagenActual() != NULL) {
-            getActionDetectarCirculos()->setEnabled(true);
-            getActionProcesarImagen()->setEnabled(true);
+            else { //si fichero vacio ->opcion cancelar del asistente
+                getCheckUpdatesTimer()->stop();
+                cout << "fichero vacio" << endl;
+            }
+        } else {
+            cout << "Fichero Codificado aun no creado \n Error al leer de Fichero" << endl;
+            if(fich.fail()) cout << "Bit fail activo" << endl;
+            if(fich.eof())  cout << "Bit eof activo" << endl;
+            if(fich.bad())  cout << "Bit bad activo" << endl;
         }
-        getActionAbrirFicheroCorrecto()->setEnabled(false);
-        getPanelOpciones()->iniciarVistaDeteccion();
-        getRestaurarValores()->setText("Restaurar ScrollBar's");
-        getPerspectivaActual()->setText("Deteccion");
-        //connect(getCheckUpdatesTimer(), SIGNAL(timeout()), this, SLOT(checkFicheroTemporalCreado()));
-        connect(getPanelOpciones()->getCannyThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
-        connect(getPanelOpciones()->getAccumulatorThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
-        connect(getPanelOpciones()->getHoughLinesP(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
+        fich.close();
     }
-}
 
-void CAplicacion::slotCambiarTextEliminarAnadirLinea() {
-    if(getCheckEliminarAnadirLinea()->isChecked())
-        getTextAnadirEliminar()->setText("Eliminar Lineas");
-    else
-        getTextAnadirEliminar()->setText("Añadir Lineas");
-}
-
-//get y sets
-QString CAplicacion::getPathImagenActual() {
-    return pathImagenActual_;
-}
-
-void CAplicacion::setPathImagenActual(QString path) {
-    pathImagenActual_ = path;
-}
-
-//VENTANA
-CLabel* CAplicacion::getPanelPrincipal() {
-    return panelPrincipal_;
-}
-
-CLabel* CAplicacion::getPanelComparacion() {
-    return panelComparacion_;
-}
-
-CPanelOpciones* CAplicacion::getPanelOpciones() {
-    return panelOpciones_;
-}
-
-CLabel* CAplicacion::getPanelHistograma() {
-    return panelHistograma_;
-}
-
-QGridLayout* CAplicacion::getLayout() {
-    return layout_;
-}
-
-QMenuBar* CAplicacion::getMenuBar() {
-    return menu_;
-}
-
-QMenu* CAplicacion::getMenuArchivo() {
-    return menuArchivo_;
-}
-
-QMenu* CAplicacion::getMenuDeteccion() {
-    return menuEditar_;
-}
-
-QMenu* CAplicacion::getMenuCorreccion() {
-    return menuCorreccion_;
-}
-
-QMenu* CAplicacion::getMenuFiltro() {
-    return menuFiltro_;
-}
-
-QToolBar* CAplicacion::getToolBar() {
-    return toolbar_;
-}
-
-CLineEdit* CAplicacion::getNodoInicio() {
-    return nodo_inicio;
-}
-
-CLineEdit* CAplicacion::getNodosFinales() {
-    return nodos_finales;
-}
-
-QComboBox* CAplicacion::getAlfabetoActual() {
-    return alfabeto_;
-}
-
-QAction* CAplicacion::getActionAbrirImagen() {
-    return actionAbrirImagen_;
-}
-
-QAction* CAplicacion::getActionAbrirFichero() {
-    return actionAbrirFichero_;
-}
-
-QAction* CAplicacion::getActionCrearNuevoFichero() {
-    return actionCrearNuevoFichero_;
-}
-
-QAction* CAplicacion::getActionAbout() {
-    return actionAbout_;
-}
-
-QAction* CAplicacion::getActionAboutQT() {
-    return actionAboutQT_;
-}
-
-QAction* CAplicacion::getActionSalir() {
-    return actionSalir_;
-}
-
-QAction* CAplicacion::getActionDetectarCirculos() {
-    return actionDetectarCirculos_;
-}
-
-QAction* CAplicacion::getActionDetectarLineas() {
-    return actionDetectarLineas_;
-}
-
-QAction* CAplicacion::getActionDetectarTransiciones() {
-    return actionDetectarTransiciones_;
-}
-
-QAction* CAplicacion::getActionCodificarImagen() {
-    return actionCodificarImagen_;
-}
-
-QAction* CAplicacion::getActionProcesarImagen() {
-    return actionProcesarImagen_;
-}
-
-QAction* CAplicacion::getActionCargarImagenOriginal() {
-    return actionCargarImagenOriginal_;
-}
-
-QAction* CAplicacion::getActionAbrirFicheroCorrecto() {
-    return actionAbrirFicheroCorrecto_;
-}
-
-QAction* CAplicacion::getActionFiltroGray() {
-    return actionFiltroGray_;
-}
-
-QAction* CAplicacion::getActionFiltroGaussiano() {
-    return actionFiltroGaussiano_;
-}
-
-QAction* CAplicacion::getActionFiltroMediana() {
-    return actionFiltroMediana_;
-}
-
-QAction* CAplicacion::getActionFiltroSobel() {
-    return actionFiltroSobel_;
-}
-
-QAction* CAplicacion::getActionFiltroLaplaciano() {
-    return actionFiltroLaplaciano_;
-}
-
-QAction* CAplicacion::getActionHistograma() {
-    return actionHistograma_;
-}
-
-QAction* CAplicacion::getActionPanelPrincipal() {
-    return actionPanelPrincipal_;
-}
-
-COperacionesImagen* CAplicacion::getOperacionesImagen() {
-    return operacionesImagen_;
-}
-
-QTextEdit* CAplicacion::getTextEditCrearFichero() {
-    return textEditCrearFichero_;
-}
-
-QTimer* CAplicacion::getCheckUpdatesTimer() {
-    return checkUpdatesTimer_;
-}
-
-CPushButton* CAplicacion::getRestaurarValores() {
-    return restaurarValores_;
-}
-
-CPushButton* CAplicacion::getCambiarPerspectiva() {
-    return cambiarPerspectiva_;
-}
-
-CLabel* CAplicacion::getPerspectivaActual() {
-    return perspectivaActual_;
-}
-
-Mat CAplicacion::mostrarCirculosFinales(Mat resultado) {
-    //nodos originales que no se quieran eliminar
-    for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
-        Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
-        int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
-        //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
-        //punto central
-        circle( resultado, center, 3, Scalar(0,255,0), -1, 8, 0 );
-        //circunferencia
-        circle( resultado, center, radius, Scalar(0,0,255), 3, 8, 0 );
-
-        ///Dibujamos el num del circulo en la imagen
-        stringstream ss;
-        ss << i;
-        string text = ss.str();
-        int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
-        double fontScale = 1;
-        int thickness = 2;
-        cv::putText(resultado, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
+    void CAplicacion::slotRestaurarValores() {
+        if(getRestaurarValores()->text() == "Cargar Fichero Correcto") {
+            slotAbrirFicheroCorrecto();
+            setStyleSheet("background-color: black");
+        } else {
+            getPanelOpciones()->getCannyThresHold()->setValue(CANNYTHRESHOLD);
+            getPanelOpciones()->getAccumulatorThresHold()->setValue(ACCUMULATORTHRESHOLD);
+            getPanelOpciones()->getHoughLinesP()->setValue(HOUGHLINESP);
+        }
     }
-    return resultado;
-}
 
-QWidget* CAplicacion::getVentanaCrearFichero() {
-    return ventanaCrearFichero_;
-}
+    void CAplicacion::slotCambiarPerspectiva() {
+        if(getPerspectivaActual()->text() == "Deteccion") {
+            inicializarVentanaAplicacionCorreccion();
+            getPanelOpciones()->iniciarVistaCorreccion();
+            getRestaurarValores()->setText("Cargar Fichero Correcto");
+            getPerspectivaActual()->setText("Correccion");
+            getActionDetectarLineas()->setEnabled(false);
+            getActionDetectarCirculos()->setEnabled(false);
+            getActionDetectarTransiciones()->setEnabled(false);
+            getActionAbrirFicheroCorrecto()->setEnabled(true);
+        } else {
+            inicializarVentanaAplicacionDeteccion();
+            if(getPathImagenActual() != NULL) {
+                getActionDetectarCirculos()->setEnabled(true);
+                getActionProcesarImagen()->setEnabled(true);
+            }
+            getActionAbrirFicheroCorrecto()->setEnabled(false);
+            getPanelOpciones()->iniciarVistaDeteccion();
+            getRestaurarValores()->setText("Restaurar ScrollBar's");
+            getPerspectivaActual()->setText("Deteccion");
+            //connect(getCheckUpdatesTimer(), SIGNAL(timeout()), this, SLOT(checkFicheroTemporalCreado()));
+            connect(getPanelOpciones()->getCannyThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
+            connect(getPanelOpciones()->getAccumulatorThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
+            connect(getPanelOpciones()->getHoughLinesP(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
+        }
+    }
 
-CAsistenteCodificacion* CAplicacion::getAsistente() {
-    return asistente_;
-}
+    void CAplicacion::slotCambiarTextEliminarAnadirLinea() {
+        if(getCheckEliminarAnadirLinea()->isChecked())
+            getTextAnadirEliminar()->setText("Eliminar Lineas");
+        else
+            getTextAnadirEliminar()->setText("Añadir Lineas");
+    }
 
-QCheckBox* CAplicacion::getCheckEliminarAnadirLinea() {
-    return checkEliminarAnadirLinea_;
-}
+    //get y sets
+    QString CAplicacion::getPathImagenActual() {
+        return pathImagenActual_;
+    }
 
-CLabel* CAplicacion::getTextAnadirEliminar() {
-    return textEliminarAnadirLinea_;
-}
+    void CAplicacion::setPathImagenActual(QString path) {
+        pathImagenActual_ = path;
+    }
 
-bool CAplicacion::getLineaAceptada() {
-    return lineaAceptada_;
-}
+    //VENTANA
+    CLabel* CAplicacion::getPanelPrincipal() {
+        return panelPrincipal_;
+    }
 
-Point* CAplicacion::getPuntoInicioNuevaLinea() {
-    return puntoInicioNuevaLinea_;
-}
+    CLabel* CAplicacion::getPanelComparacion() {
+        return panelComparacion_;
+    }
 
-bool CAplicacion::getDibujadaTransiciones() {
-    return dibujadaTransiciones_;
-}
+    CPanelOpciones* CAplicacion::getPanelOpciones() {
+        return panelOpciones_;
+    }
+
+    CLabel* CAplicacion::getPanelHistograma() {
+        return panelHistograma_;
+    }
+
+    QGridLayout* CAplicacion::getLayout() {
+        return layout_;
+    }
+
+    QMenuBar* CAplicacion::getMenuBar() {
+        return menu_;
+    }
+
+    QMenu* CAplicacion::getMenuArchivo() {
+        return menuArchivo_;
+    }
+
+    QMenu* CAplicacion::getMenuDeteccion() {
+        return menuEditar_;
+    }
+
+    QMenu* CAplicacion::getMenuCorreccion() {
+        return menuCorreccion_;
+    }
+
+    QMenu* CAplicacion::getMenuFiltro() {
+        return menuFiltro_;
+    }
+
+    QToolBar* CAplicacion::getToolBar() {
+        return toolbar_;
+    }
+
+    CLineEdit* CAplicacion::getNodoInicio() {
+        return nodo_inicio;
+    }
+
+    CLineEdit* CAplicacion::getNodosFinales() {
+        return nodos_finales;
+    }
+
+    QComboBox* CAplicacion::getAlfabetoActual() {
+        return alfabeto_;
+    }
+
+    QAction* CAplicacion::getActionAbrirImagen() {
+        return actionAbrirImagen_;
+    }
+
+    QAction* CAplicacion::getActionAbrirFichero() {
+        return actionAbrirFichero_;
+    }
+
+    QAction* CAplicacion::getActionCrearNuevoFichero() {
+        return actionCrearNuevoFichero_;
+    }
+
+    QAction* CAplicacion::getActionAbout() {
+        return actionAbout_;
+    }
+
+    QAction* CAplicacion::getActionAboutQT() {
+        return actionAboutQT_;
+    }
+
+    QAction* CAplicacion::getActionSalir() {
+        return actionSalir_;
+    }
+
+    QAction* CAplicacion::getActionDetectarCirculos() {
+        return actionDetectarCirculos_;
+    }
+
+    QAction* CAplicacion::getActionDetectarLineas() {
+        return actionDetectarLineas_;
+    }
+
+    QAction* CAplicacion::getActionDetectarTransiciones() {
+        return actionDetectarTransiciones_;
+    }
+
+    QAction* CAplicacion::getActionCodificarImagen() {
+        return actionCodificarImagen_;
+    }
+
+    QAction* CAplicacion::getActionProcesarImagen() {
+        return actionProcesarImagen_;
+    }
+
+    QAction* CAplicacion::getActionCargarImagenOriginal() {
+        return actionCargarImagenOriginal_;
+    }
+
+    QAction* CAplicacion::getActionAbrirFicheroCorrecto() {
+        return actionAbrirFicheroCorrecto_;
+    }
+
+    QAction* CAplicacion::getActionFiltroGray() {
+        return actionFiltroGray_;
+    }
+
+    QAction* CAplicacion::getActionFiltroGaussiano() {
+        return actionFiltroGaussiano_;
+    }
+
+    QAction* CAplicacion::getActionFiltroMediana() {
+        return actionFiltroMediana_;
+    }
+
+    QAction* CAplicacion::getActionFiltroSobel() {
+        return actionFiltroSobel_;
+    }
+
+    QAction* CAplicacion::getActionFiltroLaplaciano() {
+        return actionFiltroLaplaciano_;
+    }
+
+    QAction* CAplicacion::getActionHistograma() {
+        return actionHistograma_;
+    }
+
+    QAction* CAplicacion::getActionPanelPrincipal() {
+        return actionPanelPrincipal_;
+    }
+
+    COperacionesImagen* CAplicacion::getOperacionesImagen() {
+        return operacionesImagen_;
+    }
+
+    QTextEdit* CAplicacion::getTextEditCrearFichero() {
+        return textEditCrearFichero_;
+    }
+
+    QTimer* CAplicacion::getCheckUpdatesTimer() {
+        return checkUpdatesTimer_;
+    }
+
+    CPushButton* CAplicacion::getRestaurarValores() {
+        return restaurarValores_;
+    }
+
+    CPushButton* CAplicacion::getCambiarPerspectiva() {
+        return cambiarPerspectiva_;
+    }
+
+    CLabel* CAplicacion::getPerspectivaActual() {
+        return perspectivaActual_;
+    }
+
+    Mat CAplicacion::mostrarCirculosFinales(Mat resultado) {
+        //nodos originales que no se quieran eliminar
+        for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
+            Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
+            int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
+            //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
+            //punto central
+            circle( resultado, center, 3, Scalar(0,255,0), -1, 8, 0 );
+            //circunferencia
+            circle( resultado, center, radius, Scalar(0,0,255), 3, 8, 0 );
+
+            ///Dibujamos el num del circulo en la imagen
+            stringstream ss;
+            ss << i;
+            string text = ss.str();
+            int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
+            double fontScale = 1;
+            int thickness = 2;
+            cv::putText(resultado, text, Point(center.x - radius/2, center.y + radius/2), fontFace, fontScale, Scalar::all(255), thickness,8);
+        }
+        return resultado;
+    }
+
+    QWidget* CAplicacion::getVentanaCrearFichero() {
+        return ventanaCrearFichero_;
+    }
+
+    CAsistenteCodificacion* CAplicacion::getAsistente() {
+        return asistente_;
+    }
+
+    QCheckBox* CAplicacion::getCheckEliminarAnadirLinea() {
+        return checkEliminarAnadirLinea_;
+    }
+
+    CLabel* CAplicacion::getTextAnadirEliminar() {
+        return textEliminarAnadirLinea_;
+    }
+
+    bool CAplicacion::getLineaAceptada() {
+        return lineaAceptada_;
+    }
+
+    Point* CAplicacion::getPuntoInicioNuevaLinea() {
+        return puntoInicioNuevaLinea_;
+    }
+
+    bool CAplicacion::getDibujadaTransiciones() {
+        return dibujadaTransiciones_;
+    }
 

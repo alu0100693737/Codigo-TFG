@@ -193,25 +193,26 @@ void COperacionesImagen::codificarDeteccion() {
             auxInicios_ = new vector<int>();
             auxDestinos_= new vector<int>();
             auxLetras_= new vector<char>();
-
+            vector<CContourWithData> contornos = detectarTransiciones()->getContornosEncontrados();
+            vector<char> letras = detectarTransiciones()->getLetrasEncontradas();
             for(unsigned int i = 0; i < transitions.size(); i++) {
                 //cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
-                for(int k = 0; k < detectarTransiciones()->getContornosEncontrados().size(); k++) {
-                    if(detectarLineas()->distanciaEuclidea(auxpuntosMedios[i].x, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x) < 70) {
-                        if(detectarLineas()->distanciaEuclidea(auxpuntosMedios[i].y, detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y) < 60) {
+                for(int k = 0; k < contornos.size(); k++) {
+                    if(detectarLineas()->distanciaEuclidea(auxpuntosMedios[i].x, contornos[k].dimensionContorno.x) < 70) {
+                        if(detectarLineas()->distanciaEuclidea(auxpuntosMedios[i].y, contornos[k].dimensionContorno.y) < 60) {
                             cout << "Transicion numero " << i << " " << transitions.at(i) << endl;
                             cout << "Punto medio " << transitions.at(i) << " " << auxpuntosMedios.at(i) << endl;
-                            cout << "Entornos encontrados " << detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.x  << "  " << detectarTransiciones()->getContornosEncontrados()[k].dimensionContorno.y << endl;
-                            cout << "Letra: " << detectarTransiciones()->getLetrasEncontradas()[k] << endl;
+                            cout << "Entornos encontrados " << contornos[k].dimensionContorno.x  << "  " << contornos[k].dimensionContorno.y << endl;
+                            cout << "Letra: " << letras[k] << endl;
 
                             //fs << transitions.at(i).x << " " << transitions.at(i).y << " " << detectarTransiciones()->getLetrasEncontradas()[k] << endl;
 
                             auxInicios_->push_back(transitions.at(i).x);
                             auxDestinos_->push_back(transitions.at(i).y);
-                            auxLetras_->push_back(detectarTransiciones()->getLetrasEncontradas()[k]);
+                            auxLetras_->push_back(letras[k]);
 
-                            detectarTransiciones()->getContornosEncontrados().erase(detectarTransiciones()->getContornosEncontrados().begin() + k);
-                            detectarTransiciones()->getLetrasEncontradas().erase(detectarTransiciones()->getLetrasEncontradas().begin() + k);
+                            contornos.erase(contornos.begin() + k);
+                            letras.erase(letras.begin() + k);
                             k--;
                             break;
                         } else {
@@ -223,25 +224,25 @@ void COperacionesImagen::codificarDeteccion() {
             }
 
             /// Calculamos transiciones al mismo nodo
-            cout << "Quedan " << detectarTransiciones()->getContornosEncontrados().size() << " Transiciones por mirar" << endl;
-            for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
-                cout << "Contorno " << i << " " << detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno << endl;
+            cout << "Quedan " << contornos.size() << " Transiciones por mirar" << endl;
+            for(int i = 0; i < contornos.size(); i++) {
+                cout << "Contorno " << i << " " << contornos[i].dimensionContorno << endl;
             }
 
-            for(int i = 0; i < detectarTransiciones()->getContornosEncontrados().size(); i++) {
+            for(int i = 0; i < contornos.size(); i++) {
                 for(int j = 0; j < detectarCirculos()->getCirculosDetectados().size(); j++) {
-                    if(detectarLineas()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.x, detectarCirculos()->getCirculosDetectados()[j][0]) < 30)
-                        if((detectarLineas()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarCirculos()->getCirculosDetectados()[j][1]) < 140) && (detectarLineas()->distanciaEuclidea(detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno.y, detectarCirculos()->getCirculosDetectados()[j][1] > 20))) {
-                            cout << " contorno " << detectarTransiciones()->getContornosEncontrados()[i].dimensionContorno << endl;
-                            cout << "Transicion a si mismo del nodo " << j << " con letra " << detectarTransiciones()->getLetrasEncontradas()[i] << endl;
+                    if(detectarLineas()->distanciaEuclidea(contornos[i].dimensionContorno.x, detectarCirculos()->getCirculosDetectados()[j][0]) < 30)
+                        if((detectarLineas()->distanciaEuclidea(contornos[i].dimensionContorno.y, detectarCirculos()->getCirculosDetectados()[j][1]) < 140) && (detectarLineas()->distanciaEuclidea(contornos[i].dimensionContorno.y, detectarCirculos()->getCirculosDetectados()[j][1] > 20))) {
+                            cout << " contorno " << contornos[i].dimensionContorno << endl;
+                            cout << "Transicion a si mismo del nodo " << j << " con letra " << letras[i] << endl;
 
                             auxInicios_->push_back(j);
                             auxDestinos_->push_back(j);
-                            auxLetras_->push_back(detectarTransiciones()->getLetrasEncontradas()[i]);
+                            auxLetras_->push_back(letras[i]);
 
                             //fs << j << " " << j << " " << detectarTransiciones()->getLetrasEncontradas()[i] << endl;
-                            detectarTransiciones()->getContornosEncontrados().erase(detectarTransiciones()->getContornosEncontrados().begin() + i);
-                            detectarTransiciones()->getLetrasEncontradas().erase(detectarTransiciones()->getLetrasEncontradas().begin() + i);
+                            contornos.erase(contornos.begin() + i);
+                            letras.erase(letras.begin() + i);
                             i--;
                             break;
                         }
@@ -262,8 +263,8 @@ void COperacionesImagen::codificarDeteccion() {
                     }
                 }}}*/
             //fs.close();
-            detectarTransiciones()->getContornosEncontrados().clear();
-            detectarTransiciones()->getLetrasEncontradas().clear();
+           contornos.clear();
+           letras.clear();
 
             cout << detectarCirculos()->getCirculosDetectados().size() << endl;
             //cout << "Nodo inicial " << nodoInicial << " nodosFinales " << nodosFinales << endl;
