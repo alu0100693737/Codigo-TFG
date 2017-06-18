@@ -7,7 +7,7 @@
 //                                                           //
 //               Fecha: 05/06/2017                           //
 ///////////////////////////////////////////////////////////////
-
+/*
 #include "CAplicacion.h"
 int main(int argc,char* argv[]) {
     QApplication app(argc,argv);
@@ -18,5 +18,4 @@ int main(int argc,char* argv[]) {
 
     return app.exec();
 }
-
-
+*/

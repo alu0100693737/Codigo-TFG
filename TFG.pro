@@ -29,7 +29,10 @@ SOURCES += \
     CAsistenteCodificacion.cpp \
     CLineEdit.cpp \
     CCheckBox.cpp \
-    CPushButton.cpp
+    CPushButton.cpp \
+    CNFA.cpp \
+    CEstado.cpp \
+    main.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -88,7 +91,8 @@ DISTFILES += \
     release/icon.ico \
     release/transition.png \
     grafo.png \
-    release/icon.ico
+    release/icon.ico \
+    prueba.txt.txt
 
 HEADERS += \
     COperacionesImagen.h \
@@ -103,7 +107,9 @@ HEADERS += \
     CAsistenteCodificacion.h \
     CLineEdit.h \
     CCheckBox.h \
-    CPushButton.h
+    CPushButton.h \
+    CNFA.h \
+    CEstado.h
 
 
 RC_ICONS = release/icon.ico \

@@ -221,12 +221,25 @@ void CAsistenteCodificacion::slotGuardarComoFichero() {
                         fs << 1 << " ";
                     else
                         fs << 0 << " ";
-                    fs << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << " ";
+
+                    //Utilizado para saber el numero de transiciones de ese nodo
+                    QString text1;
+                    text1.append(QString::fromStdString(getLetras()->at(i)->text().toStdString()) + " " + QString::fromStdString(getDestinos()->at(i)->text().toStdString()) + " ");
+                    vector<QString> textos;
+                    textos.push_back(text1);
+                    //fs << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << " ";
                     for(int j = i + 1; j < getInicios()->size(); j++) {
                         if(getInicios()->at(i)->text() == getInicios()->at(j)->text()) {
-                            fs << getDestinos()->at(j)->text().toStdString() << " " << getLetras()->at(j)->text().toStdString() << " ";
+                            QString text2;
+                            text2.append(QString::fromStdString(getLetras()->at(j)->text().toStdString()) + " " + QString::fromStdString(getDestinos()->at(j)->text().toStdString()) + " ");
+                            textos.push_back(text2);
+                            //fs << getDestinos()->at(j)->text().toStdString() << " " << getLetras()->at(j)->text().toStdString() << " ";
                             marcados.push_back(j);
                         }
+                    }
+                    fs << textos.size() << " ";
+                    for(int k = 0; k < textos.size(); k++) {
+                        fs << textos.at(k).toStdString();
                     }
                     fs << endl;
                 }
@@ -249,7 +262,8 @@ void CAsistenteCodificacion::slotGuardarComoFichero() {
         }
         ///Crea una nueva ventana con la codificacion deseada por si se desea consultar
         ventanaInfoCodificacion(text);
-        slotCancelar();
+        //slotCancelar();
+        setStyleSheet("background-color: rgba(220, 220, 220, 1);");
     }   else
         setStyleSheet("background-color: rgba(220, 220, 220, 1);");
 

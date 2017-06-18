@@ -90,6 +90,7 @@ private:
     QAction* actionDetectarTransiciones_;
     /// Accion Codificar Imagen del Submenu Editar
     QAction* actionCodificarImagen_;
+    QAction* actionConfirmarImagen_;
     /// Accion Procesar Imagen del Submenu Editar. ProcesarImagen = DetectarLineas() + DetectarCirculos() + DetectarTransiciones() + CodificarImagen()
     QAction* actionProcesarImagen_;
     /// Accion Cargar Imagen imagenPanelPrincipal_ . Submenu Editar
@@ -132,7 +133,9 @@ private:
     CLabel* textEliminarAnadirLinea_;
     QCheckBox* checkEliminarAnadirLinea_; //off para eliminar, on añadir
     bool lineaAceptada_;
+    bool sentidoAceptado_;
     Point* puntoInicioNuevaLinea_;
+    Point* puntoInicioSentidoAceptado_;
 
     QWidget* ventanaCrearFichero_;
 
@@ -392,6 +395,8 @@ public:
      * @return
      * QAction
      */
+    QAction* getActionConfirmarImagen();
+
     QAction* getActionProcesarImagen();
     /**
      * @brief
@@ -470,7 +475,10 @@ public:
     QCheckBox* getCheckEliminarAnadirLinea();
 
     bool getLineaAceptada();
+    bool getSentidoAceptado();
+
     Point* getPuntoInicioNuevaLinea();
+    Point* getPuntoInicioSentidoAceptado();
 
     Mat mostrarCirculosFinales(Mat imagen);
 
@@ -552,6 +560,9 @@ public slots:
      * @brief
      * Metodo Slot que Carga la Imagen Original de pathImagenActual_
      */
+
+    void slotConfirmarImagen();
+
     void slotCargarImagenOriginal();
 
     /**

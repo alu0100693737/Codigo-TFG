@@ -155,7 +155,7 @@ void COperacionesImagen::codificarDeteccion() {
         ///Confirmamos el numero de nodos
 
         int aux = detectarCirculos()->getCirculosDetectados().size();
-        if (ventanaConfirmarNodos(aux)) { //numero de nodos confirmados, miramos ahora las lineas
+        //if (ventanaConfirmarNodos(aux)) { //numero de nodos confirmados, miramos ahora las lineas
             //cout << " el numero de lineas detectadas es " << getLineasDetectadas().size() << endl;
             //calculamos punto medio entre los circulos que tienen una transicion para descubrir posteriornente su letra correspondiente
             for(int i = 0; i < detectarLineas()->getLineasDetectadas().size(); i++)
@@ -181,8 +181,8 @@ void COperacionesImagen::codificarDeteccion() {
                                             //calculamos punto medio entre los circulos que tienen una transicion para descubrir posteriornente su letra correspondiente
                                             //cout << "Encontrada una cercania de entrada entre linea" << i << " y circulo " << k << endl;
                                         }
-        } else
-            cout << "Num de nodos no coincidente" << endl;
+        //} else
+          //  cout << "Num de nodos no coincidente" << endl;
 
 
         ///Para las transiciones que hemos encontrado, hacemos la busqueda de letras o
