@@ -18,7 +18,7 @@ CLabel::CLabel() : QLabel() {
 
 CLabel::CLabel(QString text, bool style) : QLabel() {
     setText(text);
-    setAlignment(Qt::AlignCenter);
+    setAlignment(Qt::AlignAbsolute);
     if(style == true) {
         setStyleSheet("background-color: white; border-style: outset; border-width: 2px; border-radius: 10px; border-color: beige; font: bold 14px; padding: 6px;");
 

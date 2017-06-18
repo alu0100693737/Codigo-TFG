@@ -260,6 +260,7 @@ void CAplicacion::inicializarVentanaAplicacionCorreccion() {
     getLayout()->addWidget(getPanelComparacion(), 0, 2, 3, 2);
     getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 2);
 
+
     setStyleSheet("background-color: black");
 }
 
@@ -284,11 +285,10 @@ void CAplicacion::slotAbrirFichero() {
     if(getPerspectivaActual()->text() == "Deteccion")
         slotCambiarPerspectiva();
     getPanelPrincipal()->setText(line);
-    getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
+    getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
     getActionAbrirFicheroCorrecto()->setDisabled(false);
     setStyleSheet("background-color: black");
 }
-
 void CAplicacion::inicializarVentanaAbrirImagen(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode) {
     static bool firstDialog = true;
 
@@ -601,8 +601,10 @@ void CAplicacion::slotCargarImagenOriginal() {
 void CAplicacion::slotAbrirFicheroCorrecto() {
     QString line = ventanaAbrirFichero();
 
-    getPanelComparacion()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
+    getPanelComparacion()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
+
     getPanelComparacion()->setText(line);
+    setStyleSheet("background-color: black;");
 }
 
 void CAplicacion::slotFiltroGray() {

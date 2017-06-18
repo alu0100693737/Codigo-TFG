@@ -196,7 +196,9 @@ void CAsistenteCodificacion::slotGuardarComoFichero() {
                 tr("Documents (*.txt)") );
 
     if( !filename.isNull() ) {
+        if(!filename.endsWith(".txt")) {
         filename.append(".txt");
+        }
         vector<int> marcados;
         // spliteamos nodos finales
         QString str;
