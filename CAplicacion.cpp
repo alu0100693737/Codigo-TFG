@@ -25,9 +25,11 @@ CAplicacion::CAplicacion() {
 
     /// Creamos los Paneles de la Aplicacion y su disposicion
     panelPrincipal_ = new CLabel("Panel Principal", true);
+    //getPanelPrincipal()->setScaledContents(true);
     panelOpciones_ = new CPanelOpciones();
+    //getPanelOpciones()->setScaledContents(true);
     panelHistograma_ = new CLabel("Info Imagen", false);
-    panelComparacion_ = new CLabel("Panel Comparativa", true);
+    panelComparacion_ = new CLabel("", true);
 
     getPanelHistograma()->setStyleSheet("background-color: white; border: 1px solid black");
 
@@ -37,6 +39,7 @@ CAplicacion::CAplicacion() {
     layout_ = new QGridLayout();
 
     perspectivaActual_ = new CLabel("Deteccion", true);
+    getPerspectivaActual()->setAlignment(Qt::AlignCenter);
     cambiarPerspectiva_ = new CPushButton("Cambiar Perspectiva", false);
     restaurarValores_ = new CPushButton("Restaurar ScrollBar's", false);
 
@@ -128,7 +131,7 @@ CAplicacion::CAplicacion() {
     getMenuBar()->setStyleSheet("background-color: white");
 
     setCentralWidget(centralWidget);
-    setMinimumSize(900, 700);
+
     setWindowTitle("Automatas y Lenguajes Formales, DCAFI");
 
     ///Añadimos Toolbar
@@ -158,7 +161,7 @@ CAplicacion::CAplicacion() {
     getNodoInicio()->setFocus();
 
     alfabeto_ = new QComboBox;
-    getAlfabetoActual()->addItem(tr("Alfabeto a, b, c"));
+    getAlfabetoActual()->addItem(tr("Alfabeto a, b, c, d"));
     getAlfabetoActual()->addItem(tr("Alfabeto Numerico"));
 
     checkEliminarAnadirLinea_ = new QCheckBox();
@@ -227,9 +230,14 @@ CAplicacion::~CAplicacion() {}
 void CAplicacion::inicializarVentanaAplicacionDeteccion() {
     setStyleSheet("background-color: black");
 
+    getPanelComparacion()->setAlignment(Qt::AlignCenter);
+    getPanelPrincipal()->setAlignment(Qt::AlignCenter);
+    getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
+
     //getLayout()->removeWidget(getPanelComparacion());
     //getPanelComparacion()->clear();
     getLayout()->addWidget(getPanelComparacion(), 0, 0, 3, 4);
+
     getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 4);
     getLayout()->addWidget (getPanelOpciones(), 4, 0, 1, 3);
 
@@ -250,7 +258,7 @@ void CAplicacion::inicializarVentanaAplicacionDeteccion() {
 
     layout1->setSpacing(10);
     getLayout()->addLayout(layout1, 4, 3, 1, 1);
-    //getLayout()->addWidget (getPanelHistograma(), 4, 4, 1, 1);
+
 }
 
 void CAplicacion::inicializarVentanaAplicacionCorreccion() {
@@ -259,7 +267,8 @@ void CAplicacion::inicializarVentanaAplicacionCorreccion() {
 
     getLayout()->addWidget(getPanelComparacion(), 0, 2, 3, 2);
     getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 2);
-
+    getPanelComparacion()->setAlignment(Qt::AlignAbsolute);
+    getPanelPrincipal()->setAlignment(Qt::AlignAbsolute);
 
     setStyleSheet("background-color: black");
 }
@@ -335,11 +344,17 @@ bool CAplicacion::loadFile(const QString &fileName) {
         }
 
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+        getPanelPrincipal()->clear();
+
+        inicializarVentanaAplicacionDeteccion();
+        adjustSize();
 
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
+
+        resize(aux.dims,height());
+
         getActionDetectarCirculos()->setDisabled(false);
         getActionProcesarImagen()->setDisabled(false);
-
         getActionCargarImagenOriginal()->setDisabled(false);
         getActionFiltroGaussiano()->setDisabled(false);
         getActionFiltroGray()->setDisabled(false);
@@ -517,18 +532,18 @@ void CAplicacion::slotDetectarLineas() {
         mensaje.setIcon(QMessageBox::Warning);
         mensaje.exec();
     } else {
-    Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
-    Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-    getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
+        Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
+        Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+        getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
 
-    for( size_t i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
-        Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
-        line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
-    }
-    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+        for( size_t i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
+            Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
+            line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+        }
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
 
-    getActionDetectarLineas()->setDisabled(true);
-    getActionDetectarTransiciones()->setDisabled(false);
+        getActionDetectarLineas()->setDisabled(true);
+        getActionDetectarTransiciones()->setDisabled(false);
     }
 }
 
@@ -538,7 +553,7 @@ void CAplicacion::slotDetectarTransiciones() {
     Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
     Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
 
-    getOperacionesImagen()->detectarTransiciones()->ejecutar(aux);
+    getOperacionesImagen()->detectarTransiciones()->ejecutar(aux, getAlfabetoActual()->currentIndex());
 
     for (size_t i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
         cv::rectangle(resultado,                            // draw rectangle on original image
@@ -571,23 +586,24 @@ void CAplicacion::slotCodificarImagen() {
 
 void CAplicacion::slotProcesarImagen() {
 
-        slotCargarImagenOriginal(); //evitar doble lectura cuando los campos nodos no estan rellenos
-        slotDetectarCirculos();
-        slotDetectarLineas();
-        slotDetectarTransiciones();
-        if(getNodoInicio()->text().isEmpty() || getNodosFinales()->text().isEmpty()) {
-            QMessageBox mensaje;
-            mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \n\nPulse a continuación el botón Codificar Imagen.");
-            mensaje.setIcon(QMessageBox::Warning);
-            mensaje.exec();
-            getActionProcesarImagen()->setEnabled(true);
-        } else {
-            slotCodificarImagen();
-        }
+    slotCargarImagenOriginal(); //evitar doble lectura cuando los campos nodos no estan rellenos
+    slotDetectarCirculos();
+    slotDetectarLineas();
+    slotDetectarTransiciones();
+    if(getNodoInicio()->text().isEmpty() || getNodosFinales()->text().isEmpty()) {
+        QMessageBox mensaje;
+        mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \n\nPulse a continuación el botón Codificar Imagen.");
+        mensaje.setIcon(QMessageBox::Warning);
+        mensaje.exec();
+        getActionProcesarImagen()->setEnabled(true);
+    } else {
+        slotCodificarImagen();
+    }
 
 }
 
 void CAplicacion::slotCargarImagenOriginal() {
+    dibujadaTransiciones_ = false;
     if(getPerspectivaActual()->text() == "Correccion") {
         slotCambiarPerspectiva();
     }
@@ -650,54 +666,54 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         //getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
 
-        Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(resultado)));
+        //Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(aux)));
 
         //Es circulos y lineas, calculamos ambos
     } else if (getActionDetectarTransiciones()->isEnabled()) {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
 
-        Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
-        resultado = mostrarCirculosFinales(resultado);
+        //Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+        aux = mostrarCirculosFinales(aux);
 
-        aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+        //aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
 
         //Dibujamos lineas
         for( size_t i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
             Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
-            line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+            line( aux, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
         }
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
         //Tenemos circulos, lineas y transiciones
     } else if (getActionCodificarImagen()->isEnabled()) {
 
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+        //Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
 
         //Dibujamos circulos
-        resultado = mostrarCirculosFinales(resultado);
+        aux = mostrarCirculosFinales(aux);
 
-        aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
+        //aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+        //getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
 
         //Dibujamos lineas
         for( size_t i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
             Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
-            line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+            line( aux, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
         }
 
-        aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        getOperacionesImagen()->detectarTransiciones()->ejecutar(aux);
+        Mat resultado = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+        getOperacionesImagen()->detectarTransiciones()->ejecutar(resultado, getAlfabetoActual()->currentIndex());
 
         //Dibujar Transiciones
         for (size_t i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
-            cv::rectangle(resultado,                            // draw rectangle on original image
+            cv::rectangle(aux,                            // draw rectangle on original image
                           getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
                           cv::Scalar(0, 255, 0),                        // green
                           2);
         }
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
     } else {
         cout << "Error!, Debe cargar una imagen previamente " << endl;
     }
@@ -781,6 +797,7 @@ void CAplicacion::slotConfirmarImagen() {
     getAsistente()->show();
     //slotCambiarPerspectiva();
     getCheckUpdatesTimer()->start(1000);
+    dibujadaTransiciones_ = false;
 }
 
 void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
@@ -1144,6 +1161,7 @@ void CAplicacion::slotCambiarPerspectiva() {
             getActionProcesarImagen()->setEnabled(true);
 
         }
+        getPanelPrincipal()->clear();
         getActionAbrirFicheroCorrecto()->setEnabled(false);
         getActionConfirmarImagen()->setEnabled(false);
         getPanelOpciones()->iniciarVistaDeteccion();

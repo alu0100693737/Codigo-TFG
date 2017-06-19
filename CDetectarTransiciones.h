@@ -48,7 +48,7 @@ public:
      * @param image Imagen a detectar
      * @return Imagen resultado de la deteccion
      */
-    bool ejecutar(Mat image);
+    bool ejecutar(Mat image, int opcion);
 
     /**
      * @brief
