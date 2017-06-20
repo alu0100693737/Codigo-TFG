@@ -132,7 +132,7 @@ CAplicacion::CAplicacion() {
 
     setCentralWidget(centralWidget);
 
-    setWindowTitle("Automatas y Lenguajes Formales, DCAFI");
+    setWindowTitle("DCAFI");
 
     ///Añadimos Toolbar
     toolbar_ = new QToolBar(this);
@@ -471,7 +471,7 @@ void CAplicacion::slotCrearNuevoFichero() {
     ventanaCrearFichero_ = new QWidget(); QGridLayout* layout = new QGridLayout();
 
     textEditCrearFichero_ = new QTextEdit();
-    getTextEditCrearFichero()->setPlaceholderText("6 \n 5 \n 0 2 0 b 2 a 4\n 1 5 1 a 3 5 b ");
+    getTextEditCrearFichero()->setPlaceholderText("4 \n 2 \n 1 0 2 a 2 b 1 \n 2 0 2 b 3 a 2 \n 3 1 2 a 0 b 1\n");
     getTextEditCrearFichero()->setFontWeight(14);
     getTextEditCrearFichero()->setStyleSheet("background-color: white");
     getTextEditCrearFichero()->setFixedWidth(350);
@@ -1152,6 +1152,7 @@ void CAplicacion::slotCambiarPerspectiva() {
         getActionDetectarCirculos()->setEnabled(false);
         getActionDetectarTransiciones()->setEnabled(false);
         getActionCodificarImagen()->setEnabled(false);
+        getActionProcesarImagen()->setEnabled(false);
         getActionAbrirFicheroCorrecto()->setEnabled(true);
         getActionConfirmarImagen()->setEnabled(false);
     } else {
@@ -1159,7 +1160,6 @@ void CAplicacion::slotCambiarPerspectiva() {
         if(getPathImagenActual() != NULL) {
             getActionDetectarCirculos()->setEnabled(true);
             getActionProcesarImagen()->setEnabled(true);
-
         }
         getPanelPrincipal()->clear();
         getActionAbrirFicheroCorrecto()->setEnabled(false);
