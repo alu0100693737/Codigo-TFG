@@ -1111,13 +1111,14 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         line += "\n";
                     }
                     if(getPerspectivaActual()->text() == "Deteccion") {
-                        cout << "HEYS" << endl;
                         slotCambiarPerspectiva();
                     }
-                    cout << "HOLA " << endl;
+
                     /*inicializarVentanaAplicacionCorreccion();*
             getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
-            */getPanelPrincipal()->setText(line);
+            */      getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
+
+                    getPanelPrincipal()->setText(line);
                     getCheckUpdatesTimer()->stop();
                 }
             }

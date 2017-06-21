@@ -206,7 +206,6 @@ void CAsistenteCodificacion::slotGuardarComoFichero() {
 
         str = QString::fromStdString(getNodosFinales());
         list = str.split(QRegExp("\\s+"));
-    cout << "Antes " << getInicios()->size() << endl;
         //Si se quieren añadir transiciones nuevas
         if(getAnadir()->text() != "") {
             QStringList list1 = getAnadir()->text().split(QRegExp("\\s+"), QString::SkipEmptyParts);
@@ -221,27 +220,26 @@ void CAsistenteCodificacion::slotGuardarComoFichero() {
                         cout << list1[i].toLocal8Bit().constData() << endl;
                 }
                 for(int i = 0; i < list1.size(); i++) {
-                    cout << "List tiene " << list1.size() << endl;
-                    cout << list1[i].toStdString() << endl;
                     getInicios()->push_back(new CLineEdit(list1[i]));
                     i++;
-                    cout << list1[i].toStdString() << endl;
                     getDestinos()->push_back(new CLineEdit(list1[i]));
                     i++;
-                    cout << list1[i].toStdString() << endl;
                     getLetras()->push_back(new CLineEdit(list1[i]));
                 }
+            } else {
+                QMessageBox mensaje;
+                mensaje.setText("El campo añadir nueva transición tiene un formato incorrecto.\n Ej: 1 2 b ; 4 2 c ;");
+                mensaje.setIcon(QMessageBox::Information);
+                mensaje.exec();
+
             }
         }
-        cout << "HEYS " << endl;
-cout << "Despues " << getInicios()->size() << endl;
+
         ofstream fs(filename.toStdString());
         fs << getNumNodos() << endl;
         fs << getNodoInicial() << endl;
         //fs << getNodosFinales() << endl;
         for(int i = 0; i < getInicios()->size(); i++) {
-            bool original = false;
-
             if((getCheckBoxBorrar()->size() <= i) || (!getCheckBoxBorrar()->at(i)->isChecked())){
                 std::vector<int>::iterator it;
                 it = std::find (marcados.begin(), marcados.end(), i);
@@ -278,7 +276,6 @@ cout << "Despues " << getInicios()->size() << endl;
         }
         fs.close();
 
-        cout << "TERMINE DE LEER" << endl;
         string text;
         string line;
         ifstream myfile (filename.toStdString());
@@ -292,7 +289,6 @@ cout << "Despues " << getInicios()->size() << endl;
         }
         ///Crea una nueva ventana con la codificacion deseada por si se desea consultar
         ventanaInfoCodificacion(text);
-        //slotCancelar();
         setStyleSheet("background-color: rgba(220, 220, 220, 1);");
     }   else
         setStyleSheet("background-color: rgba(220, 220, 220, 1);");
