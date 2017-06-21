@@ -1,24 +1,22 @@
 #include "CNFA.h"
-
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <queue>
+#include <vector>
 
 using namespace std;
 
-CNFA::CNFA():								//constructor del NFA
+CDFA::CDFA():
              n_estados(0),
              estado_inic(0),
              array_estados(NULL)
              {
 
-            array_estados = new CEstado[n_estados];		//crea los estados del NFA
+            array_estados = new CEstado[n_estados];
              }
 
-
-void CNFA::leer(){				//funcion que lee un NFA desde un fichero
+void CDFA::leer(){				//funcion que lee un NFA desde un fichero
 
      cout << "Introduzca el nombre del fichero: ";
      cin >> archivo;
@@ -33,7 +31,7 @@ void CNFA::leer(){				//funcion que lee un NFA desde un fichero
     if(in.good()){							//si no hubo error de apertura
         in >> n_estados >> estado_inic;
         array_estados = new CEstado[n_estados];
-        cout << n_estados << " " << estado_inic << endl;
+
         for (int i=0; i<n_estados; i++){
             in >> q >> p >> w;
             array_estados[i].set_estado_num(q);
@@ -44,10 +42,7 @@ void CNFA::leer(){				//funcion que lee un NFA desde un fichero
                 alfabeto.insert(e);
                 array_estados[i].set_simbolos(m,e);
                 array_estados[i].set_destino(m,j);
-                array_estados[i].mostrar();
             }
-
-            cout << "HOLA" << endl;
         }
 
         if (!in.eof()){
@@ -60,7 +55,7 @@ void CNFA::leer(){				//funcion que lee un NFA desde un fichero
 
 }
 
-void CNFA::mostrar(){					//funcion que muestra la definicion del NFA como se ve en el fichero
+void CDFA::mostrar(){					//funcion que muestra la definicion del NFA como se ve en el fichero
     if(n_estados == 0)
         cout << "\nCargue primero un DFA" << endl;
     else{
@@ -92,7 +87,7 @@ void CNFA::mostrar(){					//funcion que muestra la definicion del NFA como se ve
 
 }
 
-void CNFA::identificar(){			//funcion que identifica los estados de muerte del NFA
+void CDFA::identificar(){			//funcion que identifica los estados de muerte del NFA
     if(n_estados == 0)
         cout << "\nCargue primero un DFA" << endl;
     else{
@@ -119,7 +114,7 @@ void CNFA::identificar(){			//funcion que identifica los estados de muerte del N
     }
 }
 
-void CNFA::analizar(){			//funcion que analiza una cadena introducida por el usuario y muestra los caminos posibles
+void CDFA::analizar(){			//funcion que analiza una cadena introducida por el usuario y muestra los caminos posibles
     if(n_estados == 0)
         cout << "\nCargue primero un DFA" << endl;
     else{
@@ -224,7 +219,7 @@ void CNFA::analizar(){			//funcion que analiza una cadena introducida por el usu
     }
 }
 
-void CNFA::es_dfa(){
+void CDFA::es_dfa(){
     if(n_estados == 0)
         cout << "\nCargue primero un DFA" << endl;
     else{

@@ -1159,10 +1159,12 @@ void CAplicacion::slotCambiarPerspectiva() {
         getActionDetectarTransiciones()->setEnabled(false);
         getActionCodificarImagen()->setEnabled(false);
         getActionProcesarImagen()->setEnabled(false);
+        getActionCargarImagenOriginal()->setEnabled(false);
         getActionAbrirFicheroCorrecto()->setEnabled(true);
         getActionConfirmarImagen()->setEnabled(false);
     } else {
         inicializarVentanaAplicacionDeteccion();
+        getActionCargarImagenOriginal()->setEnabled(true);
         if(getPathImagenActual() != NULL) {
             getActionDetectarCirculos()->setEnabled(true);
             getActionProcesarImagen()->setEnabled(true);
