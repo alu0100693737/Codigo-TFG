@@ -197,7 +197,7 @@ void CAsistenteCodificacion::slotGuardarComoFichero() {
 
     if( !filename.isNull() ) {
         if(!filename.endsWith(".txt")) {
-        filename.append(".txt");
+            filename.append(".txt");
         }
         vector<int> marcados;
         // spliteamos nodos finales
@@ -206,18 +206,47 @@ void CAsistenteCodificacion::slotGuardarComoFichero() {
 
         str = QString::fromStdString(getNodosFinales());
         list = str.split(QRegExp("\\s+"));
-
+    cout << "Antes " << getInicios()->size() << endl;
+        //Si se quieren añadir transiciones nuevas
+        if(getAnadir()->text() != "") {
+            QStringList list1 = getAnadir()->text().split(QRegExp("\\s+"), QString::SkipEmptyParts);
+            cout << "size " << list1.size() << endl;
+            if((list1.size() % 4 == 0) && (list1.size() > 0)){
+                for(int i = 0; i < list1.size(); i++) {
+                    if(list1[i] == ";") {
+                        list1.removeAt(i);
+                        i--;
+                        cout << "borrando ;" << endl;
+                    } else
+                        cout << list1[i].toLocal8Bit().constData() << endl;
+                }
+                for(int i = 0; i < list1.size(); i++) {
+                    cout << "List tiene " << list1.size() << endl;
+                    cout << list1[i].toStdString() << endl;
+                    getInicios()->push_back(new CLineEdit(list1[i]));
+                    i++;
+                    cout << list1[i].toStdString() << endl;
+                    getDestinos()->push_back(new CLineEdit(list1[i]));
+                    i++;
+                    cout << list1[i].toStdString() << endl;
+                    getLetras()->push_back(new CLineEdit(list1[i]));
+                }
+            }
+        }
+        cout << "HEYS " << endl;
+cout << "Despues " << getInicios()->size() << endl;
         ofstream fs(filename.toStdString());
         fs << getNumNodos() << endl;
         fs << getNodoInicial() << endl;
         //fs << getNodosFinales() << endl;
         for(int i = 0; i < getInicios()->size(); i++) {
-            if((!getCheckBoxBorrar()->at(i)->isChecked())){
+            bool original = false;
+
+            if((getCheckBoxBorrar()->size() <= i) || (!getCheckBoxBorrar()->at(i)->isChecked())){
                 std::vector<int>::iterator it;
                 it = std::find (marcados.begin(), marcados.end(), i);
                 if (it == marcados.end()) {
                     fs << getInicios()->at(i)->text().toStdString() << " ";
-                    //cout << "HY" << getInicios()->at(i)->text().toStdString() << " ";
                     //Considerando si es estado final o no
                     if(list.contains(getInicios()->at(i)->text()))
                         fs << 1 << " ";
@@ -249,13 +278,12 @@ void CAsistenteCodificacion::slotGuardarComoFichero() {
         }
         fs.close();
 
+        cout << "TERMINE DE LEER" << endl;
         string text;
         string line;
         ifstream myfile (filename.toStdString());
-        if (myfile.is_open())
-        {
-            while ( getline (myfile,line) )
-            {
+        if (myfile.is_open()) {
+            while (getline(myfile,line)) {
                 text += line;
                 text += "\n";
                 cout << line << endl;

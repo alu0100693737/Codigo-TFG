@@ -585,21 +585,26 @@ void CAplicacion::slotCodificarImagen() {
 }
 
 void CAplicacion::slotProcesarImagen() {
-
-    slotCargarImagenOriginal(); //evitar doble lectura cuando los campos nodos no estan rellenos
-    slotDetectarCirculos();
-    slotDetectarLineas();
-    slotDetectarTransiciones();
     if(getNodoInicio()->text().isEmpty() || getNodosFinales()->text().isEmpty()) {
         QMessageBox mensaje;
-        mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \n\nPulse a continuación el botón Codificar Imagen.");
+        mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \nRecuerde configurar el alfabeto.");
         mensaje.setIcon(QMessageBox::Warning);
         mensaje.exec();
-        getActionProcesarImagen()->setEnabled(true);
     } else {
-        slotCodificarImagen();
+        slotCargarImagenOriginal(); //evitar doble lectura cuando los campos nodos no estan rellenos
+        slotDetectarCirculos();
+        slotDetectarLineas();
+        slotDetectarTransiciones();
+        if(getNodoInicio()->text().isEmpty() || getNodosFinales()->text().isEmpty()) {
+            QMessageBox mensaje;
+            mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \n\nPulse a continuación el botón Codificar Imagen.");
+            mensaje.setIcon(QMessageBox::Warning);
+            mensaje.exec();
+            getActionProcesarImagen()->setEnabled(true);
+        } else {
+            slotCodificarImagen();
+        }
     }
-
 }
 
 void CAplicacion::slotCargarImagenOriginal() {
@@ -666,8 +671,8 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         //getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
 
-        //Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(aux)));
+        Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(resultado)));
 
         //Es circulos y lineas, calculamos ambos
     } else if (getActionDetectarTransiciones()->isEnabled()) {
