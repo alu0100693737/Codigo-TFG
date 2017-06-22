@@ -30,9 +30,9 @@ SOURCES += \
     CLineEdit.cpp \
     CCheckBox.cpp \
     CPushButton.cpp \
-    CNFA.cpp \
-    CEstado.cpp \
-    main.cpp
+    main.cpp \
+    CDfa.cpp \
+    CEstado.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -108,7 +108,7 @@ HEADERS += \
     CLineEdit.h \
     CCheckBox.h \
     CPushButton.h \
-    CNFA.h \
+    CDfa.h \
     CEstado.h
 
 
