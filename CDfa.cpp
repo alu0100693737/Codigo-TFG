@@ -32,7 +32,7 @@ void CDFA::analizarCadena() {
     int estadoActual = getEstadoInicial();
     int contador = 0; //posicion de la cadena
 
-    vector<Point>* posiblesCandidatos = new vector<Point>();
+   // vector<Point>* posiblesCandidatos = new vector<Point>();
 
     cout << "Estado actual\tEntrada\tSiguiente estado" << endl;
     for(int i = 0; i < strlen(cstr); i++) {

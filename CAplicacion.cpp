@@ -362,6 +362,8 @@ bool CAplicacion::loadFile(const QString &fileName) {
         getActionFiltroMediana()->setDisabled(false);
         getActionFiltroSobel()->setDisabled(false);
         getActionHistograma()->setDisabled(false);
+        //getPanelOpciones()->getAnalizarCadena()->setEnabled(true);
+        //getPanelOpciones()->getSimplificarFichero()->setEnabled(true);
         return true;
     }
 }

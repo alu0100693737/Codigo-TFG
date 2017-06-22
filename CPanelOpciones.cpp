@@ -55,9 +55,10 @@ void CPanelOpciones::iniciarVistaDeteccion() {
     // corregirFichero_ = new CPushButton("Corregir Fichero", true);
 
     if(!getLayout()->isEmpty()) {
+        getLayout()->removeWidget(getAnalizarCadena());
         getLayout()->removeWidget(getSimplificarFichero());
         getLayout()->removeWidget(getCorregirFichero());
-
+        delete getAnalizarCadena();
         delete getSimplificarFichero();
         delete getCorregirFichero();
     }
@@ -98,11 +99,16 @@ void CPanelOpciones::iniciarVistaCorreccion() {
     delete getValorHoughLinesP();
 
     /// Valores para la codificacion 2 Botones
+    analizarCadena_ = new CPushButton("Analizar Cadena", true);
     simplificarAutomata_ = new CPushButton("Simplificar Automata", true);
     corregirFichero_ = new CPushButton("Corregir Fichero", true);
 
-    getLayout()->addWidget(getSimplificarFichero(),  0, 0, 3, 4);
-    getLayout()->addWidget(getCorregirFichero(), 3, 0, 3, 4);
+    getLayout()->addWidget(getAnalizarCadena(), 0, 0, 2, 4);
+    getLayout()->addWidget(getSimplificarFichero(),  2, 0, 2, 4);
+    getLayout()->addWidget(getCorregirFichero(), 4, 0, 2, 4);
+    getAnalizarCadena()->setEnabled(false);
+    getSimplificarFichero()->setEnabled(false);
+    getCorregirFichero()->setEnabled(false);
 }
 
 QGridLayout* CPanelOpciones::getLayout() {
@@ -143,6 +149,10 @@ CLabel* CPanelOpciones::getValorAccumulatorThresHold() {
 
 CLabel* CPanelOpciones::getValorHoughLinesP() {
     return valorHoughLinesP_;
+}
+
+CPushButton* CPanelOpciones::getAnalizarCadena() {
+    return analizarCadena_;
 }
 
 CPushButton* CPanelOpciones::getSimplificarFichero() {

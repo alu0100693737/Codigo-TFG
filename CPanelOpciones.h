@@ -49,6 +49,7 @@ private:
     /// CLabel variable houghLinesP
     CLabel* valorHoughLinesP_;
 
+    CPushButton* analizarCadena_;
     CPushButton* simplificarAutomata_;
     CPushButton* corregirFichero_;
 
@@ -104,6 +105,7 @@ public:
      */
     CLabel* getValorHoughLinesP();
 
+    CPushButton* getAnalizarCadena();
     CPushButton* getSimplificarFichero();
     CPushButton* getCorregirFichero();
 };
