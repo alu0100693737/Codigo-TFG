@@ -1,4 +1,4 @@
-#include "CDfa.h"
+#include "CNfa.h"
 #include <stdio.h>
 #include <cstdio>
 #include <iostream>
@@ -9,5 +9,5 @@ main() {
      A->detectarEstadosMuerte();
      A->analizarCadena();
      A->esDFA();
-}*/
-
+}
+*/

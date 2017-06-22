@@ -28,6 +28,8 @@ void CPanelOpciones::iniciarVistaDeteccion() {
     accumulatorThresHold_ = new QScrollBar(Qt::Horizontal);
     hougLinesP_ = new QScrollBar(Qt::Horizontal);
 
+    setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
+
     ///Aplicamos estilo fondo 'verde', rango de valores y valor por defecto a los QScrollBar
 
     getCannyThresHold()->setStyleSheet("background-color: rgba(232, 255, 141, 0.9);");
@@ -50,7 +52,7 @@ void CPanelOpciones::iniciarVistaDeteccion() {
     valorCannyThresHold_ = new CLabel(QString::number(getCannyThresHold()->value()), false);
     valorAccumulatorThresHold_ = new CLabel(QString::number(getAccumulatorThresHold()->value()), false);
     valorHoughLinesP_ = new CLabel(QString::number(getHoughLinesP()->value()), false);
-
+    setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
     // simplificarAutomata_ = new CPushButton("Simplificar Automata", true);
     // corregirFichero_ = new CPushButton("Corregir Fichero", true);
 
@@ -74,6 +76,7 @@ void CPanelOpciones::iniciarVistaDeteccion() {
     getLayout()->addWidget(getLHoughLinesP(),  4, 0, 1, 4);
     getLayout()->addWidget(getHoughLinesP(), 5, 0, 1, 3);
     getLayout()->addWidget(getValorHoughLinesP(), 5, 3, 1, 1);
+     setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
 }
 
 void CPanelOpciones::iniciarVistaCorreccion() {
@@ -109,6 +112,9 @@ void CPanelOpciones::iniciarVistaCorreccion() {
     getAnalizarCadena()->setEnabled(false);
     getSimplificarFichero()->setEnabled(false);
     getCorregirFichero()->setEnabled(false);
+     setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
+
+    //setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
 }
 
 QGridLayout* CPanelOpciones::getLayout() {
@@ -162,3 +168,16 @@ CPushButton* CPanelOpciones::getSimplificarFichero() {
 CPushButton* CPanelOpciones::getCorregirFichero() {
     return corregirFichero_;
 }
+
+void CPanelOpciones::slotAnalizarCadena() {
+    cout << "Analizando cadena " << endl;
+}
+
+void CPanelOpciones::slotSimplificarFichero() {
+    cout << "Simplificando fichero " << endl;
+}
+
+void CPanelOpciones::slotCorregirFichero() {
+    cout << "Corrigiendo fichero " << endl;
+}
+

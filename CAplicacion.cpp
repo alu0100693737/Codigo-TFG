@@ -21,7 +21,7 @@ CAplicacion::CAplicacion() {
     setWindowIcon(QIcon(":/release/icon.ico"));
 
     setPathImagenActual(NULL); //Path al principio = NULL
-    setStyleSheet("background-color: rgba(0, 0, 0, 0);");
+    //setStyleSheet("background-color: rgba(0, 0, 0, 0);");
 
     /// Creamos los Paneles de la Aplicacion y su disposicion
     panelPrincipal_ = new CLabel("Panel Principal", true);
@@ -228,6 +228,7 @@ CAplicacion::CAplicacion() {
 CAplicacion::~CAplicacion() {}
 
 void CAplicacion::inicializarVentanaAplicacionDeteccion() {
+
     setStyleSheet("background-color: black");
 
     getPanelComparacion()->setAlignment(Qt::AlignCenter);
@@ -258,6 +259,8 @@ void CAplicacion::inicializarVentanaAplicacionDeteccion() {
 
     layout1->setSpacing(10);
     getLayout()->addLayout(layout1, 4, 3, 1, 1);
+    //green
+    getPanelOpciones()->setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
 
 }
 
@@ -270,7 +273,8 @@ void CAplicacion::inicializarVentanaAplicacionCorreccion() {
     getPanelComparacion()->setAlignment(Qt::AlignAbsolute);
     getPanelPrincipal()->setAlignment(Qt::AlignAbsolute);
 
-    setStyleSheet("background-color: black");
+    //setStyleSheet("background-color: black");
+    getPanelOpciones()->setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
 }
 
 //SLOTS
@@ -724,6 +728,8 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
     } else {
         cout << "Error!, Debe cargar una imagen previamente " << endl;
     }
+    getPanelOpciones()->setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
+
 }
 
 void CAplicacion::slotHelp() {

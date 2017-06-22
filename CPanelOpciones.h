@@ -27,6 +27,7 @@ using namespace std;
  * Clase que almacena un panel con las variables de la Detección de circulos y lineas
 */
 class CPanelOpciones : public QWidget {
+    Q_OBJECT
 private:
 
     QGridLayout* layout_;
@@ -108,6 +109,11 @@ public:
     CPushButton* getAnalizarCadena();
     CPushButton* getSimplificarFichero();
     CPushButton* getCorregirFichero();
+
+    public slots:
+    void slotAnalizarCadena();
+    void slotSimplificarFichero();
+    void slotCorregirFichero();
 };
 
 #endif // CPANELOPCIONES_H
