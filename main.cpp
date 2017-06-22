@@ -5,9 +5,8 @@
 
 
 main() {
-     /**opcion seleccionada**/
-     int opc;
      CDFA* A = new CDFA();
      A->detectarEstadosMuerte();
+     A->analizarCadena();
 }
 

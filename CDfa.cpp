@@ -7,7 +7,7 @@ CDFA::CDFA() {
 }
 
 void CDFA::detectarEstadosMuerte() {
-    cout << "Estados de muerte" << endl;
+    cout << "\nEstados de muerte:" << endl;
     std::vector<int>::iterator it;
     for(int i = 0; i < getNumNodos(); i++) {
         bool encontrado = false;
@@ -27,14 +27,29 @@ void CDFA::analizarCadena() {
     cout << "Introduzca una cadena " << endl;
     string cadena;
     cin >> cadena;
-
-    cout << "Cadena de entrada: " << cadena << endl;
-    cout << "Estado actual\nEntrada\nSiguiente estado" << endl;
-
-
-
-
-    cout << "Cadena de entrada ACEPTADA / NO ACEPTADA" << endl;
+    cout << "\nCadena de entrada: " << cadena << endl;
+    const char *cstr = cadena.c_str();
+    int estadoActual = getEstadoInicial();
+    int contador = 0; //posicion de la cadena
+    cout << "Estado actual\tEntrada\tSiguiente estado" << endl;
+    for(int i = 0; i < strlen(cstr); i++) {
+        for(int j = 0; j < getTransiciones()->size(); j++) {
+            if(getTransiciones()->at(j).getInicio() == estadoActual) {
+                if(getTransiciones()->at(j).getLetraTransicion() == cstr[contador]) {
+                    //Poner en candidatos
+                    cout << estadoActual << "\t" <<  getTransiciones()->at(j).getLetraTransicion() << "\t";
+                    contador++;
+                    estadoActual = getTransiciones()->at(j).getDestino();
+                    cout << estadoActual << endl;
+                }
+            }
+        }
+    }
+    //si en este momento nos encontramos en un nodo final HACER
+    if(contador < strlen(cstr))
+        cout << "\nCADENA NO ACEPTADA \n";
+    else
+        cout << "\nCADENA ACEPTADA \n";
 }
 
 void CDFA::leerFichero() {
@@ -84,6 +99,10 @@ vector<CEstado>* CDFA::getTransiciones() {
     return transiciones_;
 }
 
+void CDFA::setTransiciones(vector<CEstado>* copia) {
+    transiciones_ = copia;
+}
+
 vector<int>* CDFA::getFinales() {
     return finales_;
 }
@@ -99,6 +118,11 @@ int CDFA::getNumNodos() {
 void CDFA::mostrarDFA() {
     cout << "Estado inicial " << getEstadoInicial() << endl;
     cout << "Num de nodos " << getNumNodos() << endl;
+    cout << "Nodos finales " << endl;
+    for(int i = 0; i < getFinales()->size(); i++) {
+        cout << getFinales()->at(i) << " ";
+    }
+                cout << endl;
     mostrarEstadosFinales();
     mostrarTransiciones();
 }

@@ -21,6 +21,7 @@ public:
     void analizarCadena();
 
     vector<CEstado>* getTransiciones();
+    void setTransiciones(vector<CEstado>* copia);
     vector<int>* getFinales();
 
     int getEstadoInicial();

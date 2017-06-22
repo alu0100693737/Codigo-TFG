@@ -32,7 +32,7 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     letras_ = new vector<CLineEdit*>();
 
     anadir_ = new QLineEdit();
-    getAnadir()->setPlaceholderText("Formato: 2 3 b ; 4 5 a");
+    getAnadir()->setPlaceholderText("Formato: 2 3 b ; 4 5 ~");
 
     guardarComoFichero_ = new CPushButton("Guardar como Fichero", false);
     cancelar_ = new CPushButton("Cancelar", false);

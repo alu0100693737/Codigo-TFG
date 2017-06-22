@@ -176,9 +176,16 @@ bool CDetectarTransiciones::ejecutar(Mat image, int opcion) {
 
             ///Asignamos contorno y letra a contornosEncontrados
             getContornosEncontrados().push_back(CContourWithData(validContoursWithData[i]));
-            getLetrasEncontradas().push_back( char(int(fltCurrentChar)));
 
+            //Considerando transiciones en blanco
+            if(char(int(fltCurrentChar)) != 'z') {
+            getLetrasEncontradas().push_back( char(int(fltCurrentChar)));
             strFinalString = strFinalString + char(int(fltCurrentChar));
+            } else {
+                getLetrasEncontradas().push_back('~');
+                strFinalString = strFinalString + '~';
+            }
+
             //cv::imshow("matTestingNumbers", matTestingNumbers);
             //cv::waitKey(0);
             cout << "Encontrado " << strFinalString << endl;
