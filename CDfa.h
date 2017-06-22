@@ -19,6 +19,7 @@ public:
 
     void detectarEstadosMuerte();
     void analizarCadena();
+    void esDFA();
 
     vector<CEstado>* getTransiciones();
     void setTransiciones(vector<CEstado>* copia);

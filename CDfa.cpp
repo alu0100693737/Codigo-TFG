@@ -31,6 +31,9 @@ void CDFA::analizarCadena() {
     const char *cstr = cadena.c_str();
     int estadoActual = getEstadoInicial();
     int contador = 0; //posicion de la cadena
+
+    vector<Point>* posiblesCandidatos = new vector<Point>();
+
     cout << "Estado actual\tEntrada\tSiguiente estado" << endl;
     for(int i = 0; i < strlen(cstr); i++) {
         for(int j = 0; j < getTransiciones()->size(); j++) {
@@ -41,21 +44,48 @@ void CDFA::analizarCadena() {
                     contador++;
                     estadoActual = getTransiciones()->at(j).getDestino();
                     cout << estadoActual << endl;
+                    //Es una transicion vacia
+                } else if (getTransiciones()->at(j).getLetraTransicion() == '~') {
+
                 }
             }
         }
     }
     //si en este momento nos encontramos en un nodo final HACER
-    if(contador < strlen(cstr))
+    if(contador < strlen(cstr)) {
         cout << "\nCADENA NO ACEPTADA \n";
+    } else {
+        bool aceptado = false;
+        for(int i  =0; i < getFinales()->size(); i++) {
+            if(getFinales()->at(i) == estadoActual)
+                aceptado = true;
+        }
+        if(aceptado == true)
+            cout << "\nCADENA ACEPTADA \n";
+        else
+            cout << "\nCADENA NO ACEPTADA \n";
+    }
+}
+
+void CDFA::esDFA() {
+    cout << "Recuerde que las transiciones vacias se codifican como ~ " << endl;
+    bool nfa = false;
+    for(int i = 0; i < getTransiciones()->size(); i++) {
+        if((getTransiciones()->at(i)).getLetraTransicion() == '~') {
+            nfa = true;
+            break;
+        }
+    }
+    if(nfa == true)
+        cout << "Es un NFA " << endl;
     else
-        cout << "\nCADENA ACEPTADA \n";
+        cout << "Es un DFA " << endl;
 }
 
 void CDFA::leerFichero() {
     /*cout << "Introduzca el nombre del fichero " << endl;
-    string aux;
-    cin >> aux;*/
+            string aux;
+            cin >> aux;*/
 
     std::ifstream fe ("prueba.txt.txt.txt", std::ifstream::in);
     fe >> numNodos_;
@@ -122,7 +152,7 @@ void CDFA::mostrarDFA() {
     for(int i = 0; i < getFinales()->size(); i++) {
         cout << getFinales()->at(i) << " ";
     }
-                cout << endl;
+    cout << endl;
     mostrarEstadosFinales();
     mostrarTransiciones();
 }

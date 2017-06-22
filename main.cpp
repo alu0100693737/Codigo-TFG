@@ -8,5 +8,6 @@ main() {
      CDFA* A = new CDFA();
      A->detectarEstadosMuerte();
      A->analizarCadena();
+     A->esDFA();
 }
 
