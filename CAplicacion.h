@@ -628,5 +628,10 @@ public slots:
     void slotCambiarPerspectiva();
 
     void slotCambiarTextEliminarAnadirLinea();
+
+    //Sin programar aun
+    void slotSimplificarFicheroCorregir();
+    void slotSimplificarFicheroReferencia();
+    void slotAnalizarCadena();
 };
 #endif

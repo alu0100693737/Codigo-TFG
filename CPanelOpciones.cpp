@@ -28,19 +28,18 @@ void CPanelOpciones::iniciarVistaDeteccion() {
     accumulatorThresHold_ = new QScrollBar(Qt::Horizontal);
     hougLinesP_ = new QScrollBar(Qt::Horizontal);
 
-    setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
 
     ///Aplicamos estilo fondo 'verde', rango de valores y valor por defecto a los QScrollBar
 
-    getCannyThresHold()->setStyleSheet("background-color: rgba(232, 255, 141, 0.9);");
+    getCannyThresHold()->setStyleSheet("background-color: rgba(126, 156, 232 ,  0.9);");
     getCannyThresHold()->setRange(10, 150);
     getCannyThresHold()->setValue(CANNYTHRESHOLD);
 
-    getAccumulatorThresHold()->setStyleSheet("background-color: rgba(232, 255, 141, 0.9);");
+    getAccumulatorThresHold()->setStyleSheet("background-color: rgba(126, 156, 232 ,  0.9);");
     getAccumulatorThresHold()->setRange(10, 150);
     getAccumulatorThresHold()->setValue(ACCUMULATORTHRESHOLD);
 
-    getHoughLinesP()->setStyleSheet("background-color: rgba(232, 255, 141, 0.9);");
+    getHoughLinesP()->setStyleSheet("background-color: rgba(126, 156, 232,  0.9);");
     getHoughLinesP()->setRange(10, 150);
     getHoughLinesP()->setValue(HOUGHLINESP);
 
@@ -57,11 +56,19 @@ void CPanelOpciones::iniciarVistaDeteccion() {
     // corregirFichero_ = new CPushButton("Corregir Fichero", true);
 
     if(!getLayout()->isEmpty()) {
+        getLayout()->removeWidget(getCargarImagenCorregir());
+        getLayout()->removeWidget(getCargarImagenReferencia());
+        getLayout()->removeWidget(getCargarFicheroCorregir());
+        getLayout()->removeWidget(getCargarFicheroReferencia());
         getLayout()->removeWidget(getAnalizarCadena());
-        getLayout()->removeWidget(getSimplificarFichero());
+        getLayout()->removeWidget(getSimplificarFicheroCorregir());
         getLayout()->removeWidget(getCorregirFichero());
+        delete getCargarImagenCorregir();
+        delete getCargarImagenReferencia();
+        delete getCargarFicheroCorregir();
+        delete getCargarFicheroReferencia();
         delete getAnalizarCadena();
-        delete getSimplificarFichero();
+        delete getSimplificarFicheroCorregir();
         delete getCorregirFichero();
     }
 
@@ -76,11 +83,11 @@ void CPanelOpciones::iniciarVistaDeteccion() {
     getLayout()->addWidget(getLHoughLinesP(),  4, 0, 1, 4);
     getLayout()->addWidget(getHoughLinesP(), 5, 0, 1, 3);
     getLayout()->addWidget(getValorHoughLinesP(), 5, 3, 1, 1);
-     setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
+    setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1 px solid black");
 }
 
-void CPanelOpciones::iniciarVistaCorreccion() {
-
+void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
+if(valor == 0)  {
     getLayout()->removeWidget(getCannyThresHold());
     getLayout()->removeWidget(getValorCannyThresHold());
     getLayout()->removeWidget(getLCannyThresHold());
@@ -101,20 +108,51 @@ void CPanelOpciones::iniciarVistaCorreccion() {
     delete getHoughLinesP();
     delete getValorHoughLinesP();
 
-    /// Valores para la codificacion 2 Botones
-    analizarCadena_ = new CPushButton("Analizar Cadena", true);
-    simplificarAutomata_ = new CPushButton("Simplificar Automata", true);
+        /// Valores para la codificacion 2 Botones
+        cargarImagenCorregir_ = new CPushButton("Cargar imagen para \nsu corrección", true);
+        cargarImagenReferencia_ = new CPushButton("Cargar imagen de \nreferencia", true);
+
+        cargarFicheroCorregir_ = new CPushButton("Cargar fichero para \nsu corrección", true);
+        cargarFicheroReferencia_ = new CPushButton("Cargar fichero de \nreferencia", true);
+        getLayout()->addWidget(new CLabel("Panel 1", false), 0, 0, 1, 2);
+        getLayout()->addWidget(new CLabel("Panel 2", false), 0, 2, 1, 2);
+        getLayout()->addWidget(getCargarImagenCorregir(), 1, 0, 2, 2);
+        getLayout()->addWidget(getCargarFicheroCorregir(), 3, 0, 2, 2);
+        getLayout()->addWidget(getCargarImagenReferencia(), 1, 2, 2, 2);
+        getLayout()->addWidget(getCargarFicheroReferencia(), 3, 2, 2, 2);
+}
+    else if (valor == 2) {
+        cout << "HOLA" << endl;
+        simplificarAutomataReferencia_ = new CPushButton("Simplificar autómata de referencia", true);
+        getLayout()->removeWidget(getCargarImagenReferencia());
+        getLayout()->removeWidget((getCargarFicheroReferencia()));
+        delete getCargarImagenReferencia();
+        delete getCargarFicheroReferencia();
+
+        cargarImagenReferencia_ = new CPushButton("Cargar Imagen de referencia", true);
+        cargarFicheroReferencia_ = new CPushButton("Cargar fichero de referencia", true);
+
+        getLayout()->addWidget(new CLabel("Panel 1", false), 0, 0, 1, 2);
+        getLayout()->addWidget(getCargarImagenCorregir(), 1, 0, 2, 2);
+        getLayout()->addWidget(getCargarFicheroCorregir(), 3, 0, 2, 2);
+
+        getLayout()->addWidget(new CLabel("Panel 2", false), 0, 2, 1, 2);
+        getLayout()->addWidget(getCargarImagenReferencia(), 1, 2, 1, 2);
+        getLayout()->addWidget(getCargarFicheroReferencia(), 2, 2, 1, 2);
+        getLayout()->addWidget(getSimplificarFicheroReferencia(), 3, 2, 1, 2);
+    }
+        /*analizarCadena_ = new CPushButton("Analizar Cadena Sobre Autómata a corregir", true);
+    simplificarAutomataCorregir_ = new CPushButton("Simplificar Autómata a Corregir", true);
     corregirFichero_ = new CPushButton("Corregir Fichero", true);
 
     getLayout()->addWidget(getAnalizarCadena(), 0, 0, 2, 4);
-    getLayout()->addWidget(getSimplificarFichero(),  2, 0, 2, 4);
+    getLayout()->addWidget(getSimplificarFicheroCorregir(),  2, 0, 2, 4);
     getLayout()->addWidget(getCorregirFichero(), 4, 0, 2, 4);
+}
     getAnalizarCadena()->setEnabled(false);
-    getSimplificarFichero()->setEnabled(false);
-    getCorregirFichero()->setEnabled(false);
-     setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
+    getSimplificarFicheroCorregir()->setEnabled(false);
+    getCorregirFichero()->setEnabled(false);*/
 
-    //setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
 }
 
 QGridLayout* CPanelOpciones::getLayout() {
@@ -157,12 +195,32 @@ CLabel* CPanelOpciones::getValorHoughLinesP() {
     return valorHoughLinesP_;
 }
 
+CPushButton* CPanelOpciones::getCargarImagenCorregir() {
+    return cargarImagenCorregir_;
+}
+
+CPushButton* CPanelOpciones::getCargarFicheroCorregir() {
+    return cargarFicheroCorregir_;
+}
+
+CPushButton* CPanelOpciones::getCargarImagenReferencia() {
+    return cargarImagenReferencia_;
+}
+
+CPushButton* CPanelOpciones::getCargarFicheroReferencia() {
+    return cargarFicheroReferencia_;
+}
+
 CPushButton* CPanelOpciones::getAnalizarCadena() {
     return analizarCadena_;
 }
 
-CPushButton* CPanelOpciones::getSimplificarFichero() {
-    return simplificarAutomata_;
+CPushButton* CPanelOpciones::getSimplificarFicheroCorregir() {
+    return simplificarAutomataCorregir_;
+}
+
+CPushButton* CPanelOpciones::getSimplificarFicheroReferencia() {
+    return simplificarAutomataReferencia_;
 }
 
 CPushButton* CPanelOpciones::getCorregirFichero() {

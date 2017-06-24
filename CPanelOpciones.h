@@ -50,8 +50,16 @@ private:
     /// CLabel variable houghLinesP
     CLabel* valorHoughLinesP_;
 
+
+    CPushButton* cargarImagenCorregir_;
+    CPushButton* cargarFicheroCorregir_;
+    CPushButton* cargarImagenReferencia_;
+    CPushButton* cargarFicheroReferencia_;
+
     CPushButton* analizarCadena_;
-    CPushButton* simplificarAutomata_;
+
+    CPushButton* simplificarAutomataCorregir_;
+    CPushButton* simplificarAutomataReferencia_;
     CPushButton* corregirFichero_;
 
 public:
@@ -62,7 +70,13 @@ public:
     CPanelOpciones();
 
     void iniciarVistaDeteccion();
-    void iniciarVistaCorreccion();
+    void iniciarVistaCorreccion(int valor);
+    // 0 cargar imagen y fichero en los dos
+    // 1 analizar cadena y simplificar en el primero, cargar imagen y fichero en el segundo
+    // 2 cargar imagen y fichero en primero, simplificar en el segundo
+    // 3 analizar Cadena y simplificar primer fichero, simplificar en el segundo y Corregir
+
+
 
     QGridLayout* getLayout();
     /**
@@ -106,8 +120,14 @@ public:
      */
     CLabel* getValorHoughLinesP();
 
+    CPushButton* getCargarImagenCorregir();
+    CPushButton* getCargarFicheroCorregir();
+    CPushButton* getCargarImagenReferencia();
+    CPushButton* getCargarFicheroReferencia();
+
     CPushButton* getAnalizarCadena();
-    CPushButton* getSimplificarFichero();
+    CPushButton* getSimplificarFicheroCorregir();
+    CPushButton* getSimplificarFicheroReferencia();
     CPushButton* getCorregirFichero();
 
     public slots:

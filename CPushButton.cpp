@@ -12,7 +12,7 @@
 
 CPushButton::CPushButton(QString text, bool s) : QPushButton(text){
     if( s)
-        setStyleSheet("background-color: rgb(175, 187, 199);"
+        setStyleSheet("background-color: rgb(233, 233, 233);"
                   "color: black; border-width: 1px;"
                   "border-top: 1px solid white;"
                   "border-left: 1px solid white;"
@@ -26,7 +26,7 @@ CPushButton::CPushButton(QString text, bool s) : QPushButton(text){
                   "font: 16px;"
                   "font-weight: bold;");
     else {
-        setStyleSheet("background-color: rgb(175, 187, 199);"
+        setStyleSheet("background-color: rgb(233, 233, 233);"
                   "color: black; border-width: 1px;"
                   "border-top: 1px solid white;"
                   "border-left: 1px solid white;"

@@ -20,14 +20,14 @@ CLabel::CLabel(QString text, bool style) : QLabel() {
     setText(text);
     setAlignment(Qt::AlignCenter);
     if(style == true) {
-        setStyleSheet("background-color: white; border-style: outset; border-width: 2px; border-radius: 10px; border-color: beige; font: bold 14px; padding: 6px;");
+        setStyleSheet("background-color: white; border-style: outset; border-width: 2px; border-radius: 1px; border-color: beige; font: bold 14px; padding: 6px;");
 
         QFont f( "Arial", 14, QFont::Bold);
         setFont(f);
     } else {
         QFont f( "Arial", 9, QFont::Bold);
         setFont(f);
-        setStyleSheet("background-color : white;");
+        setStyleSheet("background-color : white; border: 1 px solid;");
     }
 }
 
