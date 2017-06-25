@@ -287,7 +287,7 @@ void CAplicacion::inicializarVentanaAplicacionCorreccion() {
     getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
 
     if(getPanelComparacion()->text() == "")
-        getPanelComparacion()->setText("Introduzca aqui el fichero de referencia");
+        getPanelComparacion()->setText("Introduzca aqui la imagen o fichero de referencia ");
 
     getPanelComparacion()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
 
@@ -322,18 +322,38 @@ void CAplicacion::slotAbrirFichero() {
             getPanelPrincipal()->setText(line);
             getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
             getActionAbrirFicheroCorrecto()->setDisabled(false);
-            posActualPanelOpciones_ = 1;
+            if(posActualPanelOpciones_ == 0) {
+                posActualPanelOpciones_ = 1;
+            } else {
+                posActualPanelOpciones_ = 3;
+            }
             getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
             connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
             connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+            if(getPosActualPanelOpciones() == 3) {
+                connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
+                connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
+
+            }
             //poner analizar cadena y simplificar
         } else {
             getPanelComparacion()->setText(line);
             getPanelComparacion()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
-            posActualPanelOpciones_ = 2;
+            if(posActualPanelOpciones_ == 0) {
+                posActualPanelOpciones_ = 2;
+            } else {
+                posActualPanelOpciones_ = 3;
+            }
+
             getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
             connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
             connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
+            if(getPosActualPanelOpciones() == 3) {
+                connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
+                connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+
+            }
+
             //poner simplificar
         }
     }
@@ -675,8 +695,21 @@ void CAplicacion::slotAbrirFicheroCorrecto() {
     QString line = ventanaAbrirFichero();
     if(!line.isEmpty()) {
         getPanelComparacion()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
-
         getPanelComparacion()->setText(line);
+        cout << "Mostrando aux " << getPosActualPanelOpciones() << endl;
+        if(getPosActualPanelOpciones() == 0)
+            posActualPanelOpciones_ = 2;
+        else if(getPosActualPanelOpciones() == 2)
+            posActualPanelOpciones_ = 3;
+        getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
+        connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
+        connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+
+        if(getPosActualPanelOpciones() == 3) {
+            connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
+            connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
+        }
+
     }
 
     //getPanelOpciones()->iniciarVistaCorreccion(0);
@@ -1174,24 +1207,38 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         getPanelPrincipal()->setText(line);
                         getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
                         getActionAbrirFicheroCorrecto()->setDisabled(false);
+                        if(getPosActualPanelOpciones() == 0)
                         posActualPanelOpciones_ = 1;
+                        else if(getPosActualPanelOpciones() == 2)
+                            posActualPanelOpciones_ = 3;
                         getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
 
                         //En el caso que cambiemos la perspectiva habiendo tenido ya cargado el fichero a corregir con los 4 botones puestos
                         bool encontrado = false;
                         for (int i = 0; i < getPanelOpciones()->getLayout()->count(); ++i) {
-                                QWidget *widget = getPanelOpciones()->getLayout()->itemAt(i)->widget();
-                                if (widget == getPanelOpciones()->getAnalizarCadena()) {
-                                    encontrado = true;
-                                    break;
-                                }
-                              }
-                        if(encontrado == false)
+                            QWidget *widget = getPanelOpciones()->getLayout()->itemAt(i)->widget();
+                            if (widget == getPanelOpciones()->getAnalizarCadena()) {
+                                encontrado = true;
+                                break;
+                            }
+                        }
+                        if(encontrado == false) {
+                            if(getPosActualPanelOpciones() == 1) {
                             posActualPanelOpciones_ = 0;
+                            getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
+                            } else if(getPosActualPanelOpciones() == 3) {
+                                posActualPanelOpciones_ = 2;
+                                 getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
+                            }
+                        }
 
                         connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
                         connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+                        if(getPosActualPanelOpciones() == 3) {
+                            connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
+                            connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
 
+                        }
                         getCheckUpdatesTimer()->stop();
                     } else {
                         if(getAuxContenidoAnterior()->text() != "") {
@@ -1200,10 +1247,19 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         }
                         getPanelComparacion()->setText(line);
                         getPanelComparacion()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
+                        if(getPosActualPanelOpciones() == 0)
                         posActualPanelOpciones_ = 2;
+                        else if(getPosActualPanelOpciones() == 1)
+                            posActualPanelOpciones_ = 3;
                         getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
                         connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
                         connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
+
+                        if(getPosActualPanelOpciones() == 3) {
+                            connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
+                            connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+
+                        }
 
                         cargarImagenParaPanelComparacion_ = false;
                         getCheckUpdatesTimer()->stop();
@@ -1248,10 +1304,14 @@ void CAplicacion::slotCambiarPerspectiva() {
         inicializarVentanaAplicacionCorreccion();
         if(getPanelPrincipal()->text() == "Introduzca aqui la imagen o fichero a corregir ") {
             cout << "HEYS" << endl;
-
-        posActualPanelOpciones_ = 0;
+            posActualPanelOpciones_ = 0;
+            if(getPanelComparacion()->text() != "Introduzca aqui la imagen o fichero de referencia ")
+                posActualPanelOpciones_ = 2;
         }
-        cout << getPanelPrincipal()->text().toStdString() << endl;
+        if(getPosActualPanelOpciones() == 3) {
+            posActualPanelOpciones_ = 2;
+        }
+        //cout << getPanelPrincipal()->text().toStdString() << endl;
 
         getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
         getRestaurarValores()->setText("Cargar Fichero Correcto");
