@@ -69,7 +69,7 @@ public:
      */
     CPanelOpciones();
 
-    void iniciarVistaDeteccion();
+    void iniciarVistaDeteccion(int valor); //elementos a borrar de la vista correccion
     void iniciarVistaCorreccion(int valor);
     // 0 cargar imagen y fichero en los dos
     // 1 analizar cadena y simplificar en el primero, cargar imagen y fichero en el segundo

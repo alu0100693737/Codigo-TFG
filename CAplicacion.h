@@ -183,6 +183,7 @@ private:
 
     bool cargarImagenParaPanelComparacion_;
     CLabel* auxContenidoAnterior_;
+    int posActualPanelOpciones_;
 
 public:
     /**
@@ -475,6 +476,7 @@ public:
 
     bool getCargarImagenParaPanelComparacion();
     CLabel* getAuxContenidoAnterior();
+    int getPosActualPanelOpciones();
 
     //Lineas
     CLabel* getTextAnadirEliminar();
