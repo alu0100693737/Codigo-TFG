@@ -282,10 +282,8 @@ if(getAuxContenidoAnterior()->text() == "")
 else {
 
     getPanelPrincipal()->setText(getAuxContenidoAnterior()->text());
-    cout << "HOLA" << endl;
 }
     getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
-
 
     if(getPanelComparacion()->text() == "")
         getPanelComparacion()->setText("Introduzca aqui el fichero de referencia");
@@ -297,7 +295,6 @@ else {
     getPanelComparacion()->setAlignment(Qt::AlignAbsolute);
     getPanelPrincipal()->setAlignment(Qt::AlignAbsolute);
     setStyleSheet("background-color: rgba(191, 191, 191, 1);");
-    //setStyleSheet("background-color: black");
 
     getPanelOpciones()->setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 4px solid black");
 }
@@ -1042,8 +1039,6 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
 
 
                     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
-                    cout << "HOLA " << endl;
-
                 }
             }
         }
@@ -1211,7 +1206,6 @@ void CAplicacion::slotRestaurarValores() {
 
 void CAplicacion::slotAbrirImagenReferencia() {
     cargarImagenParaPanelComparacion_ = true;
-    cout << "Hola" << endl;
     auxContenidoAnterior_ = new CLabel(getPanelPrincipal()->text(), true);
     cout << "Panel Principal " << getPanelPrincipal()->text().toStdString() << endl;
     cout << "HEY " << auxContenidoAnterior_->text().toStdString() << endl;

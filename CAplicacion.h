@@ -181,6 +181,9 @@ private:
      */
     QString ventanaAbrirFichero();
 
+    bool cargarImagenParaPanelComparacion_;
+    CLabel* auxContenidoAnterior_;
+
 public:
     /**
      * @brief
@@ -470,6 +473,9 @@ public:
     QTextEdit* getTextEditCrearFichero();
     QTimer* getCheckUpdatesTimer();
 
+    bool getCargarImagenParaPanelComparacion();
+    CLabel* getAuxContenidoAnterior();
+
     //Lineas
     CLabel* getTextAnadirEliminar();
     QCheckBox* getCheckEliminarAnadirLinea();
@@ -630,6 +636,7 @@ public slots:
     void slotCambiarTextEliminarAnadirLinea();
 
     //Sin programar aun
+    void slotAbrirImagenReferencia();
     void slotSimplificarFicheroCorregir();
     void slotSimplificarFicheroReferencia();
     void slotAnalizarCadena();

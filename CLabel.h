@@ -32,6 +32,7 @@ public:
      * Aplica estilo, alinea centro, color gris y borde
      */
     CLabel();
+    CLabel(CLabel*);
     /**
      * @brief
      * Constructor que aplica un estilo con fondo blanco y letra Arial, centrado y texto

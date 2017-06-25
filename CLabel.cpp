@@ -12,9 +12,10 @@
 
 CLabel::CLabel() : QLabel() {
         setStyleSheet("background-color : rgba( 160, 160, 160, 255); border: 10px solid black");
-        setText("Prueba Label propia");
         setAlignment(Qt::AlignCenter);
 }
+
+CLabel::CLabel(CLabel* copia) : QLabel(copia) {}
 
 CLabel::CLabel(QString text, bool style) : QLabel() {
     setText(text);

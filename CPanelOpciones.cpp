@@ -60,16 +60,19 @@ void CPanelOpciones::iniciarVistaDeteccion() {
         getLayout()->removeWidget(getCargarImagenReferencia());
         getLayout()->removeWidget(getCargarFicheroCorregir());
         getLayout()->removeWidget(getCargarFicheroReferencia());
-        getLayout()->removeWidget(getAnalizarCadena());
-        getLayout()->removeWidget(getSimplificarFicheroCorregir());
-        getLayout()->removeWidget(getCorregirFichero());
+    //    getLayout()->removeWidget(getAnalizarCadena());
+        //getLayout()->removeWidget(getSimplificarFicheroCorregir());
+       // getLayout()->removeWidget(getSimplificarFicheroReferencia());
+        //getLayout()->removeWidget(getCorregirFichero());
+
         delete getCargarImagenCorregir();
         delete getCargarImagenReferencia();
         delete getCargarFicheroCorregir();
         delete getCargarFicheroReferencia();
-        delete getAnalizarCadena();
-        delete getSimplificarFicheroCorregir();
-        delete getCorregirFichero();
+        //delete getAnalizarCadena();
+        //delete getSimplificarFicheroCorregir();
+        //delete getSimplificarFicheroReferencia();
+        //delete getCorregirFichero();
     }
 
     getLayout()->addWidget(getLCannyThresHold(),  0, 0, 1, 4);
