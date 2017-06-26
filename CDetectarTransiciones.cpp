@@ -34,7 +34,7 @@ vector<char>& CDetectarTransiciones::getLetrasEncontradas() {
 
 bool CDetectarTransiciones::ejecutar(Mat image, int opcion) {
     ///Leemos la imagen a detectar, el clasificador.xml y image.xml
-    if(opcion == 0) {
+    if(opcion == 1) {
     if(image.empty()) {
         cout <<  "Could not open or find the image" << std::endl ;
         return -1;
@@ -202,7 +202,7 @@ bool CDetectarTransiciones::ejecutar(Mat image, int opcion) {
     cout << getLetrasEncontradas().size() << endl;
     //imshow("Transiciones", matTestingNumbers);
     setImagenTransicionActual(matTestingNumbers);
-} else if(opcion == 1) {
+} else if(opcion == 2) {
         if(image.empty()) {
             cout <<  "Could not open or find the image" << std::endl ;
             return -1;

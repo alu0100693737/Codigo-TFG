@@ -266,6 +266,9 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
             } else if (widget == getCorregirFichero()) {
                 getLayout()->removeWidget(getCorregirFichero());
                 delete getCorregirFichero();
+            } else if(widget == getSimplificarFicheroCorregir()) {
+                getLayout()->removeWidget(getSimplificarFicheroCorregir());
+                delete getSimplificarFicheroCorregir();
             }
         }
 

@@ -23,7 +23,7 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     LInicio_ = new CLabel("Inicios",true);
     LDestino_ = new CLabel("Destinos", true);
     LLetra_ = new CLabel("Transicion", true);
-    LAnadir_ = new CLabel("Añadir Nueva Transicion: ", true);
+    LAnadir_ = new CLabel("Añadir nueva transicion: ", true);
 
     cambiar_ = new vector<CCheckBox*>();
     borrar_ = new vector<CCheckBox*>();
@@ -34,7 +34,7 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     anadir_ = new QLineEdit();
     getAnadir()->setPlaceholderText("Formato: 2 3 b ; 4 5 ~");
 
-    guardarComoFichero_ = new CPushButton("Guardar como Fichero", false);
+    guardarComoFichero_ = new CPushButton("Guardar como fichero", false);
     cancelar_ = new CPushButton("Cancelar", false);
     help_ = new CPushButton("Help", false);
     corregirAutomata_ = new CPushButton("Corregir automata", false);
@@ -361,7 +361,7 @@ void CAsistenteCodificacion::slotCambiar(int i) {
     QString aux = getInicios()->at(i)->text();
     getInicios()->at(i)->setText(getDestinos()->at(i)->text());
     getDestinos()->at(i)->setText(aux);
-    cout << "heys" << endl;
+    //cout << "heys" << endl;
 }
 
 void CAsistenteCodificacion::ventanaInfoCodificacion(string text) {

@@ -18,6 +18,7 @@ using namespace cv;
 using namespace std;
 
 CAplicacion::CAplicacion() {
+
     setWindowIcon(QIcon(":/release/icon.ico"));
 
     setPathImagenActual(NULL); //Path al principio = NULL
@@ -54,28 +55,29 @@ CAplicacion::CAplicacion() {
     menuCorreccion_         = new QMenu("Correccion");
     menuFiltro_             = new QMenu("Filtros");
 
-    actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/imagenOriginal.png"), tr("Abrir Imagen para su detección"), this);
-    actionAbrirFichero_     = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/fichero.png"), tr("Abrir Fichero para su correccion"), this);
-    actionCrearNuevoFichero_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/nuevoFichero.png"), tr("Crear Nuevo Automata"), this);
+    actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/imagenOriginal.png"), tr("Abrir imagen para su detección"), this);
+    actionAbrirFichero_     = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/fichero.png"), tr("Abrir fichero para su correccion"), this);
+    actionCrearNuevoFichero_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/nuevoFichero.png"), tr("Crear nuevo automata"), this);
+    actionMostrarAyuda_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/eye.png"), tr("No mostrar ayuda"), this);
     actionAbout_            = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/about.png"), tr("About"), this);
     actionAboutQT_          = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/aboutQT.png"), tr("About QT"), this);
     actionSalir_            = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/salir.png"), tr("Salir"), this);
 
-    actionDetectarLineas_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/linea.png"), tr("Detectar Lineas"), this);
-    actionDetectarCirculos_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/circulo.png"), tr("Detectar Circulos"), this);
-    actionDetectarTransiciones_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/transition.png"), tr("Detectar Transiciones"), this);
-    actionCodificarImagen_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/codificar.png"), tr("Codificar Imagen"), this);
-    actionConfirmarImagen_ =new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/check.png"), tr("Confirmar Deteccion"));
-    actionProcesarImagen_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/opencv.png"), tr("Procesar Imagen"), this);
-    actionCargarImagenOriginal_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/imagenOriginal.png"), tr("Cargar ultima Imagen"), this);
+    actionDetectarLineas_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/linea.png"), tr("Detectar lineas"), this);
+    actionDetectarCirculos_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/circulo.png"), tr("Detectar circulos"), this);
+    actionDetectarTransiciones_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/transition.png"), tr("Detectar transiciones"), this);
+    actionCodificarImagen_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/codificar.png"), tr("Codificar imagen"), this);
+    actionConfirmarImagen_ =new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/check.png"), tr("Confirmar deteccion"));
+    actionProcesarImagen_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/opencv.png"), tr("Procesar imagen"), this);
+    actionCargarImagenOriginal_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/imagenOriginal.png"), tr("Cargar ultima imagen"), this);
 
-    actionAbrirFicheroCorrecto_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/check.png"), tr("Abrir Fichero Correcto"));
+    actionAbrirFicheroCorrecto_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/check.png"), tr("Abrir fichero correcto"));
 
-    actionFiltroGray_ = new QAction(QIcon(""), tr("Filtro Gray"), this);
-    actionFiltroGaussiano_   = new QAction(QIcon(""), tr("Filtro Gaussiano"), this);
-    actionFiltroMediana_ = new QAction(QIcon(""), tr("Filtro Mediana"), this);
-    actionFiltroSobel_ = new QAction(QIcon(""), tr("Filtro Sobel"), this);
-    actionFiltroLaplaciano_ = new QAction(QIcon(""), tr("Filtro Laplaciano"), this);
+    actionFiltroGray_ = new QAction(QIcon(""), tr("Filtro gray"), this);
+    actionFiltroGaussiano_   = new QAction(QIcon(""), tr("Filtro gaussiano"), this);
+    actionFiltroMediana_ = new QAction(QIcon(""), tr("Filtro mediana"), this);
+    actionFiltroSobel_ = new QAction(QIcon(""), tr("Filtro sobel"), this);
+    actionFiltroLaplaciano_ = new QAction(QIcon(""), tr("Filtro laplaciano"), this);
     actionHistograma_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/histograma.png"), tr("Histograma"), this);
 
     getActionDetectarLineas()->setDisabled(true); //Hasta que no se cargue una imagen
@@ -102,6 +104,7 @@ CAplicacion::CAplicacion() {
     getMenuArchivo()->addAction(getActionAbrirImagen());
     getMenuArchivo()->addAction(getActionAbrirFichero());
     getMenuArchivo()->addAction(getActionCrearNuevoFichero());
+    getMenuArchivo()->addAction(getActionMostrarAyuda());
     getMenuArchivo()->addAction(getActionAbout());
     getMenuArchivo()->addAction(getActionAboutQT());
     getMenuArchivo()->addAction(getActionSalir());
@@ -164,8 +167,10 @@ CAplicacion::CAplicacion() {
     getNodoInicio()->setFocus();
 
     alfabeto_ = new QComboBox;
-    getAlfabetoActual()->addItem(tr("Alfabeto a, b, c, d"));
-    getAlfabetoActual()->addItem(tr("Alfabeto Numerico"));
+
+    getAlfabetoActual()->addItem(tr("Introduzca el alfabeto"));
+    getAlfabetoActual()->addItem(tr("Letras"));
+    getAlfabetoActual()->addItem(tr("Numeros"));
 
     checkEliminarAnadirLinea_ = new QCheckBox();
     getCheckEliminarAnadirLinea()->click();
@@ -196,6 +201,7 @@ CAplicacion::CAplicacion() {
     connect(getActionAbrirImagen(), SIGNAL(triggered()),this,SLOT(slotAbrirImagen()));
     connect(getActionAbrirFichero(), SIGNAL(triggered()),this,SLOT(slotAbrirFichero()));
     connect(getActionCrearNuevoFichero(), SIGNAL(triggered()), this, SLOT(slotCrearNuevoFichero()));
+    connect(getActionMostrarAyuda(), SIGNAL(triggered()), this, SLOT(slotMostrarAyuda()));
     connect(getActionAbout(), SIGNAL(triggered()),this,SLOT(slotAbout()));
     connect(getActionAboutQT(), SIGNAL(triggered()), this, SLOT(slotAboutQT()));
     connect(getActionSalir(), SIGNAL(triggered()), this, SLOT(slotSalir()));
@@ -236,7 +242,6 @@ CAplicacion::~CAplicacion() {}
 
 void CAplicacion::inicializarVentanaAplicacionDeteccion() {
 
-    //setStyleSheet("background-color: black");
     setStyleSheet("background-color: rgba(191, 191, 191, 1);");
 
     getPanelComparacion()->setAlignment(Qt::AlignCenter);
@@ -275,6 +280,12 @@ void CAplicacion::inicializarVentanaAplicacionDeteccion() {
 }
 
 void CAplicacion::inicializarVentanaAplicacionCorreccion() {
+    getActionFiltroGaussiano()->setDisabled(true);
+    getActionFiltroGray()->setDisabled(true);
+    getActionFiltroLaplaciano()->setDisabled(true);
+    getActionFiltroMediana()->setDisabled(true);
+    getActionFiltroSobel()->setDisabled(true);
+    getActionHistograma()->setDisabled(true);
 
     getPanelPrincipal()->clear();
     //getPanelComparacion()->clear();
@@ -472,16 +483,6 @@ void CAplicacion::dibujarSentidoTransiciones() {
 
     Mat prueba = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
 
-    /*for(int i = 0; i < getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(); i++ ) {
-        Point center(cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][0]), cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][1])); //x y
-        int radius = cvRound(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados()[i][2]);
-        //cout << "Circulo num " << i << " con centro (" << center.x << ", " << center.y << " y radio " << radius << endl;
-        //punto central
-        circle( prueba, center, 3, Scalar(0,255,0), -1, 8, 0 );
-        //circunferencia
-        circle( prueba, center, radius, Scalar(255,255,255), 2, 8, 0 );
-    }*/
-
     Scalar rojo = Scalar(0, 0, 200);
     Scalar azul = Scalar(200, 0, 0);
     Scalar verde = Scalar(0, 200, 0);
@@ -570,8 +571,16 @@ void CAplicacion::slotCrearNuevoFichero() {
 
     getVentanaCrearFichero()->setLayout(layout);
     getVentanaCrearFichero()->setStyleSheet("background-color: grey;");
-    getVentanaCrearFichero()->setWindowTitle("Crear Nuevo Fichero");
+    getVentanaCrearFichero()->setWindowTitle("Crear nuevo fichero");
     getVentanaCrearFichero()->show();
+}
+
+void CAplicacion::slotMostrarAyuda() {
+    if(getActionMostrarAyuda()->text() == "No mostrar ayuda")
+        getActionMostrarAyuda()->setText("Mostrar ayuda");
+    else
+        getActionMostrarAyuda()->setText("No mostrar ayuda");
+    //falta redactar cada mensaje, ponerle un checkbox para no volver a mostrar
 }
 
 void CAplicacion::slotAboutQT() {
@@ -583,9 +592,6 @@ void CAplicacion::slotSalir() {
 }
 
 void CAplicacion::slotDetectarCirculos() {
-    //getCirculosEliminar()->clear();
-    //getCirculosAnadir().clear();
-
     getActionProcesarImagen()->setDisabled(true);
     cout << "Detectando imagen" << endl;
     Mat aux = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
@@ -620,10 +626,17 @@ void CAplicacion::slotDetectarLineas() {
 }
 
 void CAplicacion::slotDetectarTransiciones() {
-    getActionProcesarImagen()->setEnabled(true);
 
     Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
     Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+
+    if(getAlfabetoActual()->currentIndex() == 0) {
+        QMessageBox mensaje;
+        mensaje.setText("Recuerde introducir el alfabeto del autómata.");
+        mensaje.setIcon(QMessageBox::Warning);
+        mensaje.exec();
+    } else {
+        getActionProcesarImagen()->setEnabled(true);
 
     getOperacionesImagen()->detectarTransiciones()->ejecutar(aux, getAlfabetoActual()->currentIndex());
 
@@ -636,6 +649,7 @@ void CAplicacion::slotDetectarTransiciones() {
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
     getActionDetectarTransiciones()->setDisabled(true);
     getActionCodificarImagen()->setEnabled(true);
+    }
 }
 
 void CAplicacion::slotCodificarImagen() {
@@ -643,16 +657,9 @@ void CAplicacion::slotCodificarImagen() {
     if(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size() == 0)
         slotDetectarTransiciones();
     getOperacionesImagen()->codificarDeteccion();
-    /// Abrimos asistente
-    //asistente_ = new CAsistenteCodificacion(getOperacionesImagen()->detectarCirculos()->getCirculosDetectados().size(), getNodoInicio()->text().toUtf8().constData(), getNodosFinales()->text().toUtf8().constData(), getOperacionesImagen()->getIniciosAsistente(), getOperacionesImagen()->getDestinosAsistente(), getOperacionesImagen()->getLetrasAsistente());
 
     dibujarSentidoTransiciones();
     getActionConfirmarImagen()->setEnabled(true);
-
-    //getAsistente()->show();
-    //slotCambiarPerspectiva();
-    //getCheckUpdatesTimer()->start(1000);
-
 }
 
 void CAplicacion::slotProcesarImagen() {
@@ -709,13 +716,7 @@ void CAplicacion::slotAbrirFicheroCorrecto() {
             connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
             connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
         }
-
     }
-
-    //getPanelOpciones()->iniciarVistaCorreccion(0);
-    //connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
-    //connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
-    //setStyleSheet("background-color: black;");
 }
 
 void CAplicacion::slotFiltroGray() {
@@ -759,19 +760,15 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
     //Ya hemos detectado circulos, será cambiarlos segun las variables
     if(getActionDetectarLineas()->isEnabled()) {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        //getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
-
         Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(resultado)));
 
         //Es circulos y lineas, calculamos ambos
     } else if (getActionDetectarTransiciones()->isEnabled()) {
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-
         //Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
         aux = mostrarCirculosFinales(aux);
 
-        //aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
 
         //Dibujamos lineas
@@ -782,13 +779,10 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
         getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(aux));
         //Tenemos circulos, lineas y transiciones
     } else if (getActionCodificarImagen()->isEnabled()) {
-
         Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         //Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
-
         //Dibujamos circulos
         aux = mostrarCirculosFinales(aux);
-
         //aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
         //getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
 
@@ -813,7 +807,6 @@ void CAplicacion::slotCirculosCannyAccumulatorHoughLinesP() {
         cout << "Error!, Debe cargar una imagen previamente " << endl;
     }
     getPanelOpciones()->setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black");
-
 }
 
 void CAplicacion::slotHelp() {
@@ -869,24 +862,6 @@ void CAplicacion::slotCodificarNuevoFichero() {
     fs.close();
     checkFicheroTemporalCreado();
     getVentanaCrearFichero()->close();
-    //cout << text.toStdString() << endl;
-
-    /*ifstream fich(PATH_TEMPORAL, ios::in | ios::binary);
-
-    if(fich.good()) {
-        cout << "HOLA" << endl;
-        QFile file1(PATH_TEMPORAL);
-        if(!file1.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            cout << "Error Guardando el fichero codificado" << endl;
-        } else {
-            QTextStream in(&file1);
-            QString line;
-            while(!in.atEnd()){
-                line += in.readLine();
-                line += "\n";
-            }
-            if(getPerspectivaActual()->text() == "Deteccion")
-                slotCambiarPerspectiva();*/
 }
 
 void CAplicacion::slotConfirmarImagen() {
@@ -961,7 +936,6 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
                         //cout << "Lineas Despues de borrar" << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
                     } else {
                         //cout << "No toca" << endl;
-
                     }
                 }
             }
@@ -1021,7 +995,6 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
                         }
                     }
                 }
-            //find (myvector.begin(), myvector.end(), 30);
 
             if(borrado == true) {
                 Mat resultado = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
@@ -1200,9 +1173,6 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         slotCambiarPerspectiva();
                     }
 
-                    /*inicializarVentanaAplicacionCorreccion();*
-            getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
-            */
                     if(!getCargarImagenParaPanelComparacion()) {
                         getPanelPrincipal()->setText(line);
                         getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
@@ -1258,9 +1228,7 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         if(getPosActualPanelOpciones() == 3) {
                             connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
                             connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
-
                         }
-
                         cargarImagenParaPanelComparacion_ = false;
                         getCheckUpdatesTimer()->stop();
                     }
@@ -1272,10 +1240,10 @@ void CAplicacion::checkFicheroTemporalCreado() {
             cout << "fichero vacio" << endl;
         }
     } else {
-        cout << "Fichero Codificado aun no creado \n Error al leer de Fichero" << endl;
+        /*cout << "Fichero Codificado aun no creado \n Error al leer de Fichero" << endl;
         if(fich.fail()) cout << "Bit fail activo" << endl;
         if(fich.eof())  cout << "Bit eof activo" << endl;
-        if(fich.bad())  cout << "Bit bad activo" << endl;
+        if(fich.bad())  cout << "Bit bad activo" << endl;*/
     }
     fich.close();
 }
@@ -1294,8 +1262,8 @@ void CAplicacion::slotRestaurarValores() {
 void CAplicacion::slotAbrirImagenReferencia() {
     cargarImagenParaPanelComparacion_ = true;
     auxContenidoAnterior_ = new CLabel(getPanelPrincipal()->text(), true);
-    cout << "Panel Principal " << getPanelPrincipal()->text().toStdString() << endl;
-    cout << "HEY " << auxContenidoAnterior_->text().toStdString() << endl;
+    //cout << "Panel Principal " << getPanelPrincipal()->text().toStdString() << endl;
+    //cout << "HEY " << auxContenidoAnterior_->text().toStdString() << endl;
     slotAbrirImagen();
 }
 
@@ -1303,7 +1271,7 @@ void CAplicacion::slotCambiarPerspectiva() {
     if(getPerspectivaActual()->text() == "Perspectiva actual: \nDeteccion") {
         inicializarVentanaAplicacionCorreccion();
         if(getPanelPrincipal()->text() == "Introduzca aqui la imagen o fichero a corregir ") {
-            cout << "HEYS" << endl;
+            //cout << "HEYS" << endl;
             posActualPanelOpciones_ = 0;
             if(getPanelComparacion()->text() != "Introduzca aqui la imagen o fichero de referencia ")
                 posActualPanelOpciones_ = 2;
@@ -1361,15 +1329,19 @@ void CAplicacion::slotCambiarTextEliminarAnadirLinea() {
 }
 
 void CAplicacion::slotSimplificarFicheroCorregir() {
-
+cout << "Simplificando fichero corregir" << endl;
 }
 
 void CAplicacion::slotSimplificarFicheroReferencia() {
-
+cout << "Simplificando fichero referencia" << endl;
 }
 
 void CAplicacion::slotAnalizarCadena() {
+    cout << "Analizando Cadena" << endl;
+}
 
+void CAplicacion::slotCorregirFinal() {
+    cout << "Corrigiendo Final" << endl;
 }
 
 //get y sets
@@ -1448,6 +1420,10 @@ QAction* CAplicacion::getActionAbrirFichero() {
 
 QAction* CAplicacion::getActionCrearNuevoFichero() {
     return actionCrearNuevoFichero_;
+}
+
+QAction* CAplicacion::getActionMostrarAyuda() {
+    return actionMostrarAyuda_;
 }
 
 QAction* CAplicacion::getActionAbout() {

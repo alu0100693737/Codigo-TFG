@@ -75,6 +75,7 @@ private:
     QAction* actionAbrirFichero_;
     /// Accion Nuevo Fichero del Submenu Archivo
     QAction* actionCrearNuevoFichero_;
+    QAction* actionMostrarAyuda_;
     /// Accion About del Submenu Archivo
     QAction* actionAbout_;
     /// Accion About Qt del Submenu Archivo
@@ -147,7 +148,6 @@ private:
 
     bool dibujadaTransiciones_;
     void dibujarSentidoTransiciones();
-
 
     /**
      * @brief
@@ -343,6 +343,8 @@ public:
      * QAction
      */
     QAction* getActionCrearNuevoFichero();
+
+    QAction* getActionMostrarAyuda();
     /**
      * @brief
      * Metodo que devuelve la Accion About
@@ -518,6 +520,9 @@ public slots:
      * Metodo Slot que Abre un Fichero y lo coloca en el Panel Principal
      */
     void slotCrearNuevoFichero();
+
+
+    void slotMostrarAyuda();
     /**
      * @brief
      * Metodo Slot que Abre un QMessageBox con Informacion Relevante del Proyecto
@@ -642,5 +647,6 @@ public slots:
     void slotSimplificarFicheroCorregir();
     void slotSimplificarFicheroReferencia();
     void slotAnalizarCadena();
+    void slotCorregirFinal();
 };
 #endif
