@@ -248,6 +248,8 @@ void CAplicacion::inicializarVentanaAplicacionDeteccion() {
     getPanelPrincipal()->setAlignment(Qt::AlignCenter);
     getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 6px;");
 
+    //Borramos los posibles datos de los clineedit
+
     //getLayout()->removeWidget(getPanelComparacion());
     //getPanelComparacion()->clear();
     getLayout()->addWidget(getPanelComparacion(), 0, 0, 3, 4);
@@ -344,8 +346,15 @@ void CAplicacion::slotAbrirFichero() {
             if(getPosActualPanelOpciones() == 3) {
                 connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
                 connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
-
+                connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
+                connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
+                connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
+                connect(getPanelOpciones()->getCorregirFichero(), SIGNAL(clicked()), this, SLOT(slotCorregirFinal()));
+            } else if(getPosActualPanelOpciones() == 1) {
+                connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
+                connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
             }
+
             //poner analizar cadena y simplificar
         } else {
             getPanelComparacion()->setText(line);
@@ -362,7 +371,10 @@ void CAplicacion::slotAbrirFichero() {
             if(getPosActualPanelOpciones() == 3) {
                 connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
                 connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
-
+                connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
+                connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
+                connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
+                connect(getPanelOpciones()->getCorregirFichero(), SIGNAL(clicked()), this, SLOT(slotCorregirFinal()));
             }
 
             //poner simplificar
@@ -606,49 +618,56 @@ void CAplicacion::slotDetectarCirculos() {
 void CAplicacion::slotDetectarLineas() {
     if(getNodoInicio()->text().isEmpty() || getNodosFinales()->text().isEmpty()) {
         QMessageBox mensaje;
-        mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \nRecuerde configurar el alfabeto.");
+        mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \n Solo habŕa un estado inicial \nRecuerde configurar el alfabeto.");
         mensaje.setIcon(QMessageBox::Warning);
         mensaje.exec();
     } else {
-        Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
-        Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-        getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
+        if(getNodoInicio()->text().size() > 2){
+            cout << "Error" << endl;
+            QMessageBox mensaje;
+            mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \nSolo habŕa un estado inicial \nRecuerde configurar el alfabeto.");
+            mensaje.setIcon(QMessageBox::Warning);
+            mensaje.exec();
+        } else {
+            Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
+            Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+            getOperacionesImagen()->detectarLineas()->iniciarDeteccion(aux, getPanelOpciones()->getHoughLinesP()->value());
 
-        for( size_t i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
-            Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
-            line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+            for( size_t i = 0; i <  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size(); i++ ) {
+                Vec4i l =  getOperacionesImagen()->detectarLineas()->getLineasDetectadas().at(i);
+                line( resultado, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3, LINE_AA);
+            }
+            getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+
+            getActionDetectarLineas()->setDisabled(true);
+            getActionDetectarTransiciones()->setDisabled(false);
         }
-        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
-
-        getActionDetectarLineas()->setDisabled(true);
-        getActionDetectarTransiciones()->setDisabled(false);
     }
 }
 
 void CAplicacion::slotDetectarTransiciones() {
-
-    Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
-    Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
-
     if(getAlfabetoActual()->currentIndex() == 0) {
         QMessageBox mensaje;
         mensaje.setText("Recuerde introducir el alfabeto del autómata.");
         mensaje.setIcon(QMessageBox::Warning);
         mensaje.exec();
     } else {
+        Mat resultado = getOperacionesImagen()->QImage2Mat(getPanelPrincipal()->getImagen());
+        Mat aux = imread(getPathImagenActual().toUtf8().constData(), IMREAD_COLOR );
+
         getActionProcesarImagen()->setEnabled(true);
 
-    getOperacionesImagen()->detectarTransiciones()->ejecutar(aux, getAlfabetoActual()->currentIndex());
+        getOperacionesImagen()->detectarTransiciones()->ejecutar(aux, getAlfabetoActual()->currentIndex());
 
-    for (size_t i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
-        cv::rectangle(resultado,                            // draw rectangle on original image
-                      getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
-                      cv::Scalar(0, 255, 0),                        // green
-                      2);
-    }
-    getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
-    getActionDetectarTransiciones()->setDisabled(true);
-    getActionCodificarImagen()->setEnabled(true);
+        for (size_t i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
+            cv::rectangle(resultado,                            // draw rectangle on original image
+                          getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
+                          cv::Scalar(0, 255, 0),                        // green
+                          2);
+        }
+        getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
+        getActionDetectarTransiciones()->setDisabled(true);
+        getActionCodificarImagen()->setEnabled(true);
     }
 }
 
@@ -673,15 +692,24 @@ void CAplicacion::slotProcesarImagen() {
         getActionProcesarImagen()->setEnabled(true);
     } else {
         slotDetectarLineas();
-        slotDetectarTransiciones();
-        if(getNodoInicio()->text().isEmpty() || getNodosFinales()->text().isEmpty()) {
+
+        if(getAlfabetoActual()->currentIndex() == 0) {
             QMessageBox mensaje;
-            mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \n\nPulse a continuación el botón Codificar Imagen.");
+            mensaje.setText("Recuerde introducir el alfabeto del autómata.");
             mensaje.setIcon(QMessageBox::Warning);
             mensaje.exec();
             getActionProcesarImagen()->setEnabled(true);
         } else {
-            slotCodificarImagen();
+            slotDetectarTransiciones();
+            if(getNodoInicio()->text().isEmpty() || getNodosFinales()->text().isEmpty()) {
+                QMessageBox mensaje;
+                mensaje.setText("Recuerde introducir el nodo inicio y los nodos finales. \n\nPulse a continuación el botón Codificar Imagen.");
+                mensaje.setIcon(QMessageBox::Warning);
+                mensaje.exec();
+                getActionProcesarImagen()->setEnabled(true);
+            } else {
+                slotCodificarImagen();
+            }
         }
     }
 }
@@ -706,7 +734,7 @@ void CAplicacion::slotAbrirFicheroCorrecto() {
         cout << "Mostrando aux " << getPosActualPanelOpciones() << endl;
         if(getPosActualPanelOpciones() == 0)
             posActualPanelOpciones_ = 2;
-        else if(getPosActualPanelOpciones() == 2)
+        else if(getPosActualPanelOpciones() == 1)
             posActualPanelOpciones_ = 3;
         getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
         connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
@@ -715,6 +743,10 @@ void CAplicacion::slotAbrirFicheroCorrecto() {
         if(getPosActualPanelOpciones() == 3) {
             connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
             connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
+            connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
+            connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
+            connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
+            connect(getPanelOpciones()->getCorregirFichero(), SIGNAL(clicked()), this, SLOT(slotCorregirFinal()));
         }
     }
 }
@@ -1178,7 +1210,7 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         getPanelPrincipal()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
                         getActionAbrirFicheroCorrecto()->setDisabled(false);
                         if(getPosActualPanelOpciones() == 0)
-                        posActualPanelOpciones_ = 1;
+                            posActualPanelOpciones_ = 1;
                         else if(getPosActualPanelOpciones() == 2)
                             posActualPanelOpciones_ = 3;
                         getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
@@ -1194,11 +1226,11 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         }
                         if(encontrado == false) {
                             if(getPosActualPanelOpciones() == 1) {
-                            posActualPanelOpciones_ = 0;
-                            getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
+                                posActualPanelOpciones_ = 0;
+                                getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
                             } else if(getPosActualPanelOpciones() == 3) {
                                 posActualPanelOpciones_ = 2;
-                                 getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
+                                getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
                             }
                         }
 
@@ -1207,6 +1239,15 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         if(getPosActualPanelOpciones() == 3) {
                             connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
                             connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
+                            connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
+                            connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
+                            connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
+                            connect(getPanelOpciones()->getCorregirFichero(), SIGNAL(clicked()), this, SLOT(slotCorregirFinal()));
+
+                        }
+                        if(getPosActualPanelOpciones() == 1) {
+                            connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
+                            connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
 
                         }
                         getCheckUpdatesTimer()->stop();
@@ -1218,7 +1259,7 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         getPanelComparacion()->setText(line);
                         getPanelComparacion()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 60px;");
                         if(getPosActualPanelOpciones() == 0)
-                        posActualPanelOpciones_ = 2;
+                            posActualPanelOpciones_ = 2;
                         else if(getPosActualPanelOpciones() == 1)
                             posActualPanelOpciones_ = 3;
                         getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
@@ -1228,6 +1269,10 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         if(getPosActualPanelOpciones() == 3) {
                             connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
                             connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+                            connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
+                            connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
+                            connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
+                            connect(getPanelOpciones()->getCorregirFichero(), SIGNAL(clicked()), this, SLOT(slotCorregirFinal()));
                         }
                         cargarImagenParaPanelComparacion_ = false;
                         getCheckUpdatesTimer()->stop();
@@ -1307,6 +1352,9 @@ void CAplicacion::slotCambiarPerspectiva() {
             getActionProcesarImagen()->setEnabled(true);
         }
         getPanelPrincipal()->clear();
+        getNodoInicio()->clear();
+        getNodosFinales()->clear();
+
         getActionAbrirFicheroCorrecto()->setEnabled(false);
         getActionConfirmarImagen()->setEnabled(false);
         cout << "La posicion actual es " << getPosActualPanelOpciones() << endl;
@@ -1329,11 +1377,11 @@ void CAplicacion::slotCambiarTextEliminarAnadirLinea() {
 }
 
 void CAplicacion::slotSimplificarFicheroCorregir() {
-cout << "Simplificando fichero corregir" << endl;
+    cout << "Simplificando fichero corregir" << endl;
 }
 
 void CAplicacion::slotSimplificarFicheroReferencia() {
-cout << "Simplificando fichero referencia" << endl;
+    cout << "Simplificando fichero referencia" << endl;
 }
 
 void CAplicacion::slotAnalizarCadena() {

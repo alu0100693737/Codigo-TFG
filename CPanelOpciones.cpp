@@ -365,6 +365,20 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
         getLayout()->addWidget(getSimplificarFicheroReferencia(), 3, 2, 1, 2);
 
         corregirFichero_ = new CPushButton("Corregir Fichero", true);
+        getCorregirFichero()->setStyleSheet("background-color: rgb(154, 238, 127);"
+                                            "color: black; border-width: 1px;"
+                                            "border-top: 1px solid white;"
+                                            "border-left: 1px solid white;"
+                                            "border-right: 1px solid grey;"
+                                            "border-bottom: 1px solid grey;"
+                                            "border-style: solid; "
+                                            "border-radius: 5;"
+                                            "padding: 2px;"
+                                            "padding-left: 5px;"
+                                            "padding-right: 5px;"
+                                            "font: 16px;"
+                                            "font-weight: bold;");
+
         getLayout()->addWidget(getCorregirFichero(), 5, 0, 1, 4);
 
     }
