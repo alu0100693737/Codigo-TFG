@@ -22,6 +22,7 @@
 #include <iostream>
 #include "COperacionesImagen.h"
 #include "CPanelOpciones.h"
+#include "CNfa.h"
 #define PATH_TEMPORAL "/home/ivan/Documentos/Codigo-TFG/codificaciones/temporal.txt"
 
 using namespace std;

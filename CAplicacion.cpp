@@ -1386,6 +1386,26 @@ void CAplicacion::slotSimplificarFicheroReferencia() {
 
 void CAplicacion::slotAnalizarCadena() {
     cout << "Analizando Cadena" << endl;
+    //cout << endl << "Introduzca el nombre del fichero con extensión .nfa :   ";
+    //string fichero;
+    //cin >> fichero;
+
+    CNFA nfa;
+
+    nfa.ConstruirNFA(getPanelPrincipal()->text().toStdString());
+    cout << "PAnel Principal " << getPanelPrincipal()->text().toStdString() << endl;
+
+    nfa.CrearAlfabeto();
+
+    cout << endl << "--> Analizar Cadena" << endl;
+
+    string cadena;
+    cout << endl << "Introduzca una cadena" << endl;
+    getline(cin, cadena );
+
+    nfa.AnalizarCadena(cadena);
+
+    cout << endl << endl;
 }
 
 void CAplicacion::slotCorregirFinal() {

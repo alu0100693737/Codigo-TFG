@@ -11,25 +11,30 @@
 #include <string>
 #include "CNfa.h"
 #include <fstream>
+#include <QString>
 using std::vector;
 using std::set;
 using std::string;
 
 using namespace std;
 
-void CNFA::ConstruirNFA(string nombrefichero, int &aperturafichero){
-    ifstream fich;
-    fich.open(nombrefichero.c_str());
-    if(fich.is_open()){
-        aperturafichero = 2;
-        fich >> n_estados;
-        fich >> inicial;
+void CNFA::ConstruirNFA(QString nombrefichero){
+
+    QStringList* list = new QStringList(nombrefichero.split(QRegExp("\\s+")), QString::SkipEmptyParts);
+        n_estados = nombrefichero.at(0);
+        nombrefichero.removeAt(0);
+        inicial = nombrefichero.at(0);
+        nombrefichero.remove(0);
         string auxiliar;
 
         for(int i=0; i < n_estados; i++){
             int id;
             int n;
-            fich >> id >> n;
+            id = nombrefichero.at(0);
+            nombrefichero.remove(0);
+            n = nombrefichero.at(0);
+            nombrefichero.remove(0);
+            //nombrefichero >> id >> n;
             bool a;
             if (n == 0){
                 a = false;
@@ -51,7 +56,9 @@ void CNFA::ConstruirNFA(string nombrefichero, int &aperturafichero){
 
 
             int n_trans;
-            fich >> n_trans;
+            n_trans = nombrefichero.at(0);
+            nombrefichero.removeAt(0);
+           // nombrefichero >> n_trans;
             CEstado estado;
             estado.setEstado(a, id, n_trans);
 
@@ -62,8 +69,9 @@ void CNFA::ConstruirNFA(string nombrefichero, int &aperturafichero){
 
                 CTransicion transi;
 
-                fich >> caracter;
-                fich >> destino;
+                caracter = nombrefichero.at(0);
+                nombrefichero >> caracter;
+                nombrefichero >> destino;
 
                 if((id != destino) && (a == false)){  // estado de muerte = destino y origen iguales y estado de NO aceptacion
                     estado_muerte = false;
@@ -76,11 +84,6 @@ void CNFA::ConstruirNFA(string nombrefichero, int &aperturafichero){
             estado.set_muerte(estado_muerte);
             Q_.push_back(estado);
         }
-    }
-
-    else{
-        aperturafichero = 1;
-    }
 }
 
 void CNFA::AnalizarCadena(string &cadena){

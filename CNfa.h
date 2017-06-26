@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <string>
+#include <QString>
 using std::vector;
 using std::set;
 using std::string;
@@ -27,7 +28,7 @@ private:
 public:
 
     CEstado EncontrarEstado(int q_id);
-    void ConstruirNFA(string nombrefichero, int &aperturafichero);
+    void ConstruirNFA(QString nombrefichero);
     void MostrarEstadosMuerte();
     void MostrarNFA();
     bool Analizar(CEstado &q, string &cadena, int t, vector<CTransicion> &caminos, bool &acepta);

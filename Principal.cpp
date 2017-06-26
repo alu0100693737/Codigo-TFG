@@ -7,7 +7,7 @@
 //                                                           //
 //               Fecha: 05/06/2017                           //
 ///////////////////////////////////////////////////////////////
-#include "CNfa.h"
+
 #include "CAplicacion.h"
 int main(int argc, char *argv[]) {
     QApplication app(argc,argv);
