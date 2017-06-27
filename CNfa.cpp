@@ -12,6 +12,7 @@
 #include "CNfa.h"
 #include <fstream>
 #include <QString>
+#include <QStringList>
 using std::vector;
 using std::set;
 using std::string;
@@ -19,60 +20,59 @@ using std::string;
 using namespace std;
 
 void CNFA::ConstruirNFA(QString nombrefichero){
+    QStringList list;
+    list = nombrefichero.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+    n_estados = list.at(0).toInt();
+    cout << "Numero de nodos " << n_estados << endl;
+    list.removeAt(0);
+    inicial = list.at(0).toInt();
+    cout << "Nodo inicial " << inicial << endl;
+    list.removeAt(0);
 
-    QStringList* list = new QStringList(nombrefichero.split(QRegExp("\\s+")), QString::SkipEmptyParts);
-        n_estados = nombrefichero.at(0);
-        nombrefichero.removeAt(0);
-        inicial = nombrefichero.at(0);
-        nombrefichero.remove(0);
-        string auxiliar;
-
-        for(int i=0; i < n_estados; i++){
+    for(int i = 0; i < n_estados; i++) {
+        if(list.size() > 0) {
             int id;
             int n;
-            id = nombrefichero.at(0);
-            nombrefichero.remove(0);
-            n = nombrefichero.at(0);
-            nombrefichero.remove(0);
+            id = list.at(0).toInt();
+            list.removeAt(0);
+            n = list.at(0).toInt();
+            list.removeAt(0);
             //nombrefichero >> id >> n;
             bool a;
-            if (n == 0){
+            if (n == 0)
                 a = false;
-            }
-
-            else{
+            else
                 a = true;
-            }
+
 
             bool estado_muerte;
 
-            if(a == true){
+            if(a == true)
                 estado_muerte = false;
-            }
 
-            else {
+            else
                 estado_muerte = true;
-            }
-
 
             int n_trans;
-            n_trans = nombrefichero.at(0);
-            nombrefichero.removeAt(0);
-           // nombrefichero >> n_trans;
+            n_trans = list.at(0).toInt();
+            cout << id << " " << a << " " << n_trans << " ";
+            list.removeAt(0);
+
             CEstado estado;
             estado.setEstado(a, id, n_trans);
 
-            for(int s =0; s < n_trans; s++){
-
+            for(int s =0; s < n_trans; s++) {
                 char caracter;
                 int destino;
 
                 CTransicion transi;
 
-                caracter = nombrefichero.at(0);
-                nombrefichero >> caracter;
-                nombrefichero >> destino;
+                caracter = list.at(0).toStdString().at(0);
+                list.removeAt(0);
 
+                destino = list.at(0).toInt();
+                list.removeAt(0);
+                cout << caracter << " " << destino << " ";
                 if((id != destino) && (a == false)){  // estado de muerte = destino y origen iguales y estado de NO aceptacion
                     estado_muerte = false;
                 }
@@ -80,13 +80,31 @@ void CNFA::ConstruirNFA(QString nombrefichero){
                 transi.setTransicion( id, caracter, destino);
                 estado.insertar_transicion(transi);
             }
-
+            cout << endl;
             estado.set_muerte(estado_muerte);
             Q_.push_back(estado);
+        } else { i = n_estados;}
+    }
+
+    while(Q_.size() < n_estados) {
+        for(int i = 0; i < n_estados; i++) {
+            bool encontrado = false;
+            for(int l = 0; l < Q_.size(); l++) {
+                if(Q_.at(l).get_id() == i)
+                    encontrado = true;
+            }
+            if(encontrado == false) {
+                CEstado estado;
+                cout << i << " " << 0 << " " << 0 << endl;
+                estado.setEstado(0, i, 0);
+                estado.set_muerte(true);
+                Q_.push_back(estado);
+            }
         }
+    }
 }
 
-void CNFA::AnalizarCadena(string &cadena){
+string CNFA::AnalizarCadena(string &cadena){
     int t = -1;
     CEstado q = EncontrarEstado(inicial);
 
@@ -97,11 +115,11 @@ void CNFA::AnalizarCadena(string &cadena){
     Analizar(q, cadena, t, caminos, aceptada);
 
     if(aceptada == true){
-        cout << endl << "Decision final: Cadena SI aceptada" << endl;
+        return "\nDecision final: Cadena SI aceptada";
     }
 
     else{
-        cout << endl << "Decision final: Cadena NO aceptada" << endl;
+        return "\nDecision final: Cadena NO aceptada";
     }
 }
 
@@ -200,12 +218,19 @@ CEstado CNFA::EncontrarEstado(int q_id) {
     }
 }
 
-void CNFA::MostrarEstadosMuerte() {
+string CNFA::MostrarEstadosMuerte() {
+    string aux;
     for(int i=0; i < Q_.size(); i++){
         if(Q_[i].getMuerte() ){
-            cout << endl << "El estado " << Q_[i].get_id() << " es un estado de muerte";
+            aux += "El estado ";
+            stringstream strs;
+              strs << Q_[i].get_id();
+              aux += strs.str();
+
+            aux += " es un estado de muerte";
         }
     }
+    return aux;
 }
 
 void CNFA::MostrarNFA() {
@@ -228,16 +253,17 @@ void CNFA::CrearAlfabeto() {
     }
 }
 
-void CNFA::MostrarAlfabeto() {
-    cout << endl << " Alfabeto " << endl;
-    cout << "{ ";
+string CNFA::MostrarAlfabeto() {
+    string aux;
+    aux.append("\n Alfabeto \n");
+    aux.append("{ ");
     for (set<char>::iterator it = Alfabeto.begin(); it != Alfabeto.end(); it++) {
-        cout << *it << " ";
+        aux += *it;
+                aux.append(" ");
     }
-    cout << "} ";
+    aux.append("} ");
+    return aux;
 }
-
-
 
 void CNFA::epsilonClosure(CEstado &q, CEstado &A) {
 
@@ -378,6 +404,7 @@ vector<CEstado> CNFA::ConverttoDFA() {
 
     cout << endl << endl << "NFA TO DFA" << endl << endl;
 
+    cout << "orden size " << Orden.size() << endl;
     for(int u=0; u < Orden.size(); u++){
         Orden[u].MostrarNFA();
     }
@@ -436,100 +463,3 @@ void CNFA::Exportar(vector<CEstado> &Orden){
     fout.close();
 }
 
-/// LINEA DE COMANDOS
-
-// HE QUITADO LOS MENSAJES QUE MUESTRA POR PANTALLA, YA QUE PARA ESTE CASO LO UNICO QUE ME INTERESA ES SI SE ACEPTA O NO, LA DECISION FINAL
-
-bool CNFA::AnalizarCadena2(string &cadena){
-    int t = -1;
-    CEstado q = EncontrarEstado(inicial);
-
-    vector<CTransicion> caminos;
-
-    bool aceptada = false;
-
-    Analizar2(q, cadena, t, caminos, aceptada);
-
-    if(aceptada == true){
-        return true;
-    }
-
-    else{
-        return false;
-    }
-}
-
-bool CNFA::Analizar2(CEstado &q, string &cadena, int t, vector<CTransicion> &Caminos, bool &acepta){
-
-    int a = t+1;
-    if(q.existecamino(cadena[a]) || q.existecamino('~')){ //Saber si hay algun camino desde este estado con ese caracter o con caracter ~
-
-
-
-        for(int i=0; i < q.get_n_trans(); i++){
-
-            CTransicion trans = q.get_transicion(i);
-
-            if(trans.getCaracter() == cadena[a]){
-                CEstado siguiente = EncontrarEstado(trans.getEstado_siguiente());
-                Caminos.push_back(trans);
-
-                if( a == cadena.length()-1){
-                    if(siguiente.getAceptacion() == true){
-
-                        acepta = true;
-                        if(siguiente.existecamino('~')){
-                            Analizar2(siguiente, cadena, cadena.length()-1, Caminos, acepta);
-                        }
-                        Caminos.pop_back();
-                    }
-
-                    else{
-                        if(siguiente.existecamino('~')){
-                            Analizar2(siguiente, cadena, cadena.length()-1, Caminos, acepta);
-                        }
-                        Caminos.pop_back();
-                    }
-                }
-
-                else{
-                    Analizar2(siguiente, cadena, a, Caminos, acepta);
-                    Caminos.pop_back();
-                }
-            }
-
-
-            if(trans.getCaracter() == (int)'~') {
-                CEstado siguiente = EncontrarEstado(trans.getEstado_siguiente());
-                Caminos.push_back(trans);
-
-                if( a == cadena.length()) { // Sin -1 porque si es el ultimo valor, no coge el de la cadena y muestra el camino sin el valor, se supone en este caso que la los valores de la cadena ya se han recorrido
-                    if(siguiente.getAceptacion() == true){
-                        acepta = true;
-                        if(siguiente.existecamino('~')) {
-                            Analizar2(siguiente, cadena, cadena.length()-1, Caminos, acepta);
-                        }
-                        Caminos.pop_back();
-                    }
-
-                    else {
-                        if(siguiente.existecamino('~')) {
-                            Analizar2(siguiente, cadena, cadena.length()-1, Caminos, acepta);
-                        }
-                        Caminos.pop_back();
-                    }
-                }
-
-                else {
-                    Analizar2(siguiente, cadena, a-1, Caminos, acepta); // a-1 para que siga en la misma posicion del vector cadena
-                    Caminos.pop_back();
-                }
-            }
-
-        }
-    }
-    else { //NO hay camino para caracter de la cadena o con caracter ~
-
-    }
-    return acepta;
-}

@@ -19,6 +19,7 @@ using namespace std;
 
 CAplicacion::CAplicacion() {
 
+
     setWindowIcon(QIcon(":/release/icon.ico"));
 
     setPathImagenActual(NULL); //Path al principio = NULL
@@ -58,7 +59,7 @@ CAplicacion::CAplicacion() {
     actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/imagenOriginal.png"), tr("Abrir imagen para su detección"), this);
     actionAbrirFichero_     = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/fichero.png"), tr("Abrir fichero para su correccion"), this);
     actionCrearNuevoFichero_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/nuevoFichero.png"), tr("Crear nuevo automata"), this);
-    actionMostrarAyuda_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/eye.png"), tr("No mostrar ayuda"), this);
+    actionMostrarAyuda_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/eye.png"), tr("Mostrar ayuda"), this);
     actionAbout_            = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/about.png"), tr("About"), this);
     actionAboutQT_          = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/aboutQT.png"), tr("About QT"), this);
     actionSalir_            = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/salir.png"), tr("Salir"), this);
@@ -270,7 +271,8 @@ void CAplicacion::inicializarVentanaAplicacionDeteccion() {
     layout1->addWidget(getPerspectivaActual());
     layout1->addWidget(getCambiarPerspectiva());
     layout1->setSpacing(10);
-    layout1->addWidget(getRestaurarValores());/* layout1->addWidget(getGuardarComoFichero()); layout1->addWidget(getCorregirAutomata());
+    layout1->addWidget(getRestaurarValores());
+    /* layout1->addWidget(getGuardarComoFichero()); layout1->addWidget(getCorregirAutomata());
     layout1->addWidget(getHelp());*/
 
     layout1->setSpacing(10);
@@ -1316,7 +1318,7 @@ void CAplicacion::slotCambiarPerspectiva() {
     if(getPerspectivaActual()->text() == "Perspectiva actual: \nDeteccion") {
         inicializarVentanaAplicacionCorreccion();
         if(getPanelPrincipal()->text() == "Introduzca aqui la imagen o fichero a corregir ") {
-            //cout << "HEYS" << endl;
+
             posActualPanelOpciones_ = 0;
             if(getPanelComparacion()->text() != "Introduzca aqui la imagen o fichero de referencia ")
                 posActualPanelOpciones_ = 2;
@@ -1345,6 +1347,7 @@ void CAplicacion::slotCambiarPerspectiva() {
         connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
 
     } else {
+
         inicializarVentanaAplicacionDeteccion();
         getActionCargarImagenOriginal()->setEnabled(true);
         if(getPathImagenActual() != NULL) {
@@ -1366,6 +1369,31 @@ void CAplicacion::slotCambiarPerspectiva() {
         connect(getPanelOpciones()->getAccumulatorThresHold(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
         connect(getPanelOpciones()->getHoughLinesP(), SIGNAL(valueChanged(int)), this, SLOT(slotCirculosCannyAccumulatorHoughLinesP()));
         setStyleSheet("background-color: rgba(191, 191, 191, 1);");
+
+        //Mostrar ayuda
+        if(getActionMostrarAyuda()->text() == "Mostrar ayuda") {
+            QWidget* window = new QWidget(); QGridLayout* a = new QGridLayout();
+            QLabel* aux1 = new QLabel("Puede realizar la detección automática de \nla imagen pulsando sobre el boton \nProcesar Imagen o realizar la detección \npaso a paso detectando circulos, lineas, transiciones \ny sentidos.");
+
+            a->addWidget(aux1, 0, 0, 2, 2);
+
+            CCheckBox* noMostrarAyuda = new CCheckBox();
+            a->addWidget(new CLabel("Dejar de mostrar la ayuda", false), 2, 0, 1, 1);
+            a->addWidget(noMostrarAyuda, 2, 1, 1, 1);
+            a->setSpacing(10);
+            CPushButton* aceptar = new CPushButton("Aceptar", true);
+            a->addWidget(aceptar, 3, 0, 1, 2);
+            window->setFixedHeight(200);
+            window->setLayout(a);
+
+            window->setWindowTitle("Info Panel Detección de Imagen");
+            this->setFixedSize(this->width(), this->height());
+            window->show();
+
+            connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
+            connect(aceptar, SIGNAL(pressed()), window, SLOT(close()));
+        }
+        cout << getActionMostrarAyuda()->text().toStdString() << endl;
     }
 }
 
@@ -1377,35 +1405,62 @@ void CAplicacion::slotCambiarTextEliminarAnadirLinea() {
 }
 
 void CAplicacion::slotSimplificarFicheroCorregir() {
-    cout << "Simplificando fichero corregir" << endl;
+    CNFA nfa;
+
+    nfa.ConstruirNFA(getPanelPrincipal()->text());
+    nfa.CrearAlfabeto();
 }
 
 void CAplicacion::slotSimplificarFicheroReferencia() {
     cout << "Simplificando fichero referencia" << endl;
+    CNFA nfa;
+
+    nfa.ConstruirNFA(getPanelComparacion()->text());
+    nfa.CrearAlfabeto();
+
+    vector<CEstado> Orden;
+    Orden = nfa.ConverttoDFA();
+
+    nfa.Exportar(Orden);
+
+    cout << "HOLA " << endl;
 }
 
 void CAplicacion::slotAnalizarCadena() {
-    cout << "Analizando Cadena" << endl;
-    //cout << endl << "Introduzca el nombre del fichero con extensión .nfa :   ";
-    //string fichero;
-    //cin >> fichero;
+    QString text;
 
-    CNFA nfa;
+    bool ok;
 
-    nfa.ConstruirNFA(getPanelPrincipal()->text().toStdString());
-    cout << "PAnel Principal " << getPanelPrincipal()->text().toStdString() << endl;
+    text = QInputDialog::getText(0, "Cadena ",
+                                 "Introduzca la cadena a analizar:", QLineEdit::Normal,
+                                 text, &ok);
+    if(!text.isEmpty()) {
 
-    nfa.CrearAlfabeto();
+        CNFA nfa;
 
-    cout << endl << "--> Analizar Cadena" << endl;
+        nfa.ConstruirNFA(getPanelPrincipal()->text());
+        nfa.CrearAlfabeto();
 
-    string cadena;
-    cout << endl << "Introduzca una cadena" << endl;
-    getline(cin, cadena );
+        cout << endl << "--> Analizar Cadena" << endl;
+        string aux = text.toStdString();
 
-    nfa.AnalizarCadena(cadena);
+        QWidget* window = new QWidget(); QVBoxLayout* a = new QVBoxLayout();
+        CLabel* aux1 = new CLabel(QString::fromStdString(nfa.AnalizarCadena(aux)), true);
 
-    cout << endl << endl;
+        CLabel* aux2 = new CLabel(QString::fromStdString(nfa.MostrarEstadosMuerte()), true);
+
+        CLabel* aux3 = new CLabel(QString::fromStdString(nfa.MostrarAlfabeto()), true);
+
+        a->addWidget(aux3);
+        a->addWidget(aux1);
+        a->addWidget(aux2);
+
+        window->setLayout(a);
+
+        window->setWindowTitle("Cadena");
+        this->setFixedSize(this->width(), this->height());
+        window->show();
+    }
 }
 
 void CAplicacion::slotCorregirFinal() {

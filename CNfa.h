@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <string>
+#include <algorithm>    // std::find
 #include <QString>
 using std::vector;
 using std::set;
@@ -16,7 +17,7 @@ using std::string;
 #include "CTransicion.h"
 
 #include <sstream>
-
+using namespace std;
 
 class CNFA{
 
@@ -29,15 +30,13 @@ public:
 
     CEstado EncontrarEstado(int q_id);
     void ConstruirNFA(QString nombrefichero);
-    void MostrarEstadosMuerte();
+    string MostrarEstadosMuerte();
     void MostrarNFA();
     bool Analizar(CEstado &q, string &cadena, int t, vector<CTransicion> &caminos, bool &acepta);
-    void AnalizarCadena(string &cadena);
-    bool Analizar2(CEstado &q, string &cadena, int t, vector<CTransicion> &caminos, bool &acepta);
-    bool AnalizarCadena2(string &cadena);
+    string AnalizarCadena(string &cadena);
     void MostrarCamino(vector<CTransicion> &Camino);
     void CrearAlfabeto();
-    void MostrarAlfabeto();
+    string MostrarAlfabeto();
     void epsilonClosure(CEstado &q, CEstado &A);
     void epsilonClosure(CEstado &A);
     CEstado move(set<int> &A, char simbolo);
