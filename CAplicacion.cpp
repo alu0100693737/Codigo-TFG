@@ -1445,12 +1445,19 @@ void CAplicacion::slotAnalizarCadena() {
         string aux = text.toStdString();
 
         QWidget* window = new QWidget(); QVBoxLayout* a = new QVBoxLayout();
+        CLabel* aux4 = new CLabel("Cadena:  " + text, true);
         CLabel* aux1 = new CLabel(QString::fromStdString(nfa.AnalizarCadena(aux)), true);
 
         CLabel* aux2 = new CLabel(QString::fromStdString(nfa.MostrarEstadosMuerte()), true);
 
         CLabel* aux3 = new CLabel(QString::fromStdString(nfa.MostrarAlfabeto()), true);
 
+        if(aux1->text() == "\nDecision final: Cadena SI aceptada") {
+            aux1->setStyleSheet("background-color: rgb(95, 225, 110);");
+        } else
+                aux1->setStyleSheet("background-color: rgb(237, 130, 98);");
+
+        a->addWidget(aux4);
         a->addWidget(aux3);
         a->addWidget(aux1);
         a->addWidget(aux2);
