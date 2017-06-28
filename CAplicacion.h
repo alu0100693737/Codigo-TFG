@@ -24,7 +24,7 @@
 #include "CPanelOpciones.h"
 #include "CNfa.h"
 #define PATH_TEMPORAL "/home/ivan/Documentos/Codigo-TFG/codificaciones/temporal.txt"
-
+#define PATH_TEMPORALDFA "/home/ivan/Documentos/Codigo-TFG/codificaciones/temporalDFA.txt"
 using namespace std;
 using namespace cv;
 /**
@@ -185,6 +185,8 @@ private:
     bool cargarImagenParaPanelComparacion_;
     CLabel* auxContenidoAnterior_;
     int posActualPanelOpciones_;
+
+    QWidget* ayuda_;
 
 public:
     /**
@@ -496,6 +498,8 @@ public:
     QWidget* getVentanaCrearFichero();
 
     bool getDibujadaTransiciones();
+
+    QWidget* getAyuda();
 
     /**
      * @brief

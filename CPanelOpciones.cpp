@@ -23,8 +23,7 @@ CPanelOpciones::CPanelOpciones() {
 }
 
 void CPanelOpciones::iniciarVistaDeteccion(int valor) {
-
-    setFixedHeight(120);
+    setFixedHeight(160);
     ///Se inicializan los QScrollBar
     cannyThresHold_ = new QScrollBar(Qt::Horizontal);
     accumulatorThresHold_ = new QScrollBar(Qt::Horizontal);
@@ -68,16 +67,31 @@ void CPanelOpciones::iniciarVistaDeteccion(int valor) {
             delete getCargarImagenReferencia();
             delete getCargarFicheroCorregir();
             delete getCargarFicheroReferencia();
+            for (int i = 0; i < getLayout()->count(); ++i) {
+                QWidget *widget = getLayout()->itemAt(i)->widget();
+                if (widget == getSimplificarFicheroReferencia()) {
+                    getLayout()->removeWidget(getSimplificarFicheroReferencia());
+                    delete getSimplificarFicheroReferencia();
+                } else if (widget == getSimplificarFicheroCorregir()) {
+                    getLayout()->removeWidget(getSimplificarFicheroCorregir());
+                    delete getSimplificarFicheroCorregir();
+                } else if (widget == getCorregirFichero()) {
+                    getLayout()->removeWidget(getCorregirFichero());
+                    delete getCorregirFichero();
+                } else if (widget == getCargarImagenCorregir()) {
+                    getLayout()->removeWidget(getCargarImagenCorregir());
+                    delete getCargarImagenCorregir();
+                }
+
+            }
         } else if (valor == 1) {
-            cout << "Deberia estar borrandose todo esto" << endl;
+            cout << "1" << endl;
             getLayout()->removeWidget(getCargarImagenCorregir());
             getLayout()->removeWidget(getCargarImagenReferencia());
             getLayout()->removeWidget(getCargarFicheroCorregir());
             getLayout()->removeWidget(getCargarFicheroReferencia());
             getLayout()->removeWidget(getAnalizarCadena());
             getLayout()->removeWidget(getSimplificarFicheroCorregir());
-            // getLayout()->removeWidget(getSimplificarFicheroReferencia());
-            //getLayout()->removeWidget(getCorregirFichero());
 
             delete getCargarImagenCorregir();
             delete getCargarImagenReferencia();
@@ -85,6 +99,19 @@ void CPanelOpciones::iniciarVistaDeteccion(int valor) {
             delete getCargarFicheroReferencia();
             delete getAnalizarCadena();
             delete getSimplificarFicheroCorregir();
+            for (int i = 0; i < getLayout()->count(); ++i) {
+                QWidget *widget = getLayout()->itemAt(i)->widget();
+                if (widget == getSimplificarFicheroReferencia()) {
+                    getLayout()->removeWidget(getSimplificarFicheroReferencia());
+                    delete getSimplificarFicheroReferencia();
+                } else if (widget == getSimplificarFicheroCorregir()) {
+                    getLayout()->removeWidget(getSimplificarFicheroCorregir());
+                    delete getSimplificarFicheroCorregir();
+                } else if (widget == getCorregirFichero()) {
+                    getLayout()->removeWidget(getCorregirFichero());
+                    delete getCorregirFichero();
+                }
+            }
         } else if (valor == 2) {
             cout << " 2" << endl;
 
@@ -103,17 +130,16 @@ void CPanelOpciones::iniciarVistaDeteccion(int valor) {
             for (int i = 0; i < getLayout()->count(); ++i) {
                 QWidget *widget = getLayout()->itemAt(i)->widget();
                 if (widget == getSimplificarFicheroReferencia()) {
-                    cout << "HOLA 1" << endl;
                     getLayout()->removeWidget(getSimplificarFicheroReferencia());
                     delete getSimplificarFicheroReferencia();
                 } else if (widget == getSimplificarFicheroCorregir()) {
-                    cout << "HOLA2 " << endl;
                     getLayout()->removeWidget(getSimplificarFicheroCorregir());
                     delete getSimplificarFicheroCorregir();
+                } else if (widget == getCorregirFichero()) {
+                    getLayout()->removeWidget(getCorregirFichero());
+                    delete getCorregirFichero();
                 }
-
             }
-            cout << "vale " << endl;
 
         } else if (valor == 3) {
             cout << "3" << endl;
@@ -134,6 +160,21 @@ void CPanelOpciones::iniciarVistaDeteccion(int valor) {
             delete getAnalizarCadena();
             delete getSimplificarFicheroCorregir();
             delete getCorregirFichero();
+
+            for (int i = 0; i < getLayout()->count(); ++i) {
+                QWidget *widget = getLayout()->itemAt(i)->widget();
+                if (widget == getSimplificarFicheroReferencia()) {
+                    getLayout()->removeWidget(getSimplificarFicheroReferencia());
+                    delete getSimplificarFicheroReferencia();
+                } else if (widget == getSimplificarFicheroCorregir()) {
+                    getLayout()->removeWidget(getSimplificarFicheroCorregir());
+                    delete getSimplificarFicheroCorregir();
+                } else if (widget == getCorregirFichero()) {
+                    cout << "Deberia borrar pero no borra " << endl;
+                    getLayout()->removeWidget(getCorregirFichero());
+                    delete getCorregirFichero();
+                }
+            }
         } else {
             cout << "Error, vista no valida en panel correccion" << endl;
         }
@@ -154,7 +195,7 @@ void CPanelOpciones::iniciarVistaDeteccion(int valor) {
 }
 
 void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
-    setFixedHeight(180);
+    setFixedHeight(160);
     if(valor == 0)  {
         cout << "correccion 0" << endl;
         getLayout()->removeWidget(getCannyThresHold());
@@ -177,6 +218,27 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
         delete getHoughLinesP();
         delete getValorHoughLinesP();
 
+        for (int i = 0; i < getLayout()->count(); ++i) {
+            QWidget *widget = getLayout()->itemAt(i)->widget();
+
+            if (widget == getAnalizarCadena()) {
+                getLayout()->removeWidget(getAnalizarCadena());
+                delete getAnalizarCadena();
+            } else if (widget == getSimplificarFicheroCorregir()) {
+                getLayout()->removeWidget(getSimplificarFicheroCorregir());
+                delete getSimplificarFicheroCorregir();
+            } else if (widget == getCargarImagenCorregir()) {
+                getLayout()->removeWidget(getCargarImagenCorregir());
+                delete getCargarImagenCorregir();
+            } else if (widget == getCargarFicheroCorregir()) {
+                getLayout()->removeWidget(getCargarFicheroCorregir());
+                delete getCargarFicheroCorregir();
+            } else if (widget == getCorregirFichero()) {
+                getLayout()->removeWidget(getCorregirFichero());
+                delete getCorregirFichero();
+            }
+        }
+
         /// Valores para la codificacion 2 Botones
         cargarImagenCorregir_ = new CPushButton("Cargar imagen para \nsu corrección", true);
         cargarImagenReferencia_ = new CPushButton("Cargar imagen de \nreferencia", true);
@@ -194,19 +256,20 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
         for (int i = 0; i < getLayout()->count(); ++i) {
             QWidget *widget = getLayout()->itemAt(i)->widget();
             if (widget == getCannyThresHold()) {
-
                 iniciarVistaCorreccion(0);
                 break;
             } else if (widget == getAnalizarCadena()) {
-                cout << "Estaba aquiii " << endl;
                 getLayout()->removeWidget(getAnalizarCadena());
                 delete getAnalizarCadena();
             } else if (widget == getSimplificarFicheroReferencia()) {
-                cout << "borre simplificar"  << endl;
                 getLayout()->removeWidget(getSimplificarFicheroReferencia());
                 delete getSimplificarFicheroReferencia();
+            } else if (widget == getCorregirFichero()) {
+                getLayout()->removeWidget(getCorregirFichero());
+                delete getCorregirFichero();
             }
         }
+
         analizarCadena_ = new CPushButton("Analizar cadena sobre el automata a corregir", true);
         simplificarAutomataCorregir_ = new CPushButton("Simplificar automata a corregir", true);
 
@@ -222,11 +285,13 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
         getLayout()->addWidget(getCargarFicheroCorregir(), 2, 0, 1, 2);
         getLayout()->addWidget(getAnalizarCadena(), 3, 0, 1, 2);
         getLayout()->addWidget(getSimplificarFicheroCorregir(), 4, 0, 1, 2);
+
     } else if (valor == 2) {
         cout << "Correccion 2" << endl;
         for (int i = 0; i < getLayout()->count(); ++i) {
             QWidget *widget = getLayout()->itemAt(i)->widget();
             if (widget == getCannyThresHold()) {
+                cout << "Borrando scrollbars " << endl;
                 getLayout()->removeWidget(getCannyThresHold());
                 getLayout()->removeWidget(getValorCannyThresHold());
                 getLayout()->removeWidget(getLCannyThresHold());
@@ -258,7 +323,7 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
                 getLayout()->addWidget(getCargarFicheroCorregir(), 3, 0, 2, 2);
                 getLayout()->addWidget(getCargarImagenReferencia(), 1, 2, 2, 2);
                 getLayout()->addWidget(getCargarFicheroReferencia(), 3, 2, 2, 2);
-                break;
+
             }
             else if (widget == getSimplificarFicheroReferencia()) {
                 getLayout()->removeWidget(getSimplificarFicheroReferencia());
@@ -269,6 +334,9 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
             } else if(widget == getSimplificarFicheroCorregir()) {
                 getLayout()->removeWidget(getSimplificarFicheroCorregir());
                 delete getSimplificarFicheroCorregir();
+            } else if (widget == getCorregirFichero()) {
+                getLayout()->removeWidget(getCorregirFichero());
+                delete getCorregirFichero();
             }
         }
 
@@ -319,7 +387,6 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
                 getLayout()->removeWidget(getSimplificarFicheroReferencia());
                 delete getSimplificarFicheroReferencia();
             }else if (widget == getAnalizarCadena()) {
-                cout << "Estaba aquiii " << endl;
                 getLayout()->removeWidget(getAnalizarCadena());
                 delete getAnalizarCadena();
             } else if (widget == getSimplificarFicheroCorregir()) {
@@ -380,20 +447,7 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
                                             "font-weight: bold;");
 
         getLayout()->addWidget(getCorregirFichero(), 5, 0, 1, 4);
-
     }
-    /*analizarCadena_ = new CPushButton("Analizar Cadena Sobre Autómata a corregir", true);
-    simplificarAutomataCorregir_ = new CPushButton("Simplificar Autómata a Corregir", true);
-    corregirFichero_ = new CPushButton("Corregir Fichero", true);
-
-    getLayout()->addWidget(getAnalizarCadena(), 0, 0, 2, 4);
-    getLayout()->addWidget(getSimplificarFicheroCorregir(),  2, 0, 2, 4);
-    getLayout()->addWidget(getCorregirFichero(), 4, 0, 2, 4);
-}
-    getAnalizarCadena()->setEnabled(false);
-    getSimplificarFicheroCorregir()->setEnabled(false);
-    getCorregirFichero()->setEnabled(false);*/
-
 }
 
 QGridLayout* CPanelOpciones::getLayout() {
@@ -467,16 +521,3 @@ CPushButton* CPanelOpciones::getSimplificarFicheroReferencia() {
 CPushButton* CPanelOpciones::getCorregirFichero() {
     return corregirFichero_;
 }
-
-void CPanelOpciones::slotAnalizarCadena() {
-    cout << "Analizando cadena " << endl;
-}
-
-void CPanelOpciones::slotSimplificarFichero() {
-    cout << "Simplificando fichero " << endl;
-}
-
-void CPanelOpciones::slotCorregirFichero() {
-    cout << "Corrigiendo fichero " << endl;
-}
-

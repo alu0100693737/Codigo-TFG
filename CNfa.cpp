@@ -102,11 +102,12 @@ void CNFA::ConstruirNFA(QString nombrefichero){
             }
         }
     }
+    cout << "Adios " << endl;
 }
 
 string CNFA::AnalizarCadena(string &cadena){
     int t = -1;
-    CEstado q = EncontrarEstado(inicial);
+    CEstado q = encontrarEstado(inicial);
 
     vector<CTransicion> caminos;
 
@@ -131,7 +132,7 @@ bool CNFA::Analizar(CEstado &q, string &cadena, int t, vector<CTransicion> &Cami
             CTransicion trans = q.get_transicion(i);
 
             if(trans.getCaracter() == cadena[a]){
-                CEstado siguiente = EncontrarEstado(trans.getEstado_siguiente());
+                CEstado siguiente = encontrarEstado(trans.getEstado_siguiente());
                 Caminos.push_back(trans);
 
                 if( a == cadena.length()-1){
@@ -162,7 +163,7 @@ bool CNFA::Analizar(CEstado &q, string &cadena, int t, vector<CTransicion> &Cami
             }
 
             if(trans.getCaracter() == (int)'~'){
-                CEstado siguiente = EncontrarEstado(trans.getEstado_siguiente());
+                CEstado siguiente = encontrarEstado(trans.getEstado_siguiente());
                 Caminos.push_back(trans);
 
                 if( a == cadena.length()){ // Sin -1 porque si es el ultimo valor, no coge el de la cadena y muestra el camino sin el valor, se supone en este caso que la los valores de la cadena ya se han recorrido
@@ -210,7 +211,7 @@ void CNFA::MostrarCamino(vector<CTransicion> &Camino) {
     cout << endl;
 }
 
-CEstado CNFA::EncontrarEstado(int q_id) {
+CEstado CNFA::encontrarEstado(int q_id) {
     for(int i=0; i < Q_.size(); i++){
         if(Q_[i].get_id() == q_id){
             return Q_[i];
@@ -275,7 +276,7 @@ void CNFA::epsilonClosure(CEstado &q, CEstado &A) {
             aux = q.get_transicion(i);
 
             if(aux.getCaracter() == '~') {
-                CEstado auxiliar = EncontrarEstado(aux.getEstado_siguiente());
+                CEstado auxiliar = encontrarEstado(aux.getEstado_siguiente());
                 epsilonClosure(auxiliar, A);
             }
         }
@@ -288,7 +289,7 @@ void CNFA::epsilonClosure(CEstado &A) {
 
     for(set<int>::iterator i = auxiliar.begin(); i != auxiliar.end(); i++) {
         int aux = *i;
-        CEstado auxx = EncontrarEstado(aux);
+        CEstado auxx = encontrarEstado(aux);
         epsilonClosure(auxx, A);
     }
 }
@@ -297,7 +298,7 @@ CEstado CNFA::move(set<int> &A, char simbolo) {
     CEstado NuevoEstado;
     for(set<int>::iterator a = A.begin(); a != A.end(); a++) {
         int i = *a;
-        CEstado auxiliar = EncontrarEstado(i);
+        CEstado auxiliar = encontrarEstado(i);
 
         if( auxiliar.existecamino(simbolo)) {
             for(int j=0; j < auxiliar.get_n_trans(); j++) {
@@ -362,12 +363,13 @@ bool CNFA::Existe(CEstado &A, vector<CEstado> &Orden) {
 }
 
 vector<CEstado> CNFA::ConverttoDFA() {
+    cout << "Entre " << endl;
     vector<CTransicion> transiciones;
     vector<CEstado> Orden;
     vector<CEstado> Cola;
 
     CEstado A;
-    CEstado auxiliar = EncontrarEstado(inicial);
+    CEstado auxiliar = encontrarEstado(inicial);
     epsilonClosure(auxiliar, A);
 
     Orden.push_back(A);
@@ -440,7 +442,7 @@ bool CNFA::igualdad(set<int> &A, set<int> &B){
 void CNFA::Exportar(vector<CEstado> &Orden){
     int t;
 
-    ofstream fout("DFA.dfa");
+    ofstream fout(PATH_TEMPORALDFA);
     fout << Orden.size() << endl;
     fout << 0 << endl;
 

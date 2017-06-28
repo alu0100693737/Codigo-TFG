@@ -9,7 +9,6 @@
 #include <string.h>
 #include "CTransicion.h"
 
-
 using namespace std;
 
 void CTransicion::setTransicion( int origen, char caracter, int B){

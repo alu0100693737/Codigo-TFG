@@ -13,11 +13,12 @@
 using std::vector;
 using std::set;
 using std::string;
-#include "CEstado.h"
+#include "CEstadoNFA.h"
 #include "CTransicion.h"
 
 #include <sstream>
 using namespace std;
+#define PATH_TEMPORALDFA "/home/ivan/Documentos/Codigo-TFG/codificaciones/temporalDFA.txt"
 
 class CNFA{
 
@@ -28,7 +29,7 @@ private:
     set<char> Alfabeto;
 public:
 
-    CEstado EncontrarEstado(int q_id);
+    CEstado encontrarEstado(int q_id);
     void ConstruirNFA(QString nombrefichero);
     string MostrarEstadosMuerte();
     void MostrarNFA();

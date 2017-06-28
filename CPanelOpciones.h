@@ -129,11 +129,6 @@ public:
     CPushButton* getSimplificarFicheroCorregir();
     CPushButton* getSimplificarFicheroReferencia();
     CPushButton* getCorregirFichero();
-
-    public slots:
-    void slotAnalizarCadena();
-    void slotSimplificarFichero();
-    void slotCorregirFichero();
 };
 
 #endif // CPANELOPCIONES_H

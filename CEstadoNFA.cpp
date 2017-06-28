@@ -1,4 +1,4 @@
-#include "CEstado.h"
+#include "CEstadoNFA.h"
 
 
 #include <iostream>
@@ -8,7 +8,7 @@
 #include <cstdio>
 #include <stdio.h>
 #include <string.h>
-#include "CEstado.h"
+#include "CEstadoNFA.h"
 
 using namespace std;
 

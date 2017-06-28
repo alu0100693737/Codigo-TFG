@@ -31,9 +31,9 @@ SOURCES += \
     CCheckBox.cpp \
     CPushButton.cpp \
     main.cpp \
-    CEstado.cpp \
     CNfa.cpp \
-    CTransicion.cpp
+    CTransicion.cpp \
+    CEstadoNFA.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -109,9 +109,9 @@ HEADERS += \
     CLineEdit.h \
     CCheckBox.h \
     CPushButton.h \
-    CEstado.h \
     CNfa.h \
-    CTransicion.h
+    CTransicion.h \
+    CEstadoNFA.h
 
 
 RC_ICONS = release/icon.ico \
