@@ -228,7 +228,7 @@ string CNFA::MostrarEstadosMuerte() {
               strs << Q_[i].get_id();
               aux += strs.str();
 
-            aux += " es un estado de muerte";
+            aux += " es un estado de muerte \n";
         }
     }
     return aux;

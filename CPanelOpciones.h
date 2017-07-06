@@ -57,6 +57,7 @@ private:
     CPushButton* cargarFicheroReferencia_;
 
     CPushButton* analizarCadena_;
+    CPushButton* analizarCadenaReferencia_;
 
     CPushButton* simplificarAutomataCorregir_;
     CPushButton* simplificarAutomataReferencia_;
@@ -126,6 +127,8 @@ public:
     CPushButton* getCargarFicheroReferencia();
 
     CPushButton* getAnalizarCadena();
+    CPushButton* getAnalizarCadenaReferencia();
+
     CPushButton* getSimplificarFicheroCorregir();
     CPushButton* getSimplificarFicheroReferencia();
     CPushButton* getCorregirFichero();

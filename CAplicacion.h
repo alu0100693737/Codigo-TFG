@@ -132,8 +132,7 @@ private:
     QTextEdit* textEditCrearFichero_;
     QTimer* checkUpdatesTimer_;
 
-    CLabel* textEliminarAnadirLinea_;
-    QCheckBox* checkEliminarAnadirLinea_; //off para eliminar, on añadir
+    QComboBox* checkEliminarAnadirLinea_; //off para eliminar, on añadir
     bool lineaAceptada_;
     bool sentidoAceptado_;
     Point* puntoInicioNuevaLinea_;
@@ -484,8 +483,8 @@ public:
     int getPosActualPanelOpciones();
 
     //Lineas
-    CLabel* getTextAnadirEliminar();
-    QCheckBox* getCheckEliminarAnadirLinea();
+
+    QComboBox* getCheckEliminarAnadirLinea();
 
     bool getLineaAceptada();
     bool getSentidoAceptado();
@@ -644,8 +643,6 @@ public slots:
       restaurar valores scrollbar*/
     void slotRestaurarValores();
     void slotCambiarPerspectiva();
-
-    void slotCambiarTextEliminarAnadirLinea();
 
     //Sin programar aun
     void slotAbrirImagenReferencia();

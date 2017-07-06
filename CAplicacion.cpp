@@ -18,8 +18,6 @@ using namespace cv;
 using namespace std;
 
 CAplicacion::CAplicacion() {
-
-
     setWindowIcon(QIcon(":/release/icon.ico"));
 
     setPathImagenActual(NULL); //Path al principio = NULL
@@ -59,7 +57,7 @@ CAplicacion::CAplicacion() {
     actionAbrirImagen_      = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/imagenOriginal.png"), tr("Abrir imagen para su detección"), this);
     actionAbrirFichero_     = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/fichero.png"), tr("Abrir fichero para su correccion"), this);
     actionCrearNuevoFichero_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/nuevoFichero.png"), tr("Crear nuevo automata"), this);
-    actionMostrarAyuda_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/eye.png"), tr("Mostrar ayuda"), this);
+    actionMostrarAyuda_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/eye.png"), tr("No mostrar ayuda"), this);
     actionAbout_            = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/about.png"), tr("About"), this);
     actionAboutQT_          = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/aboutQT.png"), tr("About QT"), this);
     actionSalir_            = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/salir.png"), tr("Salir"), this);
@@ -67,7 +65,9 @@ CAplicacion::CAplicacion() {
     actionDetectarLineas_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/linea.png"), tr("Detectar lineas"), this);
     actionDetectarCirculos_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/circulo.png"), tr("Detectar circulos"), this);
     actionDetectarTransiciones_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/transition.png"), tr("Detectar transiciones"), this);
-    actionCodificarImagen_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/codificar.png"), tr("Codificar imagen"), this);
+
+    //Busca la codificacion de la imagen
+    actionCodificarImagen_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/codificar.png"), tr("Detectar Sentidos"), this);
     actionConfirmarImagen_ =new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/check.png"), tr("Confirmar deteccion"));
     actionProcesarImagen_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/opencv.png"), tr("Procesar imagen"), this);
     actionCargarImagenOriginal_ = new QAction(QIcon("/home/ivan/Documentos/Codigo-TFG/release/imagenOriginal.png"), tr("Cargar ultima imagen"), this);
@@ -97,6 +97,8 @@ CAplicacion::CAplicacion() {
     getActionHistograma()->setDisabled(true);
 
     getActionAbrirFicheroCorrecto()->setDisabled(true);
+
+    ayuda_ = new QWidget();
 
     ///Shortcuts
     getActionAbrirImagen()->setShortcuts(QKeySequence::New);
@@ -173,9 +175,10 @@ CAplicacion::CAplicacion() {
     getAlfabetoActual()->addItem(tr("Letras"));
     getAlfabetoActual()->addItem(tr("Numeros"));
 
-    checkEliminarAnadirLinea_ = new QCheckBox();
-    getCheckEliminarAnadirLinea()->click();
-    textEliminarAnadirLinea_ = new CLabel("Eliminar Lineas", false);
+    checkEliminarAnadirLinea_ = new QComboBox();
+    getCheckEliminarAnadirLinea()->addItem(tr("Eliminar Lineas"));
+    getCheckEliminarAnadirLinea()->addItem(tr("Añadir Lineas"));
+
     lineaAceptada_ = false;
     sentidoAceptado_ = false;
 
@@ -188,7 +191,7 @@ CAplicacion::CAplicacion() {
     this->getToolBar()->addWidget(getNodoInicio());
     this->getToolBar()->addWidget(getNodosFinales());
     this->getToolBar()->addWidget(getAlfabetoActual());
-    this->getToolBar()->addWidget(getTextAnadirEliminar());
+    //this->getToolBar()->addWidget(getTextAnadirEliminar());
     this->getToolBar()->addWidget(getCheckEliminarAnadirLinea());
 
     checkUpdatesTimer_ = new QTimer(this); //timer para asistente codificacion
@@ -233,7 +236,6 @@ CAplicacion::CAplicacion() {
     connect(getRestaurarValores(), SIGNAL(clicked()), this, SLOT(slotRestaurarValores()));
     connect(getCambiarPerspectiva(), SIGNAL(clicked()), this, SLOT(slotCambiarPerspectiva()));
 
-    connect(getCheckEliminarAnadirLinea(), SIGNAL(clicked()), this, SLOT(slotCambiarTextEliminarAnadirLinea()));
     connect(getCheckUpdatesTimer(), SIGNAL(timeout()), this, SLOT(checkFicheroTemporalCreado()));
 
     slotCambiarPerspectiva(); //Empezamos con la perspectiva codificacion
@@ -278,7 +280,7 @@ void CAplicacion::inicializarVentanaAplicacionDeteccion() {
     //green
     getPanelOpciones()->setStyleSheet("background-color: rgba(0, 107, 97, 0.9); border: 1px solid black ;");
     setStyleSheet("background-color: rgba(191, 191, 191, 1);");
-
+    cout << "Llegue a iniciarlizar la venta deteccion" << endl;
 }
 
 void CAplicacion::inicializarVentanaAplicacionCorreccion() {
@@ -288,7 +290,7 @@ void CAplicacion::inicializarVentanaAplicacionCorreccion() {
     getActionFiltroMediana()->setDisabled(true);
     getActionFiltroSobel()->setDisabled(true);
     getActionHistograma()->setDisabled(true);
-
+    setMinimumWidth(850);
     getPanelPrincipal()->clear();
     //getPanelComparacion()->clear();
     if(getAuxContenidoAnterior()->text() == "")
@@ -315,6 +317,7 @@ void CAplicacion::inicializarVentanaAplicacionCorreccion() {
 
 //SLOTS
 void CAplicacion::slotAbrirImagen() {
+    cout << "NO LLEGO" << endl;
     //inicializarVentanaAplicacionDeteccion();
     //por si estuviera el modo fichero abierto
     //getLayout()->addWidget (getPanelPrincipal(), 0, 0, 3, 5);
@@ -450,6 +453,7 @@ bool CAplicacion::loadFile(const QString &fileName) {
 
         getActionDetectarCirculos()->setDisabled(false);
         getActionProcesarImagen()->setDisabled(false);
+
         getActionCargarImagenOriginal()->setDisabled(false);
         getActionFiltroGaussiano()->setDisabled(false);
         getActionFiltroGray()->setDisabled(false);
@@ -599,8 +603,75 @@ void CAplicacion::slotCrearNuevoFichero() {
 void CAplicacion::slotMostrarAyuda() {
     if(getActionMostrarAyuda()->text() == "No mostrar ayuda")
         getActionMostrarAyuda()->setText("Mostrar ayuda");
-    else
+    else {
         getActionMostrarAyuda()->setText("No mostrar ayuda");
+        //Deberia mostrar la ayuda
+        if(getPerspectivaActual()->text() == "Perspectiva actual: \nCorreccion") {
+            delete getAyuda();
+            ayuda_ = new QWidget(); QGridLayout* a = new QGridLayout();
+            QLabel* aux1 = new QLabel("Bienvenido a la herramienta DCAFI. \n\nSi desea corregir un autómata, introduzca \nel autómata a corregir y el de referencia en\nlos paneles correspondientes. \n\nSi desea solo detectar un autómata en una imagen, \ncambie de perspectiva en el botón inferior derecho \nde la aplicación. \n\nSi desea crear una nueva codificación en \nformato de texto plano entre en: \n Archivo -> Crear nuevo fichero.");
+
+            a->addWidget(aux1, 0, 0, 2, 2);
+
+            CCheckBox* noMostrarAyuda = new CCheckBox();
+            a->addWidget(new CLabel("Dejar de mostrar la ayuda", false), 2, 0, 1, 1);
+            a->addWidget(noMostrarAyuda, 2, 1, 1, 1);
+            a->setSpacing(10);
+            CPushButton* aceptar = new CPushButton("Aceptar", true);
+            a->addWidget(aceptar, 3, 0, 1, 2);
+
+            getAyuda()->setLayout(a);
+            getAyuda()->setStyleSheet("background-color: white");
+
+            getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
+            this->setFixedSize(this->width(), this->height());
+            getAyuda()->show();
+
+            connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
+            connect(aceptar, SIGNAL(pressed()), getAyuda(), SLOT(close()));
+        } else if (getPerspectivaActual()->text() == "Perspectiva actual: \nDeteccion") {
+            if(getActionMostrarAyuda()->text() == "No mostrar ayuda") {
+                delete getAyuda();
+                ayuda_ = new QWidget(); QGridLayout* a = new QGridLayout();
+                QLabel* aux1 = new QLabel("\nPuede realizar la detección automática de la\nimagen pulsando sobre el boton \nProcesar Imagen: ");
+                QImage myImage;
+                myImage.load("/home/ivan/Documentos/Codigo-TFG/images/procesarImagen.png");
+
+                QLabel* myLabel = new QLabel();
+                myLabel->setPixmap(QPixmap::fromImage(myImage));
+
+                a->addWidget(aux1, 0, 0, 2, 2);
+                a->addWidget(myLabel, 2, 0, 1, 2);
+
+                QLabel* aux2 = new QLabel(" o realizar una detección paso a paso detectando \ncirculos, lineas, transiciones \ny sentidos.");
+                QImage myImage1;
+                myImage1.load("/home/ivan/Documentos/Codigo-TFG/images/pasoApaso.png");
+
+                QLabel* myLabel1 = new QLabel();
+                myLabel1->setPixmap(QPixmap::fromImage(myImage1));
+                myLabel1->show();
+                a->addWidget(aux2, 3, 0, 2, 2);
+                a->addWidget(myLabel1, 5, 0, 1, 2);
+
+                CCheckBox* noMostrarAyuda = new CCheckBox();
+                a->addWidget(new CLabel("Dejar de mostrar la ayuda", false), 6, 0, 1, 1);
+                a->addWidget(noMostrarAyuda, 6, 1, 1, 1);
+                a->setSpacing(20);
+                CPushButton* aceptar = new CPushButton("Aceptar", true);
+                a->addWidget(aceptar, 7, 0, 1, 2);
+
+                getAyuda()->setLayout(a);
+                getAyuda()->setStyleSheet("background-color: white");
+
+                getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
+                this->setFixedSize(this->width(), this->height());
+                getAyuda()->show();
+
+                connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
+                connect(aceptar, SIGNAL(pressed()), getAyuda(), SLOT(close()));
+            }
+        }
+    }
     //falta redactar cada mensaje, ponerle un checkbox para no volver a mostrar
 }
 
@@ -620,7 +691,7 @@ void CAplicacion::slotDetectarCirculos() {
     Mat resultado = getOperacionesImagen()->detectarCirculos()->iniciarDeteccion(aux, getPanelOpciones()->getCannyThresHold()->value(), getPanelOpciones()->getAccumulatorThresHold()->value());
     //Dibujamos circulos
     getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(mostrarCirculosFinales(resultado)));
-     resize(resultado.dims,height());
+    resize(resultado.dims,height());
     getActionDetectarCirculos()->setDisabled(true);
     getActionDetectarLineas()->setDisabled(false);
 }
@@ -967,7 +1038,7 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
         unsigned x( evt -> x() ), y( evt -> y() );
         cout << "He pulsado " << x << ", " << y << endl;
 
-        if(getCheckEliminarAnadirLinea()->isChecked()) {
+        if(getCheckEliminarAnadirLinea()->currentIndex() == 0) {
             bool borrado = false;
             cout << "Lineas iniciales" << getOperacionesImagen()->detectarLineas()->getLineasDetectadas().size() << endl;
 
@@ -1283,9 +1354,12 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         getCheckUpdatesTimer()->stop();
                     } else {
                         if(getAuxContenidoAnterior()->text() != "") {
-                            cout << "Antes habia contenido en el panel principal, recuperando" << endl;
-                            getPanelPrincipal()->setText(getAuxContenidoAnterior()->text());
-                            posActualPanelOpciones_ = 3;
+                            if(getAuxContenidoAnterior()->text() != "Introduzca aqui la imagen o fichero a corregir ") {
+                                cout << getAuxContenidoAnterior()->text().toStdString() << endl;
+                                cout << "Antes habia contenido en el panel principal, recuperando" << endl;
+                                getPanelPrincipal()->setText(getAuxContenidoAnterior()->text());
+                                posActualPanelOpciones_ = 3;
+                            }
                         }
                         getPanelComparacion()->setText(line);
                         getPanelComparacion()->setStyleSheet("background-color: beige; border-style: outset; border-width: 2px; border-radius: 10px; border-color: black; font: bold 14px; padding: 40px;");
@@ -1326,7 +1400,7 @@ void CAplicacion::checkFicheroTemporalCreado() {
 }
 
 void CAplicacion::slotRestaurarValores() {
-    if(getRestaurarValores()->text() == "Cargar Fichero Correcto") {
+    if(getRestaurarValores()->text() == "Cargar fichero de referencia") {
         slotAbrirFicheroCorrecto();
         //setStyleSheet("background-color: black");
     } else {
@@ -1358,16 +1432,12 @@ void CAplicacion::slotCambiarPerspectiva() {
                 posActualPanelOpciones_ = 3;
                 getPanelOpciones()->setFixedHeight(180);
             } else {*/
-                posActualPanelOpciones_ = 2;
-                getPanelPrincipal()->setText("Introduzca aqui la imagen o fichero a corregir");
-
-           // }
+            posActualPanelOpciones_ = 2;
+            getPanelPrincipal()->setText("Introduzca aqui la imagen o fichero a corregir");
         }
 
-        //cout << getPanelPrincipal()->text().toStdString() << endl;
-
         getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
-        getRestaurarValores()->setText("Cargar Fichero Correcto");
+        getRestaurarValores()->setText("Cargar fichero de referencia");
         getPerspectivaActual()->setText("Perspectiva actual: \nCorreccion");
         getActionDetectarLineas()->setEnabled(false);
         getActionDetectarCirculos()->setEnabled(false);
@@ -1385,8 +1455,34 @@ void CAplicacion::slotCambiarPerspectiva() {
         connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
         if(getPosActualPanelOpciones() == 2)
             connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
-    } else {
 
+        if(getActionMostrarAyuda()->text() == "No mostrar ayuda") {
+            delete getAyuda();
+            ayuda_ = new QWidget(); QGridLayout* a = new QGridLayout();
+            QLabel* aux1 = new QLabel("Bienvenido a la herramienta DCAFI. \n\nSi desea corregir un autómata, introduzca \nel autómata a corregir y el de referencia en\nlos paneles correspondientes. \n\nSi desea solo detectar un autómata en una imagen, \ncambie de perspectiva en el botón inferior derecho \nde la aplicación. \n\nSi desea crear una nueva codificación en \nformato de texto plano entre en: \n Archivo -> Crear nuevo fichero.");
+
+            a->addWidget(aux1, 0, 0, 2, 2);
+
+            CCheckBox* noMostrarAyuda = new CCheckBox();
+            a->addWidget(new CLabel("Dejar de mostrar la ayuda", false), 2, 0, 1, 1);
+            a->addWidget(noMostrarAyuda, 2, 1, 1, 1);
+            a->setSpacing(10);
+            CPushButton* aceptar = new CPushButton("Aceptar", true);
+            a->addWidget(aceptar, 3, 0, 1, 2);
+
+            getAyuda()->setLayout(a);
+            getAyuda()->setStyleSheet("background-color: white");
+
+            getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
+            this->setFixedSize(this->width(), this->height());
+            getAyuda()->show();
+
+            connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
+            connect(aceptar, SIGNAL(pressed()), getAyuda(), SLOT(close()));
+        }
+        cout << getActionMostrarAyuda()->text().toStdString() << endl;
+
+    } else {
         inicializarVentanaAplicacionDeteccion();
         getActionCargarImagenOriginal()->setEnabled(true);
         if(getPathImagenActual() != NULL) {
@@ -1410,22 +1506,38 @@ void CAplicacion::slotCambiarPerspectiva() {
         setStyleSheet("background-color: rgba(191, 191, 191, 1);");
 
         //Mostrar ayuda
-        if(getActionMostrarAyuda()->text() == "Mostrar ayuda") {
+        if(getActionMostrarAyuda()->text() == "No mostrar ayuda") {
             delete getAyuda();
             ayuda_ = new QWidget(); QGridLayout* a = new QGridLayout();
-            QLabel* aux1 = new QLabel("Puede realizar la detección automática de \nla imagen pulsando sobre el boton \nProcesar Imagen o realizar la detección \npaso a paso detectando circulos, lineas, transiciones \ny sentidos.");
+            QLabel* aux1 = new QLabel("\nPuede realizar la detección automática de la\nimagen pulsando sobre el boton \nProcesar Imagen: ");
+            QImage myImage;
+            myImage.load("/home/ivan/Documentos/Codigo-TFG/images/procesarImagen.png");
+
+            QLabel* myLabel = new QLabel();
+            myLabel->setPixmap(QPixmap::fromImage(myImage));
 
             a->addWidget(aux1, 0, 0, 2, 2);
+            a->addWidget(myLabel, 2, 0, 1, 2);
+
+            QLabel* aux2 = new QLabel(" o realizar una detección paso a paso detectando \ncirculos, lineas, transiciones \ny sentidos.");
+            QImage myImage1;
+            myImage1.load("/home/ivan/Documentos/Codigo-TFG/images/pasoApaso.png");
+
+            QLabel* myLabel1 = new QLabel();
+            myLabel1->setPixmap(QPixmap::fromImage(myImage1));
+            myLabel1->show();
+            a->addWidget(aux2, 3, 0, 2, 2);
+            a->addWidget(myLabel1, 5, 0, 1, 2);
 
             CCheckBox* noMostrarAyuda = new CCheckBox();
-            a->addWidget(new CLabel("Dejar de mostrar la ayuda", false), 2, 0, 1, 1);
-            a->addWidget(noMostrarAyuda, 2, 1, 1, 1);
-            a->setSpacing(10);
+            a->addWidget(new CLabel("Dejar de mostrar la ayuda", false), 6, 0, 1, 1);
+            a->addWidget(noMostrarAyuda, 6, 1, 1, 1);
+            a->setSpacing(20);
             CPushButton* aceptar = new CPushButton("Aceptar", true);
-            a->addWidget(aceptar, 3, 0, 1, 2);
+            a->addWidget(aceptar, 7, 0, 1, 2);
 
-            getAyuda()->setFixedHeight(200);
             getAyuda()->setLayout(a);
+            getAyuda()->setStyleSheet("background-color: white");
 
             getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
             this->setFixedSize(this->width(), this->height());
@@ -1438,13 +1550,6 @@ void CAplicacion::slotCambiarPerspectiva() {
     }
 }
 
-void CAplicacion::slotCambiarTextEliminarAnadirLinea() {
-    if(getCheckEliminarAnadirLinea()->isChecked())
-        getTextAnadirEliminar()->setText("Eliminar Lineas");
-    else
-        getTextAnadirEliminar()->setText("Añadir Lineas");
-}
-
 void CAplicacion::slotSimplificarFicheroCorregir() {
     remove(PATH_TEMPORALDFA);
     cout << "Simplificando fichero referencia" << endl;
@@ -1452,7 +1557,6 @@ void CAplicacion::slotSimplificarFicheroCorregir() {
 
     nfa.ConstruirNFA(getPanelPrincipal()->text());
     nfa.CrearAlfabeto();
-    cout << "HOLA " << endl;
     vector<CEstado> Orden;
     Orden = nfa.ConverttoDFA();
 
@@ -1463,13 +1567,13 @@ void CAplicacion::slotSimplificarFicheroCorregir() {
 
     } else {
 
-    QTextStream in(&file1);
-    QString line;
-    while(!in.atEnd()){
-        line += in.readLine();
-        line += "\n";
-    }
-    getPanelPrincipal()->setText(line);
+        QTextStream in(&file1);
+        QString line;
+        while(!in.atEnd()){
+            line += in.readLine();
+            line += "\n";
+        }
+        getPanelPrincipal()->setText(line);
     }
     cout << "Corregir" << endl;
 }
@@ -1491,13 +1595,13 @@ void CAplicacion::slotSimplificarFicheroReferencia() {
         cout << "Error, hubo un error en la simplificación del DFA, fichero invalido" << endl;
     } else {
 
-    QTextStream in(&file1);
-    QString line;
-    while(!in.atEnd()){
-        line += in.readLine();
-        line += "\n";
-    }
-    getPanelComparacion()->setText(line);
+        QTextStream in(&file1);
+        QString line;
+        while(!in.atEnd()){
+            line += in.readLine();
+            line += "\n";
+        }
+        getPanelComparacion()->setText(line);
     }
     cout << "referencia " << endl;
 }
@@ -1759,12 +1863,8 @@ CAsistenteCodificacion* CAplicacion::getAsistente() {
     return asistente_;
 }
 
-QCheckBox* CAplicacion::getCheckEliminarAnadirLinea() {
+QComboBox* CAplicacion::getCheckEliminarAnadirLinea() {
     return checkEliminarAnadirLinea_;
-}
-
-CLabel* CAplicacion::getTextAnadirEliminar() {
-    return textEliminarAnadirLinea_;
 }
 
 bool CAplicacion::getLineaAceptada() {

@@ -134,7 +134,7 @@ int main() {
 
     // se guarda la clasificacion creada
 
-    FileStorage fsClassifications("/home/ivan/Documentos/Codigo-TFG/training/classificationsCharacters.xml", cv::FileStorage::WRITE);           // open the classifications file
+    FileStorage fsClassifications("/home/ivan/Documentos/Codigo-TFG/basura.xml", cv::FileStorage::WRITE);           // open the classifications file
 
     if (fsClassifications.isOpened() == false) {                                                        // if the file was not opened successfully
         std::cout << "error, unable to open training classifications file, exiting program\n\n";        // show error message
@@ -146,7 +146,7 @@ int main() {
 
     // se guardan las imagenes del entrenamiento
 
-    FileStorage fsTrainingImages("/home/ivan/Documentos/Codigo-TFG/training/imagesCharacters.xml", cv::FileStorage::WRITE);
+    FileStorage fsTrainingImages("/home/ivan/Documentos/Codigo-TFG/basura.xml", cv::FileStorage::WRITE);
 
     if (fsTrainingImages.isOpened() == false) {
         cout << "error, unable to open training images file, exiting program\n\n";

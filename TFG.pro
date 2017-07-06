@@ -93,7 +93,9 @@ DISTFILES += \
     release/transition.png \
     grafo.png \
     release/icon.ico \
-    prueba.txt.txt
+    prueba.txt.txt \
+    images/procesarImagen.png \
+    images/pasoApaso.png
 
 HEADERS += \
     COperacionesImagen.h \

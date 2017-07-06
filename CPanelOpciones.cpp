@@ -82,7 +82,6 @@ void CPanelOpciones::iniciarVistaDeteccion(int valor) {
                     getLayout()->removeWidget(getCargarImagenCorregir());
                     delete getCargarImagenCorregir();
                 }
-
             }
         } else if (valor == 1) {
             cout << "1" << endl;
@@ -120,11 +119,13 @@ void CPanelOpciones::iniciarVistaDeteccion(int valor) {
             getLayout()->removeWidget(getCargarFicheroCorregir());
             getLayout()->removeWidget(getCargarFicheroReferencia());
             getLayout()->removeWidget(getSimplificarFicheroReferencia());
+            getLayout()->removeWidget(getAnalizarCadenaReferencia());
 
             delete getCargarImagenCorregir();
             delete getCargarImagenReferencia();
             delete getCargarFicheroCorregir();
             delete getCargarFicheroReferencia();
+            delete getAnalizarCadenaReferencia();
             delete getSimplificarFicheroReferencia();
 
             for (int i = 0; i < getLayout()->count(); ++i) {
@@ -149,6 +150,7 @@ void CPanelOpciones::iniciarVistaDeteccion(int valor) {
             getLayout()->removeWidget(getCargarFicheroReferencia());
             getLayout()->removeWidget(getSimplificarFicheroReferencia());
             getLayout()->removeWidget(getAnalizarCadena());
+            getLayout()->removeWidget(getAnalizarCadenaReferencia());
             getLayout()->removeWidget(getSimplificarFicheroCorregir());
             getLayout()->removeWidget(getCorregirFichero());
 
@@ -158,6 +160,7 @@ void CPanelOpciones::iniciarVistaDeteccion(int valor) {
             delete getCargarFicheroReferencia();
             delete getSimplificarFicheroReferencia();
             delete getAnalizarCadena();
+            delete getAnalizarCadenaReferencia();
             delete getSimplificarFicheroCorregir();
             delete getCorregirFichero();
 
@@ -224,6 +227,9 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
             if (widget == getAnalizarCadena()) {
                 getLayout()->removeWidget(getAnalizarCadena());
                 delete getAnalizarCadena();
+            } else if (widget == getAnalizarCadenaReferencia()) {
+                getLayout()->removeWidget((getAnalizarCadenaReferencia()));
+                delete getAnalizarCadenaReferencia();
             } else if (widget == getSimplificarFicheroCorregir()) {
                 getLayout()->removeWidget(getSimplificarFicheroCorregir());
                 delete getSimplificarFicheroCorregir();
@@ -261,6 +267,9 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
             } else if (widget == getAnalizarCadena()) {
                 getLayout()->removeWidget(getAnalizarCadena());
                 delete getAnalizarCadena();
+            } else if (widget == getAnalizarCadenaReferencia()) {
+                getLayout()->removeWidget((getAnalizarCadenaReferencia()));
+                delete getAnalizarCadenaReferencia();
             } else if (widget == getSimplificarFicheroReferencia()) {
                 getLayout()->removeWidget(getSimplificarFicheroReferencia());
                 delete getSimplificarFicheroReferencia();
@@ -337,6 +346,9 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
             } else if (widget == getCorregirFichero()) {
                 getLayout()->removeWidget(getCorregirFichero());
                 delete getCorregirFichero();
+            } else if (widget == getAnalizarCadenaReferencia()) {
+                getLayout()->removeWidget((getAnalizarCadenaReferencia()));
+                delete getAnalizarCadenaReferencia();
             }
         }
 
@@ -348,6 +360,7 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
 
         cargarImagenReferencia_ = new CPushButton("Cargar Imagen de referencia", true);
         cargarFicheroReferencia_ = new CPushButton("Cargar fichero de referencia", true);
+        analizarCadenaReferencia_ = new CPushButton("Analizar cadena sobre automata de referencia", false);
 
         getLayout()->addWidget(new CLabel("Panel 1", false), 0, 0, 1, 2);
         getLayout()->addWidget(getCargarImagenCorregir(), 1, 0, 2, 2);
@@ -389,6 +402,9 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
             }else if (widget == getAnalizarCadena()) {
                 getLayout()->removeWidget(getAnalizarCadena());
                 delete getAnalizarCadena();
+            } else if (widget == getAnalizarCadenaReferencia()) {
+                getLayout()->removeWidget((getAnalizarCadenaReferencia()));
+                delete getAnalizarCadenaReferencia();
             } else if (widget == getSimplificarFicheroCorregir()) {
                 getLayout()->removeWidget(getSimplificarFicheroCorregir());
                 delete getSimplificarFicheroCorregir();
@@ -399,6 +415,7 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
         }
 
         analizarCadena_ = new CPushButton("Analizar cadena sobre el automata a corregir", false);
+        analizarCadenaReferencia_ =  new CPushButton("Analizar cadena sobre automata de referencia", false);
         simplificarAutomataCorregir_ = new CPushButton("Simplificar automata a corregir", false);
 
         getLayout()->removeWidget(getCargarImagenCorregir());
@@ -429,9 +446,10 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
         getLayout()->addWidget(new CLabel("Panel 2", false), 0, 2, 1, 2);
         getLayout()->addWidget(getCargarImagenReferencia(), 1, 2, 1, 2);
         getLayout()->addWidget(getCargarFicheroReferencia(), 2, 2, 1, 2);
-        getLayout()->addWidget(getSimplificarFicheroReferencia(), 3, 2, 1, 2);
+        getLayout()->addWidget(getAnalizarCadenaReferencia(), 3, 2, 1, 2);
+        getLayout()->addWidget(getSimplificarFicheroReferencia(), 4, 2, 1, 2);
 
-        corregirFichero_ = new CPushButton("Corregir Fichero", true);
+        corregirFichero_ = new CPushButton("Comprobar equivalencia", true);
         getCorregirFichero()->setStyleSheet("background-color: rgb(154, 238, 127);"
                                             "color: black; border-width: 1px;"
                                             "border-top: 1px solid white;"
@@ -508,6 +526,10 @@ CPushButton* CPanelOpciones::getCargarFicheroReferencia() {
 
 CPushButton* CPanelOpciones::getAnalizarCadena() {
     return analizarCadena_;
+}
+
+CPushButton* CPanelOpciones::getAnalizarCadenaReferencia() {
+    return analizarCadenaReferencia_;
 }
 
 CPushButton* CPanelOpciones::getSimplificarFicheroCorregir() {
