@@ -649,6 +649,7 @@ public slots:
     void slotSimplificarFicheroCorregir();
     void slotSimplificarFicheroReferencia();
     void slotAnalizarCadena();
+    void slotAnalizarCadenaReferencia();
     void slotCorregirFinal();
 };
 #endif

@@ -347,13 +347,14 @@ void CAplicacion::slotAbrirFichero() {
             connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
             connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
             if(getPosActualPanelOpciones() == 3) {
-                getPanelOpciones()->setFixedHeight(180);
+                //getPanelOpciones()->setFixedHeight(180);
                 connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
                 connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
                 connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
                 connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
                 connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
                 connect(getPanelOpciones()->getCorregirFichero(), SIGNAL(clicked()), this, SLOT(slotCorregirFinal()));
+                connect(getPanelOpciones()->getAnalizarCadenaReferencia(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadenaReferencia()));
             } else if(getPosActualPanelOpciones() == 1) {
                 connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
                 connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
@@ -369,28 +370,30 @@ void CAplicacion::slotAbrirFichero() {
             } else {
                 posActualPanelOpciones_ = 3;
             }
-
+            cargarImagenParaPanelComparacion_ = false;
             getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
             connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
             connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
             if(getPosActualPanelOpciones() == 3) {
-                getPanelOpciones()->setFixedHeight(180);
+                //getPanelOpciones()->setFixedHeight(180);
                 connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
                 connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
                 connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
                 connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
                 connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
                 connect(getPanelOpciones()->getCorregirFichero(), SIGNAL(clicked()), this, SLOT(slotCorregirFinal()));
-            } else if(getPosActualPanelOpciones() == 2)
+                connect(getPanelOpciones()->getAnalizarCadenaReferencia(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadenaReferencia()));
+
+            } else if(getPosActualPanelOpciones() == 2) {
+                connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
+                connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+                connect(getPanelOpciones()->getAnalizarCadenaReferencia(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadenaReferencia()));
                 connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
-
-
+            }
             //poner simplificar
         }
     }
     setStyleSheet("background-color: rgba(191, 191, 191, 1);");
-
-    //setStyleSheet("background-color: black");
 }
 void CAplicacion::inicializarVentanaAbrirImagen(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode) {
     static bool firstDialog = true;
@@ -417,7 +420,6 @@ void CAplicacion::inicializarVentanaAbrirImagen(QFileDialog &dialog, QFileDialog
 bool CAplicacion::loadFile(const QString &fileName) {
     QImageReader reader(fileName);
     setPathImagenActual(fileName); //Introduciendo la path de la imagen actual cargada
-    //cout << "File name: " << fileName.toUtf8().constData() << endl;
     reader.setAutoTransform(true);
     const QImage newImage = reader.read();
     if (newImage.isNull()) {
@@ -563,7 +565,7 @@ void CAplicacion::slotAbout() {
     window->setLayout(a);
     window->setStyleSheet("background-color: black;");
     window->setWindowTitle("Ayuda del asistente");
-    this->setFixedSize(this->width(), this->height());
+    //this->setFixedSize(this->width(), this->height());
     window->show();
 }
 
@@ -624,7 +626,7 @@ void CAplicacion::slotMostrarAyuda() {
             getAyuda()->setStyleSheet("background-color: white");
 
             getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
-            this->setFixedSize(this->width(), this->height());
+            //this->setFixedSize(this->width(), this->height());
             getAyuda()->show();
 
             connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
@@ -664,7 +666,7 @@ void CAplicacion::slotMostrarAyuda() {
                 getAyuda()->setStyleSheet("background-color: white");
 
                 getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
-                this->setFixedSize(this->width(), this->height());
+                //this->setFixedSize(this->width(), this->height());
                 getAyuda()->show();
 
                 connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
@@ -833,17 +835,23 @@ void CAplicacion::slotAbrirFicheroCorrecto() {
         getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
 
         if(getPosActualPanelOpciones() == 3) {
-            getPanelOpciones()->setFixedHeight(180);
+            //getPanelOpciones()->setFixedHeight(180);
+            connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+            connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
             connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
             connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
             connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
             connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
             connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
             connect(getPanelOpciones()->getCorregirFichero(), SIGNAL(clicked()), this, SLOT(slotCorregirFinal()));
+            connect(getPanelOpciones()->getAnalizarCadenaReferencia(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadenaReferencia()));
         } else if(getPosActualPanelOpciones() == 2) {
+            connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+            connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
             connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
             connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
             connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
+            connect(getPanelOpciones()->getAnalizarCadenaReferencia(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadenaReferencia()));
         }
     }
 }
@@ -954,7 +962,7 @@ void CAplicacion::slotHelp() {
     window->setLayout(a);
     window->setStyleSheet("background-color: black;");
     window->setWindowTitle("Ayuda");
-    this->setFixedSize(this->width(), this->height());
+    //this->setFixedSize(this->width(), this->height());
     window->show();
 }
 
@@ -1329,27 +1337,38 @@ void CAplicacion::checkFicheroTemporalCreado() {
                                 getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
                             } else if(getPosActualPanelOpciones() == 3) {
                                 posActualPanelOpciones_ = 2;
-                                getPanelOpciones()->setFixedHeight(160);
+
                                 getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
                             }
                         }
 
-                        connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
-                        connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
                         if(getPosActualPanelOpciones() == 3) {
-                            getPanelOpciones()->setFixedHeight(180);
+                            //getPanelOpciones()->setFixedHeight(200);
+                            connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
+                            connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+
                             connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
                             connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
                             connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
                             connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
                             connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
                             connect(getPanelOpciones()->getCorregirFichero(), SIGNAL(clicked()), this, SLOT(slotCorregirFinal()));
-
+                            connect(getPanelOpciones()->getAnalizarCadenaReferencia(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadenaReferencia()));
                         }
-                        if(getPosActualPanelOpciones() == 1) {
+                        else if(getPosActualPanelOpciones() == 1) {
+                            connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
+                            connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+
                             connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
                             connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
 
+                        } else if(getPosActualPanelOpciones() == 2) {
+                            connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
+                            connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+                            connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
+                            connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
+                            connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
+                            connect(getPanelOpciones()->getAnalizarCadenaReferencia(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadenaReferencia()));
                         }
                         getCheckUpdatesTimer()->stop();
                     } else {
@@ -1368,17 +1387,26 @@ void CAplicacion::checkFicheroTemporalCreado() {
                         else if(getPosActualPanelOpciones() == 1)
                             posActualPanelOpciones_ = 3;
                         getPanelOpciones()->iniciarVistaCorreccion(getPosActualPanelOpciones());
-                        connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
-                        connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
 
                         if(getPosActualPanelOpciones() == 3) {
-                            getPanelOpciones()->setFixedHeight(180);
+                            //getPanelOpciones()->setFixedHeight(180);
+                            connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
+                            connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
                             connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
                             connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
                             connect(getPanelOpciones()->getAnalizarCadena(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadena()));
                             connect(getPanelOpciones()->getSimplificarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroCorregir()));
                             connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
                             connect(getPanelOpciones()->getCorregirFichero(), SIGNAL(clicked()), this, SLOT(slotCorregirFinal()));
+                            connect(getPanelOpciones()->getAnalizarCadenaReferencia(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadenaReferencia()));
+
+                        } else if(getPosActualPanelOpciones() == 2) {
+                            connect(getPanelOpciones()->getCargarImagenCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirImagen()));
+                            connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
+                            connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
+                            connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
+                            connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
+                            connect(getPanelOpciones()->getAnalizarCadenaReferencia(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadenaReferencia()));
                         }
                         cargarImagenParaPanelComparacion_ = false;
                         getCheckUpdatesTimer()->stop();
@@ -1453,8 +1481,10 @@ void CAplicacion::slotCambiarPerspectiva() {
         connect(getPanelOpciones()->getCargarImagenReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirImagenReferencia()));
         connect(getPanelOpciones()->getCargarFicheroCorregir(), SIGNAL(clicked()), this, SLOT(slotAbrirFichero()));
         connect(getPanelOpciones()->getCargarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotAbrirFicheroCorrecto()));
-        if(getPosActualPanelOpciones() == 2)
+        if(getPosActualPanelOpciones() == 2) {
             connect(getPanelOpciones()->getSimplificarFicheroReferencia(), SIGNAL(clicked()), this, SLOT(slotSimplificarFicheroReferencia()));
+            connect(getPanelOpciones()->getAnalizarCadenaReferencia(), SIGNAL(clicked()), this, SLOT(slotAnalizarCadenaReferencia()));
+        }
 
         if(getActionMostrarAyuda()->text() == "No mostrar ayuda") {
             delete getAyuda();
@@ -1474,7 +1504,7 @@ void CAplicacion::slotCambiarPerspectiva() {
             getAyuda()->setStyleSheet("background-color: white");
 
             getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
-            this->setFixedSize(this->width(), this->height());
+            //this->setFixedSize(this->width(), this->height());
             getAyuda()->show();
 
             connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
@@ -1540,7 +1570,7 @@ void CAplicacion::slotCambiarPerspectiva() {
             getAyuda()->setStyleSheet("background-color: white");
 
             getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
-            this->setFixedSize(this->width(), this->height());
+            //this->setFixedSize(this->width(), this->height());
             getAyuda()->show();
 
             connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
@@ -1558,6 +1588,7 @@ void CAplicacion::slotSimplificarFicheroCorregir() {
     nfa.ConstruirNFA(getPanelPrincipal()->text());
     nfa.CrearAlfabeto();
     vector<CEstado> Orden;
+    cout << "A punto de convertir a DFA " << endl;
     Orden = nfa.ConverttoDFA();
 
     nfa.Exportar(Orden);
@@ -1645,7 +1676,51 @@ void CAplicacion::slotAnalizarCadena() {
         window->setLayout(a);
 
         window->setWindowTitle("Cadena");
-        this->setFixedSize(this->width(), this->height());
+        //this->setFixedSize(this->width(), this->height());
+        window->show();
+    }
+}
+
+void CAplicacion::slotAnalizarCadenaReferencia() {
+    QString text;
+
+    bool ok;
+
+    text = QInputDialog::getText(0, "Cadena ",
+                                 "Introduzca la cadena a analizar:", QLineEdit::Normal,
+                                 text, &ok);
+    if(!text.isEmpty()) {
+
+        CNFA nfa;
+
+        nfa.ConstruirNFA(getPanelComparacion()->text());
+        nfa.CrearAlfabeto();
+
+        cout << endl << "--> Analizar Cadena" << endl;
+        string aux = text.toStdString();
+
+        QWidget* window = new QWidget(); QVBoxLayout* a = new QVBoxLayout();
+        CLabel* aux4 = new CLabel("Cadena:  " + text, true);
+        CLabel* aux1 = new CLabel(QString::fromStdString(nfa.AnalizarCadena(aux)), true);
+
+        CLabel* aux2 = new CLabel(QString::fromStdString(nfa.MostrarEstadosMuerte()), true);
+
+        CLabel* aux3 = new CLabel(QString::fromStdString(nfa.MostrarAlfabeto()), true);
+
+        if(aux1->text() == "\nDecision final: Cadena SI aceptada") {
+            aux1->setStyleSheet("background-color: rgb(95, 225, 110);");
+        } else
+            aux1->setStyleSheet("background-color: rgb(237, 130, 98);");
+
+        a->addWidget(aux4);
+        a->addWidget(aux3);
+        a->addWidget(aux1);
+        a->addWidget(aux2);
+
+        window->setLayout(a);
+
+        window->setWindowTitle("Cadena");
+        //this->setFixedSize(this->width(), this->height());
         window->show();
     }
 }

@@ -301,6 +301,7 @@ void CAsistenteCodificacion::slotCorregirAutomata() {
 }
 
 void CAsistenteCodificacion::guardarAutomataTemporal() {
+
     vector<int> marcados;
     // spliteamos nodos finales
     QString str;
@@ -308,36 +309,75 @@ void CAsistenteCodificacion::guardarAutomataTemporal() {
 
     str = QString::fromStdString(getNodosFinales());
     list = str.split(QRegExp("\\s+"));
+    //Si se quieren añadir transiciones nuevas
+    if(getAnadir()->text() != "") {
+        QStringList list1 = getAnadir()->text().split(QRegExp("\\s+"), QString::SkipEmptyParts);
+        cout << "size " << list1.size() << endl;
+        if((list1.size() % 4 == 0) && (list1.size() > 0)){
+            for(int i = 0; i < list1.size(); i++) {
+                if(list1[i] == ";") {
+                    list1.removeAt(i);
+                    i--;
+                    cout << "borrando ;" << endl;
+                } else
+                    cout << list1[i].toLocal8Bit().constData() << endl;
+            }
+            for(int i = 0; i < list1.size(); i++) {
+                getInicios()->push_back(new CLineEdit(list1[i]));
+                i++;
+                getDestinos()->push_back(new CLineEdit(list1[i]));
+                i++;
+                getLetras()->push_back(new CLineEdit(list1[i]));
+            }
+        } else {
+            QMessageBox mensaje;
+            mensaje.setText("El campo añadir nueva transición tiene un formato incorrecto.\n Ej: 1 2 b ; 4 2 c ;");
+            mensaje.setIcon(QMessageBox::Information);
+            mensaje.exec();
+
+        }
+    }
 
     ofstream fs(PATH_TEMPORAL);
     fs << getNumNodos() << endl;
     fs << getNodoInicial() << endl;
     //fs << getNodosFinales() << endl;
     for(int i = 0; i < getInicios()->size(); i++) {
-        if((!getCheckBoxBorrar()->at(i)->isChecked())){
+        if((getCheckBoxBorrar()->size() <= i) || (!getCheckBoxBorrar()->at(i)->isChecked())){
             std::vector<int>::iterator it;
             it = std::find (marcados.begin(), marcados.end(), i);
             if (it == marcados.end()) {
                 fs << getInicios()->at(i)->text().toStdString() << " ";
-                //cout << "HY" << getInicios()->at(i)->text().toStdString() << " ";
                 //Considerando si es estado final o no
                 if(list.contains(getInicios()->at(i)->text()))
                     fs << 1 << " ";
                 else
                     fs << 0 << " ";
-                fs << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << " ";
+
+                //Utilizado para saber el numero de transiciones de ese nodo
+                QString text1;
+                text1.append(QString::fromStdString(getLetras()->at(i)->text().toStdString()) + " " + QString::fromStdString(getDestinos()->at(i)->text().toStdString()) + " ");
+                vector<QString> textos;
+                textos.push_back(text1);
+                //fs << getDestinos()->at(i)->text().toStdString() << " " << getLetras()->at(i)->text().toStdString() << " ";
                 for(int j = i + 1; j < getInicios()->size(); j++) {
                     if(getInicios()->at(i)->text() == getInicios()->at(j)->text()) {
-                        fs << getDestinos()->at(j)->text().toStdString() << " " << getLetras()->at(j)->text().toStdString() << " ";
+                        QString text2;
+                        text2.append(QString::fromStdString(getLetras()->at(j)->text().toStdString()) + " " + QString::fromStdString(getDestinos()->at(j)->text().toStdString()) + " ");
+                        textos.push_back(text2);
+                        //fs << getDestinos()->at(j)->text().toStdString() << " " << getLetras()->at(j)->text().toStdString() << " ";
                         marcados.push_back(j);
                     }
+                }
+                fs << textos.size() << " ";
+                for(int k = 0; k < textos.size(); k++) {
+                    fs << textos.at(k).toStdString();
                 }
                 fs << endl;
             }
         }
     }
     fs.close();
-
 }
 
 void CAsistenteCodificacion::slotHelp() {

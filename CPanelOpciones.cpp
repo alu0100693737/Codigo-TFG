@@ -198,7 +198,7 @@ void CPanelOpciones::iniciarVistaDeteccion(int valor) {
 }
 
 void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
-    setFixedHeight(160);
+    setMinimumHeight(180);
     if(valor == 0)  {
         cout << "correccion 0" << endl;
         getLayout()->removeWidget(getCannyThresHold());
@@ -279,22 +279,21 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
             }
         }
 
-        analizarCadena_ = new CPushButton("Analizar cadena sobre el automata a corregir", true);
-        simplificarAutomataCorregir_ = new CPushButton("Simplificar automata a corregir", true);
+        analizarCadena_ = new CPushButton("Analizar cadena sobre el automata a corregir", false);
+        simplificarAutomataCorregir_ = new CPushButton("Simplificar automata a corregir", false);
 
         getLayout()->removeWidget(getCargarImagenCorregir());
         getLayout()->removeWidget(getCargarFicheroCorregir());
         delete getCargarImagenCorregir();
         delete getCargarFicheroCorregir();
 
-        cargarImagenCorregir_ = new CPushButton("Cargar Imagen para su correccion", true);
-        cargarFicheroCorregir_ = new CPushButton("Cargar fichero para su correccion", true);
+        cargarImagenCorregir_ = new CPushButton("Cargar Imagen para su correccion", false);
+        cargarFicheroCorregir_ = new CPushButton("Cargar fichero para su correccion", false);
 
         getLayout()->addWidget(getCargarImagenCorregir(), 1, 0, 1, 2);
         getLayout()->addWidget(getCargarFicheroCorregir(), 2, 0, 1, 2);
         getLayout()->addWidget(getAnalizarCadena(), 3, 0, 1, 2);
         getLayout()->addWidget(getSimplificarFicheroCorregir(), 4, 0, 1, 2);
-
     } else if (valor == 2) {
         cout << "Correccion 2" << endl;
         for (int i = 0; i < getLayout()->count(); ++i) {
@@ -352,14 +351,14 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
             }
         }
 
-        simplificarAutomataReferencia_ = new CPushButton("Simplificar autómata de referencia", true);
+        simplificarAutomataReferencia_ = new CPushButton("Simplificar autómata de referencia", false);
         getLayout()->removeWidget(getCargarImagenReferencia());
         getLayout()->removeWidget((getCargarFicheroReferencia()));
         delete getCargarImagenReferencia();
         delete getCargarFicheroReferencia();
 
-        cargarImagenReferencia_ = new CPushButton("Cargar Imagen de referencia", true);
-        cargarFicheroReferencia_ = new CPushButton("Cargar fichero de referencia", true);
+        cargarImagenReferencia_ = new CPushButton("Cargar Imagen de referencia", false);
+        cargarFicheroReferencia_ = new CPushButton("Cargar fichero de referencia", false);
         analizarCadenaReferencia_ = new CPushButton("Analizar cadena sobre automata de referencia", false);
 
         getLayout()->addWidget(new CLabel("Panel 1", false), 0, 0, 1, 2);
@@ -369,7 +368,8 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
         getLayout()->addWidget(new CLabel("Panel 2", false), 0, 2, 1, 2);
         getLayout()->addWidget(getCargarImagenReferencia(), 1, 2, 1, 2);
         getLayout()->addWidget(getCargarFicheroReferencia(), 2, 2, 1, 2);
-        getLayout()->addWidget(getSimplificarFicheroReferencia(), 3, 2, 1, 2);
+        getLayout()->addWidget(getAnalizarCadenaReferencia(), 3, 2, 1, 2);
+        getLayout()->addWidget(getSimplificarFicheroReferencia(), 4, 2, 1, 2);
     } else if(valor == 3) {
         cout << "Correcion 3" << endl;
 
