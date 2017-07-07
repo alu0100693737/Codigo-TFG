@@ -28,6 +28,7 @@
 #include "CLabel.h"
 #include "CLineEdit.h"
 #include "CCheckBox.h"
+#include <algorithm>
 using namespace std;
 #define PATH_TEMPORAL "/home/ivan/Documentos/Codigo-TFG/codificaciones/temporal.txt"
 /**

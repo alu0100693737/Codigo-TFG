@@ -32,7 +32,7 @@ CAsistenteCodificacion::CAsistenteCodificacion(int nodos, string inicial, string
     letras_ = new vector<CLineEdit*>();
 
     anadir_ = new QLineEdit();
-    getAnadir()->setPlaceholderText("Formato: 2 3 b ; 4 5 ~");
+    getAnadir()->setPlaceholderText("Formato: 2 3 b ; 4 5 ~ ;");
 
     guardarComoFichero_ = new CPushButton("Guardar como fichero", false);
     cancelar_ = new CPushButton("Cancelar", false);
@@ -274,6 +274,20 @@ void CAsistenteCodificacion::slotGuardarComoFichero() {
                 }
             }
         }
+
+        //Caso puntual, nodo final sin transiciones
+        QString finales(QString::fromStdString(getNodosFinales()));
+        QStringList list1 = finales.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+
+        for(int i = 0; i < list1.size(); i++) {
+            cout << "Lista: " << list1.at(i).toStdString() << endl;
+            if(std::find(getInicios()->begin(), getInicios()->end(), new CLineEdit(QString(list1.at(i)))) == getInicios()->end()) {
+                cout << "El nodo final no tiene transiciones, se agrega manualmente" << endl;
+                fs << list1.at(i).toStdString() << " 1 0" << endl;
+            }
+        }
+
+
         fs.close();
 
         string text;
@@ -377,6 +391,19 @@ void CAsistenteCodificacion::guardarAutomataTemporal() {
             }
         }
     }
+
+    //Caso puntual, nodo final sin transiciones
+    QString finales(QString::fromStdString(getNodosFinales()));
+    QStringList list1 = finales.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+
+    for(int i = 0; i < list1.size(); i++) {
+        cout << "Lista: " << list1.at(i).toStdString() << endl;
+        if(std::find(getInicios()->begin(), getInicios()->end(), new CLineEdit(QString(list1.at(i)))) == getInicios()->end()) {
+            cout << "El nodo final no tiene transiciones, se agrega manualmente" << endl;
+            fs << list1.at(i).toStdString() << " 1 0" << endl;
+        }
+    }
+
     fs.close();
 }
 
