@@ -983,14 +983,17 @@ void CAplicacion::slotGuardar() {
                 tr("Documentos (*.txt)") );
 
     if( !filename.isNull() ) {
+        if(!filename.endsWith(".txt")) {
         filename.append(".txt");
+        }
         cout << filename.toStdString() << endl;
         ofstream fs(filename.toStdString());
         fs << getTextEditCrearFichero()->toPlainText().toStdString();
         fs.close();
     }
+    //grey
+    setStyleSheet("background-color: rgba(191, 191, 191, 1);");
 
-    setStyleSheet("background-color:  rgba(126, 156, 232, 1);");
 }
 
 void CAplicacion::slotCodificarNuevoFichero() {
