@@ -1730,6 +1730,66 @@ void CAplicacion::slotAnalizarCadenaReferencia() {
 
 void CAplicacion::slotCorregirFinal() {
     cout << "Corrigiendo Final" << endl;
+    QWidget* window = new QWidget(); QHBoxLayout* a = new QHBoxLayout();
+    CLabel* aux = new CLabel();
+    if(getPanelPrincipal()->text() == getPanelComparacion()->text()){
+        aux->setText("Los autómatas son Iguales");
+        aux->setStyleSheet("background-color: rgb(154, 238, 127);"
+                           "color: black; border-width: 1px;"
+                           "border-top: 1px solid white;"
+                           "border-left: 1px solid white;"
+                           "border-right: 1px solid grey;"
+                           "border-bottom: 1px solid grey;"
+                           "border-style: solid; "
+                           "border-radius: 5;"
+                           "padding: 2px;"
+                           "padding-left: 5px;"
+                           "padding-right: 5px;"
+                           "font: 16px;"
+                           "font-weight: bold;");
+    } else {
+        slotSimplificarFicheroCorregir();
+        slotSimplificarFicheroReferencia();
+        if(getPanelPrincipal()->text() == getPanelComparacion()->text()){
+            aux->setText("Los autómatas \nson equivalentes");
+            aux->setStyleSheet("background-color: yellow;"
+                               "color: black; border-width: 1px;"
+                               "border-top: 1px solid white;"
+                               "border-left: 1px solid white;"
+                               "border-right: 1px solid grey;"
+                               "border-bottom: 1px solid grey;"
+                               "border-style: solid; "
+                               "border-radius: 5;"
+                               "padding: 2px;"
+                               "padding-left: 5px;"
+                               "padding-right: 5px;"
+                               "font: 16px;"
+                               "font-weight: bold;");
+        } else {
+            aux->setText("Los autómatas \nNO son equivalentes");
+            aux->setStyleSheet("background-color: rgba(255, 20, 20, 0.5);"
+                               "color: black; border-width: 1px;"
+                               "border-top: 1px solid white;"
+                               "border-left: 1px solid white;"
+                               "border-right: 1px solid grey;"
+                               "border-bottom: 1px solid grey;"
+                               "border-style: solid; "
+                               "border-radius: 5;"
+                               "padding: 2px;"
+                               "padding-left: 5px;"
+                               "padding-right: 5px;"
+                               "font: 16px;"
+                               "font-weight: bold;");
+        }
+    }
+
+
+    a->addWidget(aux);
+
+    window->setLayout(a);
+    window->setWindowTitle("Corrección final");
+    //this->setFixedSize(this->width(), this->height());
+    window->show();
 }
 
 //get y sets
