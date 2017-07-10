@@ -30,7 +30,6 @@ SOURCES += \
     CLineEdit.cpp \
     CCheckBox.cpp \
     CPushButton.cpp \
-    main.cpp \
     CNfa.cpp \
     CTransicion.cpp \
     CEstadoNFA.cpp \
