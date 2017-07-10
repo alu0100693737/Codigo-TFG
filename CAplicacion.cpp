@@ -99,6 +99,7 @@ CAplicacion::CAplicacion() {
     getActionAbrirFicheroCorrecto()->setDisabled(true);
 
     ayuda_ = new QWidget();
+    ventanaFinal_ = new QWidget();
 
     ///Shortcuts
     getActionAbrirImagen()->setShortcuts(QKeySequence::New);
@@ -635,6 +636,7 @@ void CAplicacion::slotMostrarAyuda() {
             if(getActionMostrarAyuda()->text() == "No mostrar ayuda") {
                 delete getAyuda();
                 ayuda_ = new QWidget(); QGridLayout* a = new QGridLayout();
+
                 QLabel* aux1 = new QLabel("\nPuede realizar la detección automática de la\nimagen pulsando sobre el boton \nProcesar Imagen: ");
                 QImage myImage;
                 myImage.load("/home/ivan/Documentos/Codigo-TFG/images/procesarImagen.png");
@@ -696,6 +698,37 @@ void CAplicacion::slotDetectarCirculos() {
     resize(resultado.dims,height());
     getActionDetectarCirculos()->setDisabled(true);
     getActionDetectarLineas()->setDisabled(false);
+
+    if(getActionMostrarAyuda()->text() == "No mostrar ayuda") {
+        delete getAyuda();
+        ayuda_ = new QWidget(); QGridLayout* a = new QGridLayout();
+
+        QLabel* aux1 = new QLabel("\nSi la detección no fuera correcta, se podrá refinar la búsqueda de dos formas distintas: \n");
+        QLabel* aux2 = new QLabel("1. Cambiando los valores de los Scrollbar CannyThresHold y AccumulatorThresHold. \nSi estos valores son bajos, se detectaran falsos circulos en la imagen y \nradios de diversa amplitud. Si es muy alto, es posible que no \nse detecten todos los elementos.\nPodrán restaurarse los valores \npor deferecto a partir del botón Restaurar ScrollBar's en la parte \ninferior derecha de la aplicacion.");
+        QLabel* aux3 = new QLabel("2. Se pueden añadir o eliminar círculos interactuando directamente con la imagen. \nSi se pulsa sobre un circulo ya detectado, este se eliminará, si se pulsa \nsobre una zona de la imagen en la que no ha sido detectado ningún \nelemento, se añadirá uno nuevo en esa posición.");
+
+        a->addWidget(aux1, 0, 0, 2, 2);
+        a->addWidget(aux2, 2, 0, 1, 2);
+        a->addWidget(aux3, 4, 0, 2, 2);
+
+        CCheckBox* noMostrarAyuda = new CCheckBox();
+        a->addWidget(new CLabel("Dejar de mostrar la ayuda", false), 6, 0, 1, 1);
+        a->addWidget(noMostrarAyuda, 6, 1, 1, 1);
+        a->setSpacing(20);
+        CPushButton* aceptar = new CPushButton("Aceptar", true);
+        a->addWidget(aceptar, 7, 0, 1, 2);
+
+        getAyuda()->setLayout(a);
+        getAyuda()->setStyleSheet("background-color: white");
+
+        getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
+        //this->setFixedSize(this->width(), this->height());
+        getAyuda()->show();
+
+        connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
+        connect(aceptar, SIGNAL(pressed()), getAyuda(), SLOT(close()));
+    }
+
 }
 
 void CAplicacion::slotDetectarLineas() {
@@ -725,6 +758,35 @@ void CAplicacion::slotDetectarLineas() {
             resize(resultado.dims,height());
             getActionDetectarLineas()->setDisabled(true);
             getActionDetectarTransiciones()->setDisabled(false);
+
+            if(getActionMostrarAyuda()->text() == "No mostrar ayuda") {
+                delete getAyuda();
+                ayuda_ = new QWidget(); QGridLayout* a = new QGridLayout();
+
+                QLabel* aux1 = new QLabel("\nSi la detección no fuera correcta, se podrá refinar la búsqueda de dos formas distintas: \n");
+                QLabel* aux2 = new QLabel("1. Cambiando los valores del Scrollbar HougLinesP. \nSi el valor de esta variable fuera bajo, se detectarán segmentos \nde líneas más pequeños, siendo algunas de ellas, falsos positivos. \nSi el valor fuera muy elevado, no se detectarán todos los contornos \ndeseados. La modificación de esta variable afectará directamente sobre \nlas líneas detectadas en el momento. Podrán restaurarse los valores por \ndefecto a partir del botón Restaurar ScrollBar's en la parte inferior \nderecha de la aplicacion.");
+                QLabel* aux3 = new QLabel("2. Se pueden añadir o eliminar líneas interactuando directamente sobre la imagen. \nEn la parte superior derecha del asistente, hay un ComboBox que permite \ndecidir cual de las dos opciones es la deseada. \n Si se decide elegir la opción de eliminar líneas bastará con pulsar sobre \nellas para descartarlas. Si la opción elegida es añadir nuevas líneas, \ndeberá introducirse el punto inicial y final de estas pulsando sobre la \nzona deseada de la imagen.");
+                a->addWidget(aux1, 0, 0, 2, 2);
+                a->addWidget(aux2, 2, 0, 1, 2);
+                a->addWidget(aux3, 4, 0, 2, 2);
+
+                CCheckBox* noMostrarAyuda = new CCheckBox();
+                a->addWidget(new CLabel("Dejar de mostrar la ayuda", false), 6, 0, 1, 1);
+                a->addWidget(noMostrarAyuda, 6, 1, 1, 1);
+                a->setSpacing(20);
+                CPushButton* aceptar = new CPushButton("Aceptar", true);
+                a->addWidget(aceptar, 7, 0, 1, 2);
+
+                getAyuda()->setLayout(a);
+                getAyuda()->setStyleSheet("background-color: white");
+
+                getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
+                //this->setFixedSize(this->width(), this->height());
+                getAyuda()->show();
+
+                connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
+                connect(aceptar, SIGNAL(pressed()), getAyuda(), SLOT(close()));
+            }
         }
     }
 }
@@ -754,6 +816,35 @@ void CAplicacion::slotDetectarTransiciones() {
         resize(resultado.dims,height());
         getActionDetectarTransiciones()->setDisabled(true);
         getActionCodificarImagen()->setEnabled(true);
+
+        if(getActionMostrarAyuda()->text() == "No mostrar ayuda") {
+            delete getAyuda();
+            ayuda_ = new QWidget(); QGridLayout* a = new QGridLayout();
+
+            QLabel* aux1 = new QLabel("\nSi la detección no fuera correcta, se podrá refinar la búsqueda de dos formas distintas: \n");
+            QLabel* aux2 = new QLabel("1. Para eliminar una transición se podrá pulsar sobre ella en la imagen. De esta manera, \nse descarta.");
+            QLabel* aux3 = new QLabel("2. Si desea añadir una nueva transición, se podrá pulsar en una zona de la imagen donde no \nhaya una definida. Se deberá introducir por teclado el carácter. \nPara introducir una transición vacia se debe introducir el símbolo ~.");
+            a->addWidget(aux1, 0, 0, 2, 2);
+            a->addWidget(aux2, 2, 0, 1, 2);
+            a->addWidget(aux3, 4, 0, 2, 2);
+
+            CCheckBox* noMostrarAyuda = new CCheckBox();
+            a->addWidget(new CLabel("Dejar de mostrar la ayuda", false), 6, 0, 1, 1);
+            a->addWidget(noMostrarAyuda, 6, 1, 1, 1);
+            a->setSpacing(20);
+            CPushButton* aceptar = new CPushButton("Aceptar", true);
+            a->addWidget(aceptar, 7, 0, 1, 2);
+
+            getAyuda()->setLayout(a);
+            getAyuda()->setStyleSheet("background-color: white");
+
+            getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
+            //this->setFixedSize(this->width(), this->height());
+            getAyuda()->show();
+
+            connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
+            connect(aceptar, SIGNAL(pressed()), getAyuda(), SLOT(close()));
+        }
     }
 }
 
@@ -765,6 +856,30 @@ void CAplicacion::slotCodificarImagen() {
 
     dibujarSentidoTransiciones();
     getActionConfirmarImagen()->setEnabled(true);
+    if(getActionMostrarAyuda()->text() == "No mostrar ayuda") {
+        delete getAyuda();
+        ayuda_ = new QWidget(); QGridLayout* a = new QGridLayout();
+
+        QLabel* aux1 = new QLabel("\nSi el sentido de las transiciones no fuera correcto, se podrá cambiar pulsando \nsobre el estado que deseamos que sea el inicial y a continuación el nodo destino");
+        a->addWidget(aux1, 0, 0, 2, 2);
+
+        CCheckBox* noMostrarAyuda = new CCheckBox();
+        a->addWidget(new CLabel("Dejar de mostrar la ayuda", false), 2, 0, 1, 1);
+        a->addWidget(noMostrarAyuda, 2, 1, 1, 1);
+        a->setSpacing(20);
+        CPushButton* aceptar = new CPushButton("Aceptar", true);
+        a->addWidget(aceptar, 3, 0, 1, 2);
+
+        getAyuda()->setLayout(a);
+        getAyuda()->setStyleSheet("background-color: white");
+
+        getAyuda()->setWindowTitle("Info Panel Detección de Imagen");
+        //this->setFixedSize(this->width(), this->height());
+        getAyuda()->show();
+
+        connect(noMostrarAyuda , SIGNAL(stateChanged(int)),this,SLOT(slotMostrarAyuda()));
+        connect(aceptar, SIGNAL(pressed()), getAyuda(), SLOT(close()));
+    }
 }
 
 void CAplicacion::slotProcesarImagen() {
@@ -1150,11 +1265,27 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
 
                 //Deteccion de transiciones
                 for (int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
+                    if((getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).ptContour.size() != 0)) {
                     cv::rectangle(resultado,                            // draw rectangle on original image
                                   getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
                                   cv::Scalar(0, 255, 0),                        // green
                                   2);
+                    } else {
+                        cout << "YESSSSSSSSSSS" << endl;
+                        int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
+                        double fontScale = 1;
+                        int thickness = 2;
+                        stringstream ss;
+
+
+                        ss << getOperacionesImagen()->detectarTransiciones()->getLetrasEncontradas().at(i);
+
+                        string caracter = "";// = new getOperacionesImagen()->detectarTransiciones()->getLetrasEncontradas().at(i).toString();
+                        ss >> caracter;
+                        cv::putText(resultado, caracter, Point(getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.x + 10, getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno.y + 10), fontFace, fontScale, Scalar::all(255), thickness,8);
+                    }
                 }
+
                 getPanelPrincipal()->setImagen(getOperacionesImagen()->Mat2QImage(resultado));
             } else { //Creacion de transicion
                 QString text;
@@ -1730,7 +1861,10 @@ void CAplicacion::slotAnalizarCadenaReferencia() {
 
 void CAplicacion::slotCorregirFinal() {
     cout << "Corrigiendo Final" << endl;
-    QWidget* window = new QWidget(); QHBoxLayout* a = new QHBoxLayout();
+    delete getVentanaFinal();
+    ventanaFinal_ = new QWidget();
+
+    QHBoxLayout* a = new QHBoxLayout();
     CLabel* aux = new CLabel();
     if(getPanelPrincipal()->text() == getPanelComparacion()->text()){
         aux->setText("Los autómatas son Iguales");
@@ -1786,10 +1920,10 @@ void CAplicacion::slotCorregirFinal() {
 
     a->addWidget(aux);
 
-    window->setLayout(a);
-    window->setWindowTitle("Corrección final");
-    //this->setFixedSize(this->width(), this->height());
-    window->show();
+    getVentanaFinal()->setLayout(a);
+    getVentanaFinal()->setWindowTitle("Correccion final");
+    getVentanaFinal()->setFixedSize(300, 200);
+    getVentanaFinal()->show();
 }
 
 //get y sets
@@ -2039,4 +2173,8 @@ int CAplicacion::getPosActualPanelOpciones() {
 
 QWidget* CAplicacion::getAyuda() {
     return ayuda_;
+}
+
+QWidget* CAplicacion::getVentanaFinal() {
+    return ventanaFinal_;
 }

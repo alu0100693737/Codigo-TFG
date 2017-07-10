@@ -186,6 +186,7 @@ private:
     int posActualPanelOpciones_;
 
     QWidget* ayuda_;
+    QWidget* ventanaFinal_;
 
 public:
     /**
@@ -499,6 +500,7 @@ public:
     bool getDibujadaTransiciones();
 
     QWidget* getAyuda();
+    QWidget* getVentanaFinal();
 
     /**
      * @brief
