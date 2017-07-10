@@ -102,7 +102,6 @@ void CNFA::ConstruirNFA(QString nombrefichero){
             }
         }
     }
-    cout << "Adios " << endl;
 }
 
 string CNFA::AnalizarCadena(string &cadena){
@@ -115,11 +114,11 @@ string CNFA::AnalizarCadena(string &cadena){
 
     Analizar(q, cadena, t, caminos, aceptada);
 
-    if(aceptada == true){
+    if(aceptada == true) {
         return "\nDecision final: Cadena SI aceptada";
     }
 
-    else{
+    else {
         return "\nDecision final: Cadena NO aceptada";
     }
 }
@@ -195,6 +194,7 @@ bool CNFA::Analizar(CEstado &q, string &cadena, int t, vector<CTransicion> &Cami
         }
     }
     else { //NO hay camino para caracter de la cadena o con caracter ~
+
         MostrarCamino(Caminos);
         cout << endl << "No existe camino para determinar la cadena" << endl;
     }
@@ -363,7 +363,7 @@ bool CNFA::Existe(CEstado &A, vector<CEstado> &Orden) {
 }
 
 vector<CEstado> CNFA::ConverttoDFA() {
-    cout << "Entre " << endl;
+
     vector<CTransicion> transiciones;
     vector<CEstado> Orden;
     vector<CEstado> Cola;
@@ -406,7 +406,6 @@ vector<CEstado> CNFA::ConverttoDFA() {
 
     cout << endl << endl << "NFA TO DFA" << endl << endl;
 
-    cout << "orden size " << Orden.size() << endl;
     for(int u=0; u < Orden.size(); u++){
         Orden[u].MostrarNFA();
     }

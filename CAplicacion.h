@@ -23,6 +23,7 @@
 #include "COperacionesImagen.h"
 #include "CPanelOpciones.h"
 #include "CNfa.h"
+
 #define PATH_TEMPORAL "/home/ivan/Documentos/Codigo-TFG/codificaciones/temporal.txt"
 #define PATH_TEMPORALDFA "/home/ivan/Documentos/Codigo-TFG/codificaciones/temporalDFA.txt"
 using namespace std;

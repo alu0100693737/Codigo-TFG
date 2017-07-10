@@ -13,9 +13,19 @@
 #include "opencv2/imgcodecs.hpp" //MAT OPENCV
 #include "opencv2/imgproc.hpp"    //SOBEL
 #include "opencv2/opencv.hpp"   //WINDOW_AUTOSIZE, windows
+#include "DFA_min.cpp"
+#include "Estado.cpp"
 #include <iostream>
 using namespace cv;
 using namespace std;
+
+
+#include <time.h>
+#include <sys/time.h>
+
+void delay(int secs) {
+      for(int i = (time(NULL) + secs); time(NULL) != i; time(NULL));
+}
 
 CAplicacion::CAplicacion() {
     setWindowIcon(QIcon(":/release/icon.ico"));
@@ -1099,7 +1109,7 @@ void CAplicacion::slotGuardar() {
 
     if( !filename.isNull() ) {
         if(!filename.endsWith(".txt")) {
-        filename.append(".txt");
+            filename.append(".txt");
         }
         cout << filename.toStdString() << endl;
         ofstream fs(filename.toStdString());
@@ -1266,10 +1276,10 @@ void CAplicacion::slotPanelPrincipal(QMouseEvent* evt) {
                 //Deteccion de transiciones
                 for (int i = 0; i < getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().size(); i++) {
                     if((getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).ptContour.size() != 0)) {
-                    cv::rectangle(resultado,                            // draw rectangle on original image
-                                  getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
-                                  cv::Scalar(0, 255, 0),                        // green
-                                  2);
+                        cv::rectangle(resultado,                            // draw rectangle on original image
+                                      getOperacionesImagen()->detectarTransiciones()->getContornosEncontrados().at(i).dimensionContorno,        // rect to draw
+                                      cv::Scalar(0, 255, 0),                        // green
+                                      2);
                     } else {
                         cout << "YESSSSSSSSSSS" << endl;
                         int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
@@ -1740,24 +1750,75 @@ void CAplicacion::slotSimplificarFicheroCorregir() {
         }
         getPanelPrincipal()->setText(line);
     }
-    cout << "Corregir" << endl;
+
+    //DFA minimo
+    cout << "DFA minimo" << endl;
+    //(2);
+    DFA_MIN dfa;
+    dfa.Leer_DFA(PATH_TEMPORALDFA);
+    dfa.Divide_DFA();
+    dfa.Minimizar_DFA();
+    dfa.Exportar_DFA_min();
+
+    QFile file2(PATH_TEMPORALDFA);
+    if(!file2.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        cout << "Error, hubo un error en la simplificación del DFA, fichero invalido" << endl;
+
+    } else {
+
+        QTextStream in(&file2);
+        QString line;
+        while(!in.atEnd()){
+            line += in.readLine();
+            line += "\n";
+        }
+        getPanelPrincipal()->setText(line);
+    }
+
+    //Volvemos a aplicar NFA
+    cout << "NFA de nuevo" << endl;
+    CNFA nfa2;
+
+    nfa2.ConstruirNFA(getPanelPrincipal()->text());
+    nfa2.CrearAlfabeto();
+    vector<CEstado> Orden2;
+    cout << "A punto de convertir a DFA de nuevo" << endl;
+    Orden2 = nfa2.ConverttoDFA();
+
+    nfa2.Exportar(Orden2);
+    QFile file3(PATH_TEMPORALDFA);
+    if(!file3.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        cout << "Error, hubo un error en la simplificación del DFA, fichero invalido" << endl;
+
+    } else {
+
+        QTextStream in(&file3);
+        QString line;
+        while(!in.atEnd()){
+            line += in.readLine();
+            line += "\n";
+        }
+        getPanelPrincipal()->setText(line);
+    }
 }
 
 void CAplicacion::slotSimplificarFicheroReferencia() {
+
     remove(PATH_TEMPORALDFA);
     cout << "Simplificando fichero referencia" << endl;
     CNFA nfa;
 
     nfa.ConstruirNFA(getPanelComparacion()->text());
     nfa.CrearAlfabeto();
-
     vector<CEstado> Orden;
+    cout << "A punto de convertir a DFA " << endl;
     Orden = nfa.ConverttoDFA();
 
     nfa.Exportar(Orden);
     QFile file1(PATH_TEMPORALDFA);
     if(!file1.open(QIODevice::ReadOnly | QIODevice::Text)) {
         cout << "Error, hubo un error en la simplificación del DFA, fichero invalido" << endl;
+
     } else {
 
         QTextStream in(&file1);
@@ -1768,6 +1829,58 @@ void CAplicacion::slotSimplificarFicheroReferencia() {
         }
         getPanelComparacion()->setText(line);
     }
+
+    //delay(2);
+
+    //DFA minimo
+    cout << "DFA minimo" << endl;
+    DFA_MIN dfa;
+    dfa.Leer_DFA(PATH_TEMPORALDFA);
+    dfa.Divide_DFA();
+    dfa.Minimizar_DFA();
+    dfa.Exportar_DFA_min();
+
+    QFile file2(PATH_TEMPORALDFA);
+    if(!file2.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        cout << "Error, hubo un error en la simplificación del DFA, fichero invalido" << endl;
+
+    } else {
+
+        QTextStream in(&file2);
+        QString line;
+        while(!in.atEnd()){
+            line += in.readLine();
+            line += "\n";
+        }
+        getPanelComparacion()->setText(line);
+    }
+
+    //Volvemos a aplicar NFA
+    cout << "NFA de nuevo" << endl;
+    CNFA nfa2;
+
+    nfa2.ConstruirNFA(getPanelComparacion()->text());
+    nfa2.CrearAlfabeto();
+    vector<CEstado> Orden2;
+    cout << "A punto de convertir a DFA de nuevo" << endl;
+    Orden2 = nfa2.ConverttoDFA();
+
+    nfa2.Exportar(Orden2);
+    QFile file3(PATH_TEMPORALDFA);
+    if(!file3.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        cout << "Error, hubo un error en la simplificación del DFA, fichero invalido" << endl;
+
+    } else {
+
+        QTextStream in(&file3);
+        QString line;
+        while(!in.atEnd()){
+            line += in.readLine();
+            line += "\n";
+        }
+        getPanelComparacion()->setText(line);
+    }
+
     cout << "referencia " << endl;
 }
 
@@ -1867,7 +1980,7 @@ void CAplicacion::slotCorregirFinal() {
     QHBoxLayout* a = new QHBoxLayout();
     CLabel* aux = new CLabel();
     if(getPanelPrincipal()->text() == getPanelComparacion()->text()){
-        aux->setText("Los autómatas son Iguales");
+        aux->setText("Los autómatas \nson Equivalentes");
         aux->setStyleSheet("background-color: rgb(154, 238, 127);"
                            "color: black; border-width: 1px;"
                            "border-top: 1px solid white;"
@@ -1886,7 +1999,7 @@ void CAplicacion::slotCorregirFinal() {
         slotSimplificarFicheroReferencia();
         if(getPanelPrincipal()->text() == getPanelComparacion()->text()){
             aux->setText("Los autómatas \nson equivalentes");
-            aux->setStyleSheet("background-color: yellow;"
+            aux->setStyleSheet("background-color: rgb(154, 238, 127);"
                                "color: black; border-width: 1px;"
                                "border-top: 1px solid white;"
                                "border-left: 1px solid white;"
@@ -1916,7 +2029,6 @@ void CAplicacion::slotCorregirFinal() {
                                "font-weight: bold;");
         }
     }
-
 
     a->addWidget(aux);
 

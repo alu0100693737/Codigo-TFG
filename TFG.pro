@@ -33,7 +33,9 @@ SOURCES += \
     main.cpp \
     CNfa.cpp \
     CTransicion.cpp \
-    CEstadoNFA.cpp
+    CEstadoNFA.cpp \
+    DFA_min.cpp \
+    Estado.cpp
 
 
 # The following define makes your compiler emit warnings if you use
@@ -113,7 +115,9 @@ HEADERS += \
     CPushButton.h \
     CNfa.h \
     CTransicion.h \
-    CEstadoNFA.h
+    CEstadoNFA.h \
+    DFA_min.h \
+    Estado.h
 
 
 RC_ICONS = release/icon.ico \
