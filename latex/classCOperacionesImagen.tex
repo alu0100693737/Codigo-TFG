@@ -34,9 +34,7 @@ Collaboration diagram for C\+Operaciones\+Imagen\+:
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve el atributo lineas. \end{DoxyCompactList}\item 
 \hyperlink{classCDetectarTransiciones}{C\+Detectar\+Transiciones} $\ast$ \hyperlink{classCOperacionesImagen_a9e025ecb29931b9e472e2989b4ee50a2}{detectar\+Transiciones} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve el atributo transiciones. \end{DoxyCompactList}\item 
-\hyperlink{classCAsistenteCodificacion}{C\+Asistente\+Codificacion} $\ast$ \hyperlink{classCOperacionesImagen_a28f7cbaaff0e626d6f94be6edbe900b8}{get\+Asistente} ()
-\begin{DoxyCompactList}\small\item\em Metodo que devuelve el atributo asistente. \end{DoxyCompactList}\item 
-void \hyperlink{classCOperacionesImagen_aaac35f5fc47a2a7c8abb8d00fc89879a}{codificar\+Deteccion} (string nodo\+Inicial, string nodos\+Finales)
+void \hyperlink{classCOperacionesImagen_a952788db3b5e11e43fb85c7e805a5dd2}{codificar\+Deteccion} ()
 \begin{DoxyCompactList}\small\item\em Metodo que codifica la deteccion del automata de la imagen. \end{DoxyCompactList}\item 
 bool \hyperlink{classCOperacionesImagen_ae0b1cc753d1c4f62a2c9dce6f213ba95}{contain} (vector$<$ Point $>$ aux, Point a)
 \begin{DoxyCompactList}\small\item\em Metodo que determina si un tenerminado punto se encuentra en un vector de puntos. \end{DoxyCompactList}\item 
@@ -47,7 +45,15 @@ Q\+Image \hyperlink{classCOperacionesImagen_a81462b6d034a47905ff9ea337349042e}{M
 Mat \hyperlink{classCOperacionesImagen_a9aa86962598a4354e95168ee6645e4e7}{Q\+Image2\+Mat} (Q\+Image const \&src)
 \begin{DoxyCompactList}\small\item\em Metodo que transforma una imagen en formato Q\+Image a formato Mat. \end{DoxyCompactList}\item 
 Point \hyperlink{classCOperacionesImagen_a677a389169905ef82c72251a61b9e6c4}{punto\+Medio} (Point a, Point b)
-\begin{DoxyCompactList}\small\item\em Metodo que devuelve el punto medio entre dos puntos Utilizado en la codificacion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el punto medio entre dos puntos Utilizado en la codificacion. \end{DoxyCompactList}\item 
+bool \hyperlink{classCOperacionesImagen_aee6792b8b663653a0f925425e64365af}{calcular\+Dato\+En\+Recta\+Entre\+Dos\+Puntos} (Point a, Point b, Point dato)
+\item 
+vector$<$ int $>$ $\ast$ \hyperlink{classCOperacionesImagen_ad5c112e87e404665daefa2ce914a5730}{get\+Inicios\+Asistente} ()
+\item 
+vector$<$ int $>$ $\ast$ \hyperlink{classCOperacionesImagen_a896089ecf4cdc7b2d8be60922cb76a93}{get\+Destinos\+Asistente} ()
+\item 
+vector$<$ char $>$ $\ast$ \hyperlink{classCOperacionesImagen_aed11fc22a2d59e9bd5a30d38fb339e9d}{get\+Letras\+Asistente} ()
+\end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -64,8 +70,12 @@ bool \hyperlink{classCOperacionesImagen_ae78d5392570b2cf7cf8f37378a71e1eb}{venta
 \begin{DoxyCompactList}\small\item\em Atributo de la clase \hyperlink{classCDetectarLineas}{C\+Detectar\+Lineas} para la deteccion de lineas en la imagen. \end{DoxyCompactList}\item 
 \hyperlink{classCDetectarTransiciones}{C\+Detectar\+Transiciones} $\ast$ \hyperlink{classCOperacionesImagen_a7ca38abb7714e00773895e8bcda443c1}{transiciones\+\_\+}
 \begin{DoxyCompactList}\small\item\em Atributo de la clase \hyperlink{classCDetectarTransiciones}{C\+Detectar\+Transiciones} para la deteccion de transiciones en la imagen. \end{DoxyCompactList}\item 
-\hyperlink{classCAsistenteCodificacion}{C\+Asistente\+Codificacion} $\ast$ \hyperlink{classCOperacionesImagen_a25e6302fe48f708fa1bd20e11334e75f}{asistente\+\_\+}
-\begin{DoxyCompactList}\small\item\em Atributo de la clase \hyperlink{classCAsistenteCodificacion}{C\+Asistente\+Codificacion} para la confirmacion del automata detectado en la imagen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+vector$<$ int $>$ $\ast$ \hyperlink{classCOperacionesImagen_af0f1f09f1b470be97924d72b81e7e5de}{aux\+Inicios\+\_\+}
+\item 
+vector$<$ int $>$ $\ast$ \hyperlink{classCOperacionesImagen_a9eb01c694302f6bf936955d8cea9f61d}{aux\+Destinos\+\_\+}
+\item 
+vector$<$ char $>$ $\ast$ \hyperlink{classCOperacionesImagen_a984f9ea55b09b5e12564c6d29130394e}{aux\+Letras\+\_\+}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -111,6 +121,15 @@ Metodo que devuelve el atributo filtros.
 \begin{DoxyReturn}{Returns}
 \hyperlink{classCFiltrosImagenes}{C\+Filtros\+Imagenes} 
 \end{DoxyReturn}
+\index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!calcular\+Dato\+En\+Recta\+Entre\+Dos\+Puntos@{calcular\+Dato\+En\+Recta\+Entre\+Dos\+Puntos}}
+\index{calcular\+Dato\+En\+Recta\+Entre\+Dos\+Puntos@{calcular\+Dato\+En\+Recta\+Entre\+Dos\+Puntos}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
+\subsubsection[{\texorpdfstring{calcular\+Dato\+En\+Recta\+Entre\+Dos\+Puntos(\+Point a, Point b, Point dato)}{calcularDatoEnRectaEntreDosPuntos(Point a, Point b, Point dato)}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Operaciones\+Imagen\+::calcular\+Dato\+En\+Recta\+Entre\+Dos\+Puntos (
+\begin{DoxyParamCaption}
+\item[{Point}]{a, }
+\item[{Point}]{b, }
+\item[{Point}]{dato}
+\end{DoxyParamCaption}
+)}\hypertarget{classCOperacionesImagen_aee6792b8b663653a0f925425e64365af}{}\label{classCOperacionesImagen_aee6792b8b663653a0f925425e64365af}
 \index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!calcular\+Histograma@{calcular\+Histograma}}
 \index{calcular\+Histograma@{calcular\+Histograma}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
 \subsubsection[{\texorpdfstring{calcular\+Histograma(\+Mat imagen)}{calcularHistograma(Mat imagen)}}]{\setlength{\rightskip}{0pt plus 5cm}Mat C\+Operaciones\+Imagen\+::calcular\+Histograma (
@@ -136,12 +155,11 @@ Normaliza el histograma \mbox{[}0, hist\+Image.\+rows \mbox{]}
 
 Dibuja la linea correspondiente para cada canal de color \index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!codificar\+Deteccion@{codificar\+Deteccion}}
 \index{codificar\+Deteccion@{codificar\+Deteccion}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
-\subsubsection[{\texorpdfstring{codificar\+Deteccion(string nodo\+Inicial, string nodos\+Finales)}{codificarDeteccion(string nodoInicial, string nodosFinales)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Operaciones\+Imagen\+::codificar\+Deteccion (
+\subsubsection[{\texorpdfstring{codificar\+Deteccion()}{codificarDeteccion()}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Operaciones\+Imagen\+::codificar\+Deteccion (
 \begin{DoxyParamCaption}
-\item[{string}]{nodo\+Inicial, }
-\item[{string}]{nodos\+Finales}
+{}
 \end{DoxyParamCaption}
-)}\hypertarget{classCOperacionesImagen_aaac35f5fc47a2a7c8abb8d00fc89879a}{}\label{classCOperacionesImagen_aaac35f5fc47a2a7c8abb8d00fc89879a}
+)}\hypertarget{classCOperacionesImagen_a952788db3b5e11e43fb85c7e805a5dd2}{}\label{classCOperacionesImagen_a952788db3b5e11e43fb85c7e805a5dd2}
 
 
 Metodo que codifica la deteccion del automata de la imagen. 
@@ -161,9 +179,7 @@ Confirmamos el numero de nodos
 
 Para las transiciones que hemos encontrado, hacemos la busqueda de letras o numeros. en el punto medio de la linea por cercania
 
-Calculamos transiciones al mismo nodo
-
-Abrimos asistente \index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!contain@{contain}}
+Calculamos transiciones al mismo nodo \index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!contain@{contain}}
 \index{contain@{contain}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
 \subsubsection[{\texorpdfstring{contain(vector$<$ Point $>$ aux, Point a)}{contain(vector< Point > aux, Point a)}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Operaciones\+Imagen\+::contain (
 \begin{DoxyParamCaption}
@@ -227,20 +243,27 @@ Metodo que devuelve el atributo transiciones.
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!get\+Asistente@{get\+Asistente}}
-\index{get\+Asistente@{get\+Asistente}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
-\subsubsection[{\texorpdfstring{get\+Asistente()}{getAsistente()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Asistente\+Codificacion} $\ast$ C\+Operaciones\+Imagen\+::get\+Asistente (
+\index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!get\+Destinos\+Asistente@{get\+Destinos\+Asistente}}
+\index{get\+Destinos\+Asistente@{get\+Destinos\+Asistente}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
+\subsubsection[{\texorpdfstring{get\+Destinos\+Asistente()}{getDestinosAsistente()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ int $>$ $\ast$ C\+Operaciones\+Imagen\+::get\+Destinos\+Asistente (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{classCOperacionesImagen_a28f7cbaaff0e626d6f94be6edbe900b8}{}\label{classCOperacionesImagen_a28f7cbaaff0e626d6f94be6edbe900b8}
-
-
-Metodo que devuelve el atributo asistente. 
-
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
+)}\hypertarget{classCOperacionesImagen_a896089ecf4cdc7b2d8be60922cb76a93}{}\label{classCOperacionesImagen_a896089ecf4cdc7b2d8be60922cb76a93}
+\index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!get\+Inicios\+Asistente@{get\+Inicios\+Asistente}}
+\index{get\+Inicios\+Asistente@{get\+Inicios\+Asistente}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
+\subsubsection[{\texorpdfstring{get\+Inicios\+Asistente()}{getIniciosAsistente()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ int $>$ $\ast$ C\+Operaciones\+Imagen\+::get\+Inicios\+Asistente (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCOperacionesImagen_ad5c112e87e404665daefa2ce914a5730}{}\label{classCOperacionesImagen_ad5c112e87e404665daefa2ce914a5730}
+\index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!get\+Letras\+Asistente@{get\+Letras\+Asistente}}
+\index{get\+Letras\+Asistente@{get\+Letras\+Asistente}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
+\subsubsection[{\texorpdfstring{get\+Letras\+Asistente()}{getLetrasAsistente()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ char $>$ $\ast$ C\+Operaciones\+Imagen\+::get\+Letras\+Asistente (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCOperacionesImagen_aed11fc22a2d59e9bd5a30d38fb339e9d}{}\label{classCOperacionesImagen_aed11fc22a2d59e9bd5a30d38fb339e9d}
 \index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!Mat2\+Q\+Image@{Mat2\+Q\+Image}}
 \index{Mat2\+Q\+Image@{Mat2\+Q\+Image}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
 \subsubsection[{\texorpdfstring{Mat2\+Q\+Image(\+Mat const \&src)}{Mat2QImage(Mat const &src)}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Image C\+Operaciones\+Imagen\+::\+Mat2\+Q\+Image (
@@ -323,13 +346,15 @@ Metodo para confirmar el numero de nodos cuando se quiera codificar o procesar l
 
 
 \subsection{Member Data Documentation}
-\index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!asistente\+\_\+@{asistente\+\_\+}}
-\index{asistente\+\_\+@{asistente\+\_\+}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
-\subsubsection[{\texorpdfstring{asistente\+\_\+}{asistente_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Asistente\+Codificacion}$\ast$ C\+Operaciones\+Imagen\+::asistente\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCOperacionesImagen_a25e6302fe48f708fa1bd20e11334e75f}{}\label{classCOperacionesImagen_a25e6302fe48f708fa1bd20e11334e75f}
-
-
-Atributo de la clase \hyperlink{classCAsistenteCodificacion}{C\+Asistente\+Codificacion} para la confirmacion del automata detectado en la imagen. 
-
+\index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!aux\+Destinos\+\_\+@{aux\+Destinos\+\_\+}}
+\index{aux\+Destinos\+\_\+@{aux\+Destinos\+\_\+}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
+\subsubsection[{\texorpdfstring{aux\+Destinos\+\_\+}{auxDestinos_}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$$\ast$ C\+Operaciones\+Imagen\+::aux\+Destinos\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCOperacionesImagen_a9eb01c694302f6bf936955d8cea9f61d}{}\label{classCOperacionesImagen_a9eb01c694302f6bf936955d8cea9f61d}
+\index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!aux\+Inicios\+\_\+@{aux\+Inicios\+\_\+}}
+\index{aux\+Inicios\+\_\+@{aux\+Inicios\+\_\+}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
+\subsubsection[{\texorpdfstring{aux\+Inicios\+\_\+}{auxInicios_}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$$\ast$ C\+Operaciones\+Imagen\+::aux\+Inicios\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCOperacionesImagen_af0f1f09f1b470be97924d72b81e7e5de}{}\label{classCOperacionesImagen_af0f1f09f1b470be97924d72b81e7e5de}
+\index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!aux\+Letras\+\_\+@{aux\+Letras\+\_\+}}
+\index{aux\+Letras\+\_\+@{aux\+Letras\+\_\+}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
+\subsubsection[{\texorpdfstring{aux\+Letras\+\_\+}{auxLetras_}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$char$>$$\ast$ C\+Operaciones\+Imagen\+::aux\+Letras\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCOperacionesImagen_a984f9ea55b09b5e12564c6d29130394e}{}\label{classCOperacionesImagen_a984f9ea55b09b5e12564c6d29130394e}
 \index{C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}!circulos\+\_\+@{circulos\+\_\+}}
 \index{circulos\+\_\+@{circulos\+\_\+}!C\+Operaciones\+Imagen@{C\+Operaciones\+Imagen}}
 \subsubsection[{\texorpdfstring{circulos\+\_\+}{circulos_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Detectar\+Circulo}$\ast$ C\+Operaciones\+Imagen\+::circulos\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCOperacionesImagen_a385572b456e0aeaa055392daecf325d6}{}\label{classCOperacionesImagen_a385572b456e0aeaa055392daecf325d6}

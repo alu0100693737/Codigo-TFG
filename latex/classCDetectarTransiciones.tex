@@ -9,12 +9,22 @@ Clase para la dereccion de Transiciones a partir de images.\+xml y classificatio
 
 {\ttfamily \#include $<$C\+Detectar\+Transiciones.\+h$>$}
 
+
+
+Collaboration diagram for C\+Detectar\+Transiciones\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{classCDetectarTransiciones__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classCDetectarTransiciones_a99c333a4c8c5a4bb0e03ac09ab6e50b9}{C\+Detectar\+Transiciones} ()
 \begin{DoxyCompactList}\small\item\em Constructor Vacio. \end{DoxyCompactList}\item 
-bool \hyperlink{classCDetectarTransiciones_a19b374a5d7b5ddb01fada5b3a9d952d7}{ejecutar} (Mat image)
+bool \hyperlink{classCDetectarTransiciones_af45b603eb94d26f2ce7becbe7391396e}{ejecutar} (Mat image, int opcion)
 \begin{DoxyCompactList}\small\item\em Metodo que busca las transiciones en una imagen. \end{DoxyCompactList}\item 
 Mat \hyperlink{classCDetectarTransiciones_aa9cea5befc08385a46baf86adc305737}{get\+Imagen\+Transicion\+Actual} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la imagen actual. \end{DoxyCompactList}\item 
@@ -55,11 +65,12 @@ Constructor Vacio.
 \subsection{Member Function Documentation}
 \index{C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}!ejecutar@{ejecutar}}
 \index{ejecutar@{ejecutar}!C\+Detectar\+Transiciones@{C\+Detectar\+Transiciones}}
-\subsubsection[{\texorpdfstring{ejecutar(\+Mat image)}{ejecutar(Mat image)}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Detectar\+Transiciones\+::ejecutar (
+\subsubsection[{\texorpdfstring{ejecutar(\+Mat image, int opcion)}{ejecutar(Mat image, int opcion)}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Detectar\+Transiciones\+::ejecutar (
 \begin{DoxyParamCaption}
-\item[{Mat}]{image}
+\item[{Mat}]{image, }
+\item[{int}]{opcion}
 \end{DoxyParamCaption}
-)}\hypertarget{classCDetectarTransiciones_a19b374a5d7b5ddb01fada5b3a9d952d7}{}\label{classCDetectarTransiciones_a19b374a5d7b5ddb01fada5b3a9d952d7}
+)}\hypertarget{classCDetectarTransiciones_af45b603eb94d26f2ce7becbe7391396e}{}\label{classCDetectarTransiciones_af45b603eb94d26f2ce7becbe7391396e}
 
 
 Metodo que busca las transiciones en una imagen. 
@@ -73,6 +84,22 @@ Metodo que busca las transiciones en una imagen.
 Imagen resultado de la deteccion 
 \end{DoxyReturn}
 Leemos la imagen a detectar, el clasificador.\+xml y image.\+xml
+
+Creamos cv\+::\+Ptr$<$cv\+::ml\+::\+K\+Nearest$>$ k\+Nearest(cv\+::ml\+::\+K\+Nearest\+::create());
+
+instantiate the K\+NN object
+
+Suavizado Gaussiano
+
+Filtro de escala de grises a blanco y negro
+
+Buscamos contornos en la imagen
+
+Ordenamos de izquierda a derecha
+
+k\+Nearest-\/$>$find\+Nearest Buscamos semejanza entre los contornos y el clasificador
+
+Asignamos contorno y letra a contornos\+Encontrados
 
 Creamos cv\+::\+Ptr$<$cv\+::ml\+::\+K\+Nearest$>$ k\+Nearest(cv\+::ml\+::\+K\+Nearest\+::create());
 

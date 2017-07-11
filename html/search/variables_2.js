@@ -1,9 +1,23 @@
 var searchData=
 [
+  ['c',['c',['../classCTransicion.html#a25058569b7c254796fa648be9bfe2222',1,'CTransicion']]],
   ['cambiar_5f',['cambiar_',['../classCAsistenteCodificacion.html#a7c50f4349d8de445b66d49a1a34df74a',1,'CAsistenteCodificacion']]],
+  ['cambiarperspectiva_5f',['cambiarPerspectiva_',['../classCAplicacion.html#ace77f6e1f8cad42ec579cb8071935ed2',1,'CAplicacion']]],
   ['cancelar_5f',['cancelar_',['../classCAsistenteCodificacion.html#a38cc5ae5adde6fa070e0ce0974de7778',1,'CAsistenteCodificacion']]],
   ['cannythreshold_5f',['cannyThresHold_',['../classCPanelOpciones.html#a02b5fec0793280de210c64541fc47155',1,'CPanelOpciones']]],
+  ['cargarficherocorregir_5f',['cargarFicheroCorregir_',['../classCPanelOpciones.html#aa559bc77eea6f021caa5f0c21ef82547',1,'CPanelOpciones']]],
+  ['cargarficheroreferencia_5f',['cargarFicheroReferencia_',['../classCPanelOpciones.html#a50cc3593d49becea672e1e11c6f9c0df',1,'CPanelOpciones']]],
+  ['cargarimagencorregir_5f',['cargarImagenCorregir_',['../classCPanelOpciones.html#ae86c6c794f6e7b6c207e9c445e41be01',1,'CPanelOpciones']]],
+  ['cargarimagenparapanelcomparacion_5f',['cargarImagenParaPanelComparacion_',['../classCAplicacion.html#ac9b58ec62a0ea85cee5d89a5c64d4f62',1,'CAplicacion']]],
+  ['cargarimagenreferencia_5f',['cargarImagenReferencia_',['../classCPanelOpciones.html#a74e3bdc7892ba6882651f31c1aea45ce',1,'CPanelOpciones']]],
+  ['checkeliminaranadirlinea_5f',['checkEliminarAnadirLinea_',['../classCAplicacion.html#add0c84c5ecbc9f8a2949b8fe82f2c3cf',1,'CAplicacion']]],
+  ['checkupdatestimer_5f',['checkUpdatesTimer_',['../classCAplicacion.html#a812e5a85dd7d73bb4cce547962eb85f0',1,'CAplicacion']]],
   ['circles',['circles',['../classCDetectarCirculo.html#afb2bd271bd772e489fe948caa80bb7b7',1,'CDetectarCirculo']]],
   ['circulos_5f',['circulos_',['../classCOperacionesImagen.html#a385572b456e0aeaa055392daecf325d6',1,'COperacionesImagen']]],
-  ['contornosencontrados_5f',['contornosEncontrados_',['../classCDetectarTransiciones.html#a76910f415a085c5e73126ec3fb62a174',1,'CDetectarTransiciones']]]
+  ['conjuntoestados',['ConjuntoEstados',['../classCEstado.html#a28265d36807fa3c84140e23872fb0132',1,'CEstado']]],
+  ['cont_5facep',['cont_acep',['../classDFA__MIN.html#a5e91293deaa7c83832e55f5177e31232',1,'DFA_MIN']]],
+  ['cont_5fid_5fconj',['cont_id_conj',['../classDFA__MIN.html#a2fae453e70c67af71d1cd70a16373d82',1,'DFA_MIN']]],
+  ['contornosencontrados_5f',['contornosEncontrados_',['../classCDetectarTransiciones.html#a76910f415a085c5e73126ec3fb62a174',1,'CDetectarTransiciones']]],
+  ['corregirautomata_5f',['corregirAutomata_',['../classCAsistenteCodificacion.html#afd75aaa033b9e2147f82bdb64db6fecf',1,'CAsistenteCodificacion']]],
+  ['corregirfichero_5f',['corregirFichero_',['../classCPanelOpciones.html#ab80a05d83108d54639a2c053467791bf',1,'CPanelOpciones']]]
 ];

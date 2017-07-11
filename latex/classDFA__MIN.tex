@@ -1,0 +1,237 @@
+\hypertarget{classDFA__MIN}{}\section{D\+F\+A\+\_\+\+M\+IN Class Reference}
+\label{classDFA__MIN}\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+
+
+{\ttfamily \#include $<$D\+F\+A\+\_\+min.\+h$>$}
+
+
+
+Collaboration diagram for D\+F\+A\+\_\+\+M\+IN\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classDFA__MIN__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDFA__MIN_ab23d007d4a597b9242ec63b175c0d442}{D\+F\+A\+\_\+\+M\+IN} ()
+\item 
+\hyperlink{classDFA__MIN_abd44cdc58f7ac815124722ab26070c59}{$\sim$\+D\+F\+A\+\_\+\+M\+IN} ()
+\item 
+void \hyperlink{classDFA__MIN_a933ed65f474a79dd69bd77af2c9ab4fc}{Leer\+\_\+\+D\+FA} (char nombre\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{classDFA__MIN_a45f3039094bbb7dcd19de0c49419243f}{Exportar\+\_\+\+D\+F\+A\+\_\+min} ()
+\item 
+int \hyperlink{classDFA__MIN_af199da3ede7ed11204a754c2183aab08}{long\+\_\+cadena} (char $\ast$)
+\item 
+void \hyperlink{classDFA__MIN_a359c0fec7be50994213ab598c62c69ec}{Minimizar\+\_\+\+D\+FA} ()
+\item 
+void \hyperlink{classDFA__MIN_a02572f57610c3eaace394c5e487ab524}{Divide\+\_\+\+D\+FA} ()
+\item 
+int \hyperlink{classDFA__MIN_a63aceba3b4ca0527cde22afdb09c05a4}{Contador\+\_\+\+ID} (int id)
+\item 
+bool \hyperlink{classDFA__MIN_a23fffd70992a82b8f2f574dd2ddde71e}{Comprobar\+\_\+\+Trans} (int id\+\_\+conj, char id\+\_\+trans, int n\+\_\+trans)
+\item 
+char \hyperlink{classDFA__MIN_a7d8b26d37ceb44ee9f2da46b849096a1}{Buscar\+Estado} (char est)
+\item 
+void \hyperlink{classDFA__MIN_aa739fb89570a82ff0af1997e2cf05e8d}{Cambia\+\_\+\+Estado} (char id, char rep)
+\item 
+void \hyperlink{classDFA__MIN_a3c7227b8f88987417625b25ec0410fe8}{Cambia\+\_\+\+Conjunto} (\hyperlink{classEstado}{Estado} $\ast$vec, int tam, char id, char tra, char conj)
+\item 
+void \hyperlink{classDFA__MIN_a0facf3c8cea99d1235593bf2b65e0e4e}{Transforma\+\_\+\+Conj} (\hyperlink{classEstado}{Estado} $\ast$vec, int tam)
+\item 
+void \hyperlink{classDFA__MIN_a9d98e8fe7dbd789624ed083484a5c04a}{Min\+\_\+\+V\+Ec} (\hyperlink{classEstado}{Estado} $\ast$vec, int tam, int x)
+\item 
+int \hyperlink{classDFA__MIN_ad025e5ebeb4dcca68a1e27d0f91d0b27}{Oculta\+\_\+\+Estados} (\hyperlink{classEstado}{Estado} $\ast$vec, int tam, int res)
+\item 
+void \hyperlink{classDFA__MIN_acbb53157090bbfa6fee78eadab964082}{Check\+\_\+\+Trans} ()
+\item 
+void \hyperlink{classDFA__MIN_af3f05b252ab137139773054ba0596130}{Borrar\+\_\+\+Estados} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classEstado}{Estado} $\ast$ \hyperlink{classDFA__MIN_a63e88c71f42528401f723e7b0a1546b7}{V}
+\item 
+int \hyperlink{classDFA__MIN_afdb3a42ec5ff49939f83da7d524ecad4}{num\+\_\+est}
+\item 
+int \hyperlink{classDFA__MIN_a6c736ede2fcc8d8e367cdcfdb4dc16ab}{est\+\_\+ini}
+\item 
+int \hyperlink{classDFA__MIN_a2fae453e70c67af71d1cd70a16373d82}{cont\+\_\+id\+\_\+conj}
+\item 
+\hyperlink{classEstado}{Estado} $\ast$ \hyperlink{classDFA__MIN_a7105979d0dfe2f5aebe6a74286e93eda}{acep}
+\item 
+\hyperlink{classEstado}{Estado} $\ast$ \hyperlink{classDFA__MIN_aa3f8b663143a7c3a176ac7d0954ae82f}{noacep}
+\item 
+int \hyperlink{classDFA__MIN_a5e91293deaa7c83832e55f5177e31232}{cont\+\_\+acep}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{D\+F\+A\+\_\+\+M\+I\+N()}{DFA_MIN()}}]{\setlength{\rightskip}{0pt plus 5cm}D\+F\+A\+\_\+\+M\+I\+N\+::\+D\+F\+A\+\_\+\+M\+IN (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_ab23d007d4a597b9242ec63b175c0d442}{}\label{classDFA__MIN_ab23d007d4a597b9242ec63b175c0d442}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!````~D\+F\+A\+\_\+\+M\+IN@{$\sim$\+D\+F\+A\+\_\+\+M\+IN}}
+\index{````~D\+F\+A\+\_\+\+M\+IN@{$\sim$\+D\+F\+A\+\_\+\+M\+IN}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{$\sim$\+D\+F\+A\+\_\+\+M\+I\+N()}{~DFA_MIN()}}]{\setlength{\rightskip}{0pt plus 5cm}D\+F\+A\+\_\+\+M\+I\+N\+::$\sim$\+D\+F\+A\+\_\+\+M\+IN (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_abd44cdc58f7ac815124722ab26070c59}{}\label{classDFA__MIN_abd44cdc58f7ac815124722ab26070c59}
+
+
+\subsection{Member Function Documentation}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Borrar\+\_\+\+Estados@{Borrar\+\_\+\+Estados}}
+\index{Borrar\+\_\+\+Estados@{Borrar\+\_\+\+Estados}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Borrar\+\_\+\+Estados()}{Borrar_Estados()}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+F\+A\+\_\+\+M\+I\+N\+::\+Borrar\+\_\+\+Estados (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_af3f05b252ab137139773054ba0596130}{}\label{classDFA__MIN_af3f05b252ab137139773054ba0596130}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Buscar\+Estado@{Buscar\+Estado}}
+\index{Buscar\+Estado@{Buscar\+Estado}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Buscar\+Estado(char est)}{BuscarEstado(char est)}}]{\setlength{\rightskip}{0pt plus 5cm}char D\+F\+A\+\_\+\+M\+I\+N\+::\+Buscar\+Estado (
+\begin{DoxyParamCaption}
+\item[{char}]{est}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_a7d8b26d37ceb44ee9f2da46b849096a1}{}\label{classDFA__MIN_a7d8b26d37ceb44ee9f2da46b849096a1}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Cambia\+\_\+\+Conjunto@{Cambia\+\_\+\+Conjunto}}
+\index{Cambia\+\_\+\+Conjunto@{Cambia\+\_\+\+Conjunto}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Cambia\+\_\+\+Conjunto(\+Estado $\ast$vec, int tam, char id, char tra, char conj)}{Cambia_Conjunto(Estado *vec, int tam, char id, char tra, char conj)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+F\+A\+\_\+\+M\+I\+N\+::\+Cambia\+\_\+\+Conjunto (
+\begin{DoxyParamCaption}
+\item[{{\bf Estado} $\ast$}]{vec, }
+\item[{int}]{tam, }
+\item[{char}]{id, }
+\item[{char}]{tra, }
+\item[{char}]{conj}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_a3c7227b8f88987417625b25ec0410fe8}{}\label{classDFA__MIN_a3c7227b8f88987417625b25ec0410fe8}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Cambia\+\_\+\+Estado@{Cambia\+\_\+\+Estado}}
+\index{Cambia\+\_\+\+Estado@{Cambia\+\_\+\+Estado}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Cambia\+\_\+\+Estado(char id, char rep)}{Cambia_Estado(char id, char rep)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+F\+A\+\_\+\+M\+I\+N\+::\+Cambia\+\_\+\+Estado (
+\begin{DoxyParamCaption}
+\item[{char}]{id, }
+\item[{char}]{rep}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_aa739fb89570a82ff0af1997e2cf05e8d}{}\label{classDFA__MIN_aa739fb89570a82ff0af1997e2cf05e8d}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Check\+\_\+\+Trans@{Check\+\_\+\+Trans}}
+\index{Check\+\_\+\+Trans@{Check\+\_\+\+Trans}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Check\+\_\+\+Trans()}{Check_Trans()}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+F\+A\+\_\+\+M\+I\+N\+::\+Check\+\_\+\+Trans (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_acbb53157090bbfa6fee78eadab964082}{}\label{classDFA__MIN_acbb53157090bbfa6fee78eadab964082}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Comprobar\+\_\+\+Trans@{Comprobar\+\_\+\+Trans}}
+\index{Comprobar\+\_\+\+Trans@{Comprobar\+\_\+\+Trans}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Comprobar\+\_\+\+Trans(int id\+\_\+conj, char id\+\_\+trans, int n\+\_\+trans)}{Comprobar_Trans(int id_conj, char id_trans, int n_trans)}}]{\setlength{\rightskip}{0pt plus 5cm}bool D\+F\+A\+\_\+\+M\+I\+N\+::\+Comprobar\+\_\+\+Trans (
+\begin{DoxyParamCaption}
+\item[{int}]{id\+\_\+conj, }
+\item[{char}]{id\+\_\+trans, }
+\item[{int}]{n\+\_\+trans}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_a23fffd70992a82b8f2f574dd2ddde71e}{}\label{classDFA__MIN_a23fffd70992a82b8f2f574dd2ddde71e}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Contador\+\_\+\+ID@{Contador\+\_\+\+ID}}
+\index{Contador\+\_\+\+ID@{Contador\+\_\+\+ID}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Contador\+\_\+\+I\+D(int id)}{Contador_ID(int id)}}]{\setlength{\rightskip}{0pt plus 5cm}int D\+F\+A\+\_\+\+M\+I\+N\+::\+Contador\+\_\+\+ID (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_a63aceba3b4ca0527cde22afdb09c05a4}{}\label{classDFA__MIN_a63aceba3b4ca0527cde22afdb09c05a4}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Divide\+\_\+\+D\+FA@{Divide\+\_\+\+D\+FA}}
+\index{Divide\+\_\+\+D\+FA@{Divide\+\_\+\+D\+FA}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Divide\+\_\+\+D\+F\+A()}{Divide_DFA()}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+F\+A\+\_\+\+M\+I\+N\+::\+Divide\+\_\+\+D\+FA (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_a02572f57610c3eaace394c5e487ab524}{}\label{classDFA__MIN_a02572f57610c3eaace394c5e487ab524}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Exportar\+\_\+\+D\+F\+A\+\_\+min@{Exportar\+\_\+\+D\+F\+A\+\_\+min}}
+\index{Exportar\+\_\+\+D\+F\+A\+\_\+min@{Exportar\+\_\+\+D\+F\+A\+\_\+min}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Exportar\+\_\+\+D\+F\+A\+\_\+min()}{Exportar_DFA_min()}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+F\+A\+\_\+\+M\+I\+N\+::\+Exportar\+\_\+\+D\+F\+A\+\_\+min (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_a45f3039094bbb7dcd19de0c49419243f}{}\label{classDFA__MIN_a45f3039094bbb7dcd19de0c49419243f}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Leer\+\_\+\+D\+FA@{Leer\+\_\+\+D\+FA}}
+\index{Leer\+\_\+\+D\+FA@{Leer\+\_\+\+D\+FA}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Leer\+\_\+\+D\+F\+A(char nombre[])}{Leer_DFA(char nombre[])}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+F\+A\+\_\+\+M\+I\+N\+::\+Leer\+\_\+\+D\+FA (
+\begin{DoxyParamCaption}
+\item[{char}]{nombre\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_a933ed65f474a79dd69bd77af2c9ab4fc}{}\label{classDFA__MIN_a933ed65f474a79dd69bd77af2c9ab4fc}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!long\+\_\+cadena@{long\+\_\+cadena}}
+\index{long\+\_\+cadena@{long\+\_\+cadena}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{long\+\_\+cadena(char $\ast$)}{long_cadena(char *)}}]{\setlength{\rightskip}{0pt plus 5cm}int D\+F\+A\+\_\+\+M\+I\+N\+::long\+\_\+cadena (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{cadena}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_af199da3ede7ed11204a754c2183aab08}{}\label{classDFA__MIN_af199da3ede7ed11204a754c2183aab08}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Min\+\_\+\+V\+Ec@{Min\+\_\+\+V\+Ec}}
+\index{Min\+\_\+\+V\+Ec@{Min\+\_\+\+V\+Ec}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Min\+\_\+\+V\+Ec(\+Estado $\ast$vec, int tam, int x)}{Min_VEc(Estado *vec, int tam, int x)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+F\+A\+\_\+\+M\+I\+N\+::\+Min\+\_\+\+V\+Ec (
+\begin{DoxyParamCaption}
+\item[{{\bf Estado} $\ast$}]{vec, }
+\item[{int}]{tam, }
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_a9d98e8fe7dbd789624ed083484a5c04a}{}\label{classDFA__MIN_a9d98e8fe7dbd789624ed083484a5c04a}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Minimizar\+\_\+\+D\+FA@{Minimizar\+\_\+\+D\+FA}}
+\index{Minimizar\+\_\+\+D\+FA@{Minimizar\+\_\+\+D\+FA}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Minimizar\+\_\+\+D\+F\+A()}{Minimizar_DFA()}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+F\+A\+\_\+\+M\+I\+N\+::\+Minimizar\+\_\+\+D\+FA (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_a359c0fec7be50994213ab598c62c69ec}{}\label{classDFA__MIN_a359c0fec7be50994213ab598c62c69ec}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Oculta\+\_\+\+Estados@{Oculta\+\_\+\+Estados}}
+\index{Oculta\+\_\+\+Estados@{Oculta\+\_\+\+Estados}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Oculta\+\_\+\+Estados(\+Estado $\ast$vec, int tam, int res)}{Oculta_Estados(Estado *vec, int tam, int res)}}]{\setlength{\rightskip}{0pt plus 5cm}int D\+F\+A\+\_\+\+M\+I\+N\+::\+Oculta\+\_\+\+Estados (
+\begin{DoxyParamCaption}
+\item[{{\bf Estado} $\ast$}]{vec, }
+\item[{int}]{tam, }
+\item[{int}]{res}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_ad025e5ebeb4dcca68a1e27d0f91d0b27}{}\label{classDFA__MIN_ad025e5ebeb4dcca68a1e27d0f91d0b27}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!Transforma\+\_\+\+Conj@{Transforma\+\_\+\+Conj}}
+\index{Transforma\+\_\+\+Conj@{Transforma\+\_\+\+Conj}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{Transforma\+\_\+\+Conj(\+Estado $\ast$vec, int tam)}{Transforma_Conj(Estado *vec, int tam)}}]{\setlength{\rightskip}{0pt plus 5cm}void D\+F\+A\+\_\+\+M\+I\+N\+::\+Transforma\+\_\+\+Conj (
+\begin{DoxyParamCaption}
+\item[{{\bf Estado} $\ast$}]{vec, }
+\item[{int}]{tam}
+\end{DoxyParamCaption}
+)}\hypertarget{classDFA__MIN_a0facf3c8cea99d1235593bf2b65e0e4e}{}\label{classDFA__MIN_a0facf3c8cea99d1235593bf2b65e0e4e}
+
+
+\subsection{Member Data Documentation}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!acep@{acep}}
+\index{acep@{acep}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{acep}{acep}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Estado}$\ast$ D\+F\+A\+\_\+\+M\+I\+N\+::acep\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDFA__MIN_a7105979d0dfe2f5aebe6a74286e93eda}{}\label{classDFA__MIN_a7105979d0dfe2f5aebe6a74286e93eda}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!cont\+\_\+acep@{cont\+\_\+acep}}
+\index{cont\+\_\+acep@{cont\+\_\+acep}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{cont\+\_\+acep}{cont_acep}}]{\setlength{\rightskip}{0pt plus 5cm}int D\+F\+A\+\_\+\+M\+I\+N\+::cont\+\_\+acep\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDFA__MIN_a5e91293deaa7c83832e55f5177e31232}{}\label{classDFA__MIN_a5e91293deaa7c83832e55f5177e31232}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!cont\+\_\+id\+\_\+conj@{cont\+\_\+id\+\_\+conj}}
+\index{cont\+\_\+id\+\_\+conj@{cont\+\_\+id\+\_\+conj}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{cont\+\_\+id\+\_\+conj}{cont_id_conj}}]{\setlength{\rightskip}{0pt plus 5cm}int D\+F\+A\+\_\+\+M\+I\+N\+::cont\+\_\+id\+\_\+conj\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDFA__MIN_a2fae453e70c67af71d1cd70a16373d82}{}\label{classDFA__MIN_a2fae453e70c67af71d1cd70a16373d82}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!est\+\_\+ini@{est\+\_\+ini}}
+\index{est\+\_\+ini@{est\+\_\+ini}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{est\+\_\+ini}{est_ini}}]{\setlength{\rightskip}{0pt plus 5cm}int D\+F\+A\+\_\+\+M\+I\+N\+::est\+\_\+ini\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDFA__MIN_a6c736ede2fcc8d8e367cdcfdb4dc16ab}{}\label{classDFA__MIN_a6c736ede2fcc8d8e367cdcfdb4dc16ab}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!noacep@{noacep}}
+\index{noacep@{noacep}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{noacep}{noacep}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Estado}$\ast$ D\+F\+A\+\_\+\+M\+I\+N\+::noacep\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDFA__MIN_aa3f8b663143a7c3a176ac7d0954ae82f}{}\label{classDFA__MIN_aa3f8b663143a7c3a176ac7d0954ae82f}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!num\+\_\+est@{num\+\_\+est}}
+\index{num\+\_\+est@{num\+\_\+est}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{num\+\_\+est}{num_est}}]{\setlength{\rightskip}{0pt plus 5cm}int D\+F\+A\+\_\+\+M\+I\+N\+::num\+\_\+est\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDFA__MIN_afdb3a42ec5ff49939f83da7d524ecad4}{}\label{classDFA__MIN_afdb3a42ec5ff49939f83da7d524ecad4}
+\index{D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}!V@{V}}
+\index{V@{V}!D\+F\+A\+\_\+\+M\+IN@{D\+F\+A\+\_\+\+M\+IN}}
+\subsubsection[{\texorpdfstring{V}{V}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Estado}$\ast$ D\+F\+A\+\_\+\+M\+I\+N\+::V\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDFA__MIN_a63e88c71f42528401f723e7b0a1546b7}{}\label{classDFA__MIN_a63e88c71f42528401f723e7b0a1546b7}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{DFA__min_8h}{D\+F\+A\+\_\+min.\+h}\item 
+\hyperlink{DFA__min_8cpp}{D\+F\+A\+\_\+min.\+cpp}\end{DoxyCompactItemize}

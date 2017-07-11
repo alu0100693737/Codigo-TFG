@@ -1,10 +1,18 @@
 \hypertarget{CAplicacion_8h}{}\section{C\+Aplicacion.\+h File Reference}
 \label{CAplicacion_8h}\index{C\+Aplicacion.\+h@{C\+Aplicacion.\+h}}
+{\ttfamily \#include $<$algorithm$>$}\\*
 {\ttfamily \#include $<$Qt\+Widgets$>$}\\*
+{\ttfamily \#include \char`\"{}opencv2/imgcodecs.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}opencv2/highgui.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}opencv2/imgproc.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}opencv2/core.\+hpp\char`\"{}}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}C\+Label.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}C\+Line\+Edit.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
 {\ttfamily \#include \char`\"{}C\+Operaciones\+Imagen.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}C\+Panel\+Opciones.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\+Nfa.\+h\char`\"{}}\\*
 Include dependency graph for C\+Aplicacion.\+h\+:
 \nopagebreak
 \begin{figure}[H]
@@ -13,8 +21,7 @@ Include dependency graph for C\+Aplicacion.\+h\+:
 \includegraphics[width=350pt]{CAplicacion_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,3 +33,19 @@ This graph shows which files directly or indirectly include this file\+:
 \item 
 class \hyperlink{classCAplicacion}{C\+Aplicacion}
 \begin{DoxyCompactList}\small\item\em Clase Aplicacion con ventana principal de la aplicacion Consta de 3 Paneles. Principal, Opciones e Histograma Si se utiliza la funcionalidad Codificar, ese panel cambia de forma T\+E\+R\+M\+I\+N\+AR. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{CAplicacion_8h_a54019b4a69d7d60b44950a850cf91ca5}{P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+AL}~\char`\"{}/home/ivan/Documentos/Codigo-\/T\+FG/codificaciones/temporal.\+txt\char`\"{}
+\item 
+\#define \hyperlink{CAplicacion_8h_a5a090aad2cd0e647fe7995f80bcaedd5}{P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+A\+L\+D\+FA}~\char`\"{}/home/ivan/Documentos/Codigo-\/T\+FG/codificaciones/temporal\+D\+F\+A.\+txt\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{C\+Aplicacion.\+h@{C\+Aplicacion.\+h}!P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+AL@{P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+AL}}
+\index{P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+AL@{P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+AL}!C\+Aplicacion.\+h@{C\+Aplicacion.\+h}}
+\subsubsection[{\texorpdfstring{P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+AL}{PATH_TEMPORAL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+AL~\char`\"{}/home/ivan/Documentos/Codigo-\/T\+FG/codificaciones/temporal.\+txt\char`\"{}}\hypertarget{CAplicacion_8h_a54019b4a69d7d60b44950a850cf91ca5}{}\label{CAplicacion_8h_a54019b4a69d7d60b44950a850cf91ca5}
+\index{C\+Aplicacion.\+h@{C\+Aplicacion.\+h}!P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+A\+L\+D\+FA@{P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+A\+L\+D\+FA}}
+\index{P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+A\+L\+D\+FA@{P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+A\+L\+D\+FA}!C\+Aplicacion.\+h@{C\+Aplicacion.\+h}}
+\subsubsection[{\texorpdfstring{P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+A\+L\+D\+FA}{PATH_TEMPORALDFA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+T\+H\+\_\+\+T\+E\+M\+P\+O\+R\+A\+L\+D\+FA~\char`\"{}/home/ivan/Documentos/Codigo-\/T\+FG/codificaciones/temporal\+D\+F\+A.\+txt\char`\"{}}\hypertarget{CAplicacion_8h_a5a090aad2cd0e647fe7995f80bcaedd5}{}\label{CAplicacion_8h_a5a090aad2cd0e647fe7995f80bcaedd5}

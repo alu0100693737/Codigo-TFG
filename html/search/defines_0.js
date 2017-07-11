@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['contornomedioletra',['CONTORNOMEDIOLETRA',['../COperacionesImagen_8h.html#a22ad15b01f07a0dc565e6931a4723c99',1,'COperacionesImagen.h']]]
+  ['accumulatorthreshold',['ACCUMULATORTHRESHOLD',['../CPanelOpciones_8h.html#aa0a03f10dcc55854788b2422ecdd8b13',1,'CPanelOpciones.h']]]
 ];

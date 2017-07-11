@@ -9,6 +9,16 @@ Clase para la deteccion de Lineas Valor por defecto para la deteccion, hough\+Li
 
 {\ttfamily \#include $<$C\+Detectar\+Lineas.\+h$>$}
 
+
+
+Collaboration diagram for C\+Detectar\+Lineas\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{classCDetectarLineas__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -16,7 +26,7 @@ Clase para la deteccion de Lineas Valor por defecto para la deteccion, hough\+Li
 \begin{DoxyCompactList}\small\item\em Constructor Vacio. \end{DoxyCompactList}\item 
 Mat \hyperlink{classCDetectarLineas_a8380e777f5cac60aae54ac0cf13b7246}{iniciar\+Deteccion} (Mat imagen, int houghprobabilistico)
 \begin{DoxyCompactList}\small\item\em Metodo que inicia la deteccion de lineas en la imagen. \end{DoxyCompactList}\item 
-vector$<$ Vec4i $>$ \hyperlink{classCDetectarLineas_ad3c473d7e85a3c4901870af10ff9d5ed}{get\+Lineas\+Detectadas} ()
+vector$<$ Vec4i $>$ \& \hyperlink{classCDetectarLineas_ad98f9627f640966b7e11af7d10a4b9e8}{get\+Lineas\+Detectadas} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve el conjunto de lineas detectadas en la imagen. \end{DoxyCompactList}\item 
 int \hyperlink{classCDetectarLineas_ad7493ac0d73201a7c9188f8a283b6a88}{distancia\+Euclidea} (int a, int b)
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la distancia euclidiana entre dos numeros. \end{DoxyCompactList}\item 
@@ -176,11 +186,11 @@ continuacion de lineas en Y
 
 Lineas superpuestas completamente, falta las que son sublineas de una mayor \index{C\+Detectar\+Lineas@{C\+Detectar\+Lineas}!get\+Lineas\+Detectadas@{get\+Lineas\+Detectadas}}
 \index{get\+Lineas\+Detectadas@{get\+Lineas\+Detectadas}!C\+Detectar\+Lineas@{C\+Detectar\+Lineas}}
-\subsubsection[{\texorpdfstring{get\+Lineas\+Detectadas()}{getLineasDetectadas()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec4i $>$ C\+Detectar\+Lineas\+::get\+Lineas\+Detectadas (
+\subsubsection[{\texorpdfstring{get\+Lineas\+Detectadas()}{getLineasDetectadas()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ Vec4i $>$ \& C\+Detectar\+Lineas\+::get\+Lineas\+Detectadas (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{classCDetectarLineas_ad3c473d7e85a3c4901870af10ff9d5ed}{}\label{classCDetectarLineas_ad3c473d7e85a3c4901870af10ff9d5ed}
+)}\hypertarget{classCDetectarLineas_ad98f9627f640966b7e11af7d10a4b9e8}{}\label{classCDetectarLineas_ad98f9627f640966b7e11af7d10a4b9e8}
 
 
 Metodo que devuelve el conjunto de lineas detectadas en la imagen. 

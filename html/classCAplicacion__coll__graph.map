@@ -1,12 +1,12 @@
 <map id="CAplicacion" name="CAplicacion">
-<area shape="rect" id="node3" href="$classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. " alt="" coords="173,164,236,191"/>
-<area shape="rect" id="node5" href="$classCPanelOpciones.html" title="Clase que almacena un panel con las variables de la Detección de circulos y lineas. " alt="" coords="457,108,577,135"/>
-<area shape="rect" id="node13" href="$classCAsistenteCodificacion.html" title="Clase asistente de la codificacion. Utilizada al Procesar o Codificar una Imagen para confirmar que t..." alt="" coords="437,412,596,439"/>
-<area shape="rect" id="node7" href="$classCLineEdit.html" title="Clase heredada de &#39;QLineEdit&#39; que aplica un estilo determinado a este tipo de container. " alt="" coords="795,169,873,196"/>
-<area shape="rect" id="node9" href="$classCOperacionesImagen.html" title="Clase que contiene CFiltrosImagenes, CDetectarCirculo, CDetectarLineas, CDetectarTransiciones y CAsis..." alt="" coords="760,287,908,313"/>
-<area shape="rect" id="node10" href="$classCFiltrosImagenes.html" title="Clase con diferentes filtros para aplicar sobre imagenes. " alt="" coords="454,260,579,287"/>
-<area shape="rect" id="node11" href="$classCDetectarTransiciones.html" title="Clase para la dereccion de Transiciones a partir de images.xml y classification.xml Ambos sacados de ..." alt="" coords="439,311,595,337"/>
-<area shape="rect" id="node12" href="$classCDetectarCirculo.html" title="Clase para la deteccion de Circulos Valores por defecto para la deteccion, canny entre 26..." alt="" coords="455,361,578,388"/>
-<area shape="rect" id="node14" href="$classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. " alt="" coords="155,412,255,439"/>
-<area shape="rect" id="node16" href="$classCDetectarLineas.html" title="Clase para la deteccion de Lineas Valor por defecto para la deteccion, houghLinesP 80..." alt="" coords="457,209,577,236"/>
+<area shape="rect" id="node3" href="$classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. " alt="" coords="419,341,519,368"/>
+<area shape="rect" id="node7" href="$classCPanelOpciones.html" title="Clase que almacena un panel con las variables de la Detección de circulos y lineas. " alt="" coords="801,552,921,579"/>
+<area shape="rect" id="node9" href="$classCAsistenteCodificacion.html" title="Clase asistente de la codificacion. Utilizada al Procesar o Codificar una Imagen para confirmar que t..." alt="" coords="781,867,940,893"/>
+<area shape="rect" id="node5" href="$classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. " alt="" coords="438,696,501,723"/>
+<area shape="rect" id="node13" href="$classCLineEdit.html" title="Clase heredada de &#39;QLineEdit&#39; que aplica un estilo determinado a este tipo de container. " alt="" coords="821,1007,900,1033"/>
+<area shape="rect" id="node15" href="$classCOperacionesImagen.html" title="Clase que contiene CFiltrosImagenes, CDetectarCirculo, CDetectarLineas, CDetectarTransiciones y CAsis..." alt="" coords="787,1257,935,1284"/>
+<area shape="rect" id="node16" href="$classCFiltrosImagenes.html" title="Clase con diferentes filtros para aplicar sobre imagenes. " alt="" coords="407,1148,532,1175"/>
+<area shape="rect" id="node17" href="$classCDetectarTransiciones.html" title="Clase para la dereccion de Transiciones a partir de images.xml y classification.xml Ambos sacados de ..." alt="" coords="391,1261,547,1288"/>
+<area shape="rect" id="node20" href="$classCDetectarCirculo.html" title="Clase para la deteccion de Circulos Valores por defecto para la deteccion, canny entre 26..." alt="" coords="408,1312,531,1339"/>
+<area shape="rect" id="node23" href="$classCDetectarLineas.html" title="Clase para la deteccion de Lineas Valor por defecto para la deteccion, houghLinesP 80..." alt="" coords="409,1413,529,1440"/>
 </map>

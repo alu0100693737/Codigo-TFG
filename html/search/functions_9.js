@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['main',['main',['../Principal_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'Principal.cpp']]],
-  ['mat2qimage',['Mat2QImage',['../classCOperacionesImagen.html#a81462b6d034a47905ff9ea337349042e',1,'COperacionesImagen']]],
-  ['mostrarcontorno',['mostrarContorno',['../classCContourWithData.html#adc8d62ef51d181ee9bf36b250dc14990',1,'CContourWithData']]]
+  ['leer_5fdfa',['Leer_DFA',['../classDFA__MIN.html#a933ed65f474a79dd69bd77af2c9ab4fc',1,'DFA_MIN']]],
+  ['loadfile',['loadFile',['../classCAplicacion.html#a7802ee67b172b877ddd0f3ac99a7d96e',1,'CAplicacion']]],
+  ['long_5fcadena',['long_cadena',['../classDFA__MIN.html#af199da3ede7ed11204a754c2183aab08',1,'DFA_MIN']]]
 ];

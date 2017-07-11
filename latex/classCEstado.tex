@@ -1,0 +1,197 @@
+\hypertarget{classCEstado}{}\section{C\+Estado Class Reference}
+\label{classCEstado}\index{C\+Estado@{C\+Estado}}
+
+
+{\ttfamily \#include $<$C\+Estado\+N\+F\+A.\+h$>$}
+
+
+
+Collaboration diagram for C\+Estado\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCEstado__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classCEstado_a205d938c7acd14b0ec86314162c8813f}{set\+Estado} (bool a, int q, int n\+\_\+trans)
+\item 
+bool \hyperlink{classCEstado_af1d8101863c51f8d3fca99fc1cd1c883}{get\+Aceptacion} ()
+\item 
+int \hyperlink{classCEstado_a8578682119ea4b96dbda46cf01db1b28}{get\+\_\+id} ()
+\item 
+void \hyperlink{classCEstado_a49cb79111fb7daa925857e8e38ca8c6b}{set\+\_\+id} (int i)
+\item 
+bool \hyperlink{classCEstado_aeb0a7a2c71a2c26471ddbc851c907f50}{get\+Muerte} ()
+\item 
+void \hyperlink{classCEstado_a010660248a8521d9df60d6e1d81ab92b}{Mostrar\+N\+FA} ()
+\item 
+void \hyperlink{classCEstado_ad08f6f204f257fb7e12436bbcc40b0f4}{insertar\+\_\+transicion} (\hyperlink{classCTransicion}{C\+Transicion} tran)
+\item 
+\hyperlink{classCTransicion}{C\+Transicion} \hyperlink{classCEstado_a307188d33798e78407233d65860f852d}{get\+\_\+transicion} (int i)
+\item 
+int \hyperlink{classCEstado_a412cdf24853e656329b64ef239e1ba2e}{get\+\_\+n\+\_\+trans} ()
+\item 
+void \hyperlink{classCEstado_adf87b55f9d93e237e768345ac34ba62d}{set\+\_\+muerte} (bool p)
+\item 
+void \hyperlink{classCEstado_aa7759717e41bb25d7ee5c5fff99dde87}{set\+\_\+aceptacion} (bool p)
+\item 
+bool \hyperlink{classCEstado_ace37ed71a9ddc500a3ce577b9f19ee85}{existecamino} (char variable)
+\item 
+void \hyperlink{classCEstado_a9b47f1bd5bb83afc3902c888aa4d346d}{insertar\+\_\+estado} (int \hyperlink{classCEstado_a2ff2cdec56804f70b389076be4501b4c}{q\+\_\+id})
+\item 
+set$<$ int $>$ \hyperlink{classCEstado_aa2f32f993b57466e5ba33bc82e52b60d}{Retornar\+Conjunto} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classCEstado_a1388d38c2984906e8f773cc1227d99b2}{aceptacion}
+\item 
+int \hyperlink{classCEstado_a2ff2cdec56804f70b389076be4501b4c}{q\+\_\+id}
+\item 
+bool \hyperlink{classCEstado_a2ff59531bf70a06d0a895eea962553e4}{muerte}
+\item 
+int \hyperlink{classCEstado_a9e66500a59a8b5437f3a89a79e91d472}{n\+\_\+transiciones}
+\item 
+vector$<$ \hyperlink{classCTransicion}{C\+Transicion} $>$ \hyperlink{classCEstado_a5f904405b10b0826dd1749fdb9c6f302}{transiciones}
+\item 
+set$<$ char $>$ \hyperlink{classCEstado_ac7e32bb24d14ad8f5b2d23e273087bd0}{posiblecamino}
+\item 
+set$<$ int $>$ \hyperlink{classCEstado_a28265d36807fa3c84140e23872fb0132}{Conjunto\+Estados}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{C\+Estado@{C\+Estado}!existecamino@{existecamino}}
+\index{existecamino@{existecamino}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{existecamino(char variable)}{existecamino(char variable)}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Estado\+::existecamino (
+\begin{DoxyParamCaption}
+\item[{char}]{variable}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_ace37ed71a9ddc500a3ce577b9f19ee85}{}\label{classCEstado_ace37ed71a9ddc500a3ce577b9f19ee85}
+\index{C\+Estado@{C\+Estado}!get\+\_\+id@{get\+\_\+id}}
+\index{get\+\_\+id@{get\+\_\+id}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{get\+\_\+id()}{get_id()}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Estado\+::get\+\_\+id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_a8578682119ea4b96dbda46cf01db1b28}{}\label{classCEstado_a8578682119ea4b96dbda46cf01db1b28}
+\index{C\+Estado@{C\+Estado}!get\+\_\+n\+\_\+trans@{get\+\_\+n\+\_\+trans}}
+\index{get\+\_\+n\+\_\+trans@{get\+\_\+n\+\_\+trans}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{get\+\_\+n\+\_\+trans()}{get_n_trans()}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Estado\+::get\+\_\+n\+\_\+trans (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_a412cdf24853e656329b64ef239e1ba2e}{}\label{classCEstado_a412cdf24853e656329b64ef239e1ba2e}
+\index{C\+Estado@{C\+Estado}!get\+\_\+transicion@{get\+\_\+transicion}}
+\index{get\+\_\+transicion@{get\+\_\+transicion}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{get\+\_\+transicion(int i)}{get_transicion(int i)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Transicion} C\+Estado\+::get\+\_\+transicion (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_a307188d33798e78407233d65860f852d}{}\label{classCEstado_a307188d33798e78407233d65860f852d}
+\index{C\+Estado@{C\+Estado}!get\+Aceptacion@{get\+Aceptacion}}
+\index{get\+Aceptacion@{get\+Aceptacion}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{get\+Aceptacion()}{getAceptacion()}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Estado\+::get\+Aceptacion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_af1d8101863c51f8d3fca99fc1cd1c883}{}\label{classCEstado_af1d8101863c51f8d3fca99fc1cd1c883}
+\index{C\+Estado@{C\+Estado}!get\+Muerte@{get\+Muerte}}
+\index{get\+Muerte@{get\+Muerte}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{get\+Muerte()}{getMuerte()}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Estado\+::get\+Muerte (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_aeb0a7a2c71a2c26471ddbc851c907f50}{}\label{classCEstado_aeb0a7a2c71a2c26471ddbc851c907f50}
+\index{C\+Estado@{C\+Estado}!insertar\+\_\+estado@{insertar\+\_\+estado}}
+\index{insertar\+\_\+estado@{insertar\+\_\+estado}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{insertar\+\_\+estado(int q\+\_\+id)}{insertar_estado(int q_id)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Estado\+::insertar\+\_\+estado (
+\begin{DoxyParamCaption}
+\item[{int}]{q\+\_\+id}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_a9b47f1bd5bb83afc3902c888aa4d346d}{}\label{classCEstado_a9b47f1bd5bb83afc3902c888aa4d346d}
+\index{C\+Estado@{C\+Estado}!insertar\+\_\+transicion@{insertar\+\_\+transicion}}
+\index{insertar\+\_\+transicion@{insertar\+\_\+transicion}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{insertar\+\_\+transicion(\+C\+Transicion tran)}{insertar_transicion(CTransicion tran)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Estado\+::insertar\+\_\+transicion (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Transicion}}]{tran}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_ad08f6f204f257fb7e12436bbcc40b0f4}{}\label{classCEstado_ad08f6f204f257fb7e12436bbcc40b0f4}
+\index{C\+Estado@{C\+Estado}!Mostrar\+N\+FA@{Mostrar\+N\+FA}}
+\index{Mostrar\+N\+FA@{Mostrar\+N\+FA}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{Mostrar\+N\+F\+A()}{MostrarNFA()}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Estado\+::\+Mostrar\+N\+FA (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_a010660248a8521d9df60d6e1d81ab92b}{}\label{classCEstado_a010660248a8521d9df60d6e1d81ab92b}
+\index{C\+Estado@{C\+Estado}!Retornar\+Conjunto@{Retornar\+Conjunto}}
+\index{Retornar\+Conjunto@{Retornar\+Conjunto}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{Retornar\+Conjunto()}{RetornarConjunto()}}]{\setlength{\rightskip}{0pt plus 5cm}set$<$ int $>$ C\+Estado\+::\+Retornar\+Conjunto (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_aa2f32f993b57466e5ba33bc82e52b60d}{}\label{classCEstado_aa2f32f993b57466e5ba33bc82e52b60d}
+\index{C\+Estado@{C\+Estado}!set\+\_\+aceptacion@{set\+\_\+aceptacion}}
+\index{set\+\_\+aceptacion@{set\+\_\+aceptacion}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{set\+\_\+aceptacion(bool p)}{set_aceptacion(bool p)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Estado\+::set\+\_\+aceptacion (
+\begin{DoxyParamCaption}
+\item[{bool}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_aa7759717e41bb25d7ee5c5fff99dde87}{}\label{classCEstado_aa7759717e41bb25d7ee5c5fff99dde87}
+\index{C\+Estado@{C\+Estado}!set\+\_\+id@{set\+\_\+id}}
+\index{set\+\_\+id@{set\+\_\+id}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{set\+\_\+id(int i)}{set_id(int i)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Estado\+::set\+\_\+id (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_a49cb79111fb7daa925857e8e38ca8c6b}{}\label{classCEstado_a49cb79111fb7daa925857e8e38ca8c6b}
+\index{C\+Estado@{C\+Estado}!set\+\_\+muerte@{set\+\_\+muerte}}
+\index{set\+\_\+muerte@{set\+\_\+muerte}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{set\+\_\+muerte(bool p)}{set_muerte(bool p)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Estado\+::set\+\_\+muerte (
+\begin{DoxyParamCaption}
+\item[{bool}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_adf87b55f9d93e237e768345ac34ba62d}{}\label{classCEstado_adf87b55f9d93e237e768345ac34ba62d}
+\index{C\+Estado@{C\+Estado}!set\+Estado@{set\+Estado}}
+\index{set\+Estado@{set\+Estado}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{set\+Estado(bool a, int q, int n\+\_\+trans)}{setEstado(bool a, int q, int n_trans)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Estado\+::set\+Estado (
+\begin{DoxyParamCaption}
+\item[{bool}]{a, }
+\item[{int}]{q, }
+\item[{int}]{n\+\_\+trans}
+\end{DoxyParamCaption}
+)}\hypertarget{classCEstado_a205d938c7acd14b0ec86314162c8813f}{}\label{classCEstado_a205d938c7acd14b0ec86314162c8813f}
+
+
+\subsection{Member Data Documentation}
+\index{C\+Estado@{C\+Estado}!aceptacion@{aceptacion}}
+\index{aceptacion@{aceptacion}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{aceptacion}{aceptacion}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Estado\+::aceptacion\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCEstado_a1388d38c2984906e8f773cc1227d99b2}{}\label{classCEstado_a1388d38c2984906e8f773cc1227d99b2}
+\index{C\+Estado@{C\+Estado}!Conjunto\+Estados@{Conjunto\+Estados}}
+\index{Conjunto\+Estados@{Conjunto\+Estados}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{Conjunto\+Estados}{ConjuntoEstados}}]{\setlength{\rightskip}{0pt plus 5cm}set$<$int$>$ C\+Estado\+::\+Conjunto\+Estados\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCEstado_a28265d36807fa3c84140e23872fb0132}{}\label{classCEstado_a28265d36807fa3c84140e23872fb0132}
+\index{C\+Estado@{C\+Estado}!muerte@{muerte}}
+\index{muerte@{muerte}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{muerte}{muerte}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Estado\+::muerte\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCEstado_a2ff59531bf70a06d0a895eea962553e4}{}\label{classCEstado_a2ff59531bf70a06d0a895eea962553e4}
+\index{C\+Estado@{C\+Estado}!n\+\_\+transiciones@{n\+\_\+transiciones}}
+\index{n\+\_\+transiciones@{n\+\_\+transiciones}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{n\+\_\+transiciones}{n_transiciones}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Estado\+::n\+\_\+transiciones\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCEstado_a9e66500a59a8b5437f3a89a79e91d472}{}\label{classCEstado_a9e66500a59a8b5437f3a89a79e91d472}
+\index{C\+Estado@{C\+Estado}!posiblecamino@{posiblecamino}}
+\index{posiblecamino@{posiblecamino}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{posiblecamino}{posiblecamino}}]{\setlength{\rightskip}{0pt plus 5cm}set$<$char$>$ C\+Estado\+::posiblecamino\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCEstado_ac7e32bb24d14ad8f5b2d23e273087bd0}{}\label{classCEstado_ac7e32bb24d14ad8f5b2d23e273087bd0}
+\index{C\+Estado@{C\+Estado}!q\+\_\+id@{q\+\_\+id}}
+\index{q\+\_\+id@{q\+\_\+id}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{q\+\_\+id}{q_id}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Estado\+::q\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCEstado_a2ff2cdec56804f70b389076be4501b4c}{}\label{classCEstado_a2ff2cdec56804f70b389076be4501b4c}
+\index{C\+Estado@{C\+Estado}!transiciones@{transiciones}}
+\index{transiciones@{transiciones}!C\+Estado@{C\+Estado}}
+\subsubsection[{\texorpdfstring{transiciones}{transiciones}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf C\+Transicion}$>$ C\+Estado\+::transiciones\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCEstado_a5f904405b10b0826dd1749fdb9c6f302}{}\label{classCEstado_a5f904405b10b0826dd1749fdb9c6f302}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{CEstadoNFA_8h}{C\+Estado\+N\+F\+A.\+h}\item 
+\hyperlink{CEstadoNFA_8cpp}{C\+Estado\+N\+F\+A.\+cpp}\end{DoxyCompactItemize}

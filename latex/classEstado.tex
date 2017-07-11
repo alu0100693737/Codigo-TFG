@@ -1,0 +1,226 @@
+\hypertarget{classEstado}{}\section{Estado Class Reference}
+\label{classEstado}\index{Estado@{Estado}}
+
+
+{\ttfamily \#include $<$Estado.\+h$>$}
+
+
+
+Collaboration diagram for Estado\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classEstado__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classEstado_aa956f333e0d0b9c54bc8c94055966ea2}{Estado} ()
+\item 
+\hyperlink{classEstado_a8bb18423eb811e665d831fcaeb0ccf70}{$\sim$\+Estado} ()
+\item 
+void \hyperlink{classEstado_a1e874111cfafc68c6ab39c7dad5a43a4}{set\+\_\+id} (char)
+\item 
+void \hyperlink{classEstado_a62752c6851c3c7120f7eabbef45f5dc5}{set\+\_\+id\+\_\+rep} (char)
+\item 
+void \hyperlink{classEstado_a583f82e7e7a75aa736b6f343dd34485a}{set\+\_\+tipo} (int)
+\item 
+void \hyperlink{classEstado_aff91838681991dd981d8ba044d0f81e6}{set\+\_\+num\+\_\+trans} (int)
+\item 
+void \hyperlink{classEstado_a81a3a7a9f2375f593658fb5fff25e5d9}{set\+\_\+trans} (char)
+\item 
+void \hyperlink{classEstado_a5a151aa6aa1c461b9c7ef1766e3af6ea}{set\+\_\+id\+\_\+conj} (char)
+\item 
+void \hyperlink{classEstado_a621930abb9101a531e0661a0d15d8bc8}{set\+\_\+impreso} (bool)
+\item 
+char \hyperlink{classEstado_a49e86800510d41bf2305f12e06e9b643}{get\+\_\+id} ()
+\item 
+char \hyperlink{classEstado_a4b4836f8937ceaf9f80bf78b31b0d03a}{get\+\_\+id\+\_\+rep} ()
+\item 
+int \hyperlink{classEstado_a8c7b58bbc9be55203df242465495d9e2}{get\+\_\+tipo} ()
+\item 
+int \hyperlink{classEstado_a3d4cf6c9cc162a55a2e1ff2e68fd06db}{get\+\_\+num\+\_\+trans} ()
+\item 
+char \hyperlink{classEstado_a71ea0a4f4cc0258b70165edc36fa2746}{get\+\_\+trans} (int)
+\item 
+char \hyperlink{classEstado_a1104ea1ad4ea5e68604dd3d76801e6d6}{get\+\_\+id\+\_\+conj} ()
+\item 
+bool \hyperlink{classEstado_a0f151c7dfe2c751b1a287e137cd96a28}{get\+\_\+impreso} ()
+\item 
+void \hyperlink{classEstado_a716a68e7ec56b17040b1acbd7e66f538}{cambia\+\_\+trans} (int pos, char id)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \hyperlink{classEstado_a49403b58257e25d5239b9c2f9889eec3}{id\+\_\+est}
+\item 
+char \hyperlink{classEstado_a0633bc8eafa25dfc8bd454b1ae81f49f}{id\+\_\+rep}
+\item 
+int \hyperlink{classEstado_aaa56d22447e452e34f681fb4db2861a0}{tipe\+\_\+est}
+\item 
+int \hyperlink{classEstado_a830f36351fa698f5e6f644f6a7c63963}{num\+\_\+trans}
+\item 
+bool \hyperlink{classEstado_af9ae48b2e90b70ab17b8c88d8663144e}{impreso}
+\item 
+vector$<$ char $>$ \hyperlink{classEstado_a207caa56f6fea708339cf115f34cfed5}{transiciones}
+\item 
+int \hyperlink{classEstado_ac3143590b8bb505b4a1b47d1295bbb67}{id\+\_\+conj}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Estado@{Estado}!Estado@{Estado}}
+\index{Estado@{Estado}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{Estado()}{Estado()}}]{\setlength{\rightskip}{0pt plus 5cm}Estado\+::\+Estado (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_aa956f333e0d0b9c54bc8c94055966ea2}{}\label{classEstado_aa956f333e0d0b9c54bc8c94055966ea2}
+\index{Estado@{Estado}!````~Estado@{$\sim$\+Estado}}
+\index{````~Estado@{$\sim$\+Estado}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{$\sim$\+Estado()}{~Estado()}}]{\setlength{\rightskip}{0pt plus 5cm}Estado\+::$\sim$\+Estado (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a8bb18423eb811e665d831fcaeb0ccf70}{}\label{classEstado_a8bb18423eb811e665d831fcaeb0ccf70}
+
+
+\subsection{Member Function Documentation}
+\index{Estado@{Estado}!cambia\+\_\+trans@{cambia\+\_\+trans}}
+\index{cambia\+\_\+trans@{cambia\+\_\+trans}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{cambia\+\_\+trans(int pos, char id)}{cambia_trans(int pos, char id)}}]{\setlength{\rightskip}{0pt plus 5cm}void Estado\+::cambia\+\_\+trans (
+\begin{DoxyParamCaption}
+\item[{int}]{pos, }
+\item[{char}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a716a68e7ec56b17040b1acbd7e66f538}{}\label{classEstado_a716a68e7ec56b17040b1acbd7e66f538}
+\index{Estado@{Estado}!get\+\_\+id@{get\+\_\+id}}
+\index{get\+\_\+id@{get\+\_\+id}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{get\+\_\+id()}{get_id()}}]{\setlength{\rightskip}{0pt plus 5cm}char Estado\+::get\+\_\+id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a49e86800510d41bf2305f12e06e9b643}{}\label{classEstado_a49e86800510d41bf2305f12e06e9b643}
+\index{Estado@{Estado}!get\+\_\+id\+\_\+conj@{get\+\_\+id\+\_\+conj}}
+\index{get\+\_\+id\+\_\+conj@{get\+\_\+id\+\_\+conj}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{get\+\_\+id\+\_\+conj()}{get_id_conj()}}]{\setlength{\rightskip}{0pt plus 5cm}char Estado\+::get\+\_\+id\+\_\+conj (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a1104ea1ad4ea5e68604dd3d76801e6d6}{}\label{classEstado_a1104ea1ad4ea5e68604dd3d76801e6d6}
+\index{Estado@{Estado}!get\+\_\+id\+\_\+rep@{get\+\_\+id\+\_\+rep}}
+\index{get\+\_\+id\+\_\+rep@{get\+\_\+id\+\_\+rep}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{get\+\_\+id\+\_\+rep()}{get_id_rep()}}]{\setlength{\rightskip}{0pt plus 5cm}char Estado\+::get\+\_\+id\+\_\+rep (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a4b4836f8937ceaf9f80bf78b31b0d03a}{}\label{classEstado_a4b4836f8937ceaf9f80bf78b31b0d03a}
+\index{Estado@{Estado}!get\+\_\+impreso@{get\+\_\+impreso}}
+\index{get\+\_\+impreso@{get\+\_\+impreso}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{get\+\_\+impreso()}{get_impreso()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Estado\+::get\+\_\+impreso (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a0f151c7dfe2c751b1a287e137cd96a28}{}\label{classEstado_a0f151c7dfe2c751b1a287e137cd96a28}
+\index{Estado@{Estado}!get\+\_\+num\+\_\+trans@{get\+\_\+num\+\_\+trans}}
+\index{get\+\_\+num\+\_\+trans@{get\+\_\+num\+\_\+trans}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{get\+\_\+num\+\_\+trans()}{get_num_trans()}}]{\setlength{\rightskip}{0pt plus 5cm}int Estado\+::get\+\_\+num\+\_\+trans (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a3d4cf6c9cc162a55a2e1ff2e68fd06db}{}\label{classEstado_a3d4cf6c9cc162a55a2e1ff2e68fd06db}
+\index{Estado@{Estado}!get\+\_\+tipo@{get\+\_\+tipo}}
+\index{get\+\_\+tipo@{get\+\_\+tipo}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{get\+\_\+tipo()}{get_tipo()}}]{\setlength{\rightskip}{0pt plus 5cm}int Estado\+::get\+\_\+tipo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a8c7b58bbc9be55203df242465495d9e2}{}\label{classEstado_a8c7b58bbc9be55203df242465495d9e2}
+\index{Estado@{Estado}!get\+\_\+trans@{get\+\_\+trans}}
+\index{get\+\_\+trans@{get\+\_\+trans}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{get\+\_\+trans(int)}{get_trans(int)}}]{\setlength{\rightskip}{0pt plus 5cm}char Estado\+::get\+\_\+trans (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a71ea0a4f4cc0258b70165edc36fa2746}{}\label{classEstado_a71ea0a4f4cc0258b70165edc36fa2746}
+\index{Estado@{Estado}!set\+\_\+id@{set\+\_\+id}}
+\index{set\+\_\+id@{set\+\_\+id}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{set\+\_\+id(char)}{set_id(char)}}]{\setlength{\rightskip}{0pt plus 5cm}void Estado\+::set\+\_\+id (
+\begin{DoxyParamCaption}
+\item[{char}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a1e874111cfafc68c6ab39c7dad5a43a4}{}\label{classEstado_a1e874111cfafc68c6ab39c7dad5a43a4}
+\index{Estado@{Estado}!set\+\_\+id\+\_\+conj@{set\+\_\+id\+\_\+conj}}
+\index{set\+\_\+id\+\_\+conj@{set\+\_\+id\+\_\+conj}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{set\+\_\+id\+\_\+conj(char)}{set_id_conj(char)}}]{\setlength{\rightskip}{0pt plus 5cm}void Estado\+::set\+\_\+id\+\_\+conj (
+\begin{DoxyParamCaption}
+\item[{char}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a5a151aa6aa1c461b9c7ef1766e3af6ea}{}\label{classEstado_a5a151aa6aa1c461b9c7ef1766e3af6ea}
+\index{Estado@{Estado}!set\+\_\+id\+\_\+rep@{set\+\_\+id\+\_\+rep}}
+\index{set\+\_\+id\+\_\+rep@{set\+\_\+id\+\_\+rep}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{set\+\_\+id\+\_\+rep(char)}{set_id_rep(char)}}]{\setlength{\rightskip}{0pt plus 5cm}void Estado\+::set\+\_\+id\+\_\+rep (
+\begin{DoxyParamCaption}
+\item[{char}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a62752c6851c3c7120f7eabbef45f5dc5}{}\label{classEstado_a62752c6851c3c7120f7eabbef45f5dc5}
+\index{Estado@{Estado}!set\+\_\+impreso@{set\+\_\+impreso}}
+\index{set\+\_\+impreso@{set\+\_\+impreso}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{set\+\_\+impreso(bool)}{set_impreso(bool)}}]{\setlength{\rightskip}{0pt plus 5cm}void Estado\+::set\+\_\+impreso (
+\begin{DoxyParamCaption}
+\item[{bool}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a621930abb9101a531e0661a0d15d8bc8}{}\label{classEstado_a621930abb9101a531e0661a0d15d8bc8}
+\index{Estado@{Estado}!set\+\_\+num\+\_\+trans@{set\+\_\+num\+\_\+trans}}
+\index{set\+\_\+num\+\_\+trans@{set\+\_\+num\+\_\+trans}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{set\+\_\+num\+\_\+trans(int)}{set_num_trans(int)}}]{\setlength{\rightskip}{0pt plus 5cm}void Estado\+::set\+\_\+num\+\_\+trans (
+\begin{DoxyParamCaption}
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_aff91838681991dd981d8ba044d0f81e6}{}\label{classEstado_aff91838681991dd981d8ba044d0f81e6}
+\index{Estado@{Estado}!set\+\_\+tipo@{set\+\_\+tipo}}
+\index{set\+\_\+tipo@{set\+\_\+tipo}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{set\+\_\+tipo(int)}{set_tipo(int)}}]{\setlength{\rightskip}{0pt plus 5cm}void Estado\+::set\+\_\+tipo (
+\begin{DoxyParamCaption}
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a583f82e7e7a75aa736b6f343dd34485a}{}\label{classEstado_a583f82e7e7a75aa736b6f343dd34485a}
+\index{Estado@{Estado}!set\+\_\+trans@{set\+\_\+trans}}
+\index{set\+\_\+trans@{set\+\_\+trans}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{set\+\_\+trans(char)}{set_trans(char)}}]{\setlength{\rightskip}{0pt plus 5cm}void Estado\+::set\+\_\+trans (
+\begin{DoxyParamCaption}
+\item[{char}]{sig}
+\end{DoxyParamCaption}
+)}\hypertarget{classEstado_a81a3a7a9f2375f593658fb5fff25e5d9}{}\label{classEstado_a81a3a7a9f2375f593658fb5fff25e5d9}
+
+
+\subsection{Member Data Documentation}
+\index{Estado@{Estado}!id\+\_\+conj@{id\+\_\+conj}}
+\index{id\+\_\+conj@{id\+\_\+conj}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{id\+\_\+conj}{id_conj}}]{\setlength{\rightskip}{0pt plus 5cm}int Estado\+::id\+\_\+conj\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEstado_ac3143590b8bb505b4a1b47d1295bbb67}{}\label{classEstado_ac3143590b8bb505b4a1b47d1295bbb67}
+\index{Estado@{Estado}!id\+\_\+est@{id\+\_\+est}}
+\index{id\+\_\+est@{id\+\_\+est}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{id\+\_\+est}{id_est}}]{\setlength{\rightskip}{0pt plus 5cm}char Estado\+::id\+\_\+est\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEstado_a49403b58257e25d5239b9c2f9889eec3}{}\label{classEstado_a49403b58257e25d5239b9c2f9889eec3}
+\index{Estado@{Estado}!id\+\_\+rep@{id\+\_\+rep}}
+\index{id\+\_\+rep@{id\+\_\+rep}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{id\+\_\+rep}{id_rep}}]{\setlength{\rightskip}{0pt plus 5cm}char Estado\+::id\+\_\+rep\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEstado_a0633bc8eafa25dfc8bd454b1ae81f49f}{}\label{classEstado_a0633bc8eafa25dfc8bd454b1ae81f49f}
+\index{Estado@{Estado}!impreso@{impreso}}
+\index{impreso@{impreso}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{impreso}{impreso}}]{\setlength{\rightskip}{0pt plus 5cm}bool Estado\+::impreso\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEstado_af9ae48b2e90b70ab17b8c88d8663144e}{}\label{classEstado_af9ae48b2e90b70ab17b8c88d8663144e}
+\index{Estado@{Estado}!num\+\_\+trans@{num\+\_\+trans}}
+\index{num\+\_\+trans@{num\+\_\+trans}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{num\+\_\+trans}{num_trans}}]{\setlength{\rightskip}{0pt plus 5cm}int Estado\+::num\+\_\+trans\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEstado_a830f36351fa698f5e6f644f6a7c63963}{}\label{classEstado_a830f36351fa698f5e6f644f6a7c63963}
+\index{Estado@{Estado}!tipe\+\_\+est@{tipe\+\_\+est}}
+\index{tipe\+\_\+est@{tipe\+\_\+est}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{tipe\+\_\+est}{tipe_est}}]{\setlength{\rightskip}{0pt plus 5cm}int Estado\+::tipe\+\_\+est\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEstado_aaa56d22447e452e34f681fb4db2861a0}{}\label{classEstado_aaa56d22447e452e34f681fb4db2861a0}
+\index{Estado@{Estado}!transiciones@{transiciones}}
+\index{transiciones@{transiciones}!Estado@{Estado}}
+\subsubsection[{\texorpdfstring{transiciones}{transiciones}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$char$>$ Estado\+::transiciones\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEstado_a207caa56f6fea708339cf115f34cfed5}{}\label{classEstado_a207caa56f6fea708339cf115f34cfed5}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Estado_8h}{Estado.\+h}\item 
+\hyperlink{Estado_8cpp}{Estado.\+cpp}\end{DoxyCompactItemize}

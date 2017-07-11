@@ -1,3 +1,4 @@
 <map id="CPanelOpciones" name="CPanelOpciones">
-<area shape="rect" id="node3" href="$classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. " alt="" coords="103,81,165,108"/>
+<area shape="rect" id="node3" href="$classCPushButton.html" title="Clase heredada de &#39;QPushButton&#39; que aplica un estilo determinado a este tipo de container. " alt="" coords="103,81,203,108"/>
+<area shape="rect" id="node5" href="$classCLabel.html" title="Clase heredada de &#39;QLabel&#39; que aplica un estilo determinado a este tipo de container. " alt="" coords="301,81,364,108"/>
 </map>

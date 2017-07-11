@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['menu_5f',['menu_',['../classCAplicacion.html#af1ac43fa5f82c2512f211fc0dbb00a3a',1,'CAplicacion']]],
-  ['menuarchivo_5f',['menuArchivo_',['../classCAplicacion.html#abdf7a15d27725756e59d4408267d4688',1,'CAplicacion']]],
-  ['menucorreccion_5f',['menuCorreccion_',['../classCAplicacion.html#acb53cba72e72d1b6feb8203a4942b436',1,'CAplicacion']]],
-  ['menueditar_5f',['menuEditar_',['../classCAplicacion.html#a9753ee6650d3a8922650b09b70fe15b9',1,'CAplicacion']]],
-  ['menufiltro_5f',['menuFiltro_',['../classCAplicacion.html#af9dedeec60356a055cb899e5f8a447b8',1,'CAplicacion']]]
+  ['id_5fconj',['id_conj',['../classEstado.html#ac3143590b8bb505b4a1b47d1295bbb67',1,'Estado']]],
+  ['id_5fest',['id_est',['../classEstado.html#a49403b58257e25d5239b9c2f9889eec3',1,'Estado']]],
+  ['id_5frep',['id_rep',['../classEstado.html#a0633bc8eafa25dfc8bd454b1ae81f49f',1,'Estado']]],
+  ['imagen_5f',['imagen_',['../classCLabel.html#abc23f3746354e8aac57516f34cb85fba',1,'CLabel']]],
+  ['imagenpanelprincipal',['imagenPanelPrincipal',['../classCAplicacion.html#a0d02a7838c0974bffc76e8dd08848dc9',1,'CAplicacion']]],
+  ['imagentransicionactual_5f',['imagenTransicionActual_',['../classCDetectarTransiciones.html#aa58ae70139c85dc3838338eb53a520d3',1,'CDetectarTransiciones']]],
+  ['impreso',['impreso',['../classEstado.html#af9ae48b2e90b70ab17b8c88d8663144e',1,'Estado']]],
+  ['inicial',['inicial',['../classCNFA.html#af402d09515afcb02ba12c4a0c762aac8',1,'CNFA']]],
+  ['inicios_5f',['inicios_',['../classCAsistenteCodificacion.html#ac0ac600fe894126b5273249b1748a267',1,'CAsistenteCodificacion']]]
 ];

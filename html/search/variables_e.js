@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['valoraccumulatorthreshold_5f',['valorAccumulatorThresHold_',['../classCPanelOpciones.html#a206f20e0afadfa1bfda3c59cd2ca16b2',1,'CPanelOpciones']]],
-  ['valorcannythreshold_5f',['valorCannyThresHold_',['../classCPanelOpciones.html#a09a2c503f1520a71866669fd84b95ebf',1,'CPanelOpciones']]],
-  ['valorhoughlinesp_5f',['valorHoughLinesP_',['../classCPanelOpciones.html#ab415dcfa099eb5bc1fe6e576fe50e4ca',1,'CPanelOpciones']]]
+  ['q',['q',['../classCTransicion.html#a6add557ec0b0aaaa974346f4f9dd1585',1,'CTransicion']]],
+  ['q_5f',['Q_',['../classCNFA.html#a28a2f71306cb27d725bad4093c5c82c7',1,'CNFA']]],
+  ['q_5fid',['q_id',['../classCEstado.html#a2ff2cdec56804f70b389076be4501b4c',1,'CEstado']]]
 ];

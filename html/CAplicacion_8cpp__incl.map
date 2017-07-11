@@ -1,15 +1,20 @@
 <map id="CAplicacion.cpp" name="CAplicacion.cpp">
-<area shape="rect" id="node2" href="$CAplicacion_8h.html" title="CAplicacion.h" alt="" coords="1590,80,1693,107"/>
-<area shape="rect" id="node4" href="$CLabel_8h.html" title="CLabel.h" alt="" coords="2938,304,3012,331"/>
-<area shape="rect" id="node7" href="$CLineEdit_8h.html" title="CLineEdit.h" alt="" coords="3146,304,3236,331"/>
-<area shape="rect" id="node9" href="$COperacionesImagen_8h.html" title="COperacionesImagen.h" alt="" coords="910,155,1069,181"/>
-<area shape="rect" id="node42" href="$CPanelOpciones_8h.html" title="CPanelOpciones.h" alt="" coords="2807,229,2938,256"/>
-<area shape="rect" id="node14" href="$CFiltrosImagenes_8h.html" title="CFiltrosImagenes.h" alt="" coords="323,229,459,256"/>
-<area shape="rect" id="node15" href="$CDetectarCirculos_8h.html" title="CDetectarCirculos.h" alt="" coords="746,229,887,256"/>
-<area shape="rect" id="node20" href="$CDetectarLineas_8h.html" title="CDetectarLineas.h" alt="" coords="591,229,722,256"/>
-<area shape="rect" id="node21" href="$CDetectarTransiciones_8h.html" title="CDetectarTransiciones.h" alt="" coords="1265,229,1432,256"/>
-<area shape="rect" id="node28" href="$CAsistenteCodificacion_8h.html" title="CAsistenteCodificacion.h" alt="" coords="2211,229,2382,256"/>
-<area shape="rect" id="node22" href="$CContourWithData_8h.html" title="CContourWithData.h" alt="" coords="1106,304,1250,331"/>
-<area shape="rect" id="node39" href="$CPushButton_8h.html" title="CPushButton.h" alt="" coords="1972,304,2082,331"/>
-<area shape="rect" id="node40" href="$CCheckBox_8h.html" title="CCheckBox.h" alt="" coords="2491,304,2595,331"/>
+<area shape="rect" id="node2" href="$CAplicacion_8h.html" title="CAplicacion.h" alt="" coords="1183,80,1286,107"/>
+<area shape="rect" id="node43" href="$DFA__min_8cpp.html" title="DFA_min.cpp" alt="" coords="2549,80,2651,107"/>
+<area shape="rect" id="node48" href="$Estado_8cpp.html" title="Estado.cpp" alt="" coords="3460,155,3548,181"/>
+<area shape="rect" id="node10" href="$CLabel_8h.html" title="CLabel.h" alt="" coords="1269,304,1344,331"/>
+<area shape="rect" id="node15" href="$CLineEdit_8h.html" title="CLineEdit.h" alt="" coords="893,304,984,331"/>
+<area shape="rect" id="node17" href="$COperacionesImagen_8h.html" title="COperacionesImagen.h" alt="" coords="957,155,1115,181"/>
+<area shape="rect" id="node31" href="$CPanelOpciones_8h.html" title="CPanelOpciones.h" alt="" coords="1537,229,1668,256"/>
+<area shape="rect" id="node33" href="$CNfa_8h.html" title="CNfa.h" alt="" coords="2636,155,2700,181"/>
+<area shape="rect" id="node19" href="$CFiltrosImagenes_8h.html" title="CFiltrosImagenes.h" alt="" coords="268,229,404,256"/>
+<area shape="rect" id="node20" href="$CDetectarCirculos_8h.html" title="CDetectarCirculos.h" alt="" coords="580,229,721,256"/>
+<area shape="rect" id="node23" href="$CDetectarLineas_8h.html" title="CDetectarLineas.h" alt="" coords="745,229,876,256"/>
+<area shape="rect" id="node24" href="$CDetectarTransiciones_8h.html" title="CDetectarTransiciones.h" alt="" coords="1846,229,2013,256"/>
+<area shape="rect" id="node26" href="$CAsistenteCodificacion_8h.html" title="CAsistenteCodificacion.h" alt="" coords="1297,229,1468,256"/>
+<area shape="rect" id="node29" href="$CPushButton_8h.html" title="CPushButton.h" alt="" coords="1641,304,1751,331"/>
+<area shape="rect" id="node40" href="$CEstadoNFA_8h.html" title="CEstadoNFA.h" alt="" coords="2741,229,2851,256"/>
+<area shape="rect" id="node41" href="$CTransicion_8h.html" title="CTransicion.h" alt="" coords="2838,304,2941,331"/>
+<area shape="rect" id="node44" href="$DFA__min_8h.html" title="DFA_min.h" alt="" coords="3419,229,3507,256"/>
+<area shape="rect" id="node45" href="$Estado_8h.html" title="Estado.h" alt="" coords="3485,304,3560,331"/>
 </map>

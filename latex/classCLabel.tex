@@ -11,8 +11,7 @@ Clase heredada de \textquotesingle{}Q\+Label\textquotesingle{} que aplica un est
 
 
 
-Inheritance diagram for C\+Label\+:
-\nopagebreak
+Inheritance diagram for C\+Label\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,25 +20,36 @@ Inheritance diagram for C\+Label\+:
 \end{figure}
 
 
-Collaboration diagram for C\+Label\+:
-\nopagebreak
+Collaboration diagram for C\+Label\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=127pt]{classCLabel__coll__graph}
 \end{center}
 \end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classCLabel_a064d9671b402cbba58344a0d5a4c70e4}{clicked} (Q\+Mouse\+Event $\ast$event)
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classCLabel_abf086cf63a3e820257e656e7b608d312}{C\+Label} ()
 \begin{DoxyCompactList}\small\item\em Constructor por defecto Aplica estilo, alinea centro, color gris y borde. \end{DoxyCompactList}\item 
+\hyperlink{classCLabel_afa6e87f612dcd8c735948903a4d0bdb7}{C\+Label} (\hyperlink{classCLabel}{C\+Label} $\ast$)
+\item 
 \hyperlink{classCLabel_a2f7accc9637b63d705ba5418240eaf2d}{C\+Label} (Q\+String text, bool tipo)
 \begin{DoxyCompactList}\small\item\em Constructor que aplica un estilo con fondo blanco y letra Arial, centrado y texto. \end{DoxyCompactList}\item 
 Q\+Image \hyperlink{classCLabel_a79ebc8b728db45da16020cdeb2439625}{get\+Imagen} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la imagen del \hyperlink{classCLabel}{C\+Label} si la hubiera. \end{DoxyCompactList}\item 
 void \hyperlink{classCLabel_ac44138a6205fa3b2bc8eee63263e6fc7}{set\+Imagen} (const Q\+Image)
 \begin{DoxyCompactList}\small\item\em Metodo que introduce una imagen en el \hyperlink{classCLabel}{C\+Label}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classCLabel_a2e57fe98d043e71649079cf190b12ebe}{mouse\+Press\+Event} (Q\+Mouse\+Event $\ast$event)
+\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -64,6 +74,13 @@ Constructor por defecto Aplica estilo, alinea centro, color gris y borde.
 
 \index{C\+Label@{C\+Label}!C\+Label@{C\+Label}}
 \index{C\+Label@{C\+Label}!C\+Label@{C\+Label}}
+\subsubsection[{\texorpdfstring{C\+Label(\+C\+Label $\ast$)}{CLabel(CLabel *)}}]{\setlength{\rightskip}{0pt plus 5cm}C\+Label\+::\+C\+Label (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Label} $\ast$}]{copia}
+\end{DoxyParamCaption}
+)}\hypertarget{classCLabel_afa6e87f612dcd8c735948903a4d0bdb7}{}\label{classCLabel_afa6e87f612dcd8c735948903a4d0bdb7}
+\index{C\+Label@{C\+Label}!C\+Label@{C\+Label}}
+\index{C\+Label@{C\+Label}!C\+Label@{C\+Label}}
 \subsubsection[{\texorpdfstring{C\+Label(\+Q\+String text, bool tipo)}{CLabel(QString text, bool tipo)}}]{\setlength{\rightskip}{0pt plus 5cm}C\+Label\+::\+C\+Label (
 \begin{DoxyParamCaption}
 \item[{Q\+String}]{text, }
@@ -84,6 +101,13 @@ Constructor que aplica un estilo con fondo blanco y letra Arial, centrado y text
 
 
 \subsection{Member Function Documentation}
+\index{C\+Label@{C\+Label}!clicked@{clicked}}
+\index{clicked@{clicked}!C\+Label@{C\+Label}}
+\subsubsection[{\texorpdfstring{clicked}{clicked}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Label\+::clicked (
+\begin{DoxyParamCaption}
+\item[{Q\+Mouse\+Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\hypertarget{classCLabel_a064d9671b402cbba58344a0d5a4c70e4}{}\label{classCLabel_a064d9671b402cbba58344a0d5a4c70e4}
 \index{C\+Label@{C\+Label}!get\+Imagen@{get\+Imagen}}
 \index{get\+Imagen@{get\+Imagen}!C\+Label@{C\+Label}}
 \subsubsection[{\texorpdfstring{get\+Imagen()}{getImagen()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Image C\+Label\+::get\+Imagen (
@@ -98,6 +122,13 @@ Metodo que devuelve la imagen del \hyperlink{classCLabel}{C\+Label} si la hubier
 \begin{DoxyReturn}{Returns}
 Q\+Image 
 \end{DoxyReturn}
+\index{C\+Label@{C\+Label}!mouse\+Press\+Event@{mouse\+Press\+Event}}
+\index{mouse\+Press\+Event@{mouse\+Press\+Event}!C\+Label@{C\+Label}}
+\subsubsection[{\texorpdfstring{mouse\+Press\+Event(\+Q\+Mouse\+Event $\ast$event)}{mousePressEvent(QMouseEvent *event)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Label\+::mouse\+Press\+Event (
+\begin{DoxyParamCaption}
+\item[{Q\+Mouse\+Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classCLabel_a2e57fe98d043e71649079cf190b12ebe}{}\label{classCLabel_a2e57fe98d043e71649079cf190b12ebe}
 \index{C\+Label@{C\+Label}!set\+Imagen@{set\+Imagen}}
 \index{set\+Imagen@{set\+Imagen}!C\+Label@{C\+Label}}
 \subsubsection[{\texorpdfstring{set\+Imagen(const Q\+Image)}{setImagen(const QImage)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Label\+::set\+Imagen (

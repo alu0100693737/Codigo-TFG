@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -97,6 +98,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="classCDetectarCirculo.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="CDetectarCirculos_8h_source.html">CDetectarCirculos.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for CDetectarCirculo:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCDetectarCirculo__coll__graph.png" border="0" usemap="#CDetectarCirculo_coll__map" alt="Collaboration graph"/></div>
+<map name="CDetectarCirculo_coll__map" id="CDetectarCirculo_coll__map">
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -106,9 +114,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a649c9f3888f669032bd3811c902d0ef9"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarCirculo.html#a649c9f3888f669032bd3811c902d0ef9">iniciarDeteccion</a> (Mat imagen, int cannythreshold, int accumulatorthreshold)</td></tr>
 <tr class="memdesc:a649c9f3888f669032bd3811c902d0ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que inicia la deteccion de Circulos.  <a href="#a649c9f3888f669032bd3811c902d0ef9">More...</a><br /></td></tr>
 <tr class="separator:a649c9f3888f669032bd3811c902d0ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6521238e2bf5be28294aa480ad0933ba"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec3f &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarCirculo.html#a6521238e2bf5be28294aa480ad0933ba">getCirculosDetectados</a> ()</td></tr>
-<tr class="memdesc:a6521238e2bf5be28294aa480ad0933ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el conjunto de circulos detectados en la imagen.  <a href="#a6521238e2bf5be28294aa480ad0933ba">More...</a><br /></td></tr>
-<tr class="separator:a6521238e2bf5be28294aa480ad0933ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89a18f61d47d00280a131982d9fc642e"><td class="memItemLeft" align="right" valign="top">vector&lt; Vec3f &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCDetectarCirculo.html#a89a18f61d47d00280a131982d9fc642e">getCirculosDetectados</a> ()</td></tr>
+<tr class="memdesc:a89a18f61d47d00280a131982d9fc642e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo que devuelve el conjunto de circulos detectados en la imagen.  <a href="#a89a18f61d47d00280a131982d9fc642e">More...</a><br /></td></tr>
+<tr class="separator:a89a18f61d47d00280a131982d9fc642e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -231,12 +239,12 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6521238e2bf5be28294aa480ad0933ba"></a>
+<a class="anchor" id="a89a18f61d47d00280a131982d9fc642e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; Vec3f &gt; CDetectarCirculo::getCirculosDetectados </td>
+          <td class="memname">vector&lt; Vec3f &gt; &amp; CDetectarCirculo::getCirculosDetectados </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -292,8 +300,7 @@ Private Attributes</h2></td></tr>
 <p>Se convierte la imagen a Escala de grises</p>
 <p>Reducción de ruido mediante filtro Gaussiano</p>
 <p>Se aplica la funcion detectarCirculos</p>
-<p>Dibujamos lo encontrado sobre la imagen original</p>
-<p>Dibujamos el num del circulo en la imagen </p>
+<p>Dibujamos lo encontrado sobre la imagen original </p>
 
 </div>
 </div>

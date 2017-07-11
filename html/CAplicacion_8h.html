@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -82,33 +83,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">CAplicacion.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;QtWidgets&gt;</code><br />
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;QtWidgets&gt;</code><br />
+<code>#include &quot;opencv2/imgcodecs.hpp&quot;</code><br />
+<code>#include &quot;opencv2/highgui.hpp&quot;</code><br />
+<code>#include &quot;opencv2/imgproc.hpp&quot;</code><br />
+<code>#include &quot;opencv2/core.hpp&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="CLabel_8h_source.html">CLabel.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="CLineEdit_8h_source.html">CLineEdit.h</a>&quot;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
 <code>#include &quot;<a class="el" href="COperacionesImagen_8h_source.html">COperacionesImagen.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="CPanelOpciones_8h_source.html">CPanelOpciones.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="CNfa_8h_source.html">CNfa.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for CAplicacion.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="CAplicacion_8h__incl.png" border="0" usemap="#CAplicacion_8h" alt=""/></div>
 <map name="CAplicacion_8h" id="CAplicacion_8h">
-<area shape="rect" id="node3" href="CLabel_8h.html" title="CLabel.h" alt="" coords="3366,229,3441,256"/>
-<area shape="rect" id="node6" href="CLineEdit_8h.html" title="CLineEdit.h" alt="" coords="3465,229,3555,256"/>
-<area shape="rect" id="node8" href="COperacionesImagen_8h.html" title="COperacionesImagen.h" alt="" coords="1300,80,1459,107"/>
-<area shape="rect" id="node41" href="CPanelOpciones_8h.html" title="CPanelOpciones.h" alt="" coords="3157,155,3287,181"/>
-<area shape="rect" id="node13" href="CFiltrosImagenes_8h.html" title="CFiltrosImagenes.h" alt="" coords="1530,155,1666,181"/>
-<area shape="rect" id="node14" href="CDetectarCirculos_8h.html" title="CDetectarCirculos.h" alt="" coords="977,155,1118,181"/>
-<area shape="rect" id="node19" href="CDetectarLineas_8h.html" title="CDetectarLineas.h" alt="" coords="1375,155,1506,181"/>
-<area shape="rect" id="node20" href="CDetectarTransiciones_8h.html" title="CDetectarTransiciones.h" alt="" coords="472,155,639,181"/>
-<area shape="rect" id="node27" href="CAsistenteCodificacion_8h.html" title="CAsistenteCodificacion.h" alt="" coords="2547,155,2718,181"/>
-<area shape="rect" id="node21" href="CContourWithData_8h.html" title="CContourWithData.h" alt="" coords="362,229,506,256"/>
-<area shape="rect" id="node38" href="CPushButton_8h.html" title="CPushButton.h" alt="" coords="2029,229,2140,256"/>
-<area shape="rect" id="node39" href="CCheckBox_8h.html" title="CCheckBox.h" alt="" coords="2810,229,2914,256"/>
+<area shape="rect" id="node9" href="CLabel_8h.html" title="CLabel.h" alt="" coords="3153,229,3228,256"/>
+<area shape="rect" id="node14" href="CLineEdit_8h.html" title="CLineEdit.h" alt="" coords="1227,229,1317,256"/>
+<area shape="rect" id="node16" href="COperacionesImagen_8h.html" title="COperacionesImagen.h" alt="" coords="835,80,994,107"/>
+<area shape="rect" id="node40" href="CPanelOpciones_8h.html" title="CPanelOpciones.h" alt="" coords="2840,155,2971,181"/>
+<area shape="rect" id="node42" href="CNfa_8h.html" title="CNfa.h" alt="" coords="3827,80,3891,107"/>
+<area shape="rect" id="node18" href="CFiltrosImagenes_8h.html" title="CFiltrosImagenes.h" alt="" coords="269,155,405,181"/>
+<area shape="rect" id="node19" href="CDetectarCirculos_8h.html" title="CDetectarCirculos.h" alt="" coords="581,155,723,181"/>
+<area shape="rect" id="node23" href="CDetectarLineas_8h.html" title="CDetectarLineas.h" alt="" coords="747,155,877,181"/>
+<area shape="rect" id="node24" href="CDetectarTransiciones_8h.html" title="CDetectarTransiciones.h" alt="" coords="2473,155,2639,181"/>
+<area shape="rect" id="node27" href="CAsistenteCodificacion_8h.html" title="CAsistenteCodificacion.h" alt="" coords="1817,155,1988,181"/>
+<area shape="rect" id="node25" href="CContourWithData_8h.html" title="CContourWithData.h" alt="" coords="2503,229,2647,256"/>
+<area shape="rect" id="node37" href="CPushButton_8h.html" title="CPushButton.h" alt="" coords="2215,229,2326,256"/>
+<area shape="rect" id="node38" href="CCheckBox_8h.html" title="CCheckBox.h" alt="" coords="1392,229,1496,256"/>
+<area shape="rect" id="node49" href="CEstadoNFA_8h.html" title="CEstadoNFA.h" alt="" coords="3757,155,3867,181"/>
+<area shape="rect" id="node50" href="CTransicion_8h.html" title="CTransicion.h" alt="" coords="3850,229,3953,256"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -128,7 +141,39 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCAplicacion.html">CAplicacion</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clase Aplicacion con ventana principal de la aplicacion Consta de 3 Paneles. Principal, Opciones e Histograma Si se utiliza la funcionalidad Codificar, ese panel cambia de forma TERMINAR.  <a href="classCAplicacion.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a54019b4a69d7d60b44950a850cf91ca5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CAplicacion_8h.html#a54019b4a69d7d60b44950a850cf91ca5">PATH_TEMPORAL</a>&#160;&#160;&#160;&quot;/home/ivan/Documentos/Codigo-TFG/codificaciones/temporal.txt&quot;</td></tr>
+<tr class="separator:a54019b4a69d7d60b44950a850cf91ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a090aad2cd0e647fe7995f80bcaedd5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CAplicacion_8h.html#a5a090aad2cd0e647fe7995f80bcaedd5">PATH_TEMPORALDFA</a>&#160;&#160;&#160;&quot;/home/ivan/Documentos/Codigo-TFG/codificaciones/temporalDFA.txt&quot;</td></tr>
+<tr class="separator:a5a090aad2cd0e647fe7995f80bcaedd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a54019b4a69d7d60b44950a850cf91ca5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PATH_TEMPORAL&#160;&#160;&#160;&quot;/home/ivan/Documentos/Codigo-TFG/codificaciones/temporal.txt&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5a090aad2cd0e647fe7995f80bcaedd5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PATH_TEMPORALDFA&#160;&#160;&#160;&quot;/home/ivan/Documentos/Codigo-TFG/codificaciones/temporalDFA.txt&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

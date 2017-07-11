@@ -11,8 +11,7 @@ Clase Aplicacion con ventana principal de la aplicacion Consta de 3 Paneles. Pri
 
 
 
-Inheritance diagram for C\+Aplicacion\+:
-\nopagebreak
+Inheritance diagram for C\+Aplicacion\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -36,6 +35,10 @@ void \hyperlink{classCAplicacion_ab51359b6a7881206fe6ac46e0ca982f3}{slot\+Abrir\
 \begin{DoxyCompactList}\small\item\em Metodo Slot que Abre una Imagen de fichero y la coloca en el Panel Principal. \end{DoxyCompactList}\item 
 void \hyperlink{classCAplicacion_a3e11d14b05a911fd2e5f5da768787ac2}{slot\+Abrir\+Fichero} ()
 \begin{DoxyCompactList}\small\item\em Metodo Slot que Abre un Fichero y lo coloca en el Panel Principal. \end{DoxyCompactList}\item 
+void \hyperlink{classCAplicacion_a7a3f8e296b920f40fa0926d9119fb681}{slot\+Crear\+Nuevo\+Fichero} ()
+\begin{DoxyCompactList}\small\item\em Metodo Slot que Abre un Fichero y lo coloca en el Panel Principal. \end{DoxyCompactList}\item 
+void \hyperlink{classCAplicacion_a153d05a24b19b303d73aaa531286975f}{slot\+Mostrar\+Ayuda} ()
+\item 
 void \hyperlink{classCAplicacion_a9ac9b20ed3bd1f2750ee7649ad899f79}{slot\+About} ()
 \begin{DoxyCompactList}\small\item\em Metodo Slot que Abre un Q\+Message\+Box con Informacion Relevante del Proyecto. \end{DoxyCompactList}\item 
 void \hyperlink{classCAplicacion_a2950d0854e6445bf5159e7a5e65f151d}{slot\+About\+QT} ()
@@ -52,8 +55,10 @@ void \hyperlink{classCAplicacion_a87253da47e41e28e7bb911b39a885cd7}{slot\+Codifi
 \begin{DoxyCompactList}\small\item\em Metodo Slot que intenta codificar la imagen del Panel Principal. Tanto detectar\+Circulos, detectar\+Lineas y detectar\+Transiciones, deben haberse ejecutado anteriormente Se abre un asistente para confirmar los datos de la codificacion. \end{DoxyCompactList}\item 
 void \hyperlink{classCAplicacion_a8855c72841e3b45c0873b9ee009df523}{slot\+Procesar\+Imagen} ()
 \begin{DoxyCompactList}\small\item\em Metodo Slot que automatiza la deteccion de automatas. Detecta Lineas, Circulos, Transiciones y Codifica. \end{DoxyCompactList}\item 
-void \hyperlink{classCAplicacion_a7f655c9e187d1ac28223b6bac96fd61c}{slot\+Cargar\+Imagen\+Original} ()
+void \hyperlink{classCAplicacion_af1d9066e196cd66a1967ff5a79e6a8d8}{slot\+Confirmar\+Imagen} ()
 \begin{DoxyCompactList}\small\item\em Metodo Slot que Carga la Imagen Original de path\+Imagen\+Actual\+\_\+. \end{DoxyCompactList}\item 
+void \hyperlink{classCAplicacion_a7f655c9e187d1ac28223b6bac96fd61c}{slot\+Cargar\+Imagen\+Original} ()
+\item 
 void \hyperlink{classCAplicacion_a54ab1051a4cfd1a26b4081032dac96e0}{slot\+Abrir\+Fichero\+Correcto} ()
 \begin{DoxyCompactList}\small\item\em Metodo Slot que Abre un Fichero mediante una ventana y lo coloca en el Panel Comparacion. \end{DoxyCompactList}\item 
 void \hyperlink{classCAplicacion_a23aca6a757d7a6ce849ad52719c361f8}{slot\+Filtro\+Gray} ()
@@ -69,7 +74,33 @@ void \hyperlink{classCAplicacion_ac0602f9cf86587560767791eed28585b}{slot\+Filtro
 void \hyperlink{classCAplicacion_ae2c3ba106bbe32c000f886172c116c7a}{slot\+Histograma} ()
 \begin{DoxyCompactList}\small\item\em Metodo Slot que calcula slot\+Histograma sobre la Imagen del panel Principal. \end{DoxyCompactList}\item 
 void \hyperlink{classCAplicacion_a96dd498717a483124d4809dcacc7d799}{slot\+Circulos\+Canny\+Accumulator\+Hough\+LinesP} ()
-\begin{DoxyCompactList}\small\item\em Metodo Slot que calcula de nuevo las detecciones hechas en la imagen si se modifica algun valor del panel Opciones. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo Slot que calcula de nuevo las detecciones hechas en la imagen si se modifica algun valor del panel Opciones. \end{DoxyCompactList}\item 
+void \hyperlink{classCAplicacion_afa58e4aea4d8ee05f361e457c9e678a2}{slot\+Help} ()
+\begin{DoxyCompactList}\small\item\em Metodo Slot utilizado en crear nuevo fichero que ofrece informacion, formato fichero automata. \end{DoxyCompactList}\item 
+void \hyperlink{classCAplicacion_aced2347df4a3174943aee7aaec4c8d2f}{slot\+Guardar} ()
+\begin{DoxyCompactList}\small\item\em Metodo Slot que guarda el Automata creado en el fichero que se especifique. \end{DoxyCompactList}\item 
+void \hyperlink{classCAplicacion_a0dce6cfe14c2fb5ece29c1f48d8b2568}{slot\+Codificar\+Nuevo\+Fichero} ()
+\item 
+void \hyperlink{classCAplicacion_a0325ad2888d69c8a6e58720e53a97143}{check\+Fichero\+Temporal\+Creado} ()
+\item 
+void \hyperlink{classCAplicacion_ac0ad710bb31f64f201d038889073fbcc}{slot\+Panel\+Principal} (Q\+Mouse\+Event $\ast$)
+\item 
+void \hyperlink{classCAplicacion_a4011e79de8ce2e33b70c4bd9bf237a25}{slot\+Restaurar\+Valores} ()
+\item 
+void \hyperlink{classCAplicacion_a1e74159f8323454a8cd881b2358fe58e}{slot\+Cambiar\+Perspectiva} ()
+\item 
+void \hyperlink{classCAplicacion_af5c1476262760c95128b7a65bfaa95e4}{slot\+Abrir\+Imagen\+Referencia} ()
+\item 
+void \hyperlink{classCAplicacion_a35566217464e87c1e579c49e2a779e4b}{slot\+Simplificar\+Fichero\+Corregir} ()
+\item 
+void \hyperlink{classCAplicacion_a30449da1425b45a9e8e74446d4c22c0a}{slot\+Simplificar\+Fichero\+Referencia} ()
+\item 
+void \hyperlink{classCAplicacion_a790aa4d7eb5a09d08e6613f26f625353}{slot\+Analizar\+Cadena} ()
+\item 
+void \hyperlink{classCAplicacion_a0f5e400c5098ad21794673969efc2277}{slot\+Analizar\+Cadena\+Referencia} ()
+\item 
+void \hyperlink{classCAplicacion_a844abc173c7b450ddc9eb3fc2cef6f3a}{slot\+Corregir\+Final} ()
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -91,11 +122,17 @@ void \hyperlink{classCAplicacion_af698484a797b35e52d029ce88390368f}{set\+Path\+I
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve el panel de informacion de la Aplicacion. \end{DoxyCompactList}\item 
 Q\+Grid\+Layout $\ast$ \hyperlink{classCAplicacion_af8687ea0c860ca7df1f0189f932ea93d}{get\+Layout} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve el layout de la Aplicacion. \end{DoxyCompactList}\item 
+\hyperlink{classCPushButton}{C\+Push\+Button} $\ast$ \hyperlink{classCAplicacion_ae2c72117268933c3f63feb67e97fa49a}{get\+Restaurar\+Valores} ()
+\item 
+\hyperlink{classCPushButton}{C\+Push\+Button} $\ast$ \hyperlink{classCAplicacion_aa296c51c5a905ce1f807598f379ce401}{get\+Cambiar\+Perspectiva} ()
+\item 
+\hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAplicacion_a5db483cd8a88bdd014d95c7ae34353a6}{get\+Perspectiva\+Actual} ()
+\item 
 Q\+Menu\+Bar $\ast$ \hyperlink{classCAplicacion_a8b8ddfe3c7112cd0645926fe3c628c7f}{get\+Menu\+Bar} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve el Menu de la Aplicacion. \end{DoxyCompactList}\item 
 Q\+Menu $\ast$ \hyperlink{classCAplicacion_a9eb944127e33a2f045b59875c1920756}{get\+Menu\+Archivo} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve el submenu Archivo del Menu de la Aplicacion. \end{DoxyCompactList}\item 
-Q\+Menu $\ast$ \hyperlink{classCAplicacion_a283d64e238855df344498c8aed50ff96}{get\+Menu\+Editar} ()
+Q\+Menu $\ast$ \hyperlink{classCAplicacion_a004bdd0f71172449e07666b97fd7c46e}{get\+Menu\+Deteccion} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve el submenu Editar del Menu de la Aplicacion. \end{DoxyCompactList}\item 
 Q\+Menu $\ast$ \hyperlink{classCAplicacion_a67443b72909b19dfae9f2d322b2eaa7e}{get\+Menu\+Correccion} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve el submenu Correccion del Menu de la Aplicacion. \end{DoxyCompactList}\item 
@@ -113,6 +150,10 @@ Q\+Action $\ast$ \hyperlink{classCAplicacion_a8016e78de08ca0dfb1e74750a0fcacf1}{
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la Accion Abrir Imagen. \end{DoxyCompactList}\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_adf620887eb4c888ec7bbe1178df9d307}{get\+Action\+Abrir\+Fichero} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la Accion Abrir Fichero. \end{DoxyCompactList}\item 
+Q\+Action $\ast$ \hyperlink{classCAplicacion_ac1649d2d73a2fbf186a8ed8e50049562}{get\+Action\+Crear\+Nuevo\+Fichero} ()
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve la Accion Crear Nuevo Fichero. \end{DoxyCompactList}\item 
+Q\+Action $\ast$ \hyperlink{classCAplicacion_ac71d3f010835578a63883dcc040fa979}{get\+Action\+Mostrar\+Ayuda} ()
+\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_a46ac4ceff3c82283f159c467a5cde6d2}{get\+Action\+About} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la Accion About. \end{DoxyCompactList}\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_a8f0d5c5ad866644453dcedb5a45c2044}{get\+Action\+About\+QT} ()
@@ -127,8 +168,10 @@ Q\+Action $\ast$ \hyperlink{classCAplicacion_a7ae388e051747fbc0aa9a47696d5d5da}{
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la Accion Detectar Transiciones. \end{DoxyCompactList}\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_a298625cc516fc874fd53f73fcf2ca883}{get\+Action\+Codificar\+Imagen} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la Accion Codificar Imagen. \end{DoxyCompactList}\item 
-Q\+Action $\ast$ \hyperlink{classCAplicacion_aba97c29b89e7c7b1163e3e3cde189e4b}{get\+Action\+Procesar\+Imagen} ()
+Q\+Action $\ast$ \hyperlink{classCAplicacion_a06f81531ef91b81f230c3fb377da0f64}{get\+Action\+Confirmar\+Imagen} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la Accion Procesar Imagen. \end{DoxyCompactList}\item 
+Q\+Action $\ast$ \hyperlink{classCAplicacion_aba97c29b89e7c7b1163e3e3cde189e4b}{get\+Action\+Procesar\+Imagen} ()
+\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_a00c192ecc07c4690802eb38c1f48731b}{get\+Action\+Cargar\+Imagen\+Original} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la Accion Cargar Imagen Original, leida desde get Path Imagen Actual. \end{DoxyCompactList}\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_a4b70b7b2987f70046fa1ea8c4ed02990}{get\+Action\+Abrir\+Fichero\+Correcto} ()
@@ -145,15 +188,57 @@ Q\+Action $\ast$ \hyperlink{classCAplicacion_a9e3487513378f95c231dd8806222f126}{
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la Accion Filtro Laplaciano. \end{DoxyCompactList}\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_a297c40499e1dc0a7fe428846df8b37b6}{get\+Action\+Histograma} ()
 \begin{DoxyCompactList}\small\item\em Metodo que devuelve la Accion Histograma. \end{DoxyCompactList}\item 
+Q\+Action $\ast$ \hyperlink{classCAplicacion_a442ce7bf9b9981753e511c0ac32726db}{get\+Action\+Panel\+Histograma} ()
+\item 
+Q\+Action $\ast$ \hyperlink{classCAplicacion_a68e3eb2b19973dc749caff2c10c92bb4}{get\+Action\+Panel\+Principal} ()
+\item 
 \hyperlink{classCOperacionesImagen}{C\+Operaciones\+Imagen} $\ast$ \hyperlink{classCAplicacion_acf0f5ed748482f7957bee4db4dadf840}{get\+Operaciones\+Imagen} ()
-\begin{DoxyCompactList}\small\item\em Metodo que devuelve el atributo operaciones\+Imagen\+\_\+. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el atributo operaciones\+Imagen\+\_\+. \end{DoxyCompactList}\item 
+Q\+Text\+Edit $\ast$ \hyperlink{classCAplicacion_adcfc47c237cfbf71ac8d31fde5da7547}{get\+Text\+Edit\+Crear\+Fichero} ()
+\item 
+Q\+Timer $\ast$ \hyperlink{classCAplicacion_a63fe50bc3b56256d45b26a2baa11282d}{get\+Check\+Updates\+Timer} ()
+\item 
+bool \hyperlink{classCAplicacion_ad925c2a3914118389e1e49a489684691}{get\+Cargar\+Imagen\+Para\+Panel\+Comparacion} ()
+\item 
+\hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAplicacion_a5cc3dc6dfabfa61ea47ffa4fd5a60da3}{get\+Aux\+Contenido\+Anterior} ()
+\item 
+int \hyperlink{classCAplicacion_a004a97b1615e60204fc26ca75460a46c}{get\+Pos\+Actual\+Panel\+Opciones} ()
+\item 
+Q\+Combo\+Box $\ast$ \hyperlink{classCAplicacion_ad598b5ee761e9d37b7129ba09489c5c9}{get\+Check\+Eliminar\+Anadir\+Linea} ()
+\item 
+bool \hyperlink{classCAplicacion_a2570b292f648e2606b4751e7287b861f}{get\+Linea\+Aceptada} ()
+\item 
+bool \hyperlink{classCAplicacion_a814e4c79b1e1a5901ecb3eec0963512e}{get\+Sentido\+Aceptado} ()
+\item 
+Point $\ast$ \hyperlink{classCAplicacion_a72ca0e084a295791e7805547b3c64f27}{get\+Punto\+Inicio\+Nueva\+Linea} ()
+\item 
+Point $\ast$ \hyperlink{classCAplicacion_a9268df882ced8fcc86a4265870193d6f}{get\+Punto\+Inicio\+Sentido\+Aceptado} ()
+\item 
+Mat \hyperlink{classCAplicacion_a4fa8050faf5ddf0f6622a0448c1ea52b}{mostrar\+Circulos\+Finales} (Mat imagen)
+\item 
+Q\+Widget $\ast$ \hyperlink{classCAplicacion_a9b4ab02422a45e18628950a2506d4c22}{get\+Ventana\+Crear\+Fichero} ()
+\item 
+bool \hyperlink{classCAplicacion_afa9ff1b6e4929b0fa9b777f954f3c7d7}{get\+Dibujada\+Transiciones} ()
+\item 
+Q\+Widget $\ast$ \hyperlink{classCAplicacion_ab611a7dd679f4cde9f8a9fff71e38894}{get\+Ayuda} ()
+\item 
+Q\+Widget $\ast$ \hyperlink{classCAplicacion_ad16f51702a617270340ba7f46179af5a}{get\+Ventana\+Final} ()
+\item 
+\hyperlink{classCAsistenteCodificacion}{C\+Asistente\+Codificacion} $\ast$ \hyperlink{classCAplicacion_aaf37bae3bb8464c4dab0c0a425f7185b}{get\+Asistente} ()
+\begin{DoxyCompactList}\small\item\em Metodo que devuelve el atributo asistente. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classCAplicacion_a2ed9163ef3ad370debed94cca642cb26}{dibujar\+Sentido\+Transiciones} ()
 \item 
 bool \hyperlink{classCAplicacion_a7802ee67b172b877ddd0f3ac99a7d96e}{load\+File} (const Q\+String \&file\+Name)
 \begin{DoxyCompactList}\small\item\em Metodo para Abrir Imagen, utilizado en slot\+Abrir\+Imagen. \end{DoxyCompactList}\item 
 void \hyperlink{classCAplicacion_a9d66dd978838dd5b4c99ddb02a9e43a1}{inicializar\+Ventana\+Abrir\+Imagen} (Q\+File\+Dialog \&, Q\+File\+Dialog\+::\+Accept\+Mode)
 \begin{DoxyCompactList}\small\item\em Metodo que inicializa la ventana Abrir Imagen en la carpeta Imagen por defecto Ordena los archivos del buscador y filtra por png. \end{DoxyCompactList}\item 
+void \hyperlink{classCAplicacion_a08e935c20c9f3d083a10b532641b7457}{inicializar\+Ventana\+Aplicacion\+Deteccion} ()
+\item 
+void \hyperlink{classCAplicacion_ab10c824290def59c3c6a416119df03ee}{inicializar\+Ventana\+Aplicacion\+Correccion} ()
+\item 
 Q\+String \hyperlink{classCAplicacion_a66f53bbf6ae42a812a449bd96610e702}{ventana\+Abrir\+Fichero} ()
 \begin{DoxyCompactList}\small\item\em Metodo que abre un fichero deseado mediante asistente de ventana. Filtra por text Files y directorio por defecto. Mis documentos. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
@@ -173,6 +258,12 @@ Q\+String \hyperlink{classCAplicacion_a990b6780cd5e1d941f01e7df20958587}{path\+I
 \begin{DoxyCompactList}\small\item\em Panel Informacion de la Aplicacion. \end{DoxyCompactList}\item 
 Q\+Grid\+Layout $\ast$ \hyperlink{classCAplicacion_a135b700bb291de086b00bcc4481ffc8b}{layout\+\_\+}
 \begin{DoxyCompactList}\small\item\em Layout de la aplicacion, formato Grid\+Layout. \end{DoxyCompactList}\item 
+\hyperlink{classCPushButton}{C\+Push\+Button} $\ast$ \hyperlink{classCAplicacion_acfcf9adb74829feabd09e7a8d495c622}{restaurar\+Valores\+\_\+}
+\begin{DoxyCompactList}\small\item\em Boton para restaurar valores de los Scroll\+Bar. \end{DoxyCompactList}\item 
+\hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAplicacion_af4d7a5ca89ed12613305daad3c0e3ffe}{perspectiva\+Actual\+\_\+}
+\item 
+\hyperlink{classCPushButton}{C\+Push\+Button} $\ast$ \hyperlink{classCAplicacion_ace77f6e1f8cad42ec579cb8071935ed2}{cambiar\+Perspectiva\+\_\+}
+\item 
 Q\+Menu\+Bar $\ast$ \hyperlink{classCAplicacion_af1ac43fa5f82c2512f211fc0dbb00a3a}{menu\+\_\+}
 \begin{DoxyCompactList}\small\item\em Menu de la aplicacion, contiene Archivo, Editar, Correccion y Filtros. \end{DoxyCompactList}\item 
 Q\+Menu $\ast$ \hyperlink{classCAplicacion_abdf7a15d27725756e59d4408267d4688}{menu\+Archivo\+\_\+}
@@ -187,6 +278,10 @@ Q\+Action $\ast$ \hyperlink{classCAplicacion_ac7f0a3871355c19d02bf87f36322cee7}{
 \begin{DoxyCompactList}\small\item\em Accion Abrir Imagen del Submenu Archivo. \end{DoxyCompactList}\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_a4fa499b5119ad7bcc86f53ace963cbbd}{action\+Abrir\+Fichero\+\_\+}
 \begin{DoxyCompactList}\small\item\em Accion Abrir Fichero del Submenu Archivo. \end{DoxyCompactList}\item 
+Q\+Action $\ast$ \hyperlink{classCAplicacion_a1ccc6631cd5cc2efa064edb56c8d0599}{action\+Crear\+Nuevo\+Fichero\+\_\+}
+\begin{DoxyCompactList}\small\item\em Accion Nuevo Fichero del Submenu Archivo. \end{DoxyCompactList}\item 
+Q\+Action $\ast$ \hyperlink{classCAplicacion_a63715243d5b051de62fa1e895ba861cf}{action\+Mostrar\+Ayuda\+\_\+}
+\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_ac42dda1caacc0506c7015c79fde8416f}{action\+About\+\_\+}
 \begin{DoxyCompactList}\small\item\em Accion About del Submenu Archivo. \end{DoxyCompactList}\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_af0ed23ead2d1c3aea79b724c3cb70249}{action\+About\+Q\+T\+\_\+}
@@ -201,6 +296,8 @@ Q\+Action $\ast$ \hyperlink{classCAplicacion_acda82e41d91a94e32bbfa21965338f5a}{
 \begin{DoxyCompactList}\small\item\em Accion Detectar Transiciones del Submenu Editar. \end{DoxyCompactList}\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_a06464c87dd4924cc8bb92f946239f603}{action\+Codificar\+Imagen\+\_\+}
 \begin{DoxyCompactList}\small\item\em Accion Codificar Imagen del Submenu Editar. \end{DoxyCompactList}\item 
+Q\+Action $\ast$ \hyperlink{classCAplicacion_aa897b20516e31a2992e58f92cd9b4ddf}{action\+Confirmar\+Imagen\+\_\+}
+\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_a9fa952c19f9da356432fae60a40cdced}{action\+Procesar\+Imagen\+\_\+}
 \begin{DoxyCompactList}\small\item\em Accion Procesar Imagen del Submenu Editar. Procesar\+Imagen = Detectar\+Lineas() + Detectar\+Circulos() + Detectar\+Transiciones() + Codificar\+Imagen() \end{DoxyCompactList}\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_a3768f71b55ac5e2d77fed775d8ebce74}{action\+Cargar\+Imagen\+Original\+\_\+}
@@ -219,6 +316,8 @@ Q\+Action $\ast$ \hyperlink{classCAplicacion_ad1cce3c330ee913f1129d19bba5f22f0}{
 \begin{DoxyCompactList}\small\item\em Accion Filtro Laplaciano. Submenu Filtro. \end{DoxyCompactList}\item 
 Q\+Action $\ast$ \hyperlink{classCAplicacion_a60f0707037ad02949ff17858729faff2}{action\+Histograma\+\_\+}
 \begin{DoxyCompactList}\small\item\em Accion Filtro Histograma. Submenu Filtro. \end{DoxyCompactList}\item 
+Q\+Action $\ast$ \hyperlink{classCAplicacion_a081b2d079d037155bbc47106c109327e}{action\+Panel\+Principal\+\_\+}
+\item 
 Q\+Tool\+Bar $\ast$ \hyperlink{classCAplicacion_a2dca58bda4c34c0f76d8c95fcbba064c}{toolbar\+\_\+}
 \begin{DoxyCompactList}\small\item\em Toolbal de la aplicacion. Opciones de Deteccion de la imagen. \end{DoxyCompactList}\item 
 \hyperlink{classCLineEdit}{C\+Line\+Edit} $\ast$ \hyperlink{classCAplicacion_a9d3e345fc25efeaf8a160daf22206a8e}{nodo\+\_\+inicio}
@@ -228,7 +327,37 @@ Q\+Tool\+Bar $\ast$ \hyperlink{classCAplicacion_a2dca58bda4c34c0f76d8c95fcbba064
 Q\+Combo\+Box $\ast$ \hyperlink{classCAplicacion_a2bc2fca932b919c027f2c4a35f837de0}{alfabeto\+\_\+}
 \begin{DoxyCompactList}\small\item\em Q\+Combo\+Box para definir el alfabeto. 0 -\/$>$ alfabeto a, b, c 1 -\/$>$ Alfabeto numerico. \end{DoxyCompactList}\item 
 \hyperlink{classCOperacionesImagen}{C\+Operaciones\+Imagen} $\ast$ \hyperlink{classCAplicacion_a58596bdd1d1e018bcb8bd58b64de538e}{operaciones\+Imagen\+\_\+}
-\begin{DoxyCompactList}\small\item\em Clase para aplicar operaciones sobre la Imagen. Deteccion, filtros y Asistente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Clase para aplicar operaciones sobre la Imagen. Deteccion, filtros y Asistente. \end{DoxyCompactList}\item 
+Q\+Text\+Edit $\ast$ \hyperlink{classCAplicacion_a7008254b5b6afad5cea2347df2d6c191}{text\+Edit\+Crear\+Fichero\+\_\+}
+\item 
+Q\+Timer $\ast$ \hyperlink{classCAplicacion_a812e5a85dd7d73bb4cce547962eb85f0}{check\+Updates\+Timer\+\_\+}
+\item 
+Q\+Combo\+Box $\ast$ \hyperlink{classCAplicacion_add0c84c5ecbc9f8a2949b8fe82f2c3cf}{check\+Eliminar\+Anadir\+Linea\+\_\+}
+\item 
+bool \hyperlink{classCAplicacion_aa15f0bf9a36791195739ec2a6d15108d}{linea\+Aceptada\+\_\+}
+\item 
+bool \hyperlink{classCAplicacion_a84891ee9944902c6c72827cabf65b06b}{sentido\+Aceptado\+\_\+}
+\item 
+Point $\ast$ \hyperlink{classCAplicacion_a93f28ca7c41191c6daea7c872b199735}{punto\+Inicio\+Nueva\+Linea\+\_\+}
+\item 
+Point $\ast$ \hyperlink{classCAplicacion_a6376b998f7b79f9fa8c832c61eec483e}{punto\+Inicio\+Sentido\+Aceptado\+\_\+}
+\item 
+Q\+Widget $\ast$ \hyperlink{classCAplicacion_a8887fbd8545bcf5450e48213019b9596}{ventana\+Crear\+Fichero\+\_\+}
+\item 
+\hyperlink{classCAsistenteCodificacion}{C\+Asistente\+Codificacion} $\ast$ \hyperlink{classCAplicacion_a73e41911955009775d15b51595507351}{asistente\+\_\+}
+\begin{DoxyCompactList}\small\item\em Atributo de la clase \hyperlink{classCAsistenteCodificacion}{C\+Asistente\+Codificacion} para la confirmacion del automata detectado en la imagen. \end{DoxyCompactList}\item 
+bool \hyperlink{classCAplicacion_a840e9b831cb283803cea173f67a5e05e}{dibujada\+Transiciones\+\_\+}
+\item 
+bool \hyperlink{classCAplicacion_ac9b58ec62a0ea85cee5d89a5c64d4f62}{cargar\+Imagen\+Para\+Panel\+Comparacion\+\_\+}
+\item 
+\hyperlink{classCLabel}{C\+Label} $\ast$ \hyperlink{classCAplicacion_a14caad4d922c616e5efcfcd2ef30c443}{aux\+Contenido\+Anterior\+\_\+}
+\item 
+int \hyperlink{classCAplicacion_a86033e0418279102b23f98cd85d9bdf0}{pos\+Actual\+Panel\+Opciones\+\_\+}
+\item 
+Q\+Widget $\ast$ \hyperlink{classCAplicacion_aef00c8e06da0cd5fce3c7b938035fc6b}{ayuda\+\_\+}
+\item 
+Q\+Widget $\ast$ \hyperlink{classCAplicacion_ab28e00903a21b19a023e3762bea723c6}{ventana\+Final\+\_\+}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -268,7 +397,21 @@ Destructor de la Clase \hyperlink{classCAplicacion}{C\+Aplicacion}.
 
 
 \subsection{Member Function Documentation}
-\index{C\+Aplicacion@{C\+Aplicacion}!get\+Action\+About@{get\+Action\+About}}
+\index{C\+Aplicacion@{C\+Aplicacion}!check\+Fichero\+Temporal\+Creado@{check\+Fichero\+Temporal\+Creado}}
+\index{check\+Fichero\+Temporal\+Creado@{check\+Fichero\+Temporal\+Creado}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{check\+Fichero\+Temporal\+Creado}{checkFicheroTemporalCreado}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::check\+Fichero\+Temporal\+Creado (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a0325ad2888d69c8a6e58720e53a97143}{}\label{classCAplicacion_a0325ad2888d69c8a6e58720e53a97143}
+\index{C\+Aplicacion@{C\+Aplicacion}!dibujar\+Sentido\+Transiciones@{dibujar\+Sentido\+Transiciones}}
+\index{dibujar\+Sentido\+Transiciones@{dibujar\+Sentido\+Transiciones}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{dibujar\+Sentido\+Transiciones()}{dibujarSentidoTransiciones()}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::dibujar\+Sentido\+Transiciones (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a2ed9163ef3ad370debed94cca642cb26}{}\label{classCAplicacion_a2ed9163ef3ad370debed94cca642cb26}
+Dibujamos el num del circulo en la imagen \index{C\+Aplicacion@{C\+Aplicacion}!get\+Action\+About@{get\+Action\+About}}
 \index{get\+Action\+About@{get\+Action\+About}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{get\+Action\+About()}{getActionAbout()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action $\ast$ C\+Aplicacion\+::get\+Action\+About (
 \begin{DoxyParamCaption}
@@ -362,6 +505,34 @@ Q\+Action
 
 
 Metodo que devuelve la Accion Codificar Imagen. 
+
+\begin{DoxyReturn}{Returns}
+Q\+Action 
+\end{DoxyReturn}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Action\+Confirmar\+Imagen@{get\+Action\+Confirmar\+Imagen}}
+\index{get\+Action\+Confirmar\+Imagen@{get\+Action\+Confirmar\+Imagen}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Action\+Confirmar\+Imagen()}{getActionConfirmarImagen()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action $\ast$ C\+Aplicacion\+::get\+Action\+Confirmar\+Imagen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a06f81531ef91b81f230c3fb377da0f64}{}\label{classCAplicacion_a06f81531ef91b81f230c3fb377da0f64}
+
+
+Metodo que devuelve la Accion Procesar Imagen. 
+
+\begin{DoxyReturn}{Returns}
+Q\+Action 
+\end{DoxyReturn}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Action\+Crear\+Nuevo\+Fichero@{get\+Action\+Crear\+Nuevo\+Fichero}}
+\index{get\+Action\+Crear\+Nuevo\+Fichero@{get\+Action\+Crear\+Nuevo\+Fichero}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Action\+Crear\+Nuevo\+Fichero()}{getActionCrearNuevoFichero()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action $\ast$ C\+Aplicacion\+::get\+Action\+Crear\+Nuevo\+Fichero (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_ac1649d2d73a2fbf186a8ed8e50049562}{}\label{classCAplicacion_ac1649d2d73a2fbf186a8ed8e50049562}
+
+
+Metodo que devuelve la Accion Crear Nuevo Fichero. 
 
 \begin{DoxyReturn}{Returns}
 Q\+Action 
@@ -492,6 +663,27 @@ Metodo que devuelve la Accion Histograma.
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Action\+Mostrar\+Ayuda@{get\+Action\+Mostrar\+Ayuda}}
+\index{get\+Action\+Mostrar\+Ayuda@{get\+Action\+Mostrar\+Ayuda}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Action\+Mostrar\+Ayuda()}{getActionMostrarAyuda()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action $\ast$ C\+Aplicacion\+::get\+Action\+Mostrar\+Ayuda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_ac71d3f010835578a63883dcc040fa979}{}\label{classCAplicacion_ac71d3f010835578a63883dcc040fa979}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Action\+Panel\+Histograma@{get\+Action\+Panel\+Histograma}}
+\index{get\+Action\+Panel\+Histograma@{get\+Action\+Panel\+Histograma}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Action\+Panel\+Histograma()}{getActionPanelHistograma()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action$\ast$ C\+Aplicacion\+::get\+Action\+Panel\+Histograma (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a442ce7bf9b9981753e511c0ac32726db}{}\label{classCAplicacion_a442ce7bf9b9981753e511c0ac32726db}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Action\+Panel\+Principal@{get\+Action\+Panel\+Principal}}
+\index{get\+Action\+Panel\+Principal@{get\+Action\+Panel\+Principal}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Action\+Panel\+Principal()}{getActionPanelPrincipal()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action $\ast$ C\+Aplicacion\+::get\+Action\+Panel\+Principal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a68e3eb2b19973dc749caff2c10c92bb4}{}\label{classCAplicacion_a68e3eb2b19973dc749caff2c10c92bb4}
 \index{C\+Aplicacion@{C\+Aplicacion}!get\+Action\+Procesar\+Imagen@{get\+Action\+Procesar\+Imagen}}
 \index{get\+Action\+Procesar\+Imagen@{get\+Action\+Procesar\+Imagen}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{get\+Action\+Procesar\+Imagen()}{getActionProcesarImagen()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action $\ast$ C\+Aplicacion\+::get\+Action\+Procesar\+Imagen (
@@ -499,13 +691,6 @@ Metodo que devuelve la Accion Histograma.
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classCAplicacion_aba97c29b89e7c7b1163e3e3cde189e4b}{}\label{classCAplicacion_aba97c29b89e7c7b1163e3e3cde189e4b}
-
-
-Metodo que devuelve la Accion Procesar Imagen. 
-
-\begin{DoxyReturn}{Returns}
-Q\+Action 
-\end{DoxyReturn}
 \index{C\+Aplicacion@{C\+Aplicacion}!get\+Action\+Salir@{get\+Action\+Salir}}
 \index{get\+Action\+Salir@{get\+Action\+Salir}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{get\+Action\+Salir()}{getActionSalir()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action $\ast$ C\+Aplicacion\+::get\+Action\+Salir (
@@ -534,6 +719,69 @@ Metodo que devuelve el campo Q\+Combo\+Box, alfabeto actual, se elige en la vent
 \begin{DoxyReturn}{Returns}
 Q\+Combo\+Box opcion alfabeto actual 
 \end{DoxyReturn}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Asistente@{get\+Asistente}}
+\index{get\+Asistente@{get\+Asistente}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Asistente()}{getAsistente()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Asistente\+Codificacion} $\ast$ C\+Aplicacion\+::get\+Asistente (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_aaf37bae3bb8464c4dab0c0a425f7185b}{}\label{classCAplicacion_aaf37bae3bb8464c4dab0c0a425f7185b}
+
+
+Metodo que devuelve el atributo asistente. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Aux\+Contenido\+Anterior@{get\+Aux\+Contenido\+Anterior}}
+\index{get\+Aux\+Contenido\+Anterior@{get\+Aux\+Contenido\+Anterior}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Aux\+Contenido\+Anterior()}{getAuxContenidoAnterior()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label} $\ast$ C\+Aplicacion\+::get\+Aux\+Contenido\+Anterior (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a5cc3dc6dfabfa61ea47ffa4fd5a60da3}{}\label{classCAplicacion_a5cc3dc6dfabfa61ea47ffa4fd5a60da3}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Ayuda@{get\+Ayuda}}
+\index{get\+Ayuda@{get\+Ayuda}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Ayuda()}{getAyuda()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Widget $\ast$ C\+Aplicacion\+::get\+Ayuda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_ab611a7dd679f4cde9f8a9fff71e38894}{}\label{classCAplicacion_ab611a7dd679f4cde9f8a9fff71e38894}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Cambiar\+Perspectiva@{get\+Cambiar\+Perspectiva}}
+\index{get\+Cambiar\+Perspectiva@{get\+Cambiar\+Perspectiva}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Cambiar\+Perspectiva()}{getCambiarPerspectiva()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Push\+Button} $\ast$ C\+Aplicacion\+::get\+Cambiar\+Perspectiva (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_aa296c51c5a905ce1f807598f379ce401}{}\label{classCAplicacion_aa296c51c5a905ce1f807598f379ce401}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Cargar\+Imagen\+Para\+Panel\+Comparacion@{get\+Cargar\+Imagen\+Para\+Panel\+Comparacion}}
+\index{get\+Cargar\+Imagen\+Para\+Panel\+Comparacion@{get\+Cargar\+Imagen\+Para\+Panel\+Comparacion}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Cargar\+Imagen\+Para\+Panel\+Comparacion()}{getCargarImagenParaPanelComparacion()}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Aplicacion\+::get\+Cargar\+Imagen\+Para\+Panel\+Comparacion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_ad925c2a3914118389e1e49a489684691}{}\label{classCAplicacion_ad925c2a3914118389e1e49a489684691}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Check\+Eliminar\+Anadir\+Linea@{get\+Check\+Eliminar\+Anadir\+Linea}}
+\index{get\+Check\+Eliminar\+Anadir\+Linea@{get\+Check\+Eliminar\+Anadir\+Linea}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Check\+Eliminar\+Anadir\+Linea()}{getCheckEliminarAnadirLinea()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Combo\+Box $\ast$ C\+Aplicacion\+::get\+Check\+Eliminar\+Anadir\+Linea (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_ad598b5ee761e9d37b7129ba09489c5c9}{}\label{classCAplicacion_ad598b5ee761e9d37b7129ba09489c5c9}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Check\+Updates\+Timer@{get\+Check\+Updates\+Timer}}
+\index{get\+Check\+Updates\+Timer@{get\+Check\+Updates\+Timer}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Check\+Updates\+Timer()}{getCheckUpdatesTimer()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Timer $\ast$ C\+Aplicacion\+::get\+Check\+Updates\+Timer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a63fe50bc3b56256d45b26a2baa11282d}{}\label{classCAplicacion_a63fe50bc3b56256d45b26a2baa11282d}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Dibujada\+Transiciones@{get\+Dibujada\+Transiciones}}
+\index{get\+Dibujada\+Transiciones@{get\+Dibujada\+Transiciones}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Dibujada\+Transiciones()}{getDibujadaTransiciones()}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Aplicacion\+::get\+Dibujada\+Transiciones (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_afa9ff1b6e4929b0fa9b777f954f3c7d7}{}\label{classCAplicacion_afa9ff1b6e4929b0fa9b777f954f3c7d7}
 \index{C\+Aplicacion@{C\+Aplicacion}!get\+Layout@{get\+Layout}}
 \index{get\+Layout@{get\+Layout}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{get\+Layout()}{getLayout()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Grid\+Layout $\ast$ C\+Aplicacion\+::get\+Layout (
@@ -548,6 +796,13 @@ Metodo que devuelve el layout de la Aplicacion.
 \begin{DoxyReturn}{Returns}
 layout de la Aplicacion 
 \end{DoxyReturn}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Linea\+Aceptada@{get\+Linea\+Aceptada}}
+\index{get\+Linea\+Aceptada@{get\+Linea\+Aceptada}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Linea\+Aceptada()}{getLineaAceptada()}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Aplicacion\+::get\+Linea\+Aceptada (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a2570b292f648e2606b4751e7287b861f}{}\label{classCAplicacion_a2570b292f648e2606b4751e7287b861f}
 \index{C\+Aplicacion@{C\+Aplicacion}!get\+Menu\+Archivo@{get\+Menu\+Archivo}}
 \index{get\+Menu\+Archivo@{get\+Menu\+Archivo}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{get\+Menu\+Archivo()}{getMenuArchivo()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Menu $\ast$ C\+Aplicacion\+::get\+Menu\+Archivo (
@@ -590,13 +845,13 @@ Metodo que devuelve el submenu Correccion del Menu de la Aplicacion.
 \begin{DoxyReturn}{Returns}
 Submenu Correccion 
 \end{DoxyReturn}
-\index{C\+Aplicacion@{C\+Aplicacion}!get\+Menu\+Editar@{get\+Menu\+Editar}}
-\index{get\+Menu\+Editar@{get\+Menu\+Editar}!C\+Aplicacion@{C\+Aplicacion}}
-\subsubsection[{\texorpdfstring{get\+Menu\+Editar()}{getMenuEditar()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Menu $\ast$ C\+Aplicacion\+::get\+Menu\+Editar (
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Menu\+Deteccion@{get\+Menu\+Deteccion}}
+\index{get\+Menu\+Deteccion@{get\+Menu\+Deteccion}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Menu\+Deteccion()}{getMenuDeteccion()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Menu $\ast$ C\+Aplicacion\+::get\+Menu\+Deteccion (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{classCAplicacion_a283d64e238855df344498c8aed50ff96}{}\label{classCAplicacion_a283d64e238855df344498c8aed50ff96}
+)}\hypertarget{classCAplicacion_a004bdd0f71172449e07666b97fd7c46e}{}\label{classCAplicacion_a004bdd0f71172449e07666b97fd7c46e}
 
 
 Metodo que devuelve el submenu Editar del Menu de la Aplicacion. 
@@ -730,6 +985,55 @@ Metodo que devuelve la Path Actual de la Imagen del Panel Principal.
 \begin{DoxyReturn}{Returns}
 Q\+String Path 
 \end{DoxyReturn}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Perspectiva\+Actual@{get\+Perspectiva\+Actual}}
+\index{get\+Perspectiva\+Actual@{get\+Perspectiva\+Actual}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Perspectiva\+Actual()}{getPerspectivaActual()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label} $\ast$ C\+Aplicacion\+::get\+Perspectiva\+Actual (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a5db483cd8a88bdd014d95c7ae34353a6}{}\label{classCAplicacion_a5db483cd8a88bdd014d95c7ae34353a6}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Pos\+Actual\+Panel\+Opciones@{get\+Pos\+Actual\+Panel\+Opciones}}
+\index{get\+Pos\+Actual\+Panel\+Opciones@{get\+Pos\+Actual\+Panel\+Opciones}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Pos\+Actual\+Panel\+Opciones()}{getPosActualPanelOpciones()}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Aplicacion\+::get\+Pos\+Actual\+Panel\+Opciones (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a004a97b1615e60204fc26ca75460a46c}{}\label{classCAplicacion_a004a97b1615e60204fc26ca75460a46c}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Punto\+Inicio\+Nueva\+Linea@{get\+Punto\+Inicio\+Nueva\+Linea}}
+\index{get\+Punto\+Inicio\+Nueva\+Linea@{get\+Punto\+Inicio\+Nueva\+Linea}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Punto\+Inicio\+Nueva\+Linea()}{getPuntoInicioNuevaLinea()}}]{\setlength{\rightskip}{0pt plus 5cm}Point $\ast$ C\+Aplicacion\+::get\+Punto\+Inicio\+Nueva\+Linea (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a72ca0e084a295791e7805547b3c64f27}{}\label{classCAplicacion_a72ca0e084a295791e7805547b3c64f27}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Punto\+Inicio\+Sentido\+Aceptado@{get\+Punto\+Inicio\+Sentido\+Aceptado}}
+\index{get\+Punto\+Inicio\+Sentido\+Aceptado@{get\+Punto\+Inicio\+Sentido\+Aceptado}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Punto\+Inicio\+Sentido\+Aceptado()}{getPuntoInicioSentidoAceptado()}}]{\setlength{\rightskip}{0pt plus 5cm}Point $\ast$ C\+Aplicacion\+::get\+Punto\+Inicio\+Sentido\+Aceptado (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a9268df882ced8fcc86a4265870193d6f}{}\label{classCAplicacion_a9268df882ced8fcc86a4265870193d6f}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Restaurar\+Valores@{get\+Restaurar\+Valores}}
+\index{get\+Restaurar\+Valores@{get\+Restaurar\+Valores}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Restaurar\+Valores()}{getRestaurarValores()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Push\+Button} $\ast$ C\+Aplicacion\+::get\+Restaurar\+Valores (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_ae2c72117268933c3f63feb67e97fa49a}{}\label{classCAplicacion_ae2c72117268933c3f63feb67e97fa49a}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Sentido\+Aceptado@{get\+Sentido\+Aceptado}}
+\index{get\+Sentido\+Aceptado@{get\+Sentido\+Aceptado}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Sentido\+Aceptado()}{getSentidoAceptado()}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Aplicacion\+::get\+Sentido\+Aceptado (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a814e4c79b1e1a5901ecb3eec0963512e}{}\label{classCAplicacion_a814e4c79b1e1a5901ecb3eec0963512e}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Text\+Edit\+Crear\+Fichero@{get\+Text\+Edit\+Crear\+Fichero}}
+\index{get\+Text\+Edit\+Crear\+Fichero@{get\+Text\+Edit\+Crear\+Fichero}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Text\+Edit\+Crear\+Fichero()}{getTextEditCrearFichero()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Text\+Edit $\ast$ C\+Aplicacion\+::get\+Text\+Edit\+Crear\+Fichero (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_adcfc47c237cfbf71ac8d31fde5da7547}{}\label{classCAplicacion_adcfc47c237cfbf71ac8d31fde5da7547}
 \index{C\+Aplicacion@{C\+Aplicacion}!get\+Tool\+Bar@{get\+Tool\+Bar}}
 \index{get\+Tool\+Bar@{get\+Tool\+Bar}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{get\+Tool\+Bar()}{getToolBar()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Tool\+Bar $\ast$ C\+Aplicacion\+::get\+Tool\+Bar (
@@ -744,6 +1048,20 @@ Metodo que devuelve el Tool\+Bar de la Aplicacion.
 \begin{DoxyReturn}{Returns}
 Toolbar de la Aplicacion 
 \end{DoxyReturn}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Ventana\+Crear\+Fichero@{get\+Ventana\+Crear\+Fichero}}
+\index{get\+Ventana\+Crear\+Fichero@{get\+Ventana\+Crear\+Fichero}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Ventana\+Crear\+Fichero()}{getVentanaCrearFichero()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Widget $\ast$ C\+Aplicacion\+::get\+Ventana\+Crear\+Fichero (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a9b4ab02422a45e18628950a2506d4c22}{}\label{classCAplicacion_a9b4ab02422a45e18628950a2506d4c22}
+\index{C\+Aplicacion@{C\+Aplicacion}!get\+Ventana\+Final@{get\+Ventana\+Final}}
+\index{get\+Ventana\+Final@{get\+Ventana\+Final}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{get\+Ventana\+Final()}{getVentanaFinal()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Widget $\ast$ C\+Aplicacion\+::get\+Ventana\+Final (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_ad16f51702a617270340ba7f46179af5a}{}\label{classCAplicacion_ad16f51702a617270340ba7f46179af5a}
 \index{C\+Aplicacion@{C\+Aplicacion}!inicializar\+Ventana\+Abrir\+Imagen@{inicializar\+Ventana\+Abrir\+Imagen}}
 \index{inicializar\+Ventana\+Abrir\+Imagen@{inicializar\+Ventana\+Abrir\+Imagen}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{inicializar\+Ventana\+Abrir\+Imagen(\+Q\+File\+Dialog \&, Q\+File\+Dialog\+::\+Accept\+Mode)}{inicializarVentanaAbrirImagen(QFileDialog &, QFileDialog::AcceptMode)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::inicializar\+Ventana\+Abrir\+Imagen (
@@ -763,6 +1081,20 @@ Metodo que inicializa la ventana Abrir Imagen en la carpeta Imagen por defecto O
 {\em Q\+File\+Dialog\+::\+Accept\+Mode} & \\
 \hline
 \end{DoxyParams}
+\index{C\+Aplicacion@{C\+Aplicacion}!inicializar\+Ventana\+Aplicacion\+Correccion@{inicializar\+Ventana\+Aplicacion\+Correccion}}
+\index{inicializar\+Ventana\+Aplicacion\+Correccion@{inicializar\+Ventana\+Aplicacion\+Correccion}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{inicializar\+Ventana\+Aplicacion\+Correccion()}{inicializarVentanaAplicacionCorreccion()}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::inicializar\+Ventana\+Aplicacion\+Correccion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_ab10c824290def59c3c6a416119df03ee}{}\label{classCAplicacion_ab10c824290def59c3c6a416119df03ee}
+\index{C\+Aplicacion@{C\+Aplicacion}!inicializar\+Ventana\+Aplicacion\+Deteccion@{inicializar\+Ventana\+Aplicacion\+Deteccion}}
+\index{inicializar\+Ventana\+Aplicacion\+Deteccion@{inicializar\+Ventana\+Aplicacion\+Deteccion}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{inicializar\+Ventana\+Aplicacion\+Deteccion()}{inicializarVentanaAplicacionDeteccion()}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::inicializar\+Ventana\+Aplicacion\+Deteccion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a08e935c20c9f3d083a10b532641b7457}{}\label{classCAplicacion_a08e935c20c9f3d083a10b532641b7457}
 \index{C\+Aplicacion@{C\+Aplicacion}!load\+File@{load\+File}}
 \index{load\+File@{load\+File}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{load\+File(const Q\+String \&file\+Name)}{loadFile(const QString &fileName)}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Aplicacion\+::load\+File (
@@ -782,7 +1114,14 @@ Metodo para Abrir Imagen, utilizado en slot\+Abrir\+Imagen.
 \begin{DoxyReturn}{Returns}
 bool True si ha sido leida la imagen 
 \end{DoxyReturn}
-Si se lee un jpg, se convierte a png guardamos y la cargamos, no borramos la jpg \index{C\+Aplicacion@{C\+Aplicacion}!set\+Path\+Imagen\+Actual@{set\+Path\+Imagen\+Actual}}
+Si se lee un jpg, se convierte a png guardamos y la cargamos, no borramos la jpg \index{C\+Aplicacion@{C\+Aplicacion}!mostrar\+Circulos\+Finales@{mostrar\+Circulos\+Finales}}
+\index{mostrar\+Circulos\+Finales@{mostrar\+Circulos\+Finales}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{mostrar\+Circulos\+Finales(\+Mat imagen)}{mostrarCirculosFinales(Mat imagen)}}]{\setlength{\rightskip}{0pt plus 5cm}Mat C\+Aplicacion\+::mostrar\+Circulos\+Finales (
+\begin{DoxyParamCaption}
+\item[{Mat}]{imagen}
+\end{DoxyParamCaption}
+)}\hypertarget{classCAplicacion_a4fa8050faf5ddf0f6622a0448c1ea52b}{}\label{classCAplicacion_a4fa8050faf5ddf0f6622a0448c1ea52b}
+Dibujamos el num del circulo en la imagen \index{C\+Aplicacion@{C\+Aplicacion}!set\+Path\+Imagen\+Actual@{set\+Path\+Imagen\+Actual}}
 \index{set\+Path\+Imagen\+Actual@{set\+Path\+Imagen\+Actual}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{set\+Path\+Imagen\+Actual(\+Q\+String new\+Path)}{setPathImagenActual(QString newPath)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::set\+Path\+Imagen\+Actual (
 \begin{DoxyParamCaption}
@@ -853,6 +1192,34 @@ Metodo Slot que Abre un Fichero mediante una ventana y lo coloca en el Panel Com
 
 Metodo Slot que Abre una Imagen de fichero y la coloca en el Panel Principal. 
 
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Abrir\+Imagen\+Referencia@{slot\+Abrir\+Imagen\+Referencia}}
+\index{slot\+Abrir\+Imagen\+Referencia@{slot\+Abrir\+Imagen\+Referencia}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Abrir\+Imagen\+Referencia}{slotAbrirImagenReferencia}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Abrir\+Imagen\+Referencia (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_af5c1476262760c95128b7a65bfaa95e4}{}\label{classCAplicacion_af5c1476262760c95128b7a65bfaa95e4}
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Analizar\+Cadena@{slot\+Analizar\+Cadena}}
+\index{slot\+Analizar\+Cadena@{slot\+Analizar\+Cadena}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Analizar\+Cadena}{slotAnalizarCadena}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Analizar\+Cadena (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a790aa4d7eb5a09d08e6613f26f625353}{}\label{classCAplicacion_a790aa4d7eb5a09d08e6613f26f625353}
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Analizar\+Cadena\+Referencia@{slot\+Analizar\+Cadena\+Referencia}}
+\index{slot\+Analizar\+Cadena\+Referencia@{slot\+Analizar\+Cadena\+Referencia}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Analizar\+Cadena\+Referencia}{slotAnalizarCadenaReferencia}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Analizar\+Cadena\+Referencia (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a0f5e400c5098ad21794673969efc2277}{}\label{classCAplicacion_a0f5e400c5098ad21794673969efc2277}
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Cambiar\+Perspectiva@{slot\+Cambiar\+Perspectiva}}
+\index{slot\+Cambiar\+Perspectiva@{slot\+Cambiar\+Perspectiva}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Cambiar\+Perspectiva}{slotCambiarPerspectiva}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Cambiar\+Perspectiva (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a1e74159f8323454a8cd881b2358fe58e}{}\label{classCAplicacion_a1e74159f8323454a8cd881b2358fe58e}
 \index{C\+Aplicacion@{C\+Aplicacion}!slot\+Cargar\+Imagen\+Original@{slot\+Cargar\+Imagen\+Original}}
 \index{slot\+Cargar\+Imagen\+Original@{slot\+Cargar\+Imagen\+Original}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{slot\+Cargar\+Imagen\+Original}{slotCargarImagenOriginal}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Cargar\+Imagen\+Original (
@@ -860,10 +1227,6 @@ Metodo Slot que Abre una Imagen de fichero y la coloca en el Panel Principal.
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a7f655c9e187d1ac28223b6bac96fd61c}{}\label{classCAplicacion_a7f655c9e187d1ac28223b6bac96fd61c}
-
-
-Metodo Slot que Carga la Imagen Original de path\+Imagen\+Actual\+\_\+. 
-
 \index{C\+Aplicacion@{C\+Aplicacion}!slot\+Circulos\+Canny\+Accumulator\+Hough\+LinesP@{slot\+Circulos\+Canny\+Accumulator\+Hough\+LinesP}}
 \index{slot\+Circulos\+Canny\+Accumulator\+Hough\+LinesP@{slot\+Circulos\+Canny\+Accumulator\+Hough\+LinesP}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{slot\+Circulos\+Canny\+Accumulator\+Hough\+LinesP}{slotCirculosCannyAccumulatorHoughLinesP}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Circulos\+Canny\+Accumulator\+Hough\+LinesP (
@@ -885,6 +1248,42 @@ Se consideran los distintos pasos de deteccion que pueda tener la imagen aplicad
 
 
 Metodo Slot que intenta codificar la imagen del Panel Principal. Tanto detectar\+Circulos, detectar\+Lineas y detectar\+Transiciones, deben haberse ejecutado anteriormente Se abre un asistente para confirmar los datos de la codificacion. 
+
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Codificar\+Nuevo\+Fichero@{slot\+Codificar\+Nuevo\+Fichero}}
+\index{slot\+Codificar\+Nuevo\+Fichero@{slot\+Codificar\+Nuevo\+Fichero}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Codificar\+Nuevo\+Fichero}{slotCodificarNuevoFichero}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Codificar\+Nuevo\+Fichero (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a0dce6cfe14c2fb5ece29c1f48d8b2568}{}\label{classCAplicacion_a0dce6cfe14c2fb5ece29c1f48d8b2568}
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Confirmar\+Imagen@{slot\+Confirmar\+Imagen}}
+\index{slot\+Confirmar\+Imagen@{slot\+Confirmar\+Imagen}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Confirmar\+Imagen}{slotConfirmarImagen}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Confirmar\+Imagen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_af1d9066e196cd66a1967ff5a79e6a8d8}{}\label{classCAplicacion_af1d9066e196cd66a1967ff5a79e6a8d8}
+
+
+Metodo Slot que Carga la Imagen Original de path\+Imagen\+Actual\+\_\+. 
+
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Corregir\+Final@{slot\+Corregir\+Final}}
+\index{slot\+Corregir\+Final@{slot\+Corregir\+Final}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Corregir\+Final}{slotCorregirFinal}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Corregir\+Final (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a844abc173c7b450ddc9eb3fc2cef6f3a}{}\label{classCAplicacion_a844abc173c7b450ddc9eb3fc2cef6f3a}
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Crear\+Nuevo\+Fichero@{slot\+Crear\+Nuevo\+Fichero}}
+\index{slot\+Crear\+Nuevo\+Fichero@{slot\+Crear\+Nuevo\+Fichero}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Crear\+Nuevo\+Fichero}{slotCrearNuevoFichero}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Crear\+Nuevo\+Fichero (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a7a3f8e296b920f40fa0926d9119fb681}{}\label{classCAplicacion_a7a3f8e296b920f40fa0926d9119fb681}
+
+
+Metodo Slot que Abre un Fichero y lo coloca en el Panel Principal. 
 
 \index{C\+Aplicacion@{C\+Aplicacion}!slot\+Detectar\+Circulos@{slot\+Detectar\+Circulos}}
 \index{slot\+Detectar\+Circulos@{slot\+Detectar\+Circulos}!C\+Aplicacion@{C\+Aplicacion}}
@@ -974,7 +1373,29 @@ Metodo Slot que utiliza el Filtro\+Mediana sobre la Imagen del panel Principal.
 
 Metodo Slot que utiliza el Filtro\+Sobel sobre la Imagen del panel Principal. 
 
-\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Histograma@{slot\+Histograma}}
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Guardar@{slot\+Guardar}}
+\index{slot\+Guardar@{slot\+Guardar}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Guardar}{slotGuardar}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Guardar (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_aced2347df4a3174943aee7aaec4c8d2f}{}\label{classCAplicacion_aced2347df4a3174943aee7aaec4c8d2f}
+
+
+Metodo Slot que guarda el Automata creado en el fichero que se especifique. 
+
+Abre una ventana para guardar la codificacion en un fichero \index{C\+Aplicacion@{C\+Aplicacion}!slot\+Help@{slot\+Help}}
+\index{slot\+Help@{slot\+Help}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Help}{slotHelp}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Help (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_afa58e4aea4d8ee05f361e457c9e678a2}{}\label{classCAplicacion_afa58e4aea4d8ee05f361e457c9e678a2}
+
+
+Metodo Slot utilizado en crear nuevo fichero que ofrece informacion, formato fichero automata. 
+
+Crea una ventana que tenga la imagen info\+Asistente con informacion relevante \index{C\+Aplicacion@{C\+Aplicacion}!slot\+Histograma@{slot\+Histograma}}
 \index{slot\+Histograma@{slot\+Histograma}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{slot\+Histograma}{slotHistograma}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Histograma (
 \begin{DoxyParamCaption}
@@ -985,7 +1406,21 @@ Metodo Slot que utiliza el Filtro\+Sobel sobre la Imagen del panel Principal.
 
 Metodo Slot que calcula slot\+Histograma sobre la Imagen del panel Principal. 
 
-\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Procesar\+Imagen@{slot\+Procesar\+Imagen}}
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Mostrar\+Ayuda@{slot\+Mostrar\+Ayuda}}
+\index{slot\+Mostrar\+Ayuda@{slot\+Mostrar\+Ayuda}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Mostrar\+Ayuda}{slotMostrarAyuda}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Mostrar\+Ayuda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a153d05a24b19b303d73aaa531286975f}{}\label{classCAplicacion_a153d05a24b19b303d73aaa531286975f}
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Panel\+Principal@{slot\+Panel\+Principal}}
+\index{slot\+Panel\+Principal@{slot\+Panel\+Principal}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Panel\+Principal}{slotPanelPrincipal}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Panel\+Principal (
+\begin{DoxyParamCaption}
+\item[{Q\+Mouse\+Event $\ast$}]{evt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_ac0ad710bb31f64f201d038889073fbcc}{}\label{classCAplicacion_ac0ad710bb31f64f201d038889073fbcc}
+Creamos una lista de candidatos si hubiera varios disponibles para cambiar si es uno cambiamos directamente, si es dos, o mas preguntamos cual quiere por mensaje con qlineedit \index{C\+Aplicacion@{C\+Aplicacion}!slot\+Procesar\+Imagen@{slot\+Procesar\+Imagen}}
 \index{slot\+Procesar\+Imagen@{slot\+Procesar\+Imagen}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{slot\+Procesar\+Imagen}{slotProcesarImagen}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Procesar\+Imagen (
 \begin{DoxyParamCaption}
@@ -996,7 +1431,14 @@ Metodo Slot que calcula slot\+Histograma sobre la Imagen del panel Principal.
 
 Metodo Slot que automatiza la deteccion de automatas. Detecta Lineas, Circulos, Transiciones y Codifica. 
 
-\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Salir@{slot\+Salir}}
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Restaurar\+Valores@{slot\+Restaurar\+Valores}}
+\index{slot\+Restaurar\+Valores@{slot\+Restaurar\+Valores}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Restaurar\+Valores}{slotRestaurarValores}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Restaurar\+Valores (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a4011e79de8ce2e33b70c4bd9bf237a25}{}\label{classCAplicacion_a4011e79de8ce2e33b70c4bd9bf237a25}
+restaurar valores scrollbar \index{C\+Aplicacion@{C\+Aplicacion}!slot\+Salir@{slot\+Salir}}
 \index{slot\+Salir@{slot\+Salir}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{slot\+Salir}{slotSalir}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Salir (
 \begin{DoxyParamCaption}
@@ -1007,6 +1449,20 @@ Metodo Slot que automatiza la deteccion de automatas. Detecta Lineas, Circulos, 
 
 Metodo Slot que Cierra la Aplicacion. 
 
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Simplificar\+Fichero\+Corregir@{slot\+Simplificar\+Fichero\+Corregir}}
+\index{slot\+Simplificar\+Fichero\+Corregir@{slot\+Simplificar\+Fichero\+Corregir}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Simplificar\+Fichero\+Corregir}{slotSimplificarFicheroCorregir}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Simplificar\+Fichero\+Corregir (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a35566217464e87c1e579c49e2a779e4b}{}\label{classCAplicacion_a35566217464e87c1e579c49e2a779e4b}
+\index{C\+Aplicacion@{C\+Aplicacion}!slot\+Simplificar\+Fichero\+Referencia@{slot\+Simplificar\+Fichero\+Referencia}}
+\index{slot\+Simplificar\+Fichero\+Referencia@{slot\+Simplificar\+Fichero\+Referencia}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{slot\+Simplificar\+Fichero\+Referencia}{slotSimplificarFicheroReferencia}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+Aplicacion\+::slot\+Simplificar\+Fichero\+Referencia (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classCAplicacion_a30449da1425b45a9e8e74446d4c22c0a}{}\label{classCAplicacion_a30449da1425b45a9e8e74446d4c22c0a}
 \index{C\+Aplicacion@{C\+Aplicacion}!ventana\+Abrir\+Fichero@{ventana\+Abrir\+Fichero}}
 \index{ventana\+Abrir\+Fichero@{ventana\+Abrir\+Fichero}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{ventana\+Abrir\+Fichero()}{ventanaAbrirFichero()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String C\+Aplicacion\+::ventana\+Abrir\+Fichero (
@@ -1077,6 +1533,16 @@ Accion Cargar Imagen imagen\+Panel\+Principal\+\_\+ . Submenu Editar.
 
 Accion Codificar Imagen del Submenu Editar. 
 
+\index{C\+Aplicacion@{C\+Aplicacion}!action\+Confirmar\+Imagen\+\_\+@{action\+Confirmar\+Imagen\+\_\+}}
+\index{action\+Confirmar\+Imagen\+\_\+@{action\+Confirmar\+Imagen\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{action\+Confirmar\+Imagen\+\_\+}{actionConfirmarImagen_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action$\ast$ C\+Aplicacion\+::action\+Confirmar\+Imagen\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_aa897b20516e31a2992e58f92cd9b4ddf}{}\label{classCAplicacion_aa897b20516e31a2992e58f92cd9b4ddf}
+\index{C\+Aplicacion@{C\+Aplicacion}!action\+Crear\+Nuevo\+Fichero\+\_\+@{action\+Crear\+Nuevo\+Fichero\+\_\+}}
+\index{action\+Crear\+Nuevo\+Fichero\+\_\+@{action\+Crear\+Nuevo\+Fichero\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{action\+Crear\+Nuevo\+Fichero\+\_\+}{actionCrearNuevoFichero_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action$\ast$ C\+Aplicacion\+::action\+Crear\+Nuevo\+Fichero\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a1ccc6631cd5cc2efa064edb56c8d0599}{}\label{classCAplicacion_a1ccc6631cd5cc2efa064edb56c8d0599}
+
+
+Accion Nuevo Fichero del Submenu Archivo. 
+
 \index{C\+Aplicacion@{C\+Aplicacion}!action\+Detectar\+Circulos\+\_\+@{action\+Detectar\+Circulos\+\_\+}}
 \index{action\+Detectar\+Circulos\+\_\+@{action\+Detectar\+Circulos\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{action\+Detectar\+Circulos\+\_\+}{actionDetectarCirculos_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action$\ast$ C\+Aplicacion\+::action\+Detectar\+Circulos\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_ab4c2fb6ecc5d7c21a1f181f0f0af2830}{}\label{classCAplicacion_ab4c2fb6ecc5d7c21a1f181f0f0af2830}
@@ -1140,6 +1606,12 @@ Accion Filtro Sobel. Submenu Filtro.
 
 Accion Filtro Histograma. Submenu Filtro. 
 
+\index{C\+Aplicacion@{C\+Aplicacion}!action\+Mostrar\+Ayuda\+\_\+@{action\+Mostrar\+Ayuda\+\_\+}}
+\index{action\+Mostrar\+Ayuda\+\_\+@{action\+Mostrar\+Ayuda\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{action\+Mostrar\+Ayuda\+\_\+}{actionMostrarAyuda_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action$\ast$ C\+Aplicacion\+::action\+Mostrar\+Ayuda\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a63715243d5b051de62fa1e895ba861cf}{}\label{classCAplicacion_a63715243d5b051de62fa1e895ba861cf}
+\index{C\+Aplicacion@{C\+Aplicacion}!action\+Panel\+Principal\+\_\+@{action\+Panel\+Principal\+\_\+}}
+\index{action\+Panel\+Principal\+\_\+@{action\+Panel\+Principal\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{action\+Panel\+Principal\+\_\+}{actionPanelPrincipal_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action$\ast$ C\+Aplicacion\+::action\+Panel\+Principal\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a081b2d079d037155bbc47106c109327e}{}\label{classCAplicacion_a081b2d079d037155bbc47106c109327e}
 \index{C\+Aplicacion@{C\+Aplicacion}!action\+Procesar\+Imagen\+\_\+@{action\+Procesar\+Imagen\+\_\+}}
 \index{action\+Procesar\+Imagen\+\_\+@{action\+Procesar\+Imagen\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{action\+Procesar\+Imagen\+\_\+}{actionProcesarImagen_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Action$\ast$ C\+Aplicacion\+::action\+Procesar\+Imagen\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a9fa952c19f9da356432fae60a40cdced}{}\label{classCAplicacion_a9fa952c19f9da356432fae60a40cdced}
@@ -1161,6 +1633,34 @@ Accion Salir del Submenu Archivo.
 
 Q\+Combo\+Box para definir el alfabeto. 0 -\/$>$ alfabeto a, b, c 1 -\/$>$ Alfabeto numerico. 
 
+\index{C\+Aplicacion@{C\+Aplicacion}!asistente\+\_\+@{asistente\+\_\+}}
+\index{asistente\+\_\+@{asistente\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{asistente\+\_\+}{asistente_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Asistente\+Codificacion}$\ast$ C\+Aplicacion\+::asistente\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a73e41911955009775d15b51595507351}{}\label{classCAplicacion_a73e41911955009775d15b51595507351}
+
+
+Atributo de la clase \hyperlink{classCAsistenteCodificacion}{C\+Asistente\+Codificacion} para la confirmacion del automata detectado en la imagen. 
+
+\index{C\+Aplicacion@{C\+Aplicacion}!aux\+Contenido\+Anterior\+\_\+@{aux\+Contenido\+Anterior\+\_\+}}
+\index{aux\+Contenido\+Anterior\+\_\+@{aux\+Contenido\+Anterior\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{aux\+Contenido\+Anterior\+\_\+}{auxContenidoAnterior_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label}$\ast$ C\+Aplicacion\+::aux\+Contenido\+Anterior\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a14caad4d922c616e5efcfcd2ef30c443}{}\label{classCAplicacion_a14caad4d922c616e5efcfcd2ef30c443}
+\index{C\+Aplicacion@{C\+Aplicacion}!ayuda\+\_\+@{ayuda\+\_\+}}
+\index{ayuda\+\_\+@{ayuda\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{ayuda\+\_\+}{ayuda_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Widget$\ast$ C\+Aplicacion\+::ayuda\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_aef00c8e06da0cd5fce3c7b938035fc6b}{}\label{classCAplicacion_aef00c8e06da0cd5fce3c7b938035fc6b}
+\index{C\+Aplicacion@{C\+Aplicacion}!cambiar\+Perspectiva\+\_\+@{cambiar\+Perspectiva\+\_\+}}
+\index{cambiar\+Perspectiva\+\_\+@{cambiar\+Perspectiva\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{cambiar\+Perspectiva\+\_\+}{cambiarPerspectiva_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Push\+Button}$\ast$ C\+Aplicacion\+::cambiar\+Perspectiva\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_ace77f6e1f8cad42ec579cb8071935ed2}{}\label{classCAplicacion_ace77f6e1f8cad42ec579cb8071935ed2}
+\index{C\+Aplicacion@{C\+Aplicacion}!cargar\+Imagen\+Para\+Panel\+Comparacion\+\_\+@{cargar\+Imagen\+Para\+Panel\+Comparacion\+\_\+}}
+\index{cargar\+Imagen\+Para\+Panel\+Comparacion\+\_\+@{cargar\+Imagen\+Para\+Panel\+Comparacion\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{cargar\+Imagen\+Para\+Panel\+Comparacion\+\_\+}{cargarImagenParaPanelComparacion_}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Aplicacion\+::cargar\+Imagen\+Para\+Panel\+Comparacion\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_ac9b58ec62a0ea85cee5d89a5c64d4f62}{}\label{classCAplicacion_ac9b58ec62a0ea85cee5d89a5c64d4f62}
+\index{C\+Aplicacion@{C\+Aplicacion}!check\+Eliminar\+Anadir\+Linea\+\_\+@{check\+Eliminar\+Anadir\+Linea\+\_\+}}
+\index{check\+Eliminar\+Anadir\+Linea\+\_\+@{check\+Eliminar\+Anadir\+Linea\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{check\+Eliminar\+Anadir\+Linea\+\_\+}{checkEliminarAnadirLinea_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Combo\+Box$\ast$ C\+Aplicacion\+::check\+Eliminar\+Anadir\+Linea\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_add0c84c5ecbc9f8a2949b8fe82f2c3cf}{}\label{classCAplicacion_add0c84c5ecbc9f8a2949b8fe82f2c3cf}
+\index{C\+Aplicacion@{C\+Aplicacion}!check\+Updates\+Timer\+\_\+@{check\+Updates\+Timer\+\_\+}}
+\index{check\+Updates\+Timer\+\_\+@{check\+Updates\+Timer\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{check\+Updates\+Timer\+\_\+}{checkUpdatesTimer_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Timer$\ast$ C\+Aplicacion\+::check\+Updates\+Timer\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a812e5a85dd7d73bb4cce547962eb85f0}{}\label{classCAplicacion_a812e5a85dd7d73bb4cce547962eb85f0}
+\index{C\+Aplicacion@{C\+Aplicacion}!dibujada\+Transiciones\+\_\+@{dibujada\+Transiciones\+\_\+}}
+\index{dibujada\+Transiciones\+\_\+@{dibujada\+Transiciones\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{dibujada\+Transiciones\+\_\+}{dibujadaTransiciones_}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Aplicacion\+::dibujada\+Transiciones\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a840e9b831cb283803cea173f67a5e05e}{}\label{classCAplicacion_a840e9b831cb283803cea173f67a5e05e}
 \index{C\+Aplicacion@{C\+Aplicacion}!imagen\+Panel\+Principal@{imagen\+Panel\+Principal}}
 \index{imagen\+Panel\+Principal@{imagen\+Panel\+Principal}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{imagen\+Panel\+Principal}{imagenPanelPrincipal}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Image C\+Aplicacion\+::imagen\+Panel\+Principal\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a0d02a7838c0974bffc76e8dd08848dc9}{}\label{classCAplicacion_a0d02a7838c0974bffc76e8dd08848dc9}
@@ -1175,6 +1675,9 @@ Imagen actual del panel principal.
 
 Layout de la aplicacion, formato Grid\+Layout. 
 
+\index{C\+Aplicacion@{C\+Aplicacion}!linea\+Aceptada\+\_\+@{linea\+Aceptada\+\_\+}}
+\index{linea\+Aceptada\+\_\+@{linea\+Aceptada\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{linea\+Aceptada\+\_\+}{lineaAceptada_}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Aplicacion\+::linea\+Aceptada\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_aa15f0bf9a36791195739ec2a6d15108d}{}\label{classCAplicacion_aa15f0bf9a36791195739ec2a6d15108d}
 \index{C\+Aplicacion@{C\+Aplicacion}!menu\+\_\+@{menu\+\_\+}}
 \index{menu\+\_\+@{menu\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{menu\+\_\+}{menu_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Menu\+Bar$\ast$ C\+Aplicacion\+::menu\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_af1ac43fa5f82c2512f211fc0dbb00a3a}{}\label{classCAplicacion_af1ac43fa5f82c2512f211fc0dbb00a3a}
@@ -1266,6 +1769,31 @@ Panel Principal de la Aplicacion.
 
 Ruta de la imagen actual del panel principal. 
 
+\index{C\+Aplicacion@{C\+Aplicacion}!perspectiva\+Actual\+\_\+@{perspectiva\+Actual\+\_\+}}
+\index{perspectiva\+Actual\+\_\+@{perspectiva\+Actual\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{perspectiva\+Actual\+\_\+}{perspectivaActual_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Label}$\ast$ C\+Aplicacion\+::perspectiva\+Actual\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_af4d7a5ca89ed12613305daad3c0e3ffe}{}\label{classCAplicacion_af4d7a5ca89ed12613305daad3c0e3ffe}
+\index{C\+Aplicacion@{C\+Aplicacion}!pos\+Actual\+Panel\+Opciones\+\_\+@{pos\+Actual\+Panel\+Opciones\+\_\+}}
+\index{pos\+Actual\+Panel\+Opciones\+\_\+@{pos\+Actual\+Panel\+Opciones\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{pos\+Actual\+Panel\+Opciones\+\_\+}{posActualPanelOpciones_}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+Aplicacion\+::pos\+Actual\+Panel\+Opciones\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a86033e0418279102b23f98cd85d9bdf0}{}\label{classCAplicacion_a86033e0418279102b23f98cd85d9bdf0}
+\index{C\+Aplicacion@{C\+Aplicacion}!punto\+Inicio\+Nueva\+Linea\+\_\+@{punto\+Inicio\+Nueva\+Linea\+\_\+}}
+\index{punto\+Inicio\+Nueva\+Linea\+\_\+@{punto\+Inicio\+Nueva\+Linea\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{punto\+Inicio\+Nueva\+Linea\+\_\+}{puntoInicioNuevaLinea_}}]{\setlength{\rightskip}{0pt plus 5cm}Point$\ast$ C\+Aplicacion\+::punto\+Inicio\+Nueva\+Linea\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a93f28ca7c41191c6daea7c872b199735}{}\label{classCAplicacion_a93f28ca7c41191c6daea7c872b199735}
+\index{C\+Aplicacion@{C\+Aplicacion}!punto\+Inicio\+Sentido\+Aceptado\+\_\+@{punto\+Inicio\+Sentido\+Aceptado\+\_\+}}
+\index{punto\+Inicio\+Sentido\+Aceptado\+\_\+@{punto\+Inicio\+Sentido\+Aceptado\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{punto\+Inicio\+Sentido\+Aceptado\+\_\+}{puntoInicioSentidoAceptado_}}]{\setlength{\rightskip}{0pt plus 5cm}Point$\ast$ C\+Aplicacion\+::punto\+Inicio\+Sentido\+Aceptado\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a6376b998f7b79f9fa8c832c61eec483e}{}\label{classCAplicacion_a6376b998f7b79f9fa8c832c61eec483e}
+\index{C\+Aplicacion@{C\+Aplicacion}!restaurar\+Valores\+\_\+@{restaurar\+Valores\+\_\+}}
+\index{restaurar\+Valores\+\_\+@{restaurar\+Valores\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{restaurar\+Valores\+\_\+}{restaurarValores_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Push\+Button}$\ast$ C\+Aplicacion\+::restaurar\+Valores\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_acfcf9adb74829feabd09e7a8d495c622}{}\label{classCAplicacion_acfcf9adb74829feabd09e7a8d495c622}
+
+
+Boton para restaurar valores de los Scroll\+Bar. 
+
+\index{C\+Aplicacion@{C\+Aplicacion}!sentido\+Aceptado\+\_\+@{sentido\+Aceptado\+\_\+}}
+\index{sentido\+Aceptado\+\_\+@{sentido\+Aceptado\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{sentido\+Aceptado\+\_\+}{sentidoAceptado_}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+Aplicacion\+::sentido\+Aceptado\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a84891ee9944902c6c72827cabf65b06b}{}\label{classCAplicacion_a84891ee9944902c6c72827cabf65b06b}
+\index{C\+Aplicacion@{C\+Aplicacion}!text\+Edit\+Crear\+Fichero\+\_\+@{text\+Edit\+Crear\+Fichero\+\_\+}}
+\index{text\+Edit\+Crear\+Fichero\+\_\+@{text\+Edit\+Crear\+Fichero\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{text\+Edit\+Crear\+Fichero\+\_\+}{textEditCrearFichero_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Text\+Edit$\ast$ C\+Aplicacion\+::text\+Edit\+Crear\+Fichero\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a7008254b5b6afad5cea2347df2d6c191}{}\label{classCAplicacion_a7008254b5b6afad5cea2347df2d6c191}
 \index{C\+Aplicacion@{C\+Aplicacion}!toolbar\+\_\+@{toolbar\+\_\+}}
 \index{toolbar\+\_\+@{toolbar\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
 \subsubsection[{\texorpdfstring{toolbar\+\_\+}{toolbar_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Tool\+Bar$\ast$ C\+Aplicacion\+::toolbar\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a2dca58bda4c34c0f76d8c95fcbba064c}{}\label{classCAplicacion_a2dca58bda4c34c0f76d8c95fcbba064c}
@@ -1273,6 +1801,12 @@ Ruta de la imagen actual del panel principal.
 
 Toolbal de la aplicacion. Opciones de Deteccion de la imagen. 
 
+\index{C\+Aplicacion@{C\+Aplicacion}!ventana\+Crear\+Fichero\+\_\+@{ventana\+Crear\+Fichero\+\_\+}}
+\index{ventana\+Crear\+Fichero\+\_\+@{ventana\+Crear\+Fichero\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{ventana\+Crear\+Fichero\+\_\+}{ventanaCrearFichero_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Widget$\ast$ C\+Aplicacion\+::ventana\+Crear\+Fichero\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_a8887fbd8545bcf5450e48213019b9596}{}\label{classCAplicacion_a8887fbd8545bcf5450e48213019b9596}
+\index{C\+Aplicacion@{C\+Aplicacion}!ventana\+Final\+\_\+@{ventana\+Final\+\_\+}}
+\index{ventana\+Final\+\_\+@{ventana\+Final\+\_\+}!C\+Aplicacion@{C\+Aplicacion}}
+\subsubsection[{\texorpdfstring{ventana\+Final\+\_\+}{ventanaFinal_}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Widget$\ast$ C\+Aplicacion\+::ventana\+Final\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCAplicacion_ab28e00903a21b19a023e3762bea723c6}{}\label{classCAplicacion_ab28e00903a21b19a023e3762bea723c6}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

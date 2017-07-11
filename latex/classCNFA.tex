@@ -1,0 +1,225 @@
+\hypertarget{classCNFA}{}\section{C\+N\+FA Class Reference}
+\label{classCNFA}\index{C\+N\+FA@{C\+N\+FA}}
+
+
+{\ttfamily \#include $<$C\+Nfa.\+h$>$}
+
+
+
+Collaboration diagram for C\+N\+FA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{classCNFA__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCEstado}{C\+Estado} \hyperlink{classCNFA_adefa2ccc519fcc5776f22b52ab7896a5}{encontrar\+Estado} (int q\+\_\+id)
+\item 
+void \hyperlink{classCNFA_ada66fe5bfcef0f2029d919fce2b7a101}{Construir\+N\+FA} (Q\+String nombrefichero)
+\item 
+string \hyperlink{classCNFA_a2229a8054ba76749dbeb90c20e4ed43b}{Mostrar\+Estados\+Muerte} ()
+\item 
+void \hyperlink{classCNFA_a856bedb1c7ed1b4e12bd9e3169de6831}{Mostrar\+N\+FA} ()
+\item 
+bool \hyperlink{classCNFA_a7ddf2ec61f8b50ca52835f9cef329df2}{Analizar} (\hyperlink{classCEstado}{C\+Estado} \&q, string \&cadena, int t, vector$<$ \hyperlink{classCTransicion}{C\+Transicion} $>$ \&caminos, bool \&acepta)
+\item 
+string \hyperlink{classCNFA_a9fee58c888ab16ea8e87bfbecd5252c8}{Analizar\+Cadena} (string \&cadena)
+\item 
+void \hyperlink{classCNFA_ae54534591a2ab8f762c95bcd2e8b3bdd}{Mostrar\+Camino} (vector$<$ \hyperlink{classCTransicion}{C\+Transicion} $>$ \&Camino)
+\item 
+void \hyperlink{classCNFA_ab5b7d6d69a73fea0eaa37f77b7c976d3}{Crear\+Alfabeto} ()
+\item 
+string \hyperlink{classCNFA_af87caa9992ea843c0252977bc150f382}{Mostrar\+Alfabeto} ()
+\item 
+void \hyperlink{classCNFA_ab44a10890c442fa25b505d4d4c1893f3}{epsilon\+Closure} (\hyperlink{classCEstado}{C\+Estado} \&q, \hyperlink{classCEstado}{C\+Estado} \&A)
+\item 
+void \hyperlink{classCNFA_ab267d2860617072d1ade5a6021baf07c}{epsilon\+Closure} (\hyperlink{classCEstado}{C\+Estado} \&A)
+\item 
+\hyperlink{classCEstado}{C\+Estado} \hyperlink{classCNFA_a4dc5f0d4dd40d4f160c1ad36d13dfb28}{move} (set$<$ int $>$ \&A, char simbolo)
+\item 
+int \hyperlink{classCNFA_a736e324e3fb34554aa260850d1f00980}{Encontrarpos} (\hyperlink{classCEstado}{C\+Estado} \&A, vector$<$ \hyperlink{classCEstado}{C\+Estado} $>$ \&Orden)
+\item 
+bool \hyperlink{classCNFA_a15d5ce134bcb51243b301a8817af83ab}{Existe} (\hyperlink{classCEstado}{C\+Estado} \&A, vector$<$ \hyperlink{classCEstado}{C\+Estado} $>$ \&Orden)
+\item 
+vector$<$ \hyperlink{classCEstado}{C\+Estado} $>$ \hyperlink{classCNFA_a98d4f959c5cfc04a02863bf8f23d295e}{Convertto\+D\+FA} ()
+\item 
+bool \hyperlink{classCNFA_ae8331e19d188fbf2a0702d79860ac21b}{igualdad} (set$<$ int $>$ \&A, set$<$ int $>$ \&B)
+\item 
+void \hyperlink{classCNFA_a09aebebe74a38efbbcc5b2f5b1f6972e}{aceptacion\+\_\+id} (vector$<$ \hyperlink{classCEstado}{C\+Estado} $>$ \&Orden)
+\item 
+void \hyperlink{classCNFA_a78f025cb7fcf04abdc659fa6c9075667}{Exportar} (vector$<$ \hyperlink{classCEstado}{C\+Estado} $>$ \&Orden)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \hyperlink{classCEstado}{C\+Estado} $>$ \hyperlink{classCNFA_a28a2f71306cb27d725bad4093c5c82c7}{Q\+\_\+}
+\item 
+int \hyperlink{classCNFA_af402d09515afcb02ba12c4a0c762aac8}{inicial}
+\item 
+int \hyperlink{classCNFA_a887785fdfe01da854067ca5b528da79c}{n\+\_\+estados}
+\item 
+set$<$ char $>$ \hyperlink{classCNFA_af7972ada0c1a2d1eecde53fb4f47bb2a}{Alfabeto}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{C\+N\+FA@{C\+N\+FA}!aceptacion\+\_\+id@{aceptacion\+\_\+id}}
+\index{aceptacion\+\_\+id@{aceptacion\+\_\+id}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{aceptacion\+\_\+id(vector$<$ C\+Estado $>$ \&\+Orden)}{aceptacion_id(vector< CEstado > &Orden)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+N\+F\+A\+::aceptacion\+\_\+id (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf C\+Estado} $>$ \&}]{Orden}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_a09aebebe74a38efbbcc5b2f5b1f6972e}{}\label{classCNFA_a09aebebe74a38efbbcc5b2f5b1f6972e}
+\index{C\+N\+FA@{C\+N\+FA}!Analizar@{Analizar}}
+\index{Analizar@{Analizar}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Analizar(\+C\+Estado \&q, string \&cadena, int t, vector$<$ C\+Transicion $>$ \&caminos, bool \&acepta)}{Analizar(CEstado &q, string &cadena, int t, vector< CTransicion > &caminos, bool &acepta)}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+N\+F\+A\+::\+Analizar (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Estado} \&}]{q, }
+\item[{string \&}]{cadena, }
+\item[{int}]{t, }
+\item[{vector$<$ {\bf C\+Transicion} $>$ \&}]{caminos, }
+\item[{bool \&}]{acepta}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_a7ddf2ec61f8b50ca52835f9cef329df2}{}\label{classCNFA_a7ddf2ec61f8b50ca52835f9cef329df2}
+\index{C\+N\+FA@{C\+N\+FA}!Analizar\+Cadena@{Analizar\+Cadena}}
+\index{Analizar\+Cadena@{Analizar\+Cadena}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Analizar\+Cadena(string \&cadena)}{AnalizarCadena(string &cadena)}}]{\setlength{\rightskip}{0pt plus 5cm}string C\+N\+F\+A\+::\+Analizar\+Cadena (
+\begin{DoxyParamCaption}
+\item[{string \&}]{cadena}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_a9fee58c888ab16ea8e87bfbecd5252c8}{}\label{classCNFA_a9fee58c888ab16ea8e87bfbecd5252c8}
+\index{C\+N\+FA@{C\+N\+FA}!Construir\+N\+FA@{Construir\+N\+FA}}
+\index{Construir\+N\+FA@{Construir\+N\+FA}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Construir\+N\+F\+A(\+Q\+String nombrefichero)}{ConstruirNFA(QString nombrefichero)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+N\+F\+A\+::\+Construir\+N\+FA (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{nombrefichero}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_ada66fe5bfcef0f2029d919fce2b7a101}{}\label{classCNFA_ada66fe5bfcef0f2029d919fce2b7a101}
+\index{C\+N\+FA@{C\+N\+FA}!Convertto\+D\+FA@{Convertto\+D\+FA}}
+\index{Convertto\+D\+FA@{Convertto\+D\+FA}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Convertto\+D\+F\+A()}{ConverttoDFA()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf C\+Estado} $>$ C\+N\+F\+A\+::\+Convertto\+D\+FA (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_a98d4f959c5cfc04a02863bf8f23d295e}{}\label{classCNFA_a98d4f959c5cfc04a02863bf8f23d295e}
+\index{C\+N\+FA@{C\+N\+FA}!Crear\+Alfabeto@{Crear\+Alfabeto}}
+\index{Crear\+Alfabeto@{Crear\+Alfabeto}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Crear\+Alfabeto()}{CrearAlfabeto()}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+N\+F\+A\+::\+Crear\+Alfabeto (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_ab5b7d6d69a73fea0eaa37f77b7c976d3}{}\label{classCNFA_ab5b7d6d69a73fea0eaa37f77b7c976d3}
+\index{C\+N\+FA@{C\+N\+FA}!encontrar\+Estado@{encontrar\+Estado}}
+\index{encontrar\+Estado@{encontrar\+Estado}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{encontrar\+Estado(int q\+\_\+id)}{encontrarEstado(int q_id)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Estado} C\+N\+F\+A\+::encontrar\+Estado (
+\begin{DoxyParamCaption}
+\item[{int}]{q\+\_\+id}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_adefa2ccc519fcc5776f22b52ab7896a5}{}\label{classCNFA_adefa2ccc519fcc5776f22b52ab7896a5}
+\index{C\+N\+FA@{C\+N\+FA}!Encontrarpos@{Encontrarpos}}
+\index{Encontrarpos@{Encontrarpos}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Encontrarpos(\+C\+Estado \&\+A, vector$<$ C\+Estado $>$ \&\+Orden)}{Encontrarpos(CEstado &A, vector< CEstado > &Orden)}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+N\+F\+A\+::\+Encontrarpos (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Estado} \&}]{A, }
+\item[{vector$<$ {\bf C\+Estado} $>$ \&}]{Orden}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_a736e324e3fb34554aa260850d1f00980}{}\label{classCNFA_a736e324e3fb34554aa260850d1f00980}
+\index{C\+N\+FA@{C\+N\+FA}!epsilon\+Closure@{epsilon\+Closure}}
+\index{epsilon\+Closure@{epsilon\+Closure}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{epsilon\+Closure(\+C\+Estado \&q, C\+Estado \&\+A)}{epsilonClosure(CEstado &q, CEstado &A)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+N\+F\+A\+::epsilon\+Closure (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Estado} \&}]{q, }
+\item[{{\bf C\+Estado} \&}]{A}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_ab44a10890c442fa25b505d4d4c1893f3}{}\label{classCNFA_ab44a10890c442fa25b505d4d4c1893f3}
+\index{C\+N\+FA@{C\+N\+FA}!epsilon\+Closure@{epsilon\+Closure}}
+\index{epsilon\+Closure@{epsilon\+Closure}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{epsilon\+Closure(\+C\+Estado \&\+A)}{epsilonClosure(CEstado &A)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+N\+F\+A\+::epsilon\+Closure (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Estado} \&}]{A}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_ab267d2860617072d1ade5a6021baf07c}{}\label{classCNFA_ab267d2860617072d1ade5a6021baf07c}
+\index{C\+N\+FA@{C\+N\+FA}!Existe@{Existe}}
+\index{Existe@{Existe}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Existe(\+C\+Estado \&\+A, vector$<$ C\+Estado $>$ \&\+Orden)}{Existe(CEstado &A, vector< CEstado > &Orden)}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+N\+F\+A\+::\+Existe (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Estado} \&}]{A, }
+\item[{vector$<$ {\bf C\+Estado} $>$ \&}]{Orden}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_a15d5ce134bcb51243b301a8817af83ab}{}\label{classCNFA_a15d5ce134bcb51243b301a8817af83ab}
+\index{C\+N\+FA@{C\+N\+FA}!Exportar@{Exportar}}
+\index{Exportar@{Exportar}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Exportar(vector$<$ C\+Estado $>$ \&\+Orden)}{Exportar(vector< CEstado > &Orden)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+N\+F\+A\+::\+Exportar (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf C\+Estado} $>$ \&}]{Orden}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_a78f025cb7fcf04abdc659fa6c9075667}{}\label{classCNFA_a78f025cb7fcf04abdc659fa6c9075667}
+\index{C\+N\+FA@{C\+N\+FA}!igualdad@{igualdad}}
+\index{igualdad@{igualdad}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{igualdad(set$<$ int $>$ \&\+A, set$<$ int $>$ \&\+B)}{igualdad(set< int > &A, set< int > &B)}}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+N\+F\+A\+::igualdad (
+\begin{DoxyParamCaption}
+\item[{set$<$ int $>$ \&}]{A, }
+\item[{set$<$ int $>$ \&}]{B}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_ae8331e19d188fbf2a0702d79860ac21b}{}\label{classCNFA_ae8331e19d188fbf2a0702d79860ac21b}
+\index{C\+N\+FA@{C\+N\+FA}!Mostrar\+Alfabeto@{Mostrar\+Alfabeto}}
+\index{Mostrar\+Alfabeto@{Mostrar\+Alfabeto}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Mostrar\+Alfabeto()}{MostrarAlfabeto()}}]{\setlength{\rightskip}{0pt plus 5cm}string C\+N\+F\+A\+::\+Mostrar\+Alfabeto (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_af87caa9992ea843c0252977bc150f382}{}\label{classCNFA_af87caa9992ea843c0252977bc150f382}
+\index{C\+N\+FA@{C\+N\+FA}!Mostrar\+Camino@{Mostrar\+Camino}}
+\index{Mostrar\+Camino@{Mostrar\+Camino}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Mostrar\+Camino(vector$<$ C\+Transicion $>$ \&\+Camino)}{MostrarCamino(vector< CTransicion > &Camino)}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+N\+F\+A\+::\+Mostrar\+Camino (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf C\+Transicion} $>$ \&}]{Camino}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_ae54534591a2ab8f762c95bcd2e8b3bdd}{}\label{classCNFA_ae54534591a2ab8f762c95bcd2e8b3bdd}
+\index{C\+N\+FA@{C\+N\+FA}!Mostrar\+Estados\+Muerte@{Mostrar\+Estados\+Muerte}}
+\index{Mostrar\+Estados\+Muerte@{Mostrar\+Estados\+Muerte}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Mostrar\+Estados\+Muerte()}{MostrarEstadosMuerte()}}]{\setlength{\rightskip}{0pt plus 5cm}string C\+N\+F\+A\+::\+Mostrar\+Estados\+Muerte (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_a2229a8054ba76749dbeb90c20e4ed43b}{}\label{classCNFA_a2229a8054ba76749dbeb90c20e4ed43b}
+\index{C\+N\+FA@{C\+N\+FA}!Mostrar\+N\+FA@{Mostrar\+N\+FA}}
+\index{Mostrar\+N\+FA@{Mostrar\+N\+FA}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Mostrar\+N\+F\+A()}{MostrarNFA()}}]{\setlength{\rightskip}{0pt plus 5cm}void C\+N\+F\+A\+::\+Mostrar\+N\+FA (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_a856bedb1c7ed1b4e12bd9e3169de6831}{}\label{classCNFA_a856bedb1c7ed1b4e12bd9e3169de6831}
+\index{C\+N\+FA@{C\+N\+FA}!move@{move}}
+\index{move@{move}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{move(set$<$ int $>$ \&\+A, char simbolo)}{move(set< int > &A, char simbolo)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Estado} C\+N\+F\+A\+::move (
+\begin{DoxyParamCaption}
+\item[{set$<$ int $>$ \&}]{A, }
+\item[{char}]{simbolo}
+\end{DoxyParamCaption}
+)}\hypertarget{classCNFA_a4dc5f0d4dd40d4f160c1ad36d13dfb28}{}\label{classCNFA_a4dc5f0d4dd40d4f160c1ad36d13dfb28}
+
+
+\subsection{Member Data Documentation}
+\index{C\+N\+FA@{C\+N\+FA}!Alfabeto@{Alfabeto}}
+\index{Alfabeto@{Alfabeto}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Alfabeto}{Alfabeto}}]{\setlength{\rightskip}{0pt plus 5cm}set$<$char$>$ C\+N\+F\+A\+::\+Alfabeto\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCNFA_af7972ada0c1a2d1eecde53fb4f47bb2a}{}\label{classCNFA_af7972ada0c1a2d1eecde53fb4f47bb2a}
+\index{C\+N\+FA@{C\+N\+FA}!inicial@{inicial}}
+\index{inicial@{inicial}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{inicial}{inicial}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+N\+F\+A\+::inicial\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCNFA_af402d09515afcb02ba12c4a0c762aac8}{}\label{classCNFA_af402d09515afcb02ba12c4a0c762aac8}
+\index{C\+N\+FA@{C\+N\+FA}!n\+\_\+estados@{n\+\_\+estados}}
+\index{n\+\_\+estados@{n\+\_\+estados}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{n\+\_\+estados}{n_estados}}]{\setlength{\rightskip}{0pt plus 5cm}int C\+N\+F\+A\+::n\+\_\+estados\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCNFA_a887785fdfe01da854067ca5b528da79c}{}\label{classCNFA_a887785fdfe01da854067ca5b528da79c}
+\index{C\+N\+FA@{C\+N\+FA}!Q\+\_\+@{Q\+\_\+}}
+\index{Q\+\_\+@{Q\+\_\+}!C\+N\+FA@{C\+N\+FA}}
+\subsubsection[{\texorpdfstring{Q\+\_\+}{Q_}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf C\+Estado}$>$ C\+N\+F\+A\+::\+Q\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCNFA_a28a2f71306cb27d725bad4093c5c82c7}{}\label{classCNFA_a28a2f71306cb27d725bad4093c5c82c7}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{CNfa_8h}{C\+Nfa.\+h}\item 
+\hyperlink{CNfa_8cpp}{C\+Nfa.\+cpp}\end{DoxyCompactItemize}

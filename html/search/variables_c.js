@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['resized_5fimage_5fheight',['RESIZED_IMAGE_HEIGHT',['../CDetectarTransiciones_8h.html#a62612b09bbddc2231deace193108338e',1,'CDetectarTransiciones.h']]],
-  ['resized_5fimage_5fwidth',['RESIZED_IMAGE_WIDTH',['../CDetectarTransiciones_8h.html#a3cc1663820bb978e396a3e56222d2e31',1,'CDetectarTransiciones.h']]]
+  ['operacionesimagen_5f',['operacionesImagen_',['../classCAplicacion.html#a58596bdd1d1e018bcb8bd58b64de538e',1,'CAplicacion']]]
 ];
