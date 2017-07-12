@@ -5,6 +5,6 @@
 
 Documentacion: https://alu0100693737.github.io/Codigo-TFG/html/
 
-<img src="https://github.com/alu0100693737/Codigo-TFG/blob/gh-pages/screenshot/imagen1.png" width="800">
-<img src="https://github.com/alu0100693737/Codigo-TFG/blob/gh-pages/screenshot/captura3.png" width="800">
-<img src="https://github.com/alu0100693737/Codigo-TFG/blob/gh-pages/screenshot/Imagen2.png" width="800">
+<img src="https://github.com/alu0100693737/Codigo-TFG/blob/master/screenshot/faseCorreccion.png" width="800">
+<img src="https://github.com/alu0100693737/Codigo-TFG/blob/master/screenshot/deteccion.png" width="800">
+<img src="https://github.com/alu0100693737/Codigo-TFG/blob/master/screenshot/correcionPresentacion.png" width="800">
