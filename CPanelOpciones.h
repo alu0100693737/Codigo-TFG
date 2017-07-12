@@ -18,8 +18,8 @@
 #include "CPushButton.h"
 
 #define CANNYTHRESHOLD 30
-#define ACCUMULATORTHRESHOLD 42
-#define HOUGHLINESP 80
+#define ACCUMULATORTHRESHOLD 37
+#define HOUGHLINESP 88
 
 using namespace std;
 /**

@@ -279,7 +279,7 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
             }
         }
 
-        analizarCadena_ = new CPushButton("Analizar cadena sobre el automata a corregir", false);
+        analizarCadena_ = new CPushButton("Analizar cadena (automata a corregir)", false);
         simplificarAutomataCorregir_ = new CPushButton("Simplificar automata a corregir", false);
 
         getLayout()->removeWidget(getCargarImagenCorregir());
@@ -359,7 +359,7 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
 
         cargarImagenReferencia_ = new CPushButton("Cargar Imagen de referencia", false);
         cargarFicheroReferencia_ = new CPushButton("Cargar fichero de referencia", false);
-        analizarCadenaReferencia_ = new CPushButton("Analizar cadena sobre automata de referencia", false);
+        analizarCadenaReferencia_ = new CPushButton("Analizar cadena (automata de referencia)", false);
 
         getLayout()->addWidget(new CLabel("Panel 1", false), 0, 0, 1, 2);
         getLayout()->addWidget(getCargarImagenCorregir(), 1, 0, 2, 2);
@@ -414,8 +414,8 @@ void CPanelOpciones::iniciarVistaCorreccion(int valor) { //opciones
             }
         }
 
-        analizarCadena_ = new CPushButton("Analizar cadena sobre el automata a corregir", false);
-        analizarCadenaReferencia_ =  new CPushButton("Analizar cadena sobre automata de referencia", false);
+        analizarCadena_ = new CPushButton("Analizar cadena (automata a corregir)", false);
+        analizarCadenaReferencia_ =  new CPushButton("Analizar cadena (automata de referencia)", false);
         simplificarAutomataCorregir_ = new CPushButton("Simplificar automata a corregir", false);
 
         getLayout()->removeWidget(getCargarImagenCorregir());
